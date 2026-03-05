@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="CX Konnect Leaders Circle — Community hub for CX leaders">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CX Konnect — Leaders Circle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,300;1,9..144,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&display=swap" rel="stylesheet">
+<style>
+/* Safe fallbacks if fonts fail to load */
+body { font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+.logo-name, .hero h1, .section-title, .article-title, .activity-title,
+.fsc-title, .event-title, .stefanie-quote, .modal-head h3,
+.hero-stats .n, .fp-replies .n, .hs .n {
+  font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+}
+</style>
+<style>
+:root {
+  --ocean:    #0A4D68;
+  --deep:     #062D3F;
+  --sea:      #088395;
+  --seafoam:  #05BFDB;
+  --mist:     #00FFCA;
+  --sand:     #F5ECD7;
+  --dune:     #E8D5B0;
+  --shell:    #FDF8F0;
+  --sage:     #4A9B8E;
+  --moss:     #2D6A4F;
+  --foam:     #E0F7FA;
+  --glass:    rgba(255,255,255,0.07);
+  --glass2:   rgba(255,255,255,0.12);
+  --white:    #FFFFFF;
+  --ink:      #0D1F2D;
+  --grey:     #5C7A8A;
+  --light:    #EEF6F8;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* Ensure page renders immediately even if fonts are loading */
+html { -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--shell);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+/* ── ANIMATED WAVE BACKGROUND ── */
+body::before {
+  content: '';
+  position: fixed; top: 0; left: 0; right: 0; height: 100vh;
+  background: linear-gradient(160deg, var(--deep) 0%, var(--ocean) 40%, var(--sea) 75%, #0E9F9F 100%);
+  z-index: -2;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── HEADER ── */
+header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 0 48px;
+  height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(6,45,63,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(5,191,219,0.15);
+  transition: all .3s;
+}
+.logo {
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none;
+}
+.logo-mark {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, var(--seafoam), var(--mist));
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Fraunces', serif;
+  font-size: 1rem; font-weight: 700;
+  color: var(--deep);
+}
+.logo-name {
+  font-family: 'Fraunces', serif;
+  font-size: 1.1rem; font-weight: 500;
+  color: var(--white);
+  letter-spacing: .02em;
+}
+.logo-name span { color: var(--seafoam); }
+nav { display: flex; align-items: center; gap: 4px; }
+.nav-link {
+  padding: 7px 16px;
+  font-size: .83rem; font-weight: 500;
+  color: rgba(255,255,255,.65);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all .2s;
+  cursor: pointer; border: none; background: none;
+  font-family: 'DM Sans', sans-serif;
+}
+.nav-link:hover { color: var(--white); background: var(--glass2); }
+.nav-cta {
+  margin-left: 8px;
+  padding: 8px 20px;
+  background: linear-gradient(135deg, var(--seafoam), var(--mist));
+  color: var(--deep); border: none; border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .83rem; font-weight: 700;
+  cursor: pointer; transition: all .2s;
+}
+.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(5,191,219,.4); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(160deg, var(--deep) 0%, var(--ocean) 45%, var(--sea) 80%, #0E9F9F 100%);
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 120px 48px 80px;
+}
+
+/* Animated wave shapes */
+.wave-shape {
+  position: absolute; bottom: -2px; left: 0; right: 0;
+  height: 160px; overflow: hidden;
+}
+.wave-shape svg { width: 100%; height: 100%; }
+
+.hero-ripple {
+  position: absolute; border-radius: 50%;
+  border: 1px solid rgba(5,191,219,.15);
+  animation: rippleOut 8s ease-out infinite;
+  pointer-events: none;
+}
+.hero-ripple:nth-child(1) { width: 400px; height: 400px; top: 10%; right: 5%; animation-delay: 0s; }
+.hero-ripple:nth-child(2) { width: 600px; height: 600px; top: 5%; right: 0%; animation-delay: 2s; }
+.hero-ripple:nth-child(3) { width: 800px; height: 800px; top: 0%; right: -5%; animation-delay: 4s; }
+@keyframes rippleOut {
+  0%   { opacity: .6; transform: scale(.95); }
+  50%  { opacity: .2; }
+  100% { opacity: .6; transform: scale(1.05); }
+}
+
+/* Floating particles */
+.particles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.particle {
+  position: absolute; border-radius: 50%;
+  background: rgba(0,255,202,.12);
+  animation: float linear infinite;
+}
+@keyframes float {
+  0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: .5; }
+  100% { transform: translateY(-20px) scale(1); opacity: 0; }
+}
+
+.hero-inner {
+  max-width: 1200px; margin: 0 auto; width: 100%;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  position: relative; z-index: 1;
+}
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(5,191,219,.12);
+  border: 1px solid rgba(5,191,219,.25);
+  color: var(--seafoam);
+  font-size: .73rem; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: 6px 14px; border-radius: 100px;
+  margin-bottom: 20px;
+}
+.hero-eyebrow::before {
+  content: '';
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--mist);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+.hero h1 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2.4rem, 4vw, 3.6rem);
+  color: var(--white);
+  line-height: 1.12;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+.hero h1 em { font-style: italic; color: var(--seafoam); }
+.hero-desc {
+  font-size: 1.05rem; color: rgba(255,255,255,.65);
+  line-height: 1.7; font-weight: 300;
+  margin-bottom: 36px; max-width: 480px;
+}
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-primary {
+  padding: 13px 28px;
+  background: linear-gradient(135deg, var(--seafoam), var(--mist));
+  color: var(--deep);
+  border: none; border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .95rem; font-weight: 700;
+  cursor: pointer; transition: all .25s;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(5,191,219,.45); }
+.btn-ghost {
+  padding: 13px 28px;
+  background: var(--glass);
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .95rem; font-weight: 500;
+  cursor: pointer; transition: all .25s;
+  text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+}
+.btn-ghost:hover { background: var(--glass2); border-color: rgba(5,191,219,.4); }
+
+/* Stefanie card */
+.stefanie-card {
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 20px;
+  padding: 32px;
+  backdrop-filter: blur(10px);
+  position: relative; overflow: hidden;
+}
+.stefanie-card::before {
+  content: '';
+  position: absolute; top: -50px; right: -50px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(5,191,219,.15), transparent 70%);
+  border-radius: 50%;
+}
+.stefanie-avatar {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--seafoam), var(--sage));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Fraunces', serif;
+  font-size: 1.6rem; font-weight: 700;
+  color: var(--white);
+  margin-bottom: 16px;
+  border: 3px solid rgba(5,191,219,.3);
+}
+.stefanie-quote {
+  font-family: 'Fraunces', serif;
+  font-size: 1.1rem; font-style: italic;
+  color: rgba(255,255,255,.9);
+  line-height: 1.55;
+  margin-bottom: 16px;
+}
+.stefanie-sig {
+  font-size: .8rem; color: rgba(255,255,255,.5);
+}
+.stefanie-sig strong { color: var(--seafoam); display: block; font-size: .88rem; font-weight: 600; }
+
+/* Hero stats */
+.hero-stats {
+  display: flex; gap: 24px; margin-top: 40px; padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,.1);
+}
+.hs { text-align: left; }
+.hs .n { font-family: 'Fraunces', serif; font-size: 1.8rem; font-weight: 500; color: var(--seafoam); display: block; }
+.hs .l { font-size: .72rem; color: rgba(255,255,255,.4); text-transform: uppercase; letter-spacing: .1em; }
+
+/* ── AI SEARCH BAR ── */
+.search-section {
+  background: var(--shell);
+  padding: 0 48px;
+  position: relative; z-index: 10;
+}
+.search-card {
+  max-width: 900px; margin: -36px auto 0;
+  background: var(--white);
+  border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(10,77,104,.18);
+  padding: 28px 32px;
+  position: relative; z-index: 10;
+}
+.search-card-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1rem; font-weight: 500;
+  color: var(--ocean);
+  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 8px;
+}
+.ai-badge {
+  background: linear-gradient(135deg, var(--seafoam), var(--mist));
+  color: var(--deep);
+  font-size: .65rem; font-weight: 800;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: 2px 8px; border-radius: 100px;
+}
+.search-input-wrap {
+  display: flex; gap: 10px; align-items: stretch;
+}
+.search-input {
+  flex: 1; padding: 13px 18px;
+  border: 2px solid var(--foam);
+  border-radius: 10px; outline: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .92rem; color: var(--ink);
+  transition: border-color .2s;
+  background: var(--light);
+}
+.search-input:focus { border-color: var(--seafoam); background: var(--white); }
+.search-input::placeholder { color: #9BB8C4; }
+.search-go {
+  padding: 0 24px;
+  background: linear-gradient(135deg, var(--ocean), var(--sea));
+  color: var(--white); border: none; border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .88rem; font-weight: 600;
+  cursor: pointer; transition: all .2s; white-space: nowrap;
+}
+.search-go:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(10,77,104,.3); }
+.search-suggestions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+.sugg-chip {
+  padding: 5px 13px;
+  background: var(--foam);
+  color: var(--sea);
+  font-size: .78rem; font-weight: 500;
+  border-radius: 100px; cursor: pointer;
+  border: 1px solid rgba(5,191,219,.2);
+  transition: all .2s;
+}
+.sugg-chip:hover { background: var(--seafoam); color: var(--deep); }
+
+/* AI Response */
+.ai-response {
+  margin-top: 16px; padding: 20px;
+  background: linear-gradient(135deg, rgba(10,77,104,.04), rgba(5,191,219,.06));
+  border: 1px solid rgba(5,191,219,.2);
+  border-radius: 12px;
+  display: none;
+}
+.ai-response.show { display: block; animation: fadeIn .3s ease; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
+.ai-response-header { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+.ai-dot { width: 8px; height: 8px; background: var(--seafoam); border-radius: 50%; animation: pulse 1.5s infinite; }
+.ai-label { font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--sea); }
+.ai-text { font-size: .9rem; color: var(--ink); line-height: 1.65; }
+.ai-loading { display: flex; gap: 5px; align-items: center; }
+.ai-loading span { width: 7px; height: 7px; background: var(--seafoam); border-radius: 50%; animation: bounce .8s infinite; }
+.ai-loading span:nth-child(2) { animation-delay: .15s; }
+.ai-loading span:nth-child(3) { animation-delay: .3s; }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+
+/* ── SECTION WRAPPER ── */
+.section { padding: 80px 48px; }
+.section-inner { max-width: 1200px; margin: 0 auto; }
+.section-header { margin-bottom: 48px; }
+.section-eyebrow {
+  font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--seafoam); margin-bottom: 10px; display: block;
+}
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: var(--ocean); font-weight: 500; line-height: 1.2;
+  margin-bottom: 10px;
+}
+.section-sub { font-size: .95rem; color: var(--grey); font-weight: 300; line-height: 1.6; max-width: 520px; }
+
+/* ── ARTICLES ── */
+.articles-section { background: var(--shell); }
+.articles-toolbar {
+  display: flex; align-items: center; gap: 12px;
+  flex-wrap: wrap; margin-bottom: 32px;
+}
+.filter-pill {
+  padding: 7px 16px;
+  border-radius: 100px;
+  border: 1.5px solid var(--dune);
+  background: transparent;
+  font-family: 'DM Sans', sans-serif;
+  font-size: .8rem; font-weight: 500;
+  color: var(--grey);
+  cursor: pointer; transition: all .2s;
+}
+.filter-pill.active, .filter-pill:hover {
+  background: var(--ocean); border-color: var(--ocean); color: var(--white);
+}
+.upload-btn {
+  margin-left: auto;
+  padding: 9px 20px;
+  background: var(--ocean);
+  color: var(--white); border: none; border-radius: 8px;
+  font-family: 'DM Sans', sans-serif; font-size: .83rem; font-weight: 600;
+  cursor: pointer; transition: all .2s;
+  display: flex; align-items: center; gap: 7px;
+}
+.upload-btn:hover { background: var(--sea); transform: translateY(-1px); }
+
+.articles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.article-card {
+  background: var(--white);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(10,77,104,.08);
+  transition: all .25s;
+  display: flex; flex-direction: column;
+  cursor: pointer;
+}
+.article-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(10,77,104,.14); }
+.article-card-img {
+  height: 160px;
+  position: relative; overflow: hidden;
+}
+.article-card-img-bg {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3rem;
+}
+.article-tag {
+  position: absolute; top: 12px; left: 12px;
+  background: rgba(10,77,104,.85);
+  color: var(--seafoam);
+  font-size: .65rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 100px;
+}
+.article-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+.article-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1rem; font-weight: 500;
+  color: var(--ocean); line-height: 1.35;
+  margin-bottom: 8px;
+}
+.article-excerpt { font-size: .82rem; color: var(--grey); line-height: 1.6; flex: 1; margin-bottom: 14px; }
+.article-meta { display: flex; align-items: center; justify-content: space-between; font-size: .73rem; color: #9BB8C4; }
+.article-read { color: var(--sea); font-weight: 600; font-size: .78rem; }
+
+/* ── ACTIVITIES ── */
+.activities-section { background: linear-gradient(180deg, #EAF6F8 0%, var(--shell) 100%); }
+.activities-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+.activity-card {
+  background: var(--white);
+  border-radius: 16px; padding: 24px;
+  border: 1px solid rgba(10,77,104,.08);
+  transition: all .25s; cursor: pointer;
+  position: relative; overflow: hidden;
+}
+.activity-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--seafoam), var(--mist));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .3s;
+}
+.activity-card:hover::before { transform: scaleX(1); }
+.activity-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(10,77,104,.12); }
+.activity-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--foam), #B3EAF5);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; margin-bottom: 14px;
+}
+.activity-title { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 500; color: var(--ocean); margin-bottom: 6px; }
+.activity-desc { font-size: .82rem; color: var(--grey); line-height: 1.55; margin-bottom: 14px; }
+.activity-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.activity-tag {
+  padding: 3px 10px; border-radius: 100px;
+  background: var(--foam); color: var(--sea);
+  font-size: .7rem; font-weight: 600;
+}
+
+/* ── FORUM ── */
+.forum-section { background: var(--white); }
+.forum-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 32px; }
+.forum-posts { display: flex; flex-direction: column; gap: 12px; }
+.forum-post {
+  padding: 18px 20px;
+  border: 1.5px solid rgba(10,77,104,.08);
+  border-radius: 12px;
+  cursor: pointer; transition: all .2s;
+  display: grid; grid-template-columns: auto 1fr auto;
+  gap: 14px; align-items: center;
+}
+.forum-post:hover { border-color: var(--seafoam); background: var(--foam); }
+.fp-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .85rem; font-weight: 700; color: var(--white);
+  flex-shrink: 0;
+}
+.fp-title { font-size: .9rem; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+.fp-meta { font-size: .75rem; color: var(--grey); }
+.fp-meta span { color: var(--sea); font-weight: 500; }
+.fp-replies { text-align: center; }
+.fp-replies .n { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 500; color: var(--ocean); display: block; }
+.fp-replies .l { font-size: .68rem; color: var(--grey); text-transform: uppercase; letter-spacing: .08em; }
+
+.new-post-btn {
+  width: 100%;
+  padding: 13px;
+  background: linear-gradient(135deg, var(--ocean), var(--sea));
+  color: var(--white); border: none; border-radius: 10px;
+  font-family: 'DM Sans', sans-serif; font-size: .9rem; font-weight: 600;
+  cursor: pointer; transition: all .2s; margin-bottom: 20px;
+}
+.new-post-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(10,77,104,.25); }
+
+.forum-sidebar-card {
+  background: var(--light);
+  border-radius: 14px; padding: 20px; margin-bottom: 16px;
+}
+.fsc-title { font-family: 'Fraunces', serif; font-size: .95rem; font-weight: 500; color: var(--ocean); margin-bottom: 14px; }
+.topic-pill {
+  display: inline-block; padding: 5px 13px;
+  background: var(--white); border: 1px solid rgba(10,77,104,.1);
+  border-radius: 100px; font-size: .78rem; color: var(--grey);
+  margin: 4px; cursor: pointer; transition: all .2s;
+}
+.topic-pill:hover { background: var(--seafoam); color: var(--deep); border-color: var(--seafoam); }
+.trending-item { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(10,77,104,.08); }
+.trending-item:last-child { border-bottom: none; }
+.trending-n { font-family: 'Fraunces', serif; font-size: 1rem; color: var(--seafoam); font-weight: 700; min-width: 24px; }
+.trending-t { font-size: .82rem; color: var(--ink); font-weight: 500; }
+
+/* ── LOCAL GROUPS / MAP ── */
+.groups-section { background: linear-gradient(180deg, var(--shell) 0%, #EAF6F8 100%); }
+.groups-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+.map-placeholder {
+  background: linear-gradient(135deg, var(--deep), var(--ocean));
+  border-radius: 20px; overflow: hidden;
+  height: 420px; position: relative;
+  display: flex; align-items: center; justify-content: center;
+}
+.map-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(5,191,219,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(5,191,219,.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+.map-dots { position: absolute; inset: 0; }
+.map-dot {
+  position: absolute;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--seafoam);
+  box-shadow: 0 0 0 4px rgba(5,191,219,.2);
+  cursor: pointer;
+  transition: transform .2s;
+}
+.map-dot::after {
+  content: attr(data-city);
+  position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
+  background: rgba(6,45,63,.9); color: var(--seafoam);
+  font-size: .65rem; font-weight: 600; white-space: nowrap;
+  padding: 3px 8px; border-radius: 4px;
+  opacity: 0; transition: opacity .2s; pointer-events: none;
+}
+.map-dot:hover { transform: scale(1.5); }
+.map-dot:hover::after { opacity: 1; }
+.map-label {
+  font-family: 'Fraunces', serif; font-size: 1rem; color: rgba(255,255,255,.3);
+  text-align: center; padding: 20px;
+}
+.create-group-overlay {
+  position: absolute; bottom: 20px; left: 20px; right: 20px;
+  background: rgba(6,45,63,.85); backdrop-filter: blur(8px);
+  border: 1px solid rgba(5,191,219,.2);
+  border-radius: 12px; padding: 16px 20px;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+.cgo-text { font-size: .85rem; color: rgba(255,255,255,.8); }
+.cgo-text strong { color: var(--seafoam); display: block; }
+.cgo-btn {
+  padding: 8px 18px; background: var(--seafoam); color: var(--deep);
+  border: none; border-radius: 8px; font-family: 'DM Sans', sans-serif;
+  font-size: .8rem; font-weight: 700; cursor: pointer; white-space: nowrap;
+}
+
+.groups-list { display: flex; flex-direction: column; gap: 14px; }
+.group-card {
+  background: var(--white); border-radius: 14px; padding: 18px 20px;
+  border: 1.5px solid rgba(10,77,104,.08);
+  transition: all .2s; cursor: pointer;
+  display: flex; align-items: center; gap: 16px;
+}
+.group-card:hover { border-color: var(--seafoam); box-shadow: 0 8px 24px rgba(10,77,104,.1); }
+.group-avatar {
+  width: 48px; height: 48px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; flex-shrink: 0;
+}
+.group-name { font-weight: 700; color: var(--ocean); font-size: .92rem; margin-bottom: 3px; }
+.group-meta { font-size: .78rem; color: var(--grey); }
+.group-join {
+  margin-left: auto; padding: 7px 16px;
+  background: var(--foam); color: var(--sea);
+  border: 1.5px solid rgba(5,191,219,.3);
+  border-radius: 8px; font-family: 'DM Sans', sans-serif;
+  font-size: .78rem; font-weight: 600; cursor: pointer;
+  transition: all .2s; white-space: nowrap;
+}
+.group-join:hover { background: var(--seafoam); color: var(--deep); border-color: var(--seafoam); }
+
+/* ── EVENTS ── */
+.events-section { background: var(--ocean); }
+.events-section .section-eyebrow { color: var(--mist); }
+.events-section .section-title { color: var(--white); }
+.events-section .section-sub { color: rgba(255,255,255,.55); }
+.events-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.event-card {
+  background: var(--glass);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 16px; padding: 24px;
+  transition: all .25s; cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+.event-card:hover { background: var(--glass2); transform: translateY(-3px); }
+.event-date {
+  display: inline-flex; flex-direction: column; align-items: center;
+  background: linear-gradient(135deg, var(--seafoam), var(--mist));
+  color: var(--deep);
+  border-radius: 10px; padding: 8px 16px;
+  font-family: 'Fraunces', serif;
+  margin-bottom: 16px;
+}
+.event-date .month { font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.event-date .day { font-size: 1.6rem; font-weight: 700; line-height: 1; }
+.event-title { font-family: 'Fraunces', serif; font-size: 1rem; color: var(--white); margin-bottom: 8px; font-weight: 500; }
+.event-meta { font-size: .78rem; color: rgba(255,255,255,.5); line-height: 1.6; }
+.event-type {
+  display: inline-block; margin-top: 12px;
+  font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 100px;
+}
+.type-virtual { background: rgba(5,191,219,.15); color: var(--seafoam); }
+.type-inperson { background: rgba(0,255,202,.12); color: var(--mist); }
+
+/* ── UPLOAD MODAL ── */
+.overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(6,45,63,.75); backdrop-filter: blur(6px);
+  z-index: 300; align-items: center; justify-content: center; padding: 20px;
+}
+.overlay.open { display: flex; }
+.modal {
+  background: var(--white); border-radius: 20px;
+  width: 100%; max-width: 520px;
+  box-shadow: 0 32px 80px rgba(6,45,63,.35);
+  overflow: hidden;
+  animation: modalUp .25s ease;
+}
+@keyframes modalUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+.modal-head {
+  background: linear-gradient(135deg, var(--ocean), var(--sea));
+  padding: 24px 28px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.modal-head h3 { font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--white); font-weight: 500; }
+.modal-x { background: rgba(255,255,255,.15); border: none; color: var(--white); width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; }
+.modal-x:hover { background: rgba(255,255,255,.25); }
+.modal-body { padding: 28px; }
+.mf-group { margin-bottom: 18px; }
+.mf-label { font-size: .78rem; font-weight: 600; color: var(--grey); margin-bottom: 6px; display: block; }
+.mf-input, .mf-select, .mf-textarea {
+  width: 100%; border: 2px solid var(--dune);
+  border-radius: 8px; padding: 10px 14px;
+  font-family: 'DM Sans', sans-serif; font-size: .88rem;
+  color: var(--ink); outline: none; transition: border-color .2s;
+  background: var(--shell);
+}
+.mf-input:focus, .mf-select:focus, .mf-textarea:focus { border-color: var(--seafoam); background: var(--white); }
+.mf-textarea { resize: vertical; min-height: 80px; }
+.drop-zone {
+  border: 2px dashed var(--dune); border-radius: 10px;
+  padding: 32px; text-align: center;
+  cursor: pointer; transition: all .2s;
+  background: var(--shell);
+}
+.drop-zone:hover { border-color: var(--seafoam); background: var(--foam); }
+.drop-zone .drop-icon { font-size: 2rem; margin-bottom: 8px; }
+.drop-zone p { font-size: .85rem; color: var(--grey); }
+.drop-zone small { font-size: .73rem; color: #9BB8C4; }
+.modal-submit {
+  width: 100%; padding: 13px;
+  background: linear-gradient(135deg, var(--ocean), var(--sea));
+  color: var(--white); border: none; border-radius: 10px;
+  font-family: 'DM Sans', sans-serif; font-size: .95rem; font-weight: 700;
+  cursor: pointer; transition: all .2s; margin-top: 8px;
+}
+.modal-submit:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(10,77,104,.3); }
+
+/* ── FORUM NEW POST MODAL ── */
+.forum-modal { max-width: 600px; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--deep);
+  padding: 56px 48px 32px;
+}
+.footer-inner { max-width: 1200px; margin: 0 auto; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
+.footer-brand .logo-name { font-size: 1.2rem; }
+.footer-desc { font-size: .83rem; color: rgba(255,255,255,.4); line-height: 1.65; margin-top: 14px; max-width: 280px; }
+.footer-col h4 { font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--seafoam); margin-bottom: 16px; }
+.footer-link { display: block; font-size: .83rem; color: rgba(255,255,255,.45); text-decoration: none; margin-bottom: 10px; transition: color .2s; cursor: pointer; }
+.footer-link:hover { color: var(--white); }
+.footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.08); font-size: .75rem; color: rgba(255,255,255,.3); }
+
+/* ── TOAST ── */
+.toast { position: fixed; bottom: 24px; right: 24px; background: var(--ocean); color: var(--white); padding: 12px 20px; border-radius: 10px; font-size: .85rem; font-weight: 500; box-shadow: 0 8px 28px rgba(6,45,63,.35); z-index: 400; transform: translateY(60px); opacity: 0; transition: all .3s; pointer-events: none; display: flex; align-items: center; gap: 8px; }
+.toast.show { transform: translateY(0); opacity: 1; }
+.toast-dot { width: 7px; height: 7px; background: var(--mist); border-radius: 50%; }
+
+@media (max-width: 900px) {
+  header { padding: 0 20px; }
+  nav { display: none; }
+  .hero { padding: 100px 20px 60px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+  .section { padding: 60px 20px; }
+  .search-section { padding: 0 20px; }
+  .articles-grid, .events-grid { grid-template-columns: 1fr; }
+  .forum-grid, .groups-layout { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- PARTICLES -->
+<div class="particles" id="particles"></div>
+
+<!-- HEADER -->
+<header>
+  <a class="logo" href="#">
+    <div class="logo-mark">K</div>
+    <span class="logo-name">CX Konnect <span>Leaders Circle</span></span>
+  </a>
+  <nav>
+    <button class="nav-link" onclick="scrollTo('articles')">Articles</button>
+    <button class="nav-link" onclick="scrollTo('activities')">Activities</button>
+    <button class="nav-link" onclick="scrollTo('forum')">Forum</button>
+    <button class="nav-link" onclick="scrollTo('groups')">Local Groups</button>
+    <button class="nav-link" onclick="scrollTo('events')">Events</button>
+    <button class="nav-cta" onclick="openUpload()">+ Share Article</button>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-ripple"></div>
+  <div class="hero-ripple"></div>
+  <div class="hero-ripple"></div>
+
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">CX Konnect — Leaders Circle</div>
+      <h1>Where CX Leaders<br><em>Connect, Learn,</em><br>and Lead Together</h1>
+      <p class="hero-desc">A community built for the people transforming customer experience. Explore frameworks, share ideas, find your people, and lead with purpose.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" onclick="scrollTo('articles')">Explore Resources →</a>
+        <a class="btn-ghost" onclick="scrollTo('groups')">Find a Local Group</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hs"><span class="n">2,400+</span><span class="l">CX Leaders</span></div>
+        <div class="hs"><span class="n">48</span><span class="l">Local Groups</span></div>
+        <div class="hs"><span class="n">120+</span><span class="l">Resources</span></div>
+      </div>
+    </div>
+
+    <div class="stefanie-card">
+      <div class="stefanie-avatar">ST</div>
+      <p class="stefanie-quote">"The most powerful thing a leader can do is refuse to wait for permission to make things better. This community is for the ones who are already doing the work — and want to do it together."</p>
+      <div class="stefanie-sig">
+        <strong>Stefanie Thorlichen</strong>
+        Chief Customer Experience Officer · Author, CX Konnect
+      </div>
+    </div>
+  </div>
+
+  <div class="wave-shape">
+    <svg viewBox="0 0 1440 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,80 C240,140 480,20 720,80 C960,140 1200,20 1440,80 L1440,160 L0,160 Z" fill="#F5ECD7"/>
+    </svg>
+  </div>
+</section>
+
+<!-- AI SEARCH -->
+<div class="search-section" id="search">
+  <div class="search-card">
+    <div class="search-card-title">
+      Ask anything about CX Konnect <span class="ai-badge">AI Powered</span>
+    </div>
+    <div class="search-input-wrap">
+      <input class="search-input" id="searchInput" placeholder="e.g. How do I reduce silo thinking between my Support and Success teams?" onkeydown="if(event.key==='Enter') runSearch()">
+      <button class="search-go" onclick="runSearch()">Ask AI →</button>
+    </div>
+    <div class="search-suggestions">
+      <span class="sugg-chip" onclick="prefill('What is the CX Konnect Framework?')">What is CX Konnect?</span>
+      <span class="sugg-chip" onclick="prefill('How do I measure customer outcomes?')">Measuring outcomes</span>
+      <span class="sugg-chip" onclick="prefill('Team activities for breaking down silos')">Silo-breaking activities</span>
+      <span class="sugg-chip" onclick="prefill('How to build a customer-first culture?')">Customer-first culture</span>
+      <span class="sugg-chip" onclick="prefill('AI intelligence layer vs AI tools')">AI vs AI tools</span>
+      <span class="sugg-chip" onclick="prefill('How to scale CX transformation incrementally?')">Scaling CX</span>
+    </div>
+    <div class="ai-response" id="aiResponse">
+      <div class="ai-response-header">
+        <div class="ai-dot"></div>
+        <span class="ai-label">CX Konnect AI Assistant</span>
+      </div>
+      <div class="ai-text" id="aiText"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLES -->
+<section class="section articles-section" id="articles">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-eyebrow">Knowledge Hub</span>
+      <h2 class="section-title">Articles & Resources</h2>
+      <p class="section-sub">Frameworks, case studies, and leadership insights — curated for CX leaders building outcome-driven organizations.</p>
+    </div>
+    <div class="articles-toolbar">
+      <button class="filter-pill active" onclick="filterArticles('all',this)">All</button>
+      <button class="filter-pill" onclick="filterArticles('framework',this)">Frameworks</button>
+      <button class="filter-pill" onclick="filterArticles('leadership',this)">Leadership</button>
+      <button class="filter-pill" onclick="filterArticles('ai',this)">AI & Tech</button>
+      <button class="filter-pill" onclick="filterArticles('culture',this)">Culture</button>
+      <button class="filter-pill" onclick="filterArticles('metrics',this)">Metrics</button>
+      <button class="upload-btn" onclick="openUpload()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Upload Article
+      </button>
+    </div>
+    <div class="articles-grid" id="articlesGrid"></div>
+  </div>
+</section>
+
+<!-- ACTIVITIES -->
+<section class="section activities-section" id="activities">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-eyebrow">Team Toolkit</span>
+      <h2 class="section-title">Workshop Activities</h2>
+      <p class="section-sub">Ready-to-run exercises for CX leaders. Drop one into your next team session, QBR, or offsite.</p>
+    </div>
+    <div class="activities-grid" id="activitiesGrid"></div>
+  </div>
+</section>
+
+<!-- FORUM -->
+<section class="section forum-section" id="forum">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-eyebrow">Community Forum</span>
+      <h2 class="section-title">Discuss, Debate, Discover</h2>
+      <p class="section-sub">Real conversations between CX leaders. Ask questions, share wins, work through challenges together.</p>
+    </div>
+    <div class="forum-grid">
+      <div>
+        <button class="new-post-btn" onclick="openNewPost()">+ Start a New Discussion</button>
+        <div class="forum-posts" id="forumPosts"></div>
+      </div>
+      <div>
+        <div class="forum-sidebar-card">
+          <div class="fsc-title">Browse Topics</div>
+          <div id="topicPills"></div>
+        </div>
+        <div class="forum-sidebar-card">
+          <div class="fsc-title">🔥 Trending This Week</div>
+          <div id="trendingList"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCAL GROUPS -->
+<section class="section groups-section" id="groups">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-eyebrow">Local Community</span>
+      <h2 class="section-title">Find Your People</h2>
+      <p class="section-sub">CX Konnect chapters meet monthly in cities around the world. Find a group near you or start one.</p>
+    </div>
+    <div class="groups-layout">
+      <div class="map-placeholder">
+        <div class="map-grid"></div>
+        <div class="map-dots" id="mapDots"></div>
+        <div class="create-group-overlay">
+          <div class="cgo-text">
+            <strong>Don't see your city?</strong>
+            Start a local chapter in 5 minutes.
+          </div>
+          <button class="cgo-btn" onclick="openCreateGroup()">Start a Group</button>
+        </div>
+      </div>
+      <div class="groups-list" id="groupsList"></div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section class="section events-section" id="events">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-eyebrow">What's Coming Up</span>
+      <h2 class="section-title">Events & Gatherings</h2>
+      <p class="section-sub">Virtual workshops, local meetups, and leadership masterclasses — all in one place.</p>
+    </div>
+    <div class="events-grid" id="eventsGrid"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-mark">K</div>
+          <span class="logo-name">CX Konnect <span>Leaders Circle</span></span>
+        </div>
+        <p class="footer-desc">A community built for CX leaders who believe that connected operations, outcome-driven cultures, and genuine human connection are the future of customer experience.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a class="footer-link">Articles</a>
+        <a class="footer-link">Workshop Activities</a>
+        <a class="footer-link">The CX Konnect Book</a>
+        <a class="footer-link">Frameworks</a>
+      </div>
+      <div class="footer-col">
+        <h4>Community</h4>
+        <a class="footer-link">Forum</a>
+        <a class="footer-link">Local Groups</a>
+        <a class="footer-link">Events</a>
+        <a class="footer-link">Leaders Directory</a>
+      </div>
+      <div class="footer-col">
+        <h4>About</h4>
+        <a class="footer-link">About Stefanie</a>
+        <a class="footer-link">CX Konnect Framework</a>
+        <a class="footer-link">Contact</a>
+        <a class="footer-link">Privacy Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 CX Konnect — Leaders Circle · All rights reserved</span>
+      <span>Built with purpose, not just pixels.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- UPLOAD MODAL -->
+<div class="overlay" id="uploadOverlay">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>Share an Article or Resource</h3>
+      <button class="modal-x" onclick="closeModal('uploadOverlay')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="mf-group">
+        <label class="mf-label">Title *</label>
+        <input class="mf-input" placeholder="e.g. How We Reduced Churn by 40% with Outcome Metrics">
+      </div>
+      <div class="mf-group">
+        <label class="mf-label">Category</label>
+        <select class="mf-select">
+          <option>Framework</option>
+          <option>Leadership</option>
+          <option>AI & Technology</option>
+          <option>Culture</option>
+          <option>Metrics</option>
+          <option>Case Study</option>
+        </select>
+      </div>
+      <div class="mf-group">
+        <label class="mf-label">Summary</label>
+        <textarea class="mf-textarea" placeholder="A brief description of what this article covers..."></textarea>
+      </div>
+      <div class="mf-group">
+        <label class="mf-label">Upload File or Paste Link</label>
+        <div class="drop-zone" onclick="document.getElementById('fileInput').click()">
+          <div class="drop-icon">📎</div>
+          <p>Drop your PDF or document here, or click to browse</p>
+          <small>PDF, DOCX, or URL · Max 20MB</small>
+          <input type="file" id="fileInput" style="display:none" accept=".pdf,.docx">
+        </div>
+      </div>
+      <div class="mf-group">
+        <label class="mf-label">Or paste an article URL</label>
+        <input class="mf-input" placeholder="https://...">
+      </div>
+      <div class="mf-group">
+        <label class="mf-label">Your Name</label>
+        <input class="mf-input" placeholder="Jane Smith, Chief Experience Officer">
+      </div>
+      <button class="modal-submit" onclick="submitUpload()">Publish to Leaders Circle →</button>
+    </div>
+  </div>
+</div>
+
+<!-- NEW POST MODAL -->
+<div class="overlay" id="postOverlay">
+  <div class="modal forum-modal">
+    <div class="modal-head">
+      <h3>Start a Discussion</h3>
+      <button class="modal-x" onclick="closeModal('postOverlay')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="mf-group">
+        <label class="mf-label">Discussion Title *</label>
+        <input class="mf-input" id="postTitle" placeholder="e.g. How do you handle cross-functional resistance to CX change?">
+      </div>
+      <div class="mf-group">
+        <label class="mf-label">Topic</label>
+        <select class="mf-select">
+          <option>Breaking Silos</option><option>Metrics & Measurement</option>
+          <option>AI in CX</option><option>Culture Change</option>
+          <option>Customer Outcomes</option><option>Team Leadership</option>
+        </select>
+      </div>
+      <div class="mf-group">
+        <label class="mf-label">Your Thoughts</label>
+        <textarea class="mf-textarea" style="min-height:120px" placeholder="Share context, ask your question, or describe your challenge..."></textarea>
+      </div>
+      <div class="mf-group">
+        <label class="mf-label">Your Name</label>
+        <input class="mf-input" placeholder="Jane Smith, Acme Health Systems">
+      </div>
+      <button class="modal-submit" onclick="submitPost()">Post to Forum →</button>
+    </div>
+  </div>
+</div>
+
+<!-- CREATE GROUP MODAL -->
+<div class="overlay" id="groupOverlay">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>Start a Local Chapter</h3>
+      <button class="modal-x" onclick="closeModal('groupOverlay')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="mf-group">
+        <label class="mf-label">City / Region *</label>
+        <input class="mf-input" placeholder="e.g. Chicago, IL">
+      </div>
+      <div class="mf-group">
+        <label class="mf-label">Chapter Name</label>
+        <input class="mf-input" placeholder="e.g. CX Konnect Chicago">
+      </div>
+      <div class="mf-group">
+        <label class="mf-label">Your Role & Organization</label>
+        <input class="mf-input" placeholder="e.g. VP of Customer Success, Ascension Health">
+      </div>
+      <div class="mf-group">
+        <label class="mf-label">How often do you plan to meet?</label>
+        <select class="mf-select">
+          <option>Monthly</option><option>Bi-monthly</option><option>Quarterly</option>
+        </select>
+      </div>
+      <div class="mf-group">
+        <label class="mf-label">Tell us a bit about your vision for the group</label>
+        <textarea class="mf-textarea" placeholder="What kind of conversations do you want to host?"></textarea>
+      </div>
+      <button class="modal-submit" onclick="submitGroup()">Launch My Chapter →</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><span class="toast-dot"></span><span id="toastMsg"></span></div>
+
+<script>
+// ═══════════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════════
+const ARTICLES = [
+  { id:1, cat:'framework', emoji:'🗺️', bg:'linear-gradient(135deg,#0A4D68,#088395)', title:'The Five Outcome Stages of CX Konnect', excerpt:'A journey defined by activity tells you what happened. One defined by outcomes tells you whether it mattered. Here\'s how to build the latter.', author:'Stefanie Thorlichen', date:'Feb 28, 2026', read:'8 min', tag:'Framework' },
+  { id:2, cat:'metrics', emoji:'📊', bg:'linear-gradient(135deg,#2D6A4F,#4A9B8E)', title:'The 8 Metrics That Actually Matter in CX', excerpt:'Most CX dashboards measure the wrong things. Here are the eight outcome-oriented metrics that reveal whether your customers are truly succeeding.', author:'James Park, Atrium Health', date:'Feb 14, 2026', read:'6 min', tag:'Metrics' },
+  { id:3, cat:'culture', emoji:'🌊', bg:'linear-gradient(135deg,#1a3a5c,#0A4D68)', title:'Culture Is Not the Soft Side of CX Strategy — It\'s the Deciding Factor', excerpt:'Tools create conditions. People create outcomes. Why the most advanced CX system will underperform a mediocre one run by a team that owns the outcome.', author:'Stefanie Thorlichen', date:'Jan 30, 2026', read:'10 min', tag:'Culture' },
+  { id:4, cat:'ai', emoji:'🤖', bg:'linear-gradient(135deg,#05BFDB,#088395)', title:'AI-Tooled vs AI-Intelligent: The Architectural Difference That Changes Everything', excerpt:'Most CX organizations are AI-tooled. The organizations that separate from the field will build something architecturally different: an AI intelligence layer.', author:'Nadia Chen, Mount Sinai', date:'Jan 12, 2026', read:'7 min', tag:'AI & Tech' },
+  { id:5, cat:'leadership', emoji:'🧭', bg:'linear-gradient(135deg,#062D3F,#0A4D68)', title:'From Reaction to Connection: A Leader\'s Transition Guide', excerpt:'Your teams are not underperforming — they are unconnected. How to move your organization from reactive chaos to proactive clarity in 90 days.', author:'Stefanie Thorlichen', date:'Dec 18, 2025', read:'9 min', tag:'Leadership' },
+  { id:6, cat:'framework', emoji:'⚙️', bg:'linear-gradient(135deg,#4A9B8E,#05BFDB)', title:'Breaking Silos: The Gap Map Exercise', excerpt:'The most costly CX failures don\'t happen inside departments — they happen between them. A practical approach to mapping and fixing your invisible gaps.', author:'Ravi Kapoor, Kaiser Permanente', date:'Dec 5, 2025', read:'5 min', tag:'Framework' },
+];
+
+const ACTIVITIES = [
+  { emoji:'🗺️', title:'The Gap Map', desc:'Teams map every customer handoff point and identify where context is lost between functions. Surfaces invisible cross-functional gaps.', tags:['60 min','Cross-functional','6–10 people'], cat:'collaboration' },
+  { emoji:'🔍', title:'The Outcome Audit', desc:'Each leader articulates what outcome their two most important customers are hired to achieve — then compares across the team.', tags:['45 min','Leadership team','4–8 people'], cat:'reflection' },
+  { emoji:'🪤', title:'The Blame-Free Post-Mortem', desc:'A structured backward-trace of one churn event or near-miss to find the structural cause — not the people cause.', tags:['45 min','Cross-functional','5–8 people'], cat:'analysis' },
+  { emoji:'📋', title:'The Culture Contract', desc:'Each person commits to one behavior that makes the org function as one team. Group finds themes and writes shared commitments.', tags:['60 min','Any team','8–15 people'], cat:'culture' },
+  { emoji:'🚀', title:'The 90-Day Transformation Sprint', desc:'Leadership team defines a CX Konnect pilot: one journey, one segment, one success metric. Assigns ownership and milestones.', tags:['90 min','Leadership','4–8 people'], cat:'planning' },
+  { emoji:'🤝', title:'The Outcome Handoff Matrix', desc:'Each function lead writes what the customer should experience after their work is done. Mismatches reveal where standards need alignment.', tags:['60 min','Cross-functional','All functions'], cat:'collaboration' },
+  { emoji:'📏', title:'Stage Health Audit', desc:'Rate each of the five CX Konnect stages Red/Yellow/Green as a team. Identify root causes for every non-green stage.', tags:['60 min','Leadership team','4–8 people'], cat:'analysis' },
+  { emoji:'🧩', title:'Fix the Gap Sprint', desc:'Cross-functional pairs map one transition in the customer journey and design a minimum viable handoff protocol together.', tags:['90 min','Cross-functional','6–12 people'], cat:'collaboration' },
+];
+
+const FORUM_POSTS = [
+  { initials:'MR', color:'#0A4D68', title:'How do you get Sales to stop overpromising before handoff?', meta:'Mia Rodriguez · SVP CX, Mercy Health', topic:'Breaking Silos', replies:24, time:'2h ago' },
+  { initials:'JK', color:'#4A9B8E', title:'We have great metrics but still losing renewals — anyone else?', meta:'James Kim · Director CS, Optum', topic:'Metrics', replies:18, time:'5h ago' },
+  { initials:'AP', color:'#2D6A4F', title:'Sharing our 6-month outcome-driven transformation story', meta:'Anika Patel · CCO, Regional Health System', topic:'Culture Change', replies:41, time:'Yesterday' },
+  { initials:'TD', color:'#088395', title:'Has anyone built an actual AI intelligence layer? Looking for real examples', meta:'Tom Daly · CX Innovation Lead, Ascension', topic:'AI in CX', replies:29, time:'2 days ago' },
+  { initials:'SC', color:'#062D3F', title:'The 90-day sprint activity changed our entire planning process', meta:'Sarah Chen · VP CX, Boston Medical', topic:'Team Leadership', replies:15, time:'3 days ago' },
+];
+
+const TOPICS = ['Breaking Silos','Customer Outcomes','AI in CX','Culture Change','Metrics & Measurement','Team Leadership','Partner Management','Scaling CX','Healthcare CX','Healthcare IT'];
+
+const TRENDING = [
+  { n:1, t:'How to build an AI intelligence layer' },
+  { n:2, t:'Proving ROI of CX transformation' },
+  { n:3, t:'Managing cross-functional resistance' },
+  { n:4, t:'Time to First Value benchmarks' },
+  { n:5, t:'Remote-first CX team culture' },
+];
+
+const GROUPS = [
+  { emoji:'🏙️', city:'New York, NY', members:'142 members', freq:'Monthly', bg:'#EAF6F8' },
+  { emoji:'🌴', city:'Los Angeles, CA', members:'98 members', freq:'Monthly', bg:'#F0FDF4' },
+  { emoji:'🏥', city:'Chicago, IL', members:'87 members', freq:'Bi-monthly', bg:'#FFF7ED' },
+  { emoji:'🌆', city:'Dallas, TX', members:'64 members', freq:'Monthly', bg:'#EAF6F8' },
+  { emoji:'🌉', city:'San Francisco, CA', members:'112 members', freq:'Monthly', bg:'#F0FDF4' },
+];
+
+const MAP_DOTS = [
+  { city:'New York',      top:'28%', left:'78%' },
+  { city:'Los Angeles',   top:'48%', left:'12%' },
+  { city:'Chicago',       top:'30%', left:'62%' },
+  { city:'Dallas',        top:'55%', left:'50%' },
+  { city:'San Francisco', top:'38%', left:'8%' },
+  { city:'Boston',        top:'24%', left:'80%' },
+  { city:'Atlanta',       top:'52%', left:'68%' },
+  { city:'Toronto',       top:'22%', left:'72%' },
+  { city:'London',        top:'18%', left:'48%' },
+  { city:'Sydney',        top:'72%', left:'88%' },
+  { city:'Dubai',         top:'42%', left:'70%' },
+];
+
+const EVENTS = [
+  { month:'MAR', day:'18', title:'Outcome-Driven CX: Workshop with Stefanie', meta:'Virtual · Zoom · 90 minutes', type:'virtual' },
+  { month:'APR', day:'3', title:'CX Konnect NYC Chapter Meetup', meta:'New York, NY · WeWork Midtown · Evening', type:'inperson' },
+  { month:'APR', day:'22', title:'AI as the CX Intelligence Layer — Deep Dive', meta:'Virtual · 2-hour masterclass', type:'virtual' },
+  { month:'MAY', day:'8', title:'Leaders Circle Annual Summit', meta:'Chicago, IL · Full Day · CX Leaders Only', type:'inperson' },
+  { month:'MAY', day:'15', title:'The Culture Contract Workshop', meta:'Virtual · Interactive team session', type:'virtual' },
+  { month:'JUN', day:'5', title:'West Coast CX Konnect Gathering', meta:'San Francisco, CA · Half-day event', type:'inperson' },
+];
+
+// ═══════════════════════════════════════════════════
+// RENDER
+// ═══════════════════════════════════════════════════
+let articleFilter = 'all';
+
+function renderArticles(filter = 'all') {
+  const list = filter === 'all' ? ARTICLES : ARTICLES.filter(a => a.cat === filter);
+  document.getElementById('articlesGrid').innerHTML = list.map(a => `
+    <div class="article-card" onclick="showToast('Opening: ${a.title.substring(0,40)}...')">
+      <div class="article-card-img">
+        <div class="article-card-img-bg" style="background:${a.bg}">${a.emoji}</div>
+        <span class="article-tag">${a.tag}</span>
+      </div>
+      <div class="article-body">
+        <div class="article-title">${a.title}</div>
+        <div class="article-excerpt">${a.excerpt}</div>
+        <div class="article-meta">
+          <span>${a.author} · ${a.date}</span>
+          <span class="article-read">${a.read} read →</span>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function filterArticles(cat, el) {
+  articleFilter = cat;
+  document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  renderArticles(cat);
+}
+
+function renderActivities() {
+  document.getElementById('activitiesGrid').innerHTML = ACTIVITIES.map(a => `
+    <div class="activity-card" onclick="showToast('Activity downloaded: ${a.title}')">
+      <div class="activity-icon">${a.emoji}</div>
+      <div class="activity-title">${a.title}</div>
+      <div class="activity-desc">${a.desc}</div>
+      <div class="activity-tags">${a.tags.map(t => `<span class="activity-tag">${t}</span>`).join('')}</div>
+    </div>`).join('');
+}
+
+function renderForum() {
+  document.getElementById('forumPosts').innerHTML = FORUM_POSTS.map(p => `
+    <div class="forum-post" onclick="showToast('Opening discussion...')">
+      <div class="fp-avatar" style="background:${p.color}">${p.initials}</div>
+      <div>
+        <div class="fp-title">${p.title}</div>
+        <div class="fp-meta">${p.meta} · <span>${p.topic}</span> · ${p.time}</div>
+      </div>
+      <div class="fp-replies">
+        <span class="n">${p.replies}</span>
+        <span class="l">Replies</span>
+      </div>
+    </div>`).join('');
+
+  document.getElementById('topicPills').innerHTML = TOPICS.map(t =>
+    `<span class="topic-pill" onclick="showToast('Filtering: ${t}')">${t}</span>`).join('');
+
+  document.getElementById('trendingList').innerHTML = TRENDING.map(t => `
+    <div class="trending-item">
+      <span class="trending-n">${t.n}</span>
+      <span class="trending-t">${t.t}</span>
+    </div>`).join('');
+}
+
+function renderGroups() {
+  const dots = document.getElementById('mapDots');
+  dots.innerHTML = MAP_DOTS.map(d => `
+    <div class="map-dot" style="top:${d.top};left:${d.left}" data-city="${d.city}"
+         onclick="showToast('${d.city} chapter — 12 members')"></div>`).join('');
+
+  document.getElementById('groupsList').innerHTML = GROUPS.map(g => `
+    <div class="group-card">
+      <div class="group-avatar" style="background:${g.bg}">${g.emoji}</div>
+      <div>
+        <div class="group-name">CX Konnect ${g.city}</div>
+        <div class="group-meta">${g.members} · Meets ${g.freq}</div>
+      </div>
+      <button class="group-join" onclick="showToast('Joining ${g.city} chapter...')">Join →</button>
+    </div>`).join('');
+}
+
+function renderEvents() {
+  document.getElementById('eventsGrid').innerHTML = EVENTS.map(e => `
+    <div class="event-card">
+      <div class="event-date"><span class="month">${e.month}</span><span class="day">${e.day}</span></div>
+      <div class="event-title">${e.title}</div>
+      <div class="event-meta">${e.meta}</div>
+      <span class="event-type ${e.type === 'virtual' ? 'type-virtual' : 'type-inperson'}">
+        ${e.type === 'virtual' ? '💻 Virtual' : '📍 In Person'}
+      </span>
+    </div>`).join('');
+}
+
+// ═══════════════════════════════════════════════════
+// AI SEARCH
+// ═══════════════════════════════════════════════════
+async function runSearch() {
+  const q = document.getElementById('searchInput').value.trim();
+  if (!q) return;
+  const resp = document.getElementById('aiResponse');
+  const text = document.getElementById('aiText');
+  resp.classList.add('show');
+  text.innerHTML = '<div class="ai-loading"><span></span><span></span><span></span></div>';
+
+  try {
+    // Note: Direct API calls require your Anthropic API key.
+    // For production, route this through a backend/proxy to keep the key secure.
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: `You are the CX Konnect AI Assistant — an expert on the CX Konnect Framework created by Stefanie Thorlichen. The framework covers: outcome-driven CX (measuring customer outcomes not just activity), the five customer journey stages (Connect & Align, Enable & Certify, Activate & Monitor, Expand & Optimize, Renew & Advocate), breaking functional silos, cross-functional collaboration, 8 key CX metrics (Time to First Value, Outcome Achievement Rate, Adoption Depth Score, etc.), culture as the deciding factor in CX transformation, AI as an intelligence layer vs. collection of tools, and scaling CX transformation incrementally. Answer questions thoughtfully and practically. Be warm, direct, and useful. Keep responses to 3–5 sentences max unless more detail is clearly needed.`,
+        messages: [{ role: 'user', content: q }]
+      })
+    });
+    const data = await res.json();
+    const answer = data.content?.find(c => c.type === 'text')?.text || 'I couldn\'t generate a response. Please try again.';
+    text.innerHTML = answer.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>');
+  } catch (e) {
+    text.innerHTML = '<strong>AI Assistant:</strong> To activate the AI search, add your Anthropic API key to the fetch call in the page source. In the meantime, browse the articles and activities sections above for CX Konnect resources — or visit <a href="https://claude.ai" style="color:var(--sea)">claude.ai</a> to ask questions directly.';
+  }
+}
+
+function prefill(q) {
+  document.getElementById('searchInput').value = q;
+  runSearch();
+}
+
+// ═══════════════════════════════════════════════════
+// MODALS
+// ═══════════════════════════════════════════════════
+function openUpload() { document.getElementById('uploadOverlay').classList.add('open'); }
+function openNewPost() { document.getElementById('postOverlay').classList.add('open'); }
+function openCreateGroup() { document.getElementById('groupOverlay').classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+function submitUpload() {
+  closeModal('uploadOverlay');
+  showToast('✓ Article submitted for review — thank you!');
+}
+function submitPost() {
+  const title = document.getElementById('postTitle').value;
+  closeModal('postOverlay');
+  if (title) {
+    const newPost = { initials:'YOU', color:'#05BFDB', title: title || 'New Discussion', meta:'You · Just now', topic:'General', replies:0, time:'Just now' };
+    FORUM_POSTS.unshift(newPost);
+    renderForum();
+  }
+  showToast('✓ Discussion posted to the forum!');
+}
+function submitGroup() {
+  closeModal('groupOverlay');
+  showToast('✓ Chapter request submitted! We\'ll be in touch within 48 hours.');
+}
+
+// Close on overlay click
+['uploadOverlay','postOverlay','groupOverlay'].forEach(id => {
+  document.getElementById(id).addEventListener('click', e => {
+    if (e.target.id === id) closeModal(id);
+  });
+});
+
+// ═══════════════════════════════════════════════════
+// PARTICLES
+// ═══════════════════════════════════════════════════
+function createParticles() {
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 18; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 6 + 3;
+    p.style.cssText = `
+      width:${size}px;height:${size}px;
+      left:${Math.random()*100}%;
+      animation-duration:${Math.random()*12+8}s;
+      animation-delay:-${Math.random()*20}s;
+    `;
+    container.appendChild(p);
+  }
+}
+
+// ═══════════════════════════════════════════════════
+// UTILS
+// ═══════════════════════════════════════════════════
+function scrollTo(id) {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
+}
+
+// ═══════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════
+renderArticles();
+renderActivities();
+renderForum();
+renderGroups();
+renderEvents();
+createParticles();
+</script>
+</body>
+</html>
