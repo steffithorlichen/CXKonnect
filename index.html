@@ -223,7 +223,7 @@ nav { display: flex; align-items: center; gap: 4px; }
 }
 .btn-ghost:hover { background: var(--glass2); border-color: rgba(5,191,219,.4); }
 
-/* Stefanie card */
+/* Steffi card */
 .stefanie-card {
   background: rgba(255,255,255,.07);
   border: 1px solid rgba(255,255,255,.12);
@@ -715,6 +715,95 @@ footer {
 .toast.show { transform: translateY(0); opacity: 1; }
 .toast-dot { width: 7px; height: 7px; background: var(--mist); border-radius: 50%; }
 
+
+/* ── FORUM AUTH & MODALS ── */
+.forum-auth-banner {
+  background: linear-gradient(135deg, var(--foam), #d0f0f8);
+  border: 1.5px solid rgba(8,131,149,.2);
+  border-radius: 12px; padding: 18px 22px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  margin-bottom: 20px; flex-wrap: wrap;
+}
+.fab-text { font-size: .9rem; color: var(--ocean); font-weight: 500; }
+.fab-text strong { display: block; font-size: .95rem; margin-bottom: 2px; }
+.fab-actions { display: flex; gap: 10px; flex-shrink: 0; }
+.fab-btn-primary {
+  padding: 8px 20px; background: var(--ocean); color: var(--white);
+  border: none; border-radius: 8px; font-family: 'DM Sans', sans-serif;
+  font-size: .82rem; font-weight: 700; cursor: pointer; transition: all .2s;
+}
+.fab-btn-primary:hover { background: var(--sea); }
+.fab-btn-ghost {
+  padding: 8px 16px; background: transparent; color: var(--ocean);
+  border: 1.5px solid rgba(10,77,104,.25); border-radius: 8px;
+  font-family: 'DM Sans', sans-serif; font-size: .82rem; font-weight: 600;
+  cursor: pointer; transition: all .2s;
+}
+.fab-btn-ghost:hover { border-color: var(--ocean); background: var(--foam); }
+
+.forum-user-bar {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--foam); border: 1px solid rgba(8,131,149,.15);
+  border-radius: 10px; padding: 10px 16px; margin-bottom: 16px;
+}
+.forum-avatar {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--seafoam), var(--sage));
+  display: flex; align-items: center; justify-content: center;
+  font-size: .85rem; font-weight: 700; color: var(--white); flex-shrink: 0;
+}
+.forum-user-name { font-size: .88rem; font-weight: 600; color: var(--ocean); flex: 1; }
+.forum-logout {
+  font-size: .75rem; color: var(--grey); background: none; border: none;
+  cursor: pointer; text-decoration: underline; padding: 0;
+}
+.forum-logout:hover { color: var(--ocean); }
+
+/* Post detail modal */
+.post-modal { max-width: 680px; max-height: 90vh; overflow-y: auto; }
+.post-detail-body { font-size: .9rem; color: var(--ink); line-height: 1.7; margin: 16px 0 20px; }
+.post-detail-meta { font-size: .75rem; color: var(--grey); margin-bottom: 20px; }
+.replies-section { border-top: 1.5px solid var(--dune); padding-top: 20px; }
+.replies-title { font-family: 'Fraunces', serif; font-size: 1rem; color: var(--ocean); margin-bottom: 14px; }
+.reply-item {
+  display: flex; gap: 12px; padding: 12px 0;
+  border-bottom: 1px solid rgba(10,77,104,.07);
+}
+.reply-item:last-child { border-bottom: none; }
+.reply-avatar {
+  width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--sea), var(--seafoam));
+  display: flex; align-items: center; justify-content: center;
+  font-size: .75rem; font-weight: 700; color: var(--white);
+}
+.reply-content {}
+.reply-author { font-size: .78rem; font-weight: 700; color: var(--ocean); margin-bottom: 3px; }
+.reply-text { font-size: .85rem; color: var(--ink); line-height: 1.6; }
+.reply-time { font-size: .7rem; color: var(--grey); margin-top: 3px; }
+.reply-form { margin-top: 20px; }
+.reply-form textarea {
+  width: 100%; border: 2px solid var(--dune); border-radius: 8px;
+  padding: 12px 14px; font-family: 'DM Sans', sans-serif;
+  font-size: .88rem; color: var(--ink); resize: vertical; min-height: 80px;
+  outline: none; transition: border-color .2s; background: var(--shell);
+}
+.reply-form textarea:focus { border-color: var(--seafoam); background: var(--white); }
+.reply-submit {
+  margin-top: 10px; padding: 10px 24px;
+  background: linear-gradient(135deg, var(--ocean), var(--sea));
+  color: var(--white); border: none; border-radius: 8px;
+  font-family: 'DM Sans', sans-serif; font-size: .88rem; font-weight: 600;
+  cursor: pointer; transition: all .2s;
+}
+.reply-submit:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(10,77,104,.25); }
+.no-replies { font-size: .85rem; color: var(--grey); font-style: italic; padding: 10px 0; }
+
+/* mf-err for inline error messages in modals */
+.mf-err { font-size: .78rem; color: #c0392b; margin-top: 6px; display: none; }
+.mf-err.show { display: block; }
+.mf-success { font-size: .78rem; color: var(--moss); margin-top: 6px; display: none; }
+.mf-success.show { display: block; }
+
 @media (max-width: 900px) {
   header { padding: 0 20px; }
   nav { display: none; }
@@ -765,9 +854,9 @@ footer {
         <a class="btn-ghost" onclick="scrollTo('groups')">Find a Local Group</a>
       </div>
       <div class="hero-stats">
-        <div class="hs"><span class="n">+++</span><span class="l">CX Leaders</span></div>
-        <div class="hs"><span class="n">++</span><span class="l">Local Groups</span></div>
-        <div class="hs"><span class="n">+++</span><span class="l">Resources</span></div>
+        <div class="hs"><span class="n">2,400+</span><span class="l">CX Leaders</span></div>
+        <div class="hs"><span class="n">48</span><span class="l">Local Groups</span></div>
+        <div class="hs"><span class="n">120+</span><span class="l">Resources</span></div>
       </div>
     </div>
 
@@ -775,7 +864,7 @@ footer {
       <div class="stefanie-avatar">ST</div>
       <p class="stefanie-quote">"The most powerful thing a leader can do is refuse to wait for permission to make things better. This community is for the ones who are already doing the work — and want to do it together."</p>
       <div class="stefanie-sig">
-        <strong>Stefanie Thorlichen</strong>
+        <strong>Steffi Thorlichen</strong>
         Chief Customer Experience Officer · Author, CX Konnect
       </div>
     </div>
@@ -862,6 +951,7 @@ footer {
     </div>
     <div class="forum-grid">
       <div>
+        <div id="forumAuthBar"></div>
         <button class="new-post-btn" onclick="openNewPost()">+ Start a New Discussion</button>
         <div class="forum-posts" id="forumPosts"></div>
       </div>
@@ -943,7 +1033,7 @@ footer {
       </div>
       <div class="footer-col">
         <h4>About</h4>
-        <a class="footer-link">About Stefanie</a>
+        <a class="footer-link">About Steffi</a>
         <a class="footer-link">CX Konnect Framework</a>
         <a class="footer-link">Contact</a>
         <a class="footer-link">Privacy Policy</a>
@@ -1019,7 +1109,7 @@ footer {
       </div>
       <div class="mf-group">
         <label class="mf-label">Topic</label>
-        <select class="mf-select">
+        <select class="mf-select" id="postTopic">
           <option>Breaking Silos</option><option>Metrics & Measurement</option>
           <option>AI in CX</option><option>Culture Change</option>
           <option>Customer Outcomes</option><option>Team Leadership</option>
@@ -1027,13 +1117,13 @@ footer {
       </div>
       <div class="mf-group">
         <label class="mf-label">Your Thoughts</label>
-        <textarea class="mf-textarea" style="min-height:120px" placeholder="Share context, ask your question, or describe your challenge..."></textarea>
+        <textarea class="mf-textarea" id="postBody" style="min-height:120px" placeholder="Share context, ask your question, or describe your challenge..."></textarea>
       </div>
       <div class="mf-group">
         <label class="mf-label">Your Name</label>
         <input class="mf-input" placeholder="Jane Smith, Acme Health Systems">
       </div>
-      <button class="modal-submit" onclick="submitPost()">Post to Forum →</button>
+      <button class="modal-submit" id="newPostSubmitBtn" onclick="submitPost()">Post to Forum →</button>
     </div>
   </div>
 </div>
@@ -1073,6 +1163,74 @@ footer {
   </div>
 </div>
 
+
+<!-- LOGIN MODAL -->
+<div class="overlay" id="loginOverlay">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>Sign In to the Forum</h3>
+      <button class="modal-x" onclick="closeModal('loginOverlay')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="mf-group">
+        <label class="mf-label">Email</label>
+        <input class="mf-input" id="loginEmail" type="email" placeholder="you@example.com">
+      </div>
+      <div class="mf-group">
+        <label class="mf-label">Password</label>
+        <input class="mf-input" id="loginPassword" type="password" placeholder="Your password">
+      </div>
+      <div class="mf-err" id="loginErr"></div>
+      <button class="modal-submit" id="loginSubmitBtn" onclick="submitLogin()">Sign In →</button>
+      <p style="text-align:center;margin-top:14px;font-size:.82rem;color:var(--grey)">
+        No account? <button onclick="closeModal('loginOverlay');openRegister()" style="background:none;border:none;color:var(--sea);font-weight:600;cursor:pointer;font-size:.82rem">Create one →</button>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- REGISTER MODAL -->
+<div class="overlay" id="registerOverlay">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>Join the Leaders Circle</h3>
+      <button class="modal-x" onclick="closeModal('registerOverlay')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="mf-group">
+        <label class="mf-label">Full Name &amp; Title *</label>
+        <input class="mf-input" id="regName" placeholder="e.g. Jane Smith, VP of CX">
+      </div>
+      <div class="mf-group">
+        <label class="mf-label">Email *</label>
+        <input class="mf-input" id="regEmail" type="email" placeholder="you@organization.com">
+      </div>
+      <div class="mf-group">
+        <label class="mf-label">Password * <span style="font-weight:400;color:var(--grey)">(min 8 characters)</span></label>
+        <input class="mf-input" id="regPassword" type="password" placeholder="Create a password">
+      </div>
+      <div class="mf-err" id="registerErr"></div>
+      <button class="modal-submit" id="registerSubmitBtn" onclick="submitRegister()">Create Account →</button>
+      <p style="text-align:center;margin-top:14px;font-size:.82rem;color:var(--grey)">
+        Already have an account? <button onclick="closeModal('registerOverlay');openLogin()" style="background:none;border:none;color:var(--sea);font-weight:600;cursor:pointer;font-size:.82rem">Sign in →</button>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- POST DETAIL MODAL -->
+<div class="overlay" id="postOverlayDetail">
+  <div class="modal post-modal">
+    <div class="modal-head">
+      <h3 id="postDetailTitle">Discussion</h3>
+      <button class="modal-x" onclick="closeModal('postOverlayDetail')">×</button>
+    </div>
+    <div class="modal-body" id="postDetailBody">
+      <!-- filled dynamically -->
+    </div>
+  </div>
+</div>
+
 <!-- TOAST -->
 <div class="toast" id="toast"><span class="toast-dot"></span><span id="toastMsg"></span></div>
 
@@ -1081,11 +1239,11 @@ footer {
 // DATA
 // ═══════════════════════════════════════════════════
 const ARTICLES = [
-  { id:1, cat:'framework', emoji:'🗺️', bg:'linear-gradient(135deg,#0A4D68,#088395)', title:'The Five Outcome Stages of CX Konnect', excerpt:'A journey defined by activity tells you what happened. One defined by outcomes tells you whether it mattered. Here\'s how to build the latter.', author:'Stefanie Thorlichen', date:'Feb 28, 2026', read:'8 min', tag:'Framework', url:'/articles/five-outcome-stages.html' },
+  { id:1, cat:'framework', emoji:'🗺️', bg:'linear-gradient(135deg,#0A4D68,#088395)', title:'The Five Outcome Stages of CX Konnect', excerpt:'A journey defined by activity tells you what happened. One defined by outcomes tells you whether it mattered. Here\'s how to build the latter.', author:'Steffi Thorlichen', date:'Feb 28, 2026', read:'8 min', tag:'Framework', url:'/articles/five-outcome-stages.html' },
   { id:2, cat:'metrics', emoji:'📊', bg:'linear-gradient(135deg,#2D6A4F,#4A9B8E)', title:'The 8 Metrics That Actually Matter in CX', excerpt:'Most CX dashboards measure the wrong things. Here are the eight outcome-oriented metrics that reveal whether your customers are truly succeeding.', author:'James Park, Atrium Health', date:'Feb 14, 2026', read:'6 min', tag:'Metrics', url:'/articles/8-metrics-that-matter.html' },
-  { id:3, cat:'culture', emoji:'🌊', bg:'linear-gradient(135deg,#1a3a5c,#0A4D68)', title:'Culture Is Not the Soft Side of CX Strategy — It\'s the Deciding Factor', excerpt:'Tools create conditions. People create outcomes. Why the most advanced CX system will underperform a mediocre one run by a team that owns the outcome.', author:'Stefanie Thorlichen', date:'Jan 30, 2026', read:'10 min', tag:'Culture', url:'/articles/culture-deciding-factor.html' },
+  { id:3, cat:'culture', emoji:'🌊', bg:'linear-gradient(135deg,#1a3a5c,#0A4D68)', title:'Culture Is Not the Soft Side of CX Strategy — It\'s the Deciding Factor', excerpt:'Tools create conditions. People create outcomes. Why the most advanced CX system will underperform a mediocre one run by a team that owns the outcome.', author:'Steffi Thorlichen', date:'Jan 30, 2026', read:'10 min', tag:'Culture', url:'/articles/culture-deciding-factor.html' },
   { id:4, cat:'ai', emoji:'🤖', bg:'linear-gradient(135deg,#05BFDB,#088395)', title:'AI-Tooled vs AI-Intelligent: The Architectural Difference That Changes Everything', excerpt:'Most CX organizations are AI-tooled. The organizations that separate from the field will build something architecturally different: an AI intelligence layer.', author:'Nadia Chen, Mount Sinai', date:'Jan 12, 2026', read:'7 min', tag:'AI & Tech', url:'/articles/ai-tooled-vs-ai-intelligent.html' },
-  { id:5, cat:'leadership', emoji:'🧭', bg:'linear-gradient(135deg,#062D3F,#0A4D68)', title:'From Reaction to Connection: A Leader\'s Transition Guide', excerpt:'Your teams are not underperforming — they are unconnected. How to move your organization from reactive chaos to proactive clarity in 90 days.', author:'Stefanie Thorlichen', date:'Dec 18, 2025', read:'9 min', tag:'Leadership', url:'/articles/reaction-to-connection.html' },
+  { id:5, cat:'leadership', emoji:'🧭', bg:'linear-gradient(135deg,#062D3F,#0A4D68)', title:'From Reaction to Connection: A Leader\'s Transition Guide', excerpt:'Your teams are not underperforming — they are unconnected. How to move your organization from reactive chaos to proactive clarity in 90 days.', author:'Steffi Thorlichen', date:'Dec 18, 2025', read:'9 min', tag:'Leadership', url:'/articles/reaction-to-connection.html' },
   { id:6, cat:'framework', emoji:'⚙️', bg:'linear-gradient(135deg,#4A9B8E,#05BFDB)', title:'Breaking Silos: The Gap Map Exercise', excerpt:'The most costly CX failures don\'t happen inside departments — they happen between them. A practical approach to mapping and fixing your invisible gaps.', author:'Ravi Kapoor, Kaiser Permanente', date:'Dec 5, 2025', read:'5 min', tag:'Framework', url:'/articles/breaking-silos-gap-map.html' },
 ];
 
@@ -1141,7 +1299,7 @@ const MAP_DOTS = [
 ];
 
 const EVENTS = [
-  { month:'MAR', day:'18', title:'Outcome-Driven CX: Workshop with Stefanie', meta:'Virtual · Zoom · 90 minutes', type:'virtual' },
+  { month:'MAR', day:'18', title:'Outcome-Driven CX: Workshop with Steffi', meta:'Virtual · Zoom · 90 minutes', type:'virtual' },
   { month:'APR', day:'3', title:'CX Konnect NYC Chapter Meetup', meta:'New York, NY · WeWork Midtown · Evening', type:'inperson' },
   { month:'APR', day:'22', title:'AI as the CX Intelligence Layer — Deep Dive', meta:'Virtual · 2-hour masterclass', type:'virtual' },
   { month:'MAY', day:'8', title:'Leaders Circle Annual Summit', meta:'Chicago, IL · Full Day · CX Leaders Only', type:'inperson' },
@@ -1190,28 +1348,252 @@ function renderActivities() {
     </a>`).join('');
 }
 
-function renderForum() {
-  document.getElementById('forumPosts').innerHTML = FORUM_POSTS.map(p => `
-    <div class="forum-post" onclick="showToast('Opening discussion...')">
-      <div class="fp-avatar" style="background:${p.color}">${p.initials}</div>
-      <div>
-        <div class="fp-title">${p.title}</div>
-        <div class="fp-meta">${p.meta} · <span>${p.topic}</span> · ${p.time}</div>
-      </div>
-      <div class="fp-replies">
-        <span class="n">${p.replies}</span>
-        <span class="l">Replies</span>
-      </div>
-    </div>`).join('');
+// ── FORUM AUTH STATE ────────────────────────────────────────────────────────
+let forumUser = null; // { token, name, email }
 
+function forumInit() {
+  const saved = localStorage.getItem('cxk_forum_user');
+  if (saved) {
+    try { forumUser = JSON.parse(saved); } catch(e) {}
+  }
+  renderForumAuthBar();
+  loadForumPosts();
+  // Static sidebar
   document.getElementById('topicPills').innerHTML = TOPICS.map(t =>
-    `<span class="topic-pill" onclick="showToast('Filtering: ${t}')">${t}</span>`).join('');
-
+    `<span class="topic-pill">${t}</span>`).join('');
   document.getElementById('trendingList').innerHTML = TRENDING.map(t => `
     <div class="trending-item">
       <span class="trending-n">${t.n}</span>
       <span class="trending-t">${t.t}</span>
     </div>`).join('');
+}
+
+function renderForumAuthBar() {
+  const container = document.getElementById('forumAuthBar');
+  if (!container) return;
+  if (forumUser) {
+    const initials = forumUser.name.split(' ').map(w => w[0]).join('').substring(0,2).toUpperCase();
+    container.innerHTML = `
+      <div class="forum-user-bar">
+        <div class="forum-avatar">${initials}</div>
+        <span class="forum-user-name">Signed in as <strong>${forumUser.name}</strong></span>
+        <button class="forum-logout" onclick="forumLogout()">Sign out</button>
+      </div>`;
+  } else {
+    container.innerHTML = `
+      <div class="forum-auth-banner">
+        <div class="fab-text">
+          <strong>Join the conversation</strong>
+          Sign in or create an account to post and reply.
+        </div>
+        <div class="fab-actions">
+          <button class="fab-btn-ghost" onclick="openLogin()">Sign In</button>
+          <button class="fab-btn-primary" onclick="openRegister()">Create Account</button>
+        </div>
+      </div>`;
+  }
+}
+
+function authFetch(url, opts = {}) {
+  const headers = { 'Content-Type': 'application/json', ...(opts.headers || {}) };
+  if (forumUser) headers['Authorization'] = 'Bearer ' + forumUser.token;
+  return fetch(url, { ...opts, headers });
+}
+
+async function loadForumPosts() {
+  const grid = document.getElementById('forumPosts');
+  grid.innerHTML = '<div style="padding:20px;text-align:center;color:var(--grey);font-size:.85rem">Loading discussions…</div>';
+  try {
+    const res = await fetch('/api/forum-posts');
+    const data = await res.json();
+    const posts = data.posts || [];
+    if (posts.length === 0) {
+      grid.innerHTML = '<div style="padding:24px;text-align:center;color:var(--grey);font-size:.9rem;font-style:italic">No discussions yet — start the first one!</div>';
+      return;
+    }
+    grid.innerHTML = posts.map(p => {
+      const initials = p.author.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase();
+      const timeAgo = relativeTime(p.createdAt);
+      const colors = ['#0A4D68','#4A9B8E','#2D6A4F','#088395','#062D3F'];
+      const color = colors[Math.abs(p.id.charCodeAt(0) - 48) % colors.length];
+      return `
+        <div class="forum-post" onclick="openPost('${p.id}')">
+          <div class="fp-avatar" style="background:${color}">${initials}</div>
+          <div>
+            <div class="fp-title">${escHtml(p.title)}</div>
+            <div class="fp-meta">${escHtml(p.author)} · <span>${escHtml(p.topic)}</span> · ${timeAgo}</div>
+          </div>
+          <div class="fp-replies">
+            <span class="n">${p.replyCount || 0}</span>
+            <span class="l">Replies</span>
+          </div>
+        </div>`;
+    }).join('');
+  } catch(e) {
+    grid.innerHTML = '<div style="padding:20px;text-align:center;color:var(--grey);font-size:.85rem">Could not load discussions.</div>';
+  }
+}
+
+async function openPost(id) {
+  document.getElementById('postDetailTitle').textContent = 'Loading…';
+  document.getElementById('postDetailBody').innerHTML = '<div style="padding:20px;text-align:center;color:var(--grey)">Loading…</div>';
+  document.getElementById('postOverlayDetail').classList.add('open');
+
+  try {
+    const res = await fetch('/api/forum-post?id=' + id);
+    const data = await res.json();
+    const p = data.post;
+    if (!p) { document.getElementById('postDetailBody').innerHTML = '<p>Post not found.</p>'; return; }
+    document.getElementById('postDetailTitle').textContent = p.title;
+
+    const repliesHtml = (p.replies || []).length === 0
+      ? '<div class="no-replies">No replies yet — be the first to respond.</div>'
+      : (p.replies || []).map(r => {
+          const ini = r.author.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase();
+          return `<div class="reply-item">
+            <div class="reply-avatar">${ini}</div>
+            <div class="reply-content">
+              <div class="reply-author">${escHtml(r.author)}</div>
+              <div class="reply-text">${escHtml(r.body).replace(/\n/g,'<br>')}</div>
+              <div class="reply-time">${relativeTime(r.createdAt)}</div>
+            </div>
+          </div>`;
+        }).join('');
+
+    const replyFormHtml = forumUser
+      ? `<div class="reply-form">
+          <textarea id="replyBody" placeholder="Write a reply…"></textarea>
+          <button class="reply-submit" onclick="submitReply('${id}')">Post Reply →</button>
+         </div>`
+      : `<div style="margin-top:16px;padding:14px;background:var(--foam);border-radius:8px;font-size:.85rem;color:var(--grey)">
+          <a onclick="closeModal('postOverlayDetail');openLogin()" style="color:var(--sea);cursor:pointer;font-weight:600">Sign in</a> to reply to this discussion.
+         </div>`;
+
+    document.getElementById('postDetailBody').innerHTML = `
+      <div class="post-detail-meta">${escHtml(p.author)} · ${escHtml(p.topic)} · ${relativeTime(p.createdAt)}</div>
+      <div class="post-detail-body">${escHtml(p.body).replace(/\n/g,'<br>')}</div>
+      <div class="replies-section">
+        <div class="replies-title">${(p.replies||[]).length} Repl${(p.replies||[]).length===1?'y':'ies'}</div>
+        ${repliesHtml}
+        ${replyFormHtml}
+      </div>`;
+  } catch(e) {
+    document.getElementById('postDetailBody').innerHTML = '<p style="color:var(--grey)">Failed to load post.</p>';
+  }
+}
+
+async function submitReply(postId) {
+  const body = (document.getElementById('replyBody')?.value || '').trim();
+  if (!body) return;
+  const btn = document.querySelector('.reply-submit');
+  if (btn) { btn.disabled = true; btn.textContent = 'Posting…'; }
+
+  try {
+    const res = await authFetch('/api/forum-reply', {
+      method: 'POST',
+      body: JSON.stringify({ postId, body }),
+    });
+    const data = await res.json();
+    if (data.reply) {
+      // Refresh post view
+      openPost(postId);
+      showToast('✓ Reply posted!');
+    } else {
+      showToast(data.error || 'Could not post reply.');
+      if (btn) { btn.disabled = false; btn.textContent = 'Post Reply →'; }
+    }
+  } catch(e) {
+    if (btn) { btn.disabled = false; btn.textContent = 'Post Reply →'; }
+    showToast('Network error — please try again.');
+  }
+}
+
+function forumLogout() {
+  forumUser = null;
+  localStorage.removeItem('cxk_forum_user');
+  renderForumAuthBar();
+  showToast('Signed out.');
+}
+
+function openLogin()    { document.getElementById('loginOverlay').classList.add('open'); }
+function openRegister() { document.getElementById('registerOverlay').classList.add('open'); }
+
+async function submitLogin() {
+  const email    = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPassword').value;
+  const errEl    = document.getElementById('loginErr');
+  const btn      = document.getElementById('loginSubmitBtn');
+  errEl.classList.remove('show');
+  if (!email || !password) { errEl.textContent = 'Please fill in all fields.'; errEl.classList.add('show'); return; }
+
+  btn.disabled = true; btn.textContent = 'Signing in…';
+  try {
+    const res  = await fetch('/api/forum-login', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ email, password }) });
+    const data = await res.json();
+    if (!res.ok) { errEl.textContent = data.error || 'Login failed.'; errEl.classList.add('show'); btn.disabled=false; btn.textContent='Sign In →'; return; }
+    forumUser = { token: data.token, name: data.name, email: data.email };
+    localStorage.setItem('cxk_forum_user', JSON.stringify(forumUser));
+    closeModal('loginOverlay');
+    document.getElementById('loginPassword').value = '';
+    btn.disabled=false; btn.textContent='Sign In →';
+    renderForumAuthBar();
+    showToast('Welcome back, ' + data.name.split(' ')[0] + '!');
+  } catch(e) {
+    errEl.textContent = 'Network error — please try again.';
+    errEl.classList.add('show');
+    btn.disabled=false; btn.textContent='Sign In →';
+  }
+}
+
+async function submitRegister() {
+  const name     = document.getElementById('regName').value.trim();
+  const email    = document.getElementById('regEmail').value.trim();
+  const password = document.getElementById('regPassword').value;
+  const errEl    = document.getElementById('registerErr');
+  const btn      = document.getElementById('registerSubmitBtn');
+  errEl.classList.remove('show');
+  if (!name || !email || !password) { errEl.textContent = 'Please fill in all fields.'; errEl.classList.add('show'); return; }
+  if (password.length < 8) { errEl.textContent = 'Password must be at least 8 characters.'; errEl.classList.add('show'); return; }
+
+  btn.disabled = true; btn.textContent = 'Creating account…';
+  try {
+    const res  = await fetch('/api/forum-register', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ name, email, password }) });
+    const data = await res.json();
+    if (!res.ok) { errEl.textContent = data.error || 'Registration failed.'; errEl.classList.add('show'); btn.disabled=false; btn.textContent='Create Account →'; return; }
+    forumUser = { token: data.token, name: data.name, email: data.email };
+    localStorage.setItem('cxk_forum_user', JSON.stringify(forumUser));
+    closeModal('registerOverlay');
+    btn.disabled=false; btn.textContent='Create Account →';
+    renderForumAuthBar();
+    showToast('Welcome to the Leaders Circle, ' + data.name.split(' ')[0] + '!');
+  } catch(e) {
+    errEl.textContent = 'Network error — please try again.';
+    errEl.classList.add('show');
+    btn.disabled=false; btn.textContent='Create Account →';
+  }
+}
+
+// Utility: relative time
+function relativeTime(iso) {
+  const diff = Date.now() - new Date(iso).getTime();
+  const m = Math.floor(diff / 60000);
+  if (m < 1)  return 'Just now';
+  if (m < 60) return m + 'm ago';
+  const h = Math.floor(m / 60);
+  if (h < 24) return h + 'h ago';
+  const d = Math.floor(h / 24);
+  if (d < 7)  return d + 'd ago';
+  return new Date(iso).toLocaleDateString('en-US', { month:'short', day:'numeric' });
+}
+
+// Utility: escape HTML
+function escHtml(str) {
+  return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function renderForum() {
+  // Called during init — now replaced by forumInit()
+  forumInit();
 }
 
 function renderGroups() {
@@ -1278,7 +1660,10 @@ function prefill(q) {
 // MODALS
 // ═══════════════════════════════════════════════════
 function openUpload() { document.getElementById('uploadOverlay').classList.add('open'); }
-function openNewPost() { document.getElementById('postOverlay').classList.add('open'); }
+function openNewPost() {
+  if (!forumUser) { openLogin(); return; }
+  document.getElementById('postOverlay').classList.add('open');
+}
 function openCreateGroup() { document.getElementById('groupOverlay').classList.add('open'); }
 function closeModal(id) { document.getElementById(id).classList.remove('open'); }
 
@@ -1287,14 +1672,33 @@ function submitUpload() {
   showToast('✓ Article submitted for review — thank you!');
 }
 function submitPost() {
-  const title = document.getElementById('postTitle').value;
-  closeModal('postOverlay');
-  if (title) {
-    const newPost = { initials:'YOU', color:'#05BFDB', title: title || 'New Discussion', meta:'You · Just now', topic:'General', replies:0, time:'Just now' };
-    FORUM_POSTS.unshift(newPost);
-    renderForum();
-  }
-  showToast('✓ Discussion posted to the forum!');
+  const title = document.getElementById('postTitle').value.trim();
+  const body  = document.getElementById('postBody') ? document.getElementById('postBody').value.trim() : title;
+  const topic = document.getElementById('postTopic') ? document.getElementById('postTopic').value : 'General';
+  if (!title) return;
+
+  const btn = document.getElementById('newPostSubmitBtn');
+  if (btn) { btn.disabled = true; btn.textContent = 'Posting…'; }
+
+  authFetch('/api/forum-posts', {
+    method: 'POST',
+    body: JSON.stringify({ title, body: body || title, topic }),
+  })
+  .then(r => r.json())
+  .then(data => {
+    closeModal('postOverlay');
+    if (btn) { btn.disabled = false; btn.textContent = 'Post to Forum →'; }
+    if (data.post) {
+      showToast('✓ Discussion posted!');
+      loadForumPosts();
+    } else {
+      showToast(data.error || 'Could not post. Please try again.');
+    }
+  })
+  .catch(() => {
+    if (btn) { btn.disabled = false; btn.textContent = 'Post to Forum →'; }
+    showToast('Network error — please try again.');
+  });
 }
 function submitGroup() {
   closeModal('groupOverlay');
@@ -1302,7 +1706,7 @@ function submitGroup() {
 }
 
 // Close on overlay click
-['uploadOverlay','postOverlay','groupOverlay'].forEach(id => {
+['uploadOverlay','postOverlay','groupOverlay','loginOverlay','registerOverlay','postOverlayDetail'].forEach(id => {
   document.getElementById(id).addEventListener('click', e => {
     if (e.target.id === id) closeModal(id);
   });
