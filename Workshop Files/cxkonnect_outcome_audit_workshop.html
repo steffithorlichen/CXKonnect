@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Outcome Audit — CXKonnect Workshop Activity</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:      #1F3864;
+      --navy-deep: #0f1f3a;
+      --teal:      #1B8C8C;
+      --teal-lt:   #E6F4F4;
+      --gold:      #C9A434;
+      --gold-lt:   #FBF5E0;
+      --white:     #ffffff;
+      --off:       #F7F6F3;
+      --mid:       #6B6B6B;
+      --dark:      #1a1a1a;
+      --rule:      #E0DDD8;
+
+      --align:     #2A7A4A;
+      --align-lt:  #EDF7F1;
+      --drift:     #C84040;
+      --drift-lt:  #FEF0F0;
+      --partial:   #C97A20;
+      --partial-lt:#FEF6EC;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--off);
+      color: var(--dark);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(15,31,58,0.97);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--gold);
+      height: 56px; padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Lora', serif; font-weight: 700; font-size: 1.15rem;
+      color: var(--white); text-decoration: none; letter-spacing: 0.02em;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-pill {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--gold);
+      border: 1px solid rgba(201,164,52,0.4);
+      background: rgba(201,164,52,0.1);
+      padding: 4px 12px; border-radius: 99px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(148deg, #0f2240 0%, #1a4058 50%, #1B8C8C 100%);
+      padding: 3.5rem 2rem 3rem; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 55% 50% at 80% 20%, rgba(201,164,52,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 45% 55% at 15% 80%, rgba(27,140,140,0.15) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    /* Search/magnify lens rings */
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 55%; right: -80px;
+      width: 360px; height: 360px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.04);
+      pointer-events: none;
+      box-shadow:
+        0 0 0 50px rgba(255,255,255,0.025),
+        0 0 0 100px rgba(255,255,255,0.015);
+      transform: translateY(-50%);
+    }
+    .hero-inner { position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(201,164,52,0.15); border: 1px solid rgba(201,164,52,0.45);
+      color: var(--gold); font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 99px; margin-bottom: 1.25rem;
+    }
+    .hero-title {
+      font-family: 'Lora', serif; font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700; color: var(--white); line-height: 1.15;
+      margin-bottom: 0.9rem; letter-spacing: -0.01em;
+    }
+    .hero-sub {
+      font-size: 1rem; color: rgba(255,255,255,0.72); max-width: 510px;
+      margin: 0 auto 2rem; line-height: 1.65;
+      font-family: 'Lora', serif; font-style: italic;
+    }
+    .meta-chips {
+      display: flex; align-items: center; justify-content: center; gap: 0.75rem; flex-wrap: wrap;
+    }
+    .meta-chip {
+      display: flex; align-items: center; gap: 0.4rem;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18);
+      color: rgba(255,255,255,0.85); font-size: 0.78rem; font-weight: 600;
+      padding: 5px 14px; border-radius: 99px;
+    }
+
+    /* ── LAYOUT ── */
+    .page { max-width: 980px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+
+    /* ── SECTION LABELS ── */
+    .section-label {
+      display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem;
+    }
+    .section-label-num {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--navy); color: var(--white);
+      font-family: 'DM Mono', monospace; font-size: 0.75rem; font-weight: 500;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .section-label-text {
+      font-family: 'Lora', serif; font-size: 1.35rem; font-weight: 700; color: var(--navy);
+    }
+    .section-label-tag {
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.09em;
+      text-transform: uppercase; color: var(--teal);
+      background: var(--teal-lt); border: 1px solid rgba(27,140,140,0.2);
+      padding: 2px 9px; border-radius: 99px;
+    }
+    .section-block { margin-bottom: 3.5rem; }
+
+    /* ── OVERVIEW ── */
+    .overview-grid {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-bottom: 1.5rem;
+    }
+    .overview-card {
+      background: var(--white); border: 1px solid var(--rule); border-radius: 10px;
+      padding: 1.25rem 1.35rem; box-shadow: 0 2px 8px rgba(31,56,100,0.05);
+    }
+    .ov-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .ov-label { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--teal); margin-bottom: 0.2rem; }
+    .ov-value { font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: 0.3rem; }
+    .ov-desc { font-size: 0.78rem; color: var(--mid); line-height: 1.45; }
+
+    .objective-box {
+      background: var(--navy); border-radius: 10px; padding: 1.5rem 1.75rem;
+      display: flex; gap: 1.25rem; align-items: flex-start;
+    }
+    .objective-icon { font-size: 1.75rem; flex-shrink: 0; margin-top: 2px; }
+    .objective-text h3 {
+      font-family: 'DM Sans', sans-serif; font-size: 0.65rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 0.4rem;
+    }
+    .objective-text p {
+      font-family: 'Lora', serif; font-size: 0.97rem; line-height: 1.65; color: rgba(255,255,255,0.85);
+    }
+
+    /* ── PHASES ── */
+    .phases { display: flex; flex-direction: column; gap: 0; }
+    .phase {
+      display: grid; grid-template-columns: 72px 1fr;
+      position: relative;
+    }
+    .phase:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 35px; top: 52px; bottom: -1px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--rule), transparent);
+    }
+    .phase-time {
+      padding-top: 1.5rem;
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      position: relative; z-index: 1;
+    }
+    .phase-dot {
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      font-family: 'DM Mono', monospace; font-size: 0.68rem; font-weight: 500;
+      color: var(--white); border: 3px solid var(--off);
+    }
+    .phase-mins {
+      font-family: 'DM Mono', monospace; font-size: 0.6rem;
+      color: var(--mid); text-align: center; line-height: 1.3;
+    }
+    .phase-card {
+      margin: 1rem 0 2rem 1.25rem;
+      background: var(--white); border: 1px solid var(--rule);
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 2px 10px rgba(31,56,100,0.05);
+      transition: box-shadow 0.2s;
+    }
+    .phase-card:hover { box-shadow: 0 5px 20px rgba(31,56,100,0.09); }
+    .phase-card-head {
+      padding: 0.95rem 1.4rem; border-bottom: 1px solid var(--rule);
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .phase-card-title {
+      font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 700;
+      color: var(--white); flex: 1;
+    }
+    .phase-card-role {
+      font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; padding: 3px 9px; border-radius: 99px;
+      background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.75); white-space: nowrap;
+    }
+    .phase-card-body { padding: 1.25rem 1.4rem; }
+    .phase-card-body p {
+      font-family: 'Lora', serif; font-size: 0.93rem; line-height: 1.72;
+      color: #2a2a2a; margin-bottom: 0.85rem;
+    }
+    .phase-card-body p:last-child { margin-bottom: 0; }
+    .phase-steps { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.75rem; }
+    .phase-step {
+      display: flex; gap: 0.65rem; align-items: flex-start;
+      font-family: 'DM Sans', sans-serif; font-size: 0.83rem; line-height: 1.5; color: #2a2a2a;
+    }
+    .phase-step-bullet {
+      width: 5px; height: 5px; border-radius: 50%;
+      flex-shrink: 0; margin-top: 7px;
+    }
+    .facilitator-tip {
+      margin-top: 1rem; padding: 0.85rem 1rem;
+      background: var(--gold-lt); border: 1px solid rgba(201,164,52,0.25);
+      border-left: 3px solid var(--gold); border-radius: 0 6px 6px 0;
+    }
+    .facilitator-tip-label {
+      font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: #9e7d1a; margin-bottom: 3px;
+    }
+    .facilitator-tip p {
+      font-family: 'DM Sans', sans-serif; font-size: 0.8rem !important;
+      line-height: 1.55 !important; color: #3a2a00 !important;
+      margin: 0 !important; font-style: italic;
+    }
+
+    .phase-1 .phase-dot { background: #1a3060; }
+    .phase-1 .phase-card-head { background: linear-gradient(90deg, #1a3060, #254880); }
+    .phase-1 .phase-step-bullet { background: #254880; }
+    .phase-2 .phase-dot { background: #1a5268; }
+    .phase-2 .phase-card-head { background: linear-gradient(90deg, #1a5268, #1f6a80); }
+    .phase-2 .phase-step-bullet { background: #1f6a80; }
+    .phase-3 .phase-dot { background: var(--teal); }
+    .phase-3 .phase-card-head { background: linear-gradient(90deg, var(--teal), #22aaaa); }
+    .phase-3 .phase-step-bullet { background: var(--teal); }
+    .phase-4 .phase-dot { background: #1a6a4a; }
+    .phase-4 .phase-card-head { background: linear-gradient(90deg, #1a6a4a, #228855); }
+    .phase-4 .phase-step-bullet { background: #228855; }
+    .phase-5 .phase-dot { background: #7a5010; }
+    .phase-5 .phase-card-head { background: linear-gradient(90deg, #7a5010, var(--gold)); }
+    .phase-5 .phase-step-bullet { background: var(--gold); }
+
+    /* ── WORKSHEET ── */
+    .worksheet-intro {
+      font-family: 'Lora', serif; font-size: 0.97rem; line-height: 1.7;
+      color: #2a2a2a; margin-bottom: 1.5rem;
+    }
+
+    /* Leader cards */
+    .leaders-area { display: flex; flex-direction: column; gap: 1.25rem; }
+
+    .leader-card {
+      background: var(--white); border: 1px solid var(--rule);
+      border-radius: 12px; overflow: hidden;
+      box-shadow: 0 2px 10px rgba(31,56,100,0.06);
+      transition: box-shadow 0.2s;
+    }
+    .leader-card:hover { box-shadow: 0 5px 20px rgba(31,56,100,0.1); }
+
+    .leader-header {
+      display: flex; align-items: center; gap: 0; cursor: pointer;
+    }
+    .leader-func-bar {
+      width: 6px; align-self: stretch; flex-shrink: 0;
+    }
+    .leader-header-inner {
+      flex: 1; padding: 0.95rem 1.25rem;
+      display: flex; align-items: center; gap: 0.9rem;
+    }
+    .leader-func-label {
+      font-family: 'DM Sans', sans-serif; font-size: 0.62rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.09em;
+      padding: 3px 10px; border-radius: 99px;
+    }
+    .leader-name-input {
+      flex: 1; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 600;
+      color: var(--navy); border: none; background: none; outline: none;
+      border-bottom: 1.5px dashed var(--rule); padding-bottom: 2px;
+      min-width: 120px;
+    }
+    .leader-name-input::placeholder { color: #bbb; font-weight: 400; }
+    .leader-name-input:focus { border-bottom-color: var(--teal); }
+    .leader-toggle {
+      font-family: 'DM Sans', sans-serif; font-size: 0.68rem; font-weight: 600;
+      color: var(--mid); background: none; border: 1px solid var(--rule);
+      padding: 3px 10px; border-radius: 99px; cursor: pointer;
+      transition: all 0.15s; white-space: nowrap;
+    }
+    .leader-toggle:hover { border-color: var(--teal); color: var(--teal); }
+
+    .leader-body { padding: 0 1.4rem 1.4rem; display: none; }
+    .leader-body.open { display: block; }
+
+    .customer-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+
+    .customer-slot {
+      border: 1.5px dashed var(--rule); border-radius: 8px; padding: 1rem 1.1rem;
+      background: #fafaf8; transition: border-color 0.15s, background 0.15s;
+    }
+    .customer-slot:focus-within { border-color: var(--teal); background: var(--teal-lt); border-style: solid; }
+
+    .slot-label {
+      font-family: 'DM Sans', sans-serif; font-size: 0.6rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em; color: var(--teal);
+      margin-bottom: 0.5rem;
+    }
+    .slot-input {
+      width: 100%; font-family: 'Lora', serif; font-size: 0.88rem; font-weight: 600;
+      color: var(--navy); border: none; background: none; outline: none;
+      border-bottom: 1.5px dashed var(--rule); padding-bottom: 3px; margin-bottom: 0.75rem;
+    }
+    .slot-input:focus { border-bottom-color: var(--teal); }
+    .slot-input::placeholder { color: #ccc; font-weight: 400; font-style: italic; }
+
+    .outcome-label {
+      font-family: 'DM Sans', sans-serif; font-size: 0.6rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em; color: var(--mid); margin-bottom: 0.35rem;
+    }
+    .outcome-textarea {
+      width: 100%; min-height: 72px; resize: vertical;
+      font-family: 'Lora', serif; font-size: 0.85rem; line-height: 1.6;
+      color: var(--dark); border: 1.5px dashed var(--rule);
+      border-radius: 6px; padding: 0.6rem 0.75rem;
+      background: var(--white); outline: none; transition: border-color 0.15s;
+    }
+    .outcome-textarea:focus { border-color: var(--teal); border-style: solid; }
+    .outcome-textarea::placeholder { color: #ccc; font-style: italic; }
+
+    /* ── ALIGNMENT MATRIX ── */
+    .matrix-intro {
+      font-family: 'Lora', serif; font-size: 0.97rem; line-height: 1.7;
+      color: #2a2a2a; margin-bottom: 1.25rem;
+    }
+    .align-matrix-wrap {
+      background: var(--white); border: 1px solid var(--rule);
+      border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(31,56,100,0.07);
+    }
+    .align-matrix-head {
+      background: var(--navy); padding: 0.9rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;
+    }
+    .align-matrix-title {
+      font-family: 'DM Sans', sans-serif; font-size: 0.68rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold);
+    }
+    .align-legend { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+    .al-item {
+      display: flex; align-items: center; gap: 0.4rem;
+      font-family: 'DM Sans', sans-serif; font-size: 0.68rem; color: rgba(255,255,255,0.6);
+    }
+    .al-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+
+    .align-matrix-body { padding: 1.25rem; overflow-x: auto; }
+
+    .align-grid {
+      display: grid;
+      gap: 3px;
+      min-width: 560px;
+    }
+
+    .ag-corner {}
+    .ag-col-head {
+      padding: 0.4rem 0.3rem; text-align: center;
+      font-family: 'DM Sans', sans-serif; font-size: 0.6rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.05em; color: var(--navy); line-height: 1.3;
+    }
+    .ag-row-head {
+      padding: 0.4rem 0.5rem 0.4rem 0; display: flex; align-items: center;
+      font-family: 'DM Sans', sans-serif; font-size: 0.62rem; font-weight: 600;
+      color: var(--navy); line-height: 1.3;
+    }
+    .ag-cell {
+      border-radius: 5px; min-height: 50px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: transform 0.12s, box-shadow 0.12s;
+      flex-direction: column; gap: 2px;
+    }
+    .ag-cell:hover:not(.ag-self) { transform: scale(1.1); z-index: 5; box-shadow: 0 4px 14px rgba(0,0,0,0.16); }
+    .ag-self {
+      background: #f0f2f8; border: 1.5px solid var(--rule); cursor: default;
+    }
+    .ag-empty { background: #fafaf8; border: 1.5px dashed var(--rule); }
+    .ag-empty:hover { border-color: var(--teal); background: var(--teal-lt); }
+    .ag-aligned  { background: var(--align-lt); border: 1.5px solid rgba(42,122,74,0.3); }
+    .ag-partial  { background: var(--partial-lt); border: 1.5px solid rgba(201,122,32,0.3); }
+    .ag-drift    { background: var(--drift-lt);   border: 1.5px solid rgba(200,64,64,0.3); }
+
+    .ag-cell-sym { font-size: 0.85rem; line-height: 1; }
+    .ag-cell-txt {
+      font-family: 'DM Sans', sans-serif; font-size: 0.52rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.05em; text-align: center;
+    }
+    .ag-aligned  .ag-cell-txt { color: var(--align); }
+    .ag-partial  .ag-cell-txt { color: var(--partial); }
+    .ag-drift    .ag-cell-txt { color: var(--drift); }
+    .ag-self     .ag-cell-txt { color: var(--mid); }
+    .ag-empty    .ag-cell-txt { color: #ccc; }
+
+    .align-matrix-footer {
+      display: flex; gap: 1.25rem; flex-wrap: wrap;
+      padding: 0.9rem 1.25rem; border-top: 1px solid var(--rule); background: #fafaf8;
+    }
+    .al-foot-item {
+      display: flex; align-items: center; gap: 0.4rem;
+      font-family: 'DM Sans', sans-serif; font-size: 0.72rem; color: var(--mid);
+    }
+    .al-foot-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+
+    .align-summary {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin-top: 1rem;
+    }
+    .as-card {
+      border-radius: 8px; padding: 0.95rem 1.1rem; text-align: center; border: 1px solid;
+    }
+    .as-card.aligned { background: var(--align-lt); border-color: rgba(42,122,74,0.2); }
+    .as-card.partial { background: var(--partial-lt); border-color: rgba(201,122,32,0.2); }
+    .as-card.drift   { background: var(--drift-lt); border-color: rgba(200,64,64,0.2); }
+    .as-val {
+      font-family: 'Lora', serif; font-size: 1.75rem; font-weight: 700; line-height: 1;
+      margin-bottom: 4px;
+    }
+    .as-card.aligned .as-val { color: var(--align); }
+    .as-card.partial .as-val { color: var(--partial); }
+    .as-card.drift   .as-val { color: var(--drift); }
+    .as-lbl {
+      font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--mid);
+    }
+
+    /* ── INSIGHT CARDS ── */
+    .insights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+    .insight-card {
+      background: var(--white); border: 1px solid var(--rule); border-radius: 8px;
+      padding: 1.1rem 1.25rem;
+    }
+    .insight-label {
+      font-family: 'DM Sans', sans-serif; font-size: 0.6rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em; color: var(--teal); margin-bottom: 0.5rem;
+    }
+    .insight-question {
+      font-family: 'Lora', serif; font-size: 0.95rem; font-weight: 600;
+      color: var(--navy); margin-bottom: 0.5rem; line-height: 1.4;
+    }
+    .insight-sub {
+      font-family: 'DM Sans', sans-serif; font-size: 0.78rem; color: var(--mid);
+      line-height: 1.5; font-style: italic;
+    }
+
+    /* ── PROMPTS ── */
+    .prompts-list { display: flex; flex-direction: column; gap: 0.85rem; }
+    .prompt-card {
+      background: var(--white); border: 1px solid var(--rule); border-radius: 8px;
+      padding: 1rem 1.25rem; display: flex; gap: 1rem; align-items: flex-start;
+      transition: box-shadow 0.15s;
+    }
+    .prompt-card:hover { box-shadow: 0 3px 12px rgba(31,56,100,0.07); }
+    .prompt-q {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--teal); color: var(--white);
+      font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;
+    }
+    .prompt-text { font-family: 'Lora', serif; font-size: 0.95rem; line-height: 1.6; color: #2a2a2a; }
+    .prompt-context {
+      display: block; font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem; color: var(--mid); font-style: normal; margin-top: 0.3rem;
+    }
+
+    /* ── DEBRIEF ── */
+    .debrief-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .debrief-card { border-radius: 10px; padding: 1.25rem 1.35rem; border: 1px solid; }
+    .debrief-card.what { background: #f0f3fa; border-color: #c0ccdf; }
+    .debrief-card.next { background: var(--teal-lt); border-color: rgba(27,140,140,0.25); }
+    .debrief-card-label {
+      font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; margin-bottom: 0.6rem;
+    }
+    .debrief-card.what .debrief-card-label { color: var(--navy); }
+    .debrief-card.next .debrief-card-label { color: var(--teal); }
+    .debrief-card-title {
+      font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 700;
+      color: var(--navy); margin-bottom: 0.55rem;
+    }
+    .debrief-list { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+    .debrief-list li {
+      display: flex; gap: 0.55rem; align-items: flex-start;
+      font-family: 'DM Sans', sans-serif; font-size: 0.82rem; color: #2a2a2a; line-height: 1.5;
+    }
+    .debrief-list li::before { content: '→'; color: var(--teal); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+    /* ── DIVIDER ── */
+    .divider { height: 1px; background: var(--rule); margin: 2.5rem 0; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy); border-top: 3px solid var(--gold);
+      padding: 2.5rem 2rem; text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Lora', serif; font-size: 1rem; font-weight: 700;
+      color: var(--white); margin-bottom: 0.35rem;
+    }
+    .footer-logo span { color: var(--gold); }
+    footer p { font-family: 'Lora', serif; color: rgba(255,255,255,0.55); font-size: 0.82rem; font-style: italic; }
+
+    /* ── ANIMATIONS ── */
+    .fade-in { opacity: 0; transform: translateY(16px); animation: fadeUp 0.45s ease forwards; }
+    @keyframes fadeUp { to { opacity: 1; transform: none; } }
+
+    @media (max-width: 640px) {
+      .overview-grid { grid-template-columns: 1fr; }
+      .customer-pair { grid-template-columns: 1fr; }
+      .insights-grid { grid-template-columns: 1fr; }
+      .debrief-grid  { grid-template-columns: 1fr; }
+      .align-summary { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">CX<span>Konnect</span></a>
+  <div class="nav-pill">Workshop Activity</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      Leadership Exercise
+    </div>
+    <h1 class="hero-title">The Outcome Audit</h1>
+    <p class="hero-sub">Each leader articulates what outcome their two most important customers are hired to achieve — then compares across the team.</p>
+    <div class="meta-chips">
+      <div class="meta-chip">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        45 min
+      </div>
+      <div class="meta-chip">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Leadership team
+      </div>
+      <div class="meta-chip">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+        4–8 people
+      </div>
+      <div class="meta-chip">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        In-person or remote
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- OVERVIEW -->
+  <div class="section-block fade-in" style="animation-delay:0.05s">
+    <div class="section-label">
+      <div class="section-label-text">Activity Overview</div>
+    </div>
+    <div class="overview-grid">
+      <div class="overview-card">
+        <div class="ov-icon">🔍</div>
+        <div class="ov-label">Purpose</div>
+        <div class="ov-value">Expose Outcome Drift</div>
+        <div class="ov-desc">Reveal whether your leadership team shares a common understanding of what outcomes customers are actually trying to achieve — or whether each function has quietly drifted toward its own definition.</div>
+      </div>
+      <div class="overview-card">
+        <div class="ov-icon">👥</div>
+        <div class="ov-label">Who Should Attend</div>
+        <div class="ov-value">CX Leadership Team</div>
+        <div class="ov-desc">All CX function leaders: CS, PS, Support, Education, Consulting, Managed Services. Every person who shapes how their team defines customer success.</div>
+      </div>
+      <div class="overview-card">
+        <div class="ov-icon">📤</div>
+        <div class="ov-label">Output</div>
+        <div class="ov-value">Shared Outcome Language</div>
+        <div class="ov-desc">A set of agreed-upon customer outcome statements that every CX function uses as the north star for how it defines and measures its own success.</div>
+      </div>
+    </div>
+    <div class="objective-box">
+      <div class="objective-icon">🎯</div>
+      <div class="objective-text">
+        <h3>Core Objective</h3>
+        <p>The Outcome Audit starts from a deceptively simple premise: every leader on your team believes they know what their customers are trying to achieve. This exercise tests that belief by making it visible — and comparing it. The gaps between what different functions believe customers are hired to do are the gaps that produce misaligned priorities, misaligned metrics, and customers who feel like each team they talk to works for a different company.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASES -->
+  <div class="section-block fade-in" style="animation-delay:0.1s">
+    <div class="section-label">
+      <div class="section-label-num">1</div>
+      <div class="section-label-text">Facilitation Guide</div>
+      <div class="section-label-tag">45 min total</div>
+    </div>
+
+    <div class="phases">
+
+      <div class="phase phase-1">
+        <div class="phase-time">
+          <div class="phase-dot">P1</div>
+          <div class="phase-mins">5<br>min</div>
+        </div>
+        <div class="phase-card">
+          <div class="phase-card-head">
+            <div class="phase-card-title">Set the Frame</div>
+            <div class="phase-card-role">Facilitator-led</div>
+          </div>
+          <div class="phase-card-body">
+            <p>Open by distinguishing between what customers <em>use</em> and what they are <em>hired to achieve</em>. A hospital network uses your platform — but they are hired to reduce patient readmission rates. A retailer uses your analytics tool — but they are hired to protect margin during promotional seasons. The product is the vehicle. The outcome is the destination.</p>
+            <ul class="phase-steps">
+              <li class="phase-step"><div class="phase-step-bullet"></div>Ask the group: "When your two most strategically important customers renew, what do they tell their own leadership team they got from us?" That answer is the outcome. It is almost never the feature list.</li>
+              <li class="phase-step"><div class="phase-step-bullet"></div>Clarify the format: each leader writes two customer outcome statements — one per customer — before any discussion. Statements must be in the customer's language, not the vendor's.</li>
+              <li class="phase-step"><div class="phase-step-bullet"></div>Distribute the individual worksheets (or open the digital version below). No discussion until all leaders have written their statements.</li>
+            </ul>
+            <div class="facilitator-tip">
+              <div class="facilitator-tip-label">Facilitator Note</div>
+              <p>"Hired to achieve" is not the same as "happy with." A customer can be happy with your service and still not be achieving the outcome that justifies the cost of the contract. The audit asks about achievement, not satisfaction.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase phase-2">
+        <div class="phase-time">
+          <div class="phase-dot">P2</div>
+          <div class="phase-mins">10<br>min</div>
+        </div>
+        <div class="phase-card">
+          <div class="phase-card-head">
+            <div class="phase-card-title">Individual Outcome Writing</div>
+            <div class="phase-card-role">Silent, individual</div>
+          </div>
+          <div class="phase-card-body">
+            <p>Each leader completes their worksheet independently. For each of their two nominated customers, they write: the customer name or segment, the business outcome they believe that customer is hired to achieve, and the single most important evidence that would tell them the customer had achieved it.</p>
+            <ul class="phase-steps">
+              <li class="phase-step"><div class="phase-step-bullet"></div>Outcome statements must be specific. "Improve efficiency" is not an outcome. "Reduce the average time clinical staff spend on documentation by 30% without increasing error rates" is an outcome.</li>
+              <li class="phase-step"><div class="phase-step-bullet"></div>Evidence statements must be observable. "Customer feels good" is not evidence. "Customer's executive sponsor presents a 12-month ROI case to their board" is evidence.</li>
+              <li class="phase-step"><div class="phase-step-bullet"></div>If a leader cannot write a specific outcome statement for their most important customer, that itself is a finding worth naming in the debrief.</li>
+            </ul>
+            <div class="facilitator-tip">
+              <div class="facilitator-tip-label">Facilitator Note</div>
+              <p>Silence is essential. If leaders discuss before writing, they will anchor to each other's framing. The value of the exercise lies in the uninfluenced first answer — what each function leader genuinely believes, based on their function's vantage point, before social pressure toward consensus has a chance to operate.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase phase-3">
+        <div class="phase-time">
+          <div class="phase-dot">P3</div>
+          <div class="phase-mins">15<br>min</div>
+        </div>
+        <div class="phase-card">
+          <div class="phase-card-head">
+            <div class="phase-card-title">Read Aloud &amp; Map Alignment</div>
+            <div class="phase-card-role">Group activity</div>
+          </div>
+          <div class="phase-card-body">
+            <p>Each leader reads their outcome statements aloud for each customer. The facilitator plots alignment on the shared matrix as statements are read — marking Aligned (same or substantially similar), Partial (overlapping but emphasizing different dimensions), or Drifted (substantively different in ways that would produce different team priorities).</p>
+            <ul class="phase-steps">
+              <li class="phase-step"><div class="phase-step-bullet"></div>Do not interrupt or debate during the reading phase. Each leader reads their full statements before the group responds. Record everything before discussing anything.</li>
+              <li class="phase-step"><div class="phase-step-bullet"></div>Pay particular attention to the evidence statements. Leaders who name the same customer outcome but different evidence are often running different success models without realizing it.</li>
+              <li class="phase-step"><div class="phase-step-bullet"></div>Note any customer for whom a majority of leaders could not produce a specific outcome statement. This is the highest-risk account in the portfolio — serving it well is structurally impossible if no one knows what "well" means.</li>
+            </ul>
+            <div class="facilitator-tip">
+              <div class="facilitator-tip-label">Facilitator Note</div>
+              <p>The most revealing moment in this exercise is often not the disagreements — it is the silences. When a CS leader reads a customer outcome statement and three other function leaders have no idea that customer had that goal, the room understands the problem immediately.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase phase-4">
+        <div class="phase-time">
+          <div class="phase-dot">P4</div>
+          <div class="phase-mins">10<br>min</div>
+        </div>
+        <div class="phase-card">
+          <div class="phase-card-head">
+            <div class="phase-card-title">Diagnose the Drifts</div>
+            <div class="phase-card-role">Group discussion</div>
+          </div>
+          <div class="phase-card-body">
+            <p>Focus exclusively on the Drifted and Partial cells. For each one, ask two questions: where did the different outcome definition come from, and what would each function have done differently for this customer if they had been working from the other function's definition?</p>
+            <ul class="phase-steps">
+              <li class="phase-step"><div class="phase-step-bullet"></div>Drift is almost never the result of indifference. It is usually the result of each function optimizing for the aspect of the customer relationship it is closest to — delivery quality, support satisfaction, training completion — without a shared north star that connects all of those to the outcome that actually matters to the customer.</li>
+              <li class="phase-step"><div class="phase-step-bullet"></div>Identify whether the drift is a <em>knowledge gap</em> (one function simply did not know what the customer needed) or a <em>definition gap</em> (functions have been using different vocabulary for success). Both are fixable, but differently.</li>
+              <li class="phase-step"><div class="phase-step-bullet"></div>Do not spend time assigning blame. The question is not who caused the drift. The question is what shared definition would have prevented it.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase phase-5">
+        <div class="phase-time">
+          <div class="phase-dot">P5</div>
+          <div class="phase-mins">5<br>min</div>
+        </div>
+        <div class="phase-card">
+          <div class="phase-card-head">
+            <div class="phase-card-title">Draft Shared Outcome Statements</div>
+            <div class="phase-card-role">Synthesis close</div>
+          </div>
+          <div class="phase-card-body">
+            <p>For every customer reviewed, the group agrees on a single shared outcome statement in the customer's language. This becomes the official outcome definition that every function leader takes back to their team. It does not have to be perfect — it has to be shared.</p>
+            <ul class="phase-steps">
+              <li class="phase-step"><div class="phase-step-bullet"></div>The statement must be specific enough that every function can derive a different but connected success metric from it. Generic outcomes produce generic metrics.</li>
+              <li class="phase-step"><div class="phase-step-bullet"></div>Assign one leader to document and distribute the agreed statements within 48 hours.</li>
+              <li class="phase-step"><div class="phase-step-bullet"></div>Set a 90-day check-in to ask: have any function-level priorities shifted as a result of working from the shared outcome definition?</li>
+            </ul>
+            <div class="facilitator-tip">
+              <div class="facilitator-tip-label">Facilitator Note</div>
+              <p>Close by asking each leader to name one thing their function will do differently in the next 30 days as a result of what they heard in the session. Public commitment in the room is part of the change mechanism.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WORKSHEET -->
+  <div class="section-block fade-in" style="animation-delay:0.14s">
+    <div class="section-label">
+      <div class="section-label-num">2</div>
+      <div class="section-label-text">Individual Worksheets</div>
+      <div class="section-label-tag">Complete before discussion</div>
+    </div>
+    <p class="worksheet-intro">Each leader completes their worksheet independently and silently before the group share. Click a function row to expand the entry form. Fill in customer name, outcome statement, and evidence of success for each of your two most important customers.</p>
+
+    <div class="leaders-area" id="leadersArea">
+      <!-- Built by JS -->
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ALIGNMENT MATRIX -->
+  <div class="section-block fade-in" style="animation-delay:0.18s">
+    <div class="section-label">
+      <div class="section-label-num">3</div>
+      <div class="section-label-text">Alignment Matrix</div>
+      <div class="section-label-tag">Live facilitation tool</div>
+    </div>
+    <p class="matrix-intro">After all leaders have read their outcome statements, use this matrix to map alignment between functions. Click any cell to cycle between Aligned, Partial, and Drifted. The summary updates automatically.</p>
+
+    <div class="align-matrix-wrap">
+      <div class="align-matrix-head">
+        <div class="align-matrix-title">Cross-Function Outcome Alignment — Customer 1</div>
+        <div class="align-legend">
+          <div class="al-item"><div class="al-dot" style="background:var(--align)"></div>Aligned</div>
+          <div class="al-item"><div class="al-dot" style="background:var(--partial)"></div>Partial</div>
+          <div class="al-item"><div class="al-dot" style="background:var(--drift)"></div>Drifted</div>
+        </div>
+      </div>
+      <div class="align-matrix-body">
+        <div class="align-grid" id="alignGrid"></div>
+      </div>
+      <div class="align-matrix-footer">
+        <div class="al-foot-item"><div class="al-foot-dot" style="background:var(--align)"></div>Aligned — same outcome definition, same success evidence</div>
+        <div class="al-foot-item"><div class="al-foot-dot" style="background:var(--partial)"></div>Partial — overlapping but emphasizing different dimensions</div>
+        <div class="al-foot-item"><div class="al-foot-dot" style="background:var(--drift)"></div>Drifted — substantively different, would produce different priorities</div>
+      </div>
+    </div>
+
+    <div class="align-summary" id="alignSummary">
+      <div class="as-card aligned">
+        <div class="as-val" id="countAligned">0</div>
+        <div class="as-lbl">Aligned Pairs</div>
+      </div>
+      <div class="as-card partial">
+        <div class="as-val" id="countPartial">0</div>
+        <div class="as-lbl">Partial</div>
+      </div>
+      <div class="as-card drift">
+        <div class="as-val" id="countDrift">0</div>
+        <div class="as-lbl">Drifted</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INSIGHT PROMPTS -->
+  <div class="section-block fade-in" style="animation-delay:0.2s">
+    <div class="section-label">
+      <div class="section-label-num">4</div>
+      <div class="section-label-text">Insight Questions</div>
+      <div class="section-label-tag">During &amp; after share-out</div>
+    </div>
+    <div class="insights-grid">
+      <div class="insight-card">
+        <div class="insight-label">Specificity Check</div>
+        <div class="insight-question">Could a CSM use your outcome statement to decide what to prepare for next week's QBR?</div>
+        <div class="insight-sub">If no — the statement is too generic to anchor team behavior. Rewrite until the answer is yes.</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-label">Customer Voice Check</div>
+        <div class="insight-question">Would the customer recognize this outcome statement as their own — in their own language?</div>
+        <div class="insight-sub">If the statement sounds like your product's value proposition rather than the customer's business goal, it is vendor language, not outcome language.</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-label">Drift Source</div>
+        <div class="insight-question">For each drifted pair — when did the two functions last have a direct conversation with this customer about what success looks like?</div>
+        <div class="insight-sub">Drift is rarely ideological. It is usually a recency problem. The function closest to the customer most recently shapes the outcome definition by default.</div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-label">Metric Consequence</div>
+        <div class="insight-question">If functions are working from different outcome definitions, what metrics has each function been tracking — and what has each been ignoring?</div>
+        <div class="insight-sub">The downstream consequence of outcome drift is metric misalignment. This question makes that concrete.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DISCUSSION PROMPTS -->
+  <div class="section-block fade-in" style="animation-delay:0.22s">
+    <div class="section-label">
+      <div class="section-label-num">5</div>
+      <div class="section-label-text">Discussion Prompts</div>
+      <div class="section-label-tag">Facilitation</div>
+    </div>
+    <div class="prompts-list">
+      <div class="prompt-card">
+        <div class="prompt-q">Q</div>
+        <div class="prompt-text">
+          For the customers where we drifted — if we had been working from a shared outcome definition for the past six months, what would we have done differently?
+          <span class="prompt-context">Makes the cost of drift concrete without assigning blame. Forces the group to think forward from what they just learned.</span>
+        </div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-q">Q</div>
+        <div class="prompt-text">
+          Which function in this room is closest to the customer's actual outcome — and does that function have a mechanism to share what it knows with every other function?
+          <span class="prompt-context">Surfaces the knowledge concentration problem. The function with the best customer insight often has no structural way to distribute it.</span>
+        </div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-q">Q</div>
+        <div class="prompt-text">
+          Is the customer's outcome we just agreed on actually achievable with the way we currently operate — or does it require something we don't yet have in place?
+          <span class="prompt-context">The most important honesty question. Shared outcome language only creates value if the organization can actually deliver against it.</span>
+        </div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-q">Q</div>
+        <div class="prompt-text">
+          How does each function's current performance review measure its contribution to the shared customer outcome we just defined?
+          <span class="prompt-context">Connects the outcome statement to incentive structures. If no function's performance review references the shared outcome, it will not survive the quarter.</span>
+        </div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-q">Q</div>
+        <div class="prompt-text">
+          If we ran this exercise with the customer's own leadership team in the room — would their outcome statement match ours?
+          <span class="prompt-context">The ultimate alignment question. Closes the loop between internal consensus and external reality.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEBRIEF -->
+  <div class="section-block fade-in" style="animation-delay:0.26s">
+    <div class="section-label">
+      <div class="section-label-num">6</div>
+      <div class="section-label-text">Debrief &amp; Next Steps</div>
+      <div class="section-label-tag">Close-out</div>
+    </div>
+    <div class="debrief-grid">
+      <div class="debrief-card what">
+        <div class="debrief-card-label">Before leaving the room</div>
+        <div class="debrief-card-title">What to capture</div>
+        <ul class="debrief-list">
+          <li>Agreed shared outcome statement for every customer reviewed</li>
+          <li>Every drifted cell with a named root cause (knowledge gap or definition gap)</li>
+          <li>One behavior change each leader commits to in the next 30 days</li>
+          <li>Owner and deadline for distributing the agreed outcome statements</li>
+          <li>Date of 90-day check-in to review whether priorities have shifted</li>
+        </ul>
+      </div>
+      <div class="debrief-card next">
+        <div class="debrief-card-label">After the session</div>
+        <div class="debrief-card-title">What to do with it</div>
+        <ul class="debrief-list">
+          <li>Distribute agreed outcome statements to every function within 48 hours</li>
+          <li>Review each function's current performance metrics against the shared outcome definition — identify what to add, change, or retire</li>
+          <li>Bring the shared outcome statements to the next QBR with each reviewed customer and ask: "Does this reflect what you're trying to achieve?"</li>
+          <li>Run the Outcome Audit quarterly for key accounts — customer outcomes evolve</li>
+          <li>Use drifted pairs as an input to the Gap Map Exercise — outcome drift and handoff gaps are almost always co-located</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top:1.25rem; padding: 1.25rem 1.5rem; background: var(--navy); border-radius: 10px;">
+      <div style="font-family:'DM Sans',sans-serif; font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--gold); margin-bottom:0.5rem;">CXKonnect Principle</div>
+      <p style="font-family:'Lora',serif; font-size:0.96rem; line-height:1.7; color:rgba(255,255,255,0.85);">A CX organization that cannot state, in the customer's language, what its most important customers are hired to achieve is not a customer-centered organization — it is a service-delivery organization. The Outcome Audit is the first step in the transition between the two. Run it until the answer is never in doubt.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">CX<span>Konnect</span></div>
+  <p>A framework for the full CX organization — from first signature to lasting advocacy.</p>
+</footer>
+
+<script>
+  // ── FUNCTIONS ────────────────────────────────────────────────────────────────
+  const FUNCTIONS = [
+    { name: "Customer Success",   color: "#1F3864", bg: "#EBF0F8" },
+    { name: "Technical Support",  color: "#1B5A6A", bg: "#E6F2F6" },
+    { name: "Consulting",         color: "#1B8C8C", bg: "#E6F4F4" },
+    { name: "Prof. Services",     color: "#1a6a4a", bg: "#EDF7F1" },
+    { name: "Education",          color: "#7a5010", bg: "#FBF5E0" },
+    { name: "Managed Services",   color: "#4a3080", bg: "#F2EFF8" },
+  ];
+
+  // ── WORKSHEETS ───────────────────────────────────────────────────────────────
+  function buildWorksheets() {
+    const area = document.getElementById('leadersArea');
+    FUNCTIONS.forEach((fn, i) => {
+      const card = document.createElement('div');
+      card.className = 'leader-card';
+      card.innerHTML = `
+        <div class="leader-header" onclick="toggleLeader(${i})">
+          <div class="leader-func-bar" style="background:${fn.color}"></div>
+          <div class="leader-header-inner">
+            <span class="leader-func-label" style="background:${fn.bg};color:${fn.color};border:1px solid ${fn.color}30">${fn.name}</span>
+            <input class="leader-name-input" placeholder="Leader name…" onclick="event.stopPropagation()" />
+            <button class="leader-toggle" id="toggle-${i}">Expand ↓</button>
+          </div>
+        </div>
+        <div class="leader-body" id="body-${i}">
+          <div class="customer-pair">
+            ${buildCustomerSlot(i, 1)}
+            ${buildCustomerSlot(i, 2)}
+          </div>
+        </div>`;
+      area.appendChild(card);
+    });
+  }
+
+  function buildCustomerSlot(leaderIdx, num) {
+    return `
+      <div class="customer-slot">
+        <div class="slot-label">Customer ${num}</div>
+        <input class="slot-input" placeholder="Customer name or segment…" />
+        <div class="outcome-label">What outcome is this customer hired to achieve?</div>
+        <textarea class="outcome-textarea" rows="3" placeholder="Write in the customer's language, not yours. Not what they use — what they are trying to accomplish in their own organization…"></textarea>
+        <div class="outcome-label" style="margin-top:0.65rem;">What single piece of evidence would confirm they achieved it?</div>
+        <textarea class="outcome-textarea" rows="2" placeholder="Observable evidence — something you could point to in a QBR…"></textarea>
+      </div>`;
+  }
+
+  function toggleLeader(i) {
+    const body = document.getElementById(`body-${i}`);
+    const btn  = document.getElementById(`toggle-${i}`);
+    const open = body.classList.toggle('open');
+    btn.textContent = open ? 'Collapse ↑' : 'Expand ↓';
+  }
+
+  buildWorksheets();
+
+  // ── ALIGNMENT MATRIX ─────────────────────────────────────────────────────────
+  const N = FUNCTIONS.length;
+  const alignState = {};
+  const ALIGN_CYCLE = ['aligned', 'partial', 'drift', null];
+  const ALIGN_CFG = {
+    aligned: { cls: 'ag-aligned', sym: '✓', txt: 'Aligned' },
+    partial: { cls: 'ag-partial', sym: '≈', txt: 'Partial' },
+    drift:   { cls: 'ag-drift',   sym: '✕', txt: 'Drifted' },
+    null:    { cls: 'ag-empty',   sym: '+', txt: 'Score' },
+  };
+
+  function alignKey(r, c) { return `${r}-${c}`; }
+
+  function buildAlignGrid() {
+    const grid = document.getElementById('alignGrid');
+    const cols = N + 1;
+    grid.style.gridTemplateColumns = `100px repeat(${N}, 1fr)`;
+    grid.innerHTML = '';
+
+    // Corner
+    grid.appendChild(Object.assign(document.createElement('div'), { className: 'ag-corner' }));
+
+    // Col headers
+    FUNCTIONS.forEach(fn => {
+      const h = document.createElement('div');
+      h.className = 'ag-col-head';
+      h.textContent = fn.name;
+      grid.appendChild(h);
+    });
+
+    // Rows
+    FUNCTIONS.forEach((rowFn, r) => {
+      const rh = document.createElement('div');
+      rh.className = 'ag-row-head';
+      rh.textContent = rowFn.name;
+      grid.appendChild(rh);
+
+      FUNCTIONS.forEach((_, c) => {
+        const cell = document.createElement('div');
+        if (r === c) {
+          cell.className = 'ag-cell ag-self';
+          cell.innerHTML = `<div class="ag-cell-txt">—</div>`;
+        } else {
+          const key = alignKey(r, c);
+          renderAlignCell(cell, alignState[key] || null);
+          cell.addEventListener('click', () => cycleAlign(key, cell));
+        }
+        grid.appendChild(cell);
+      });
+    });
+
+    updateAlignSummary();
+  }
+
+  function renderAlignCell(el, val) {
+    const cfg = ALIGN_CFG[val] || ALIGN_CFG[null];
+    el.className = `ag-cell ${cfg.cls}`;
+    el.innerHTML = `<div class="ag-cell-sym">${cfg.sym}</div><div class="ag-cell-txt">${cfg.txt}</div>`;
+  }
+
+  function cycleAlign(key, el) {
+    const cur = alignState[key] || null;
+    const idx = ALIGN_CYCLE.indexOf(cur);
+    const next = ALIGN_CYCLE[(idx + 1) % ALIGN_CYCLE.length];
+    if (next === null) delete alignState[key]; else alignState[key] = next;
+    renderAlignCell(el, alignState[key] || null);
+    updateAlignSummary();
+  }
+
+  function updateAlignSummary() {
+    let a = 0, p = 0, d = 0;
+    Object.values(alignState).forEach(v => {
+      if (v === 'aligned') a++;
+      else if (v === 'partial') p++;
+      else if (v === 'drift') d++;
+    });
+    document.getElementById('countAligned').textContent = a;
+    document.getElementById('countPartial').textContent = p;
+    document.getElementById('countDrift').textContent   = d;
+  }
+
+  buildAlignGrid();
+</script>
+</body>
+</html>
