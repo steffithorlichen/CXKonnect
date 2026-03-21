@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Breaking Silos: The Gap Map Exercise — Ravi Kapoor, Kaiser Permanente</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:       #1F3864;
+      --teal:       #1B8C8C;
+      --teal-mid:   #167a7a;
+      --gold:       #C9A434;
+      --white:      #ffffff;
+      --off-white:  #F8F7F4;
+      --light-teal: #E6F4F4;
+      --light-gold: #FBF5E0;
+      --mid-gray:   #6B6B6B;
+      --dark-gray:  #2E2E2E;
+      --rule:       #E2E0DB;
+      --danger:     #C84040;
+      --danger-bg:  #FDF0F0;
+      --warn:       #C97A20;
+      --warn-bg:    #FDF5E8;
+      --ok:         #2A7A4A;
+      --ok-bg:      #EDF7F1;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--off-white);
+      color: var(--dark-gray);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px; line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(31,56,100,0.97);
+      backdrop-filter: blur(8px);
+      border-bottom: 2px solid var(--gold);
+      padding: 0 2.5rem; height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Lora', Georgia, serif;
+      font-weight: 700; font-size: 1.25rem;
+      color: var(--white); text-decoration: none; letter-spacing: 0.02em;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 500;
+      color: rgba(255,255,255,0.75); text-decoration: none;
+      letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ── HERO — teal-gear feel, slightly warmer center ── */
+    .article-hero {
+      background: linear-gradient(145deg, #1a4a5a 0%, #1B8C8C 55%, #1a6a5a 100%);
+      padding: 5.5rem 2rem 4.5rem;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .article-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 50% 60% at 20% 20%, rgba(31,56,100,0.25) 0%, transparent 55%),
+        radial-gradient(ellipse 45% 45% at 85% 80%, rgba(201,164,52,0.10) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    /* Gear-like concentric ring hint */
+    .article-hero::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 500px; height: 500px;
+      transform: translate(-50%, -50%);
+      border: 1px solid rgba(255,255,255,0.04);
+      border-radius: 50%;
+      pointer-events: none;
+      box-shadow:
+        0 0 0 60px rgba(255,255,255,0.025),
+        0 0 0 120px rgba(255,255,255,0.015),
+        0 0 0 190px rgba(255,255,255,0.01);
+    }
+    .hero-inner { position: relative; z-index: 1; }
+    .hero-tag {
+      display: inline-block;
+      background: rgba(201,164,52,0.18);
+      border: 1px solid rgba(201,164,52,0.5);
+      color: var(--gold);
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 4px 14px; border-radius: 3px; margin-bottom: 1.5rem;
+    }
+    .hero-title {
+      font-family: 'Lora', Georgia, serif;
+      font-size: clamp(1.85rem, 4.5vw, 3rem);
+      font-weight: 700; color: var(--white);
+      line-height: 1.2; max-width: 700px;
+      margin: 0 auto 1.35rem; letter-spacing: -0.01em;
+    }
+    .hero-lede {
+      font-size: 1.05rem; color: rgba(255,255,255,0.75);
+      max-width: 555px; margin: 0 auto 2.75rem;
+      line-height: 1.68; font-style: italic;
+      font-family: 'Lora', serif;
+    }
+    .hero-byline {
+      font-size: 0.82rem; color: rgba(255,255,255,0.48);
+      letter-spacing: 0.04em;
+      display: flex; align-items: center; justify-content: center; gap: 1.25rem;
+    }
+    .hero-byline strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+    .byline-dot { width: 3px; height: 3px; background: rgba(255,255,255,0.28); border-radius: 50%; }
+    .read-time {
+      background: rgba(201,164,52,0.2); color: var(--gold);
+      padding: 2px 10px; border-radius: 20px; font-weight: 600;
+    }
+
+    /* ── BODY LAYOUT ── */
+    .article-outer {
+      display: grid;
+      grid-template-columns: 1fr min(720px, 100%) 1fr;
+      padding: 0 1rem;
+    }
+    .article-body { grid-column: 2; padding: 4.5rem 0 6rem; }
+
+    .article-body p {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.08rem; line-height: 1.84;
+      color: #2a2a2a; margin-bottom: 1.65rem;
+    }
+    .article-body h2 {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.5rem; font-weight: 700;
+      color: var(--navy); margin: 3.75rem 0 1rem; line-height: 1.25;
+    }
+    .article-body strong { font-weight: 700; color: #1a1a1a; }
+
+    /* ── PULL QUOTE ── */
+    .pull-quote {
+      border-left: 4px solid var(--gold);
+      margin: 2.75rem 0; padding: 1.35rem 1.85rem;
+      background: var(--light-gold); border-radius: 0 6px 6px 0;
+    }
+    .pull-quote p {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.22rem !important; font-style: italic; font-weight: 500;
+      color: var(--navy) !important; line-height: 1.52 !important; margin: 0 !important;
+    }
+
+    /* ── CALLOUTS ── */
+    .callout {
+      background: var(--light-teal);
+      border: 1px solid rgba(27,140,140,0.25);
+      border-left: 4px solid var(--teal);
+      border-radius: 0 8px 8px 0;
+      padding: 1.4rem 1.65rem; margin: 2.75rem 0;
+    }
+    .callout-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.68rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--teal); margin-bottom: 0.55rem;
+    }
+    .callout p {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 0.96rem !important; line-height: 1.72 !important;
+      color: #1a3a3a !important; margin: 0 0 0.5rem !important;
+    }
+    .callout p:last-child { margin-bottom: 0 !important; }
+
+    /* ── GAP MAP ── */
+    .gap-map-wrap {
+      margin: 2.5rem 0;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--rule);
+      box-shadow: 0 4px 24px rgba(31,56,100,0.09);
+    }
+    .gap-map-header {
+      background: var(--navy);
+      padding: 1rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .gap-map-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold);
+    }
+    .gap-map-legend {
+      display: flex; gap: 1.25rem; flex-wrap: wrap;
+    }
+    .legend-item {
+      display: flex; align-items: center; gap: 0.4rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem; color: rgba(255,255,255,0.6);
+    }
+    .legend-dot {
+      width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+    }
+    .dot-gap   { background: var(--danger); }
+    .dot-weak  { background: var(--warn); }
+    .dot-solid { background: var(--ok); }
+
+    .gap-map-body {
+      background: var(--white);
+      padding: 1.75rem 1.25rem 1.5rem;
+      overflow-x: auto;
+    }
+
+    /* The actual grid */
+    .gap-grid {
+      display: grid;
+      grid-template-columns: 130px repeat(7, 1fr);
+      gap: 3px;
+      min-width: 600px;
+    }
+
+    .gm-cell-blank { /* top-left corner */ }
+
+    .gm-col-header {
+      padding: 0.5rem 0.3rem;
+      text-align: center;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.65rem; font-weight: 700;
+      color: var(--navy);
+      text-transform: uppercase; letter-spacing: 0.06em;
+      line-height: 1.3;
+    }
+
+    .gm-row-header {
+      padding: 0.5rem 0.75rem 0.5rem 0;
+      display: flex; align-items: center;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.68rem; font-weight: 600;
+      color: var(--navy); line-height: 1.3;
+    }
+
+    .gm-cell {
+      border-radius: 5px;
+      padding: 0.55rem 0.3rem;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 3px;
+      cursor: default;
+      transition: transform 0.15s, box-shadow 0.15s;
+      min-height: 52px;
+    }
+    .gm-cell:hover {
+      transform: scale(1.06);
+      box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+      z-index: 2; position: relative;
+    }
+
+    .cell-gap   { background: var(--danger-bg); border: 1.5px solid rgba(200,64,64,0.3); }
+    .cell-weak  { background: var(--warn-bg);   border: 1.5px solid rgba(201,122,32,0.3); }
+    .cell-solid { background: var(--ok-bg);     border: 1.5px solid rgba(42,122,74,0.25); }
+    .cell-self  { background: #f0f2f8; border: 1.5px solid var(--rule); }
+    .cell-na    { background: #f7f7f5; border: 1.5px dashed var(--rule); }
+
+    .cell-icon {
+      font-size: 0.8rem; line-height: 1;
+    }
+    .cell-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.56rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      text-align: center; line-height: 1.2;
+    }
+    .cell-gap .cell-label   { color: var(--danger); }
+    .cell-weak .cell-label  { color: var(--warn); }
+    .cell-solid .cell-label { color: var(--ok); }
+    .cell-self .cell-label  { color: var(--mid-gray); }
+    .cell-na .cell-label    { color: #ccc; }
+
+    .gap-map-note {
+      margin-top: 1rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem; color: var(--mid-gray);
+      font-style: italic; text-align: center;
+    }
+
+    /* ── EXERCISE STEPS ── */
+    .steps-list {
+      display: flex; flex-direction: column; gap: 1.25rem;
+      margin: 2rem 0 2.75rem;
+      counter-reset: step-counter;
+    }
+    .step-item {
+      display: flex; gap: 1.1rem; align-items: flex-start;
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 2px;
+    }
+    .step-content { flex: 1; }
+    .step-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem; font-weight: 700;
+      color: var(--navy); margin-bottom: 0.3rem;
+    }
+    .step-body {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 0.96rem; line-height: 1.72;
+      color: #2a2a2a;
+    }
+
+    /* ── SCORING GUIDE ── */
+    .scoring-guide {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1rem; margin: 2rem 0;
+    }
+    .score-card {
+      border-radius: 8px; padding: 1.1rem 1.15rem;
+      border: 1px solid; overflow: hidden;
+    }
+    .score-card.gap   { background: var(--danger-bg); border-color: rgba(200,64,64,0.25); }
+    .score-card.weak  { background: var(--warn-bg);   border-color: rgba(201,122,32,0.25); }
+    .score-card.solid { background: var(--ok-bg);     border-color: rgba(42,122,74,0.2); }
+    .score-card-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.65rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.09em;
+      margin-bottom: 0.35rem;
+    }
+    .gap   .score-card-label { color: var(--danger); }
+    .weak  .score-card-label { color: var(--warn); }
+    .solid .score-card-label { color: var(--ok); }
+    .score-card-title {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1rem; font-weight: 700;
+      margin-bottom: 0.4rem; line-height: 1.2;
+    }
+    .gap   .score-card-title { color: #8a1a1a; }
+    .weak  .score-card-title { color: #7a4510; }
+    .solid .score-card-title { color: #1a4a2a; }
+    .score-card-body {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.78rem; line-height: 1.55; color: #3a2a2a;
+    }
+
+    /* ── SECTION DIVIDER ── */
+    .section-break {
+      display: flex; align-items: center; gap: 1rem; margin: 3rem 0;
+    }
+    .section-break::before, .section-break::after {
+      content: ''; flex: 1; height: 1px; background: var(--rule);
+    }
+    .section-break-icon { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
+
+    /* ── FOOTER ── */
+    .article-footer {
+      background: var(--navy); border-top: 3px solid var(--gold);
+      padding: 3rem 2rem; text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem;
+    }
+    .footer-logo span { color: var(--gold); }
+    .article-footer p {
+      font-family: 'Lora', Georgia, serif;
+      color: rgba(255,255,255,0.6); font-size: 0.88rem; font-style: italic; margin: 0;
+    }
+
+    /* ── FADE IN ── */
+    .article-body > * {
+      opacity: 0; transform: translateY(18px);
+      animation: fadeUp 0.5s ease forwards;
+    }
+    @keyframes fadeUp { to { opacity: 1; transform: none; } }
+    .article-body > *:nth-child(1)  { animation-delay: 0.05s; }
+    .article-body > *:nth-child(2)  { animation-delay: 0.10s; }
+    .article-body > *:nth-child(3)  { animation-delay: 0.14s; }
+    .article-body > *:nth-child(4)  { animation-delay: 0.18s; }
+    .article-body > *:nth-child(5)  { animation-delay: 0.22s; }
+    .article-body > *:nth-child(n+6) { animation-delay: 0.26s; }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .scoring-guide { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">CX<span>Konnect</span></a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/documents.html">Documents</a></li>
+    <li><a href="#">Framework</a></li>
+  </ul>
+</nav>
+
+<div class="article-hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Framework</div>
+    <h1 class="hero-title">Breaking Silos: The Gap Map Exercise</h1>
+    <p class="hero-lede">The most costly CX failures don't happen inside departments — they happen between them. A practical approach to mapping and fixing your invisible gaps.</p>
+    <div class="hero-byline">
+      <strong>Ravi Kapoor, Kaiser Permanente</strong>
+      <span class="byline-dot"></span>
+      <span>Dec 5, 2025</span>
+      <span class="byline-dot"></span>
+      <span class="read-time">5 min read</span>
+    </div>
+  </div>
+</div>
+
+<div class="article-outer">
+  <article class="article-body">
+
+    <p>Ask any CX leader where their organization's most costly failures occur, and you will rarely hear "inside my team." The PS org delivers its projects. The CSM org logs its QBRs. Support closes its tickets. Education runs its training cohorts. Each function, reviewed in isolation, looks functional. The customer, however, does not experience the organization in isolation. They experience the handoffs — and the handoffs are where the damage accumulates.</p>
+
+    <p>At Kaiser Permanente, where the consequences of fragmented care coordination compound with every missed connection, I developed a structured method for making those handoffs visible, scoreable, and fixable. I call it the Gap Map Exercise. It takes a working session and a willingness to hear uncomfortable things from the people across the table. What it produces is a shared picture of where your CX organization is failing its customers between functions — and a prioritized starting point for the structural work that follows.</p>
+
+    <div class="pull-quote">
+      <p>The gap between departments is not a personality problem or a communication problem. It is a design problem. The Gap Map makes it visible so it can finally be treated as one.</p>
+    </div>
+
+    <h2>Why Gaps Are Invisible Until They Aren't</h2>
+
+    <p>Cross-functional gaps are structurally invisible because most CX measurement systems are designed to stop at functional boundaries. PS measures its delivery performance. CS measures its NRR and engagement rates. Support measures its CSAT and resolution time. None of these metrics, individually, captures what happens at the transition between functions — the moment the PS team hands the customer to CS, or the moment a support case should trigger a CS intervention, or the moment a training completion should connect to an adoption conversation.</p>
+
+    <p>The customer experiences these transitions as a single continuous relationship. When they feel friction — when they have to re-explain their situation to a new team, when a concern raised in a support ticket never reaches their CSM, when they complete a training program and no one follows up to see if they applied it — they do not attribute that friction to a specific function. They attribute it to the vendor. To the company. To you.</p>
+
+    <p>The Gap Map exercise forces every function to examine its edges — the points at which its work ends and another function's work begins — rather than only its core. Those edges are where the invisible failures live. And until they are named and mapped, they cannot be fixed.</p>
+
+    <div class="section-break"><div class="section-break-icon"></div></div>
+
+    <h2>The Gap Map: What It Is</h2>
+
+    <p>The Gap Map is a cross-functional matrix that scores the quality of the connection between every pair of CX functions. Each cell represents a directional handoff: does Function A effectively set up Function B for success at the point of transition? The score is not a measure of either function's internal performance — it is a measure of the connection between them.</p>
+
+    <p>Below is an example Gap Map for a mid-sized CX organization. Red cells represent critical gaps — handoffs where the customer is actively falling through. Amber cells are weak connections — functional but unreliable. Green cells are solid — consistent, documented, and monitored.</p>
+
+    <div class="gap-map-wrap">
+      <div class="gap-map-header">
+        <div class="gap-map-title">Sample CX Organization Gap Map</div>
+        <div class="gap-map-legend">
+          <div class="legend-item"><div class="legend-dot dot-gap"></div>Critical Gap</div>
+          <div class="legend-item"><div class="legend-dot dot-weak"></div>Weak Connection</div>
+          <div class="legend-item"><div class="legend-dot dot-solid"></div>Solid Handoff</div>
+        </div>
+      </div>
+      <div class="gap-map-body">
+        <div class="gap-grid">
+
+          <!-- Header row -->
+          <div class="gm-cell-blank"></div>
+          <div class="gm-col-header">Customer<br>Success</div>
+          <div class="gm-col-header">Technical<br>Support</div>
+          <div class="gm-col-header">Consulting</div>
+          <div class="gm-col-header">Prof.<br>Services</div>
+          <div class="gm-col-header">Education</div>
+          <div class="gm-col-header">Managed<br>Services</div>
+          <div class="gm-col-header">Partner<br>Mgmt</div>
+
+          <!-- Row: Customer Success -->
+          <div class="gm-row-header">Customer Success</div>
+          <div class="gm-cell cell-self"><div class="cell-label">—</div></div>
+          <div class="gm-cell cell-weak"><div class="cell-icon">⚠</div><div class="cell-label">Weak</div></div>
+          <div class="gm-cell cell-solid"><div class="cell-icon">✓</div><div class="cell-label">Solid</div></div>
+          <div class="gm-cell cell-gap"><div class="cell-icon">✕</div><div class="cell-label">Gap</div></div>
+          <div class="gm-cell cell-weak"><div class="cell-icon">⚠</div><div class="cell-label">Weak</div></div>
+          <div class="gm-cell cell-solid"><div class="cell-icon">✓</div><div class="cell-label">Solid</div></div>
+          <div class="gm-cell cell-weak"><div class="cell-icon">⚠</div><div class="cell-label">Weak</div></div>
+
+          <!-- Row: Technical Support -->
+          <div class="gm-row-header">Technical Support</div>
+          <div class="gm-cell cell-gap"><div class="cell-icon">✕</div><div class="cell-label">Gap</div></div>
+          <div class="gm-cell cell-self"><div class="cell-label">—</div></div>
+          <div class="gm-cell cell-na"><div class="cell-label">N/A</div></div>
+          <div class="gm-cell cell-weak"><div class="cell-icon">⚠</div><div class="cell-label">Weak</div></div>
+          <div class="gm-cell cell-solid"><div class="cell-icon">✓</div><div class="cell-label">Solid</div></div>
+          <div class="gm-cell cell-gap"><div class="cell-icon">✕</div><div class="cell-label">Gap</div></div>
+          <div class="gm-cell cell-na"><div class="cell-label">N/A</div></div>
+
+          <!-- Row: Consulting -->
+          <div class="gm-row-header">Consulting</div>
+          <div class="gm-cell cell-weak"><div class="cell-icon">⚠</div><div class="cell-label">Weak</div></div>
+          <div class="gm-cell cell-na"><div class="cell-label">N/A</div></div>
+          <div class="gm-cell cell-self"><div class="cell-label">—</div></div>
+          <div class="gm-cell cell-solid"><div class="cell-icon">✓</div><div class="cell-label">Solid</div></div>
+          <div class="gm-cell cell-gap"><div class="cell-icon">✕</div><div class="cell-label">Gap</div></div>
+          <div class="gm-cell cell-na"><div class="cell-label">N/A</div></div>
+          <div class="gm-cell cell-na"><div class="cell-label">N/A</div></div>
+
+          <!-- Row: Prof. Services -->
+          <div class="gm-row-header">Prof. Services</div>
+          <div class="gm-cell cell-gap"><div class="cell-icon">✕</div><div class="cell-label">Gap</div></div>
+          <div class="gm-cell cell-solid"><div class="cell-icon">✓</div><div class="cell-label">Solid</div></div>
+          <div class="gm-cell cell-weak"><div class="cell-icon">⚠</div><div class="cell-label">Weak</div></div>
+          <div class="gm-cell cell-self"><div class="cell-label">—</div></div>
+          <div class="gm-cell cell-gap"><div class="cell-icon">✕</div><div class="cell-label">Gap</div></div>
+          <div class="gm-cell cell-na"><div class="cell-label">N/A</div></div>
+          <div class="gm-cell cell-na"><div class="cell-label">N/A</div></div>
+
+          <!-- Row: Education -->
+          <div class="gm-row-header">Education</div>
+          <div class="gm-cell cell-gap"><div class="cell-icon">✕</div><div class="cell-label">Gap</div></div>
+          <div class="gm-cell cell-weak"><div class="cell-icon">⚠</div><div class="cell-label">Weak</div></div>
+          <div class="gm-cell cell-na"><div class="cell-label">N/A</div></div>
+          <div class="gm-cell cell-weak"><div class="cell-icon">⚠</div><div class="cell-label">Weak</div></div>
+          <div class="gm-cell cell-self"><div class="cell-label">—</div></div>
+          <div class="gm-cell cell-na"><div class="cell-label">N/A</div></div>
+          <div class="gm-cell cell-na"><div class="cell-label">N/A</div></div>
+
+          <!-- Row: Managed Services -->
+          <div class="gm-row-header">Managed Services</div>
+          <div class="gm-cell cell-weak"><div class="cell-icon">⚠</div><div class="cell-label">Weak</div></div>
+          <div class="gm-cell cell-solid"><div class="cell-icon">✓</div><div class="cell-label">Solid</div></div>
+          <div class="gm-cell cell-na"><div class="cell-label">N/A</div></div>
+          <div class="gm-cell cell-na"><div class="cell-label">N/A</div></div>
+          <div class="gm-cell cell-na"><div class="cell-label">N/A</div></div>
+          <div class="gm-cell cell-self"><div class="cell-label">—</div></div>
+          <div class="gm-cell cell-na"><div class="cell-label">N/A</div></div>
+
+          <!-- Row: Partner Mgmt -->
+          <div class="gm-row-header">Partner Mgmt</div>
+          <div class="gm-cell cell-weak"><div class="cell-icon">⚠</div><div class="cell-label">Weak</div></div>
+          <div class="gm-cell cell-na"><div class="cell-label">N/A</div></div>
+          <div class="gm-cell cell-na"><div class="cell-label">N/A</div></div>
+          <div class="gm-cell cell-na"><div class="cell-label">N/A</div></div>
+          <div class="gm-cell cell-na"><div class="cell-label">N/A</div></div>
+          <div class="gm-cell cell-na"><div class="cell-label">N/A</div></div>
+          <div class="gm-cell cell-self"><div class="cell-label">—</div></div>
+
+        </div>
+        <div class="gap-map-note">Read each cell as: "Does the row function reliably set up the column function for success at handoff?" Red = critical gap; Amber = inconsistent; Green = documented and monitored.</div>
+      </div>
+    </div>
+
+    <p>The pattern this map reveals immediately is the PS-to-CS handoff — a critical gap in both directions. PS does not effectively transition customer context to CS at go-live, and CS does not effectively communicate delivery requirements back to PS during the sales-to-delivery process. Two red cells in adjacent rows tell you there is a structural problem at the most important handoff in the customer lifecycle.</p>
+
+    <p>The Education-to-CS gap is the second priority. Customers are completing training with no downstream connection to adoption follow-through from the CS team. Education is delivering into a void.</p>
+
+    <h2>Running the Exercise</h2>
+
+    <p>The Gap Map Exercise requires two hours and one room. Every CX function leader needs to be present — not represented by a delegate. The integrity of the exercise depends on the people who actually own the handoffs being in the conversation.</p>
+
+    <div class="steps-list">
+
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Prepare the blank matrix (15 minutes before the session)</div>
+          <p class="step-body">Build a grid with every CX function on both axes. Mark self-referential cells and clearly non-applicable pairs before the session begins — this focuses the discussion time on the handoffs that actually exist in your organization.</p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">Score each handoff independently, before discussing (20 minutes)</div>
+          <p class="step-body">Each function leader scores the handoffs they are involved in — both as the sending function and the receiving function — before any group discussion. Use the three-level scoring system below. The goal is to capture uninfluenced perception. Discrepancies between the sender's score and the receiver's score are the most important data in the exercise.</p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">Reveal and discuss the discrepancies (45 minutes)</div>
+          <p class="step-body">Compile the scores and display them to the group. Focus the discussion on cells where the sender and receiver disagree by more than one level — these are the handoffs where one function believes it is delivering something the other function is not receiving. The conversation about why that gap exists is usually the most valuable hour your cross-functional leadership team will spend all year.</p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">Prioritize by customer impact (20 minutes)</div>
+          <p class="step-body">Not all gaps are equal. Rank the red cells by the number of customers affected and the severity of the downstream impact on outcomes. The PS-to-CS handoff may affect every customer who goes through implementation. The Consulting-to-Education gap may affect only a small subset. Fix in order of customer impact, not organizational convenience.</p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-title">Assign a gap owner for each red cell (20 minutes)</div>
+          <p class="step-body">Every critical gap needs a single named owner — not a joint working group, not a shared responsibility. One person is accountable for closing that gap by a specific date with a specific deliverable: a shared handoff standard, a joint review cadence, a documented escalation path. Without a named owner and a deadline, the Gap Map becomes a document rather than a change instrument.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <h2>The Three Scores</h2>
+
+    <div class="scoring-guide">
+      <div class="score-card gap">
+        <div class="score-card-label">Score: Red</div>
+        <div class="score-card-title">Critical Gap</div>
+        <div class="score-card-body">No consistent handoff standard exists. The receiving function regularly lacks the context, data, or coordination it needs. Customers are experiencing this failure directly — in friction, in re-explanation, in dropped commitments.</div>
+      </div>
+      <div class="score-card weak">
+        <div class="score-card-label">Score: Amber</div>
+        <div class="score-card-title">Weak Connection</div>
+        <div class="score-card-body">A handoff standard exists but is inconsistently applied. The quality of the transition depends on which individuals are involved. Good outcomes are personality-dependent, not process-dependent.</div>
+      </div>
+      <div class="score-card solid">
+        <div class="score-card-label">Score: Green</div>
+        <div class="score-card-title">Solid Handoff</div>
+        <div class="score-card-body">A documented handoff standard exists, is consistently followed, and is monitored for quality. Both functions have agreed on what a successful transition looks like and have a shared mechanism for flagging when it does not happen.</div>
+      </div>
+    </div>
+
+    <div class="section-break"><div class="section-break-icon"></div></div>
+
+    <h2>What to Do With What You Find</h2>
+
+    <p>The Gap Map is a diagnostic, not a solution. What it produces is a prioritized list of the structural connections your CX organization needs to build — and a shared, function-level acknowledgment that the gaps exist, which is often the most politically difficult part of the work.</p>
+
+    <p>Once the red cells are identified and owned, the fix for each one is usually simpler than the problem it is producing. Most critical handoff gaps resolve to one of three root causes: missing shared data (the sending function has information the receiving function needs but no mechanism to transfer it), missing shared standards (both functions have different definitions of what a good handoff looks like), or missing shared accountability (no one has been given ownership of the transition moment itself).</p>
+
+    <p>Address the root cause, not the symptom. A PS team that delivers implementation sign-offs with incomplete adoption baseline data is not failing because of individual negligence. It is failing because no one has defined what baseline data the CS team needs at handoff, documented that standard, and made it part of the PS delivery checklist. That is a 30-minute conversation and a two-page document. It is also something that will prevent the downstream dysfunction it currently produces — in every account, on every implementation, indefinitely.</p>
+
+    <div class="callout">
+      <div class="callout-label">CXKonnect Principle</div>
+      <p>Run the Gap Map Exercise once per year, at minimum. The cross-functional gaps in a CX organization are not static — they shift as teams grow, change leadership, adopt new tools, and take on new customer segments. A gap that was solid last year may have degraded silently. A gap that was critical may have been closed. The map is not a permanent document. It is an annual reckoning with the invisible seams in your organization — and the customers who are falling through them.</p>
+    </div>
+
+  </article>
+</div>
+
+<footer class="article-footer">
+  <div class="footer-logo">CX<span>Konnect</span></div>
+  <p>A framework for the full CX organization — from first signature to lasting advocacy.</p>
+</footer>
+
+</body>
+</html>
