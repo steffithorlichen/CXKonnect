@@ -765,9 +765,9 @@ footer {
         <a class="btn-ghost" onclick="scrollTo('groups')">Find a Local Group</a>
       </div>
       <div class="hero-stats">
-        <div class="hs"><span class="n">+++</span><span class="l">CX Leaders</span></div>
-        <div class="hs"><span class="n">+++</span><span class="l">Local Groups</span></div>
-        <div class="hs"><span class="n">+++</span><span class="l">Resources</span></div>
+        <div class="hs"><span class="n">2,400+</span><span class="l">CX Leaders</span></div>
+        <div class="hs"><span class="n">48</span><span class="l">Local Groups</span></div>
+        <div class="hs"><span class="n">120+</span><span class="l">Resources</span></div>
       </div>
     </div>
 
@@ -1255,23 +1255,17 @@ async function runSearch() {
   text.innerHTML = '<div class="ai-loading"><span></span><span></span><span></span></div>';
 
   try {
-    // Note: Direct API calls require your Anthropic API key.
-    // For production, route this through a backend/proxy to keep the key secure.
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
+    const res = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        system: `You are the CX Konnect AI Assistant — an expert on the CX Konnect Framework created by Stefanie Thorlichen. The framework covers: outcome-driven CX (measuring customer outcomes not just activity), the five customer journey stages (Connect & Align, Enable & Certify, Activate & Monitor, Expand & Optimize, Renew & Advocate), breaking functional silos, cross-functional collaboration, 8 key CX metrics (Time to First Value, Outcome Achievement Rate, Adoption Depth Score, etc.), culture as the deciding factor in CX transformation, AI as an intelligence layer vs. collection of tools, and scaling CX transformation incrementally. Answer questions thoughtfully and practically. Be warm, direct, and useful. Keep responses to 3–5 sentences max unless more detail is clearly needed.`,
-        messages: [{ role: 'user', content: q }]
-      })
+      body: JSON.stringify({ question: q })
     });
     const data = await res.json();
-    const answer = data.content?.find(c => c.type === 'text')?.text || 'I couldn\'t generate a response. Please try again.';
+    if (!res.ok) throw new Error(data.error || 'Request failed');
+    const answer = data.answer || 'I couldn\'t generate a response. Please try again.';
     text.innerHTML = answer.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>');
   } catch (e) {
-    text.innerHTML = '<strong>AI Assistant:</strong> To activate the AI search, add your Anthropic API key to the fetch call in the page source. In the meantime, browse the articles and activities sections above for CX Konnect resources — or visit <a href="https://claude.ai" style="color:var(--sea)">claude.ai</a> to ask questions directly.';
+    text.innerHTML = 'Something went wrong — please try again in a moment.';
   }
 }
 
