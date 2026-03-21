@@ -420,22 +420,29 @@
     btn.innerHTML = '<span class="spinner"></span>';
     err.classList.remove('show');
 
-    // Verify by hitting the documents endpoint with the token
     try {
-      const res = await fetch('/api/documents', {
+      const res = await fetch('/api/auth', {
+        method: 'POST',
         headers: { 'x-admin-token': pw }
       });
-      if (res.ok) {
+
+      if (res.status === 200) {
         adminToken = pw;
         sessionStorage.setItem('cxk_admin_token', pw);
         showAdmin();
+      } else if (res.status === 401) {
+        err.textContent = 'Incorrect password. Please try again.';
+        err.classList.add('show');
+        btn.disabled = false;
+        btn.textContent = 'Sign In';
       } else {
+        err.textContent = 'Server error. Check that ADMIN_SECRET is set in your Vercel environment variables.';
         err.classList.add('show');
         btn.disabled = false;
         btn.textContent = 'Sign In';
       }
     } catch {
-      err.textContent = 'Connection error. Please try again.';
+      err.textContent = 'Connection error — API functions may not be deployed yet.';
       err.classList.add('show');
       btn.disabled = false;
       btn.textContent = 'Sign In';
