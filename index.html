@@ -475,7 +475,7 @@ nav { display: flex; align-items: center; gap: 4px; }
 
 /* ── FORUM ── */
 .forum-section { background: var(--white); }
-.forum-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 32px; }
+.forum-grid { display: grid; grid-template-columns: 1fr; gap: 32px; }
 .forum-posts { display: flex; flex-direction: column; gap: 12px; }
 .forum-post {
   padding: 18px 20px;
@@ -1030,16 +1030,7 @@ footer {
         <button class="new-post-btn" onclick="openNewPost()">+ Start a New Discussion</button>
         <div class="forum-posts" id="forumPosts"></div>
       </div>
-      <div>
-        <div class="forum-sidebar-card">
-          <div class="fsc-title">Browse Topics</div>
-          <div id="topicPills"></div>
-        </div>
-        <div class="forum-sidebar-card">
-          <div class="fsc-title">🔥 Trending This Week</div>
-          <div id="trendingList"></div>
-        </div>
-      </div>
+
     </div>
   </div>
 </section>
@@ -1057,14 +1048,14 @@ footer {
         <div class="gic-icon">🌍</div>
         <h3 class="gic-title">Join a Local Chapter</h3>
         <p class="gic-desc">Already have a chapter in your city or want to be first on the list when one launches? Let us know where you are and we'll connect you with your local community.</p>
-        <a class="gic-btn" href="mailto:stefanie.cxkonnect@gmail.com?subject=I'd%20like%20to%20join%20a%20local%20CX%20Konnect%20chapter&body=Hi%20Steffi%2C%0A%0AI'm%20interested%20in%20joining%20a%20local%20CX%20Konnect%20chapter.%0A%0AMy%20city%3A%20%0AMy%20role%3A%20%0A%0ALooking%20forward%20to%20connecting!">Express Interest in Joining →</a>
+        <a class="gic-btn" href="/cdn-cgi/l/email-protection#5320273635323d3a367d302b383c3d3d36302713343e323a3f7d303c3e6c202631393630276e1a74377661633f3a3836766163273c766163393c3a3d766163327661633f3c30323f766163100b766163183c3d3d363027766163303b322327362175313c372a6e1b3a76616300273635353a7661107663127663121a743e7661633a3d27362136202736377661633a3d766163393c3a3d3a3d34766163327661633f3c30323f766163100b766163183c3d3d363027766163303b32232736217d7663127663121e2a766163303a272a7660127661637663121e2a766163213c3f367660127661637663127663121f3c3c383a3d34766163353c2124322137766163273c766163303c3d3d3630273a3d3472">Express Interest in Joining →</a>
       </div>
       <div class="groups-interest-divider"></div>
       <div class="groups-interest-card">
         <div class="gic-icon">🚀</div>
         <h3 class="gic-title">Start a Chapter in Your City</h3>
         <p class="gic-desc">Are you a CX leader with the energy and network to bring your city's community together? We'll support you with the framework, materials, and introductions to get started.</p>
-        <a class="gic-btn" href="mailto:stefanie.cxkonnect@gmail.com?subject=I'd%20like%20to%20start%20a%20CX%20Konnect%20chapter&body=Hi%20Steffi%2C%0A%0AI'm%20interested%20in%20starting%20a%20local%20CX%20Konnect%20chapter.%0A%0AMy%20city%3A%20%0AMy%20role%20%26%20organization%3A%20%0AMy%20vision%20for%20the%20group%3A%20%0A%0ALooking%20forward%20to%20connecting!">Express Interest in Starting →</a>
+        <a class="gic-btn" href="/cdn-cgi/l/email-protection#a8dbdccdcec9c6c1cd86cbd0c3c7c6c6cdcbdce8cfc5c9c1c486cbc7c597dbddcac2cdcbdc95e18fcc8d9a98c4c1c3cd8d9a98dcc78d9a98dbdcc9dadc8d9a98c98d9a98ebf08d9a98e3c7c6c6cdcbdc8d9a98cbc0c9d8dccdda8ecac7ccd195e0c18d9a98fbdccdcecec18d9aeb8d98e98d98e9e18fc58d9a98c1c6dccddacddbdccdcc8d9a98c1c68d9a98dbdcc9dadcc1c6cf8d9a98c98d9a98c4c7cbc9c48d9a98ebf08d9a98e3c7c6c6cdcbdc8d9a98cbc0c9d8dccdda868d98e98d98e9e5d18d9a98cbc1dcd18d9be98d9a988d98e9e5d18d9a98dac7c4cd8d9a988d9a9e8d9a98c7dacfc9c6c1d2c9dcc1c7c68d9be98d9a988d98e9e5d18d9a98dec1dbc1c7c68d9a98cec7da8d9a98dcc0cd8d9a98cfdac7ddd88d9be98d9a988d98e98d98e9e4c7c7c3c1c6cf8d9a98cec7dadfc9dacc8d9a98dcc78d9a98cbc7c6c6cdcbdcc1c6cf89">Express Interest in Starting →</a>
       </div>
     </div>
     <div class="groups-interest-note">
@@ -1324,7 +1315,7 @@ footer {
 <!-- TOAST -->
 <div class="toast" id="toast"><span class="toast-dot"></span><span id="toastMsg"></span></div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ═══════════════════════════════════════════════════
 // DATA
 // ═══════════════════════════════════════════════════
@@ -1443,14 +1434,7 @@ function forumInit() {
   }
   renderForumAuthBar();
   loadForumPosts();
-  // Static sidebar
-  document.getElementById('topicPills').innerHTML = TOPICS.map(t =>
-    `<span class="topic-pill">${t}</span>`).join('');
-  document.getElementById('trendingList').innerHTML = TRENDING.map(t => `
-    <div class="trending-item">
-      <span class="trending-n">${t.n}</span>
-      <span class="trending-t">${t.t}</span>
-    </div>`).join('');
+
 }
 
 function renderForumAuthBar() {
@@ -1840,27 +1824,4 @@ function createParticles() {
 // UTILS
 // ═══════════════════════════════════════════════════
 function scrollTo(id) {
-  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-let toastTimer;
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  document.getElementById('toastMsg').textContent = msg;
-  t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
-}
-
-// ═══════════════════════════════════════════════════
-// INIT
-// ═══════════════════════════════════════════════════
-renderArticles();
-renderActivities();
-renderForum();
-renderGroups();
-renderEvents();
-createParticles();
-</script>
-</body>
-</html>
+  document.getElementById(id)?.scrollIntoView({ behavior: '
