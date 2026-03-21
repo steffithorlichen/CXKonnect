@@ -804,6 +804,69 @@ footer {
 .mf-success { font-size: .78rem; color: var(--moss); margin-top: 6px; display: none; }
 .mf-success.show { display: block; }
 
+
+/* ── GROUPS FEATURE ── */
+.group-card-members {
+  font-size: .72rem; color: var(--sea); font-weight: 600;
+  margin-top: 3px; cursor: pointer;
+}
+.group-card-members:hover { text-decoration: underline; }
+
+.members-overlay {
+  position: fixed; inset: 0;
+  background: rgba(6,45,63,.72); backdrop-filter: blur(6px);
+  z-index: 300; display: none; align-items: center; justify-content: center; padding: 20px;
+}
+.members-overlay.open { display: flex; }
+.members-panel {
+  background: var(--white); border-radius: 20px;
+  width: 100%; max-width: 460px;
+  box-shadow: 0 32px 80px rgba(6,45,63,.3);
+  overflow: hidden; animation: modalUp .25s ease;
+}
+.members-head {
+  background: linear-gradient(135deg, var(--ocean), var(--sea));
+  padding: 20px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.members-head h3 { font-family: 'Fraunces', serif; font-size: 1.1rem; color: var(--white); font-weight: 500; }
+.members-head .modal-x { background: rgba(255,255,255,.15); border: none; color: var(--white); width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; }
+.members-list { padding: 16px 24px; max-height: 340px; overflow-y: auto; }
+.member-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 0; border-bottom: 1px solid rgba(10,77,104,.07);
+}
+.member-row:last-child { border-bottom: none; }
+.member-avatar {
+  width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--seafoam), var(--sage));
+  display: flex; align-items: center; justify-content: center;
+  font-size: .78rem; font-weight: 700; color: var(--white);
+}
+.member-name { font-size: .88rem; font-weight: 600; color: var(--ocean); flex: 1; }
+.member-joined { font-size: .72rem; color: var(--grey); }
+.member-you { font-size: .65rem; background: var(--foam); color: var(--sea); padding: 1px 7px; border-radius: 99px; font-weight: 700; }
+.members-empty { padding: 20px 0; text-align: center; color: var(--grey); font-size: .88rem; font-style: italic; }
+.members-join-cta {
+  padding: 16px 24px; border-top: 1px solid var(--dune);
+  background: var(--shell);
+}
+.members-join-btn {
+  width: 100%; padding: 11px;
+  background: linear-gradient(135deg, var(--ocean), var(--sea));
+  color: var(--white); border: none; border-radius: 9px;
+  font-family: 'DM Sans', sans-serif; font-size: .9rem; font-weight: 700;
+  cursor: pointer; transition: all .2s;
+}
+.members-join-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(10,77,104,.25); }
+.members-join-btn:disabled { opacity: .6; cursor: default; transform: none; box-shadow: none; }
+
+.group-lead-badge {
+  font-size: .65rem; background: #FFF7ED; color: #c2600a;
+  padding: 1px 7px; border-radius: 99px; font-weight: 700;
+  border: 1px solid rgba(194,96,10,.2);
+}
+
 @media (max-width: 900px) {
   header { padding: 0 20px; }
   nav { display: none; }
@@ -1138,27 +1201,35 @@ footer {
     <div class="modal-body">
       <div class="mf-group">
         <label class="mf-label">City / Region *</label>
-        <input class="mf-input" placeholder="e.g. Chicago, IL">
+        <input class="mf-input" id="gcity" placeholder="e.g. Chicago, IL">
       </div>
       <div class="mf-group">
         <label class="mf-label">Chapter Name</label>
-        <input class="mf-input" placeholder="e.g. CX Konnect Chicago">
+        <input class="mf-input" id="gchapterName" placeholder="e.g. CX Konnect Chicago">
       </div>
       <div class="mf-group">
         <label class="mf-label">Your Role & Organization</label>
-        <input class="mf-input" placeholder="e.g. VP of Customer Success, Ascension Health">
+        <input class="mf-input" id="gRole" placeholder="e.g. VP of Customer Success, Ascension Health">
       </div>
       <div class="mf-group">
         <label class="mf-label">How often do you plan to meet?</label>
-        <select class="mf-select">
+        <select class="mf-select" id="gFreq">
           <option>Monthly</option><option>Bi-monthly</option><option>Quarterly</option>
         </select>
       </div>
       <div class="mf-group">
         <label class="mf-label">Tell us a bit about your vision for the group</label>
-        <textarea class="mf-textarea" placeholder="What kind of conversations do you want to host?"></textarea>
+        <textarea class="mf-textarea" id="gVision" placeholder="What kind of conversations do you want to host?"></textarea>
       </div>
-      <button class="modal-submit" onclick="submitGroup()">Launch My Chapter →</button>
+      <div class="mf-group">
+        <label class="mf-label">Your Name *</label>
+        <input class="mf-input" id="gName" placeholder="Jane Smith">
+      </div>
+      <div class="mf-group">
+        <label class="mf-label">Your Email *</label>
+        <input class="mf-input" id="gEmail" type="email" placeholder="jane@organization.com">
+      </div>
+      <button class="modal-submit" id="groupSubmitBtn" onclick="submitGroup()">Launch My Chapter →</button>
     </div>
   </div>
 </div>
@@ -1227,6 +1298,23 @@ footer {
     </div>
     <div class="modal-body" id="postDetailBody">
       <!-- filled dynamically -->
+    </div>
+  </div>
+</div>
+
+
+<!-- MEMBERS OVERLAY -->
+<div class="members-overlay" id="membersOverlay">
+  <div class="members-panel">
+    <div class="members-head">
+      <h3 id="membersPanelTitle">Group Members</h3>
+      <button class="modal-x" onclick="closeMembers()">×</button>
+    </div>
+    <div class="members-list" id="membersList">
+      <div class="members-empty">Loading members…</div>
+    </div>
+    <div class="members-join-cta" id="membersJoinCta" style="display:none">
+      <button class="members-join-btn" id="membersJoinBtn" onclick="joinGroupFromPanel()">Join This Group →</button>
     </div>
   </div>
 </div>
@@ -1596,22 +1684,155 @@ function renderForum() {
   forumInit();
 }
 
-function renderGroups() {
+// ── GROUPS STATE ──────────────────────────────────────────────────────────
+let _groups = [];
+let _currentGroupId = null;
+
+async function renderGroups() {
+  try {
+    const res = await fetch('/api/groups-list');
+    const data = await res.json();
+    _groups = data.groups || [];
+  } catch(e) {
+    _groups = [];
+  }
+
+  // Merge live groups with static MAP_DOTS for map display
   const dots = document.getElementById('mapDots');
   dots.innerHTML = MAP_DOTS.map(d => `
     <div class="map-dot" style="top:${d.top};left:${d.left}" data-city="${d.city}"
-         onclick="showToast('${d.city} chapter — 12 members')"></div>`).join('');
+         onclick="showToast('${d.city} chapter')"></div>`).join('');
 
-  document.getElementById('groupsList').innerHTML = GROUPS.map(g => `
-    <div class="group-card">
+  const list = document.getElementById('groupsList');
+
+  if (_groups.length === 0) {
+    // Fall back to static display groups
+    list.innerHTML = GROUPS.map(g => `
+      <div class="group-card">
+        <div class="group-avatar" style="background:${g.bg}">${g.emoji}</div>
+        <div>
+          <div class="group-name">CX Konnect ${g.city}</div>
+          <div class="group-meta">${g.members} · Meets ${g.freq}</div>
+        </div>
+        <button class="group-join" onclick="requireLoginToJoin()">Join →</button>
+      </div>`).join('');
+    return;
+  }
+
+  list.innerHTML = _groups.map(g => `
+    <div class="group-card" id="gcard-${g.id}">
       <div class="group-avatar" style="background:${g.bg}">${g.emoji}</div>
-      <div>
-        <div class="group-name">CX Konnect ${g.city}</div>
-        <div class="group-meta">${g.members} · Meets ${g.freq}</div>
+      <div style="flex:1">
+        <div class="group-name">${escHtml(g.chapterName || 'CX Konnect ' + g.city)}</div>
+        <div class="group-meta">${g.memberCount} member${g.memberCount !== 1 ? 's' : ''} · Meets ${escHtml(g.freq)}</div>
+        <div class="group-card-members" onclick="openMembers('${g.id}', event)">View members →</div>
       </div>
-      <button class="group-join" onclick="showToast('Joining ${g.city} chapter...')">Join →</button>
+      <button class="group-join" onclick="handleJoinGroup('${g.id}', event)">Join →</button>
     </div>`).join('');
 }
+
+function requireLoginToJoin() {
+  if (!forumUser) { openLogin(); return; }
+}
+
+function handleJoinGroup(groupId, e) {
+  e.stopPropagation();
+  if (!forumUser) { openLogin(); return; }
+  openMembers(groupId, e, true);
+}
+
+async function openMembers(groupId, e, joinIntent = false) {
+  if (e) e.stopPropagation();
+  if (!forumUser) { openLogin(); return; }
+
+  _currentGroupId = groupId;
+  const g = _groups.find(x => x.id === groupId);
+  document.getElementById('membersPanelTitle').textContent = (g?.chapterName || g?.city || 'Group') + ' Members';
+  document.getElementById('membersList').innerHTML = '<div class="members-empty">Loading…</div>';
+  document.getElementById('membersJoinCta').style.display = 'none';
+  document.getElementById('membersOverlay').classList.add('open');
+
+  try {
+    const res = await fetch('/api/groups-members?groupId=' + groupId, {
+      headers: { 'Authorization': 'Bearer ' + forumUser.token }
+    });
+    const data = await res.json();
+
+    if (!res.ok) {
+      document.getElementById('membersList').innerHTML = '<div class="members-empty">' + escHtml(data.error || 'Could not load members.') + '</div>';
+      return;
+    }
+
+    const members = data.members || [];
+    const isAlreadyMember = members.some(m => m.isYou);
+
+    if (members.length === 0) {
+      document.getElementById('membersList').innerHTML = '<div class="members-empty">No members yet — be the first to join!</div>';
+    } else {
+      document.getElementById('membersList').innerHTML = members.map(m => {
+        const ini = m.name.split(' ').map(w => w[0]).join('').substring(0,2).toUpperCase();
+        return `<div class="member-row">
+          <div class="member-avatar">${ini}</div>
+          <div style="flex:1">
+            <div class="member-name">${escHtml(m.name)} ${m.isLead ? '<span class="group-lead-badge">Chapter Lead</span>' : ''} ${m.isYou ? '<span class="member-you">You</span>' : ''}</div>
+            <div class="member-joined">Joined ${relativeTime(m.joinedAt)}</div>
+          </div>
+        </div>`;
+      }).join('');
+    }
+
+    // Show join button if not already a member
+    if (!isAlreadyMember) {
+      const cta = document.getElementById('membersJoinCta');
+      cta.style.display = 'block';
+      const btn = document.getElementById('membersJoinBtn');
+      btn.disabled = false;
+      btn.textContent = 'Join This Group →';
+    }
+
+  } catch(err) {
+    document.getElementById('membersList').innerHTML = '<div class="members-empty">Failed to load members.</div>';
+  }
+}
+
+async function joinGroupFromPanel() {
+  if (!forumUser || !_currentGroupId) return;
+  const btn = document.getElementById('membersJoinBtn');
+  btn.disabled = true; btn.textContent = 'Joining…';
+
+  try {
+    const res = await fetch('/api/groups-join', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + forumUser.token },
+      body: JSON.stringify({ groupId: _currentGroupId })
+    });
+    const data = await res.json();
+    if (res.ok) {
+      showToast('✓ You joined the group!');
+      // Refresh member count in group card
+      const g = _groups.find(x => x.id === _currentGroupId);
+      if (g) g.memberCount = data.memberCount;
+      const card = document.getElementById('gcard-' + _currentGroupId);
+      if (card) {
+        card.querySelector('.group-meta').textContent = data.memberCount + ' member' + (data.memberCount !== 1 ? 's' : '') + ' · Meets ' + (g?.freq || '');
+      }
+      // Refresh member panel
+      openMembers(_currentGroupId, null, false);
+    } else {
+      btn.disabled = false; btn.textContent = 'Join This Group →';
+      showToast(data.error || 'Could not join group.');
+    }
+  } catch(e) {
+    btn.disabled = false; btn.textContent = 'Join This Group →';
+    showToast('Network error — please try again.');
+  }
+}
+
+function closeMembers() {
+  document.getElementById('membersOverlay').classList.remove('open');
+  _currentGroupId = null;
+}
+
 
 function renderEvents() {
   document.getElementById('eventsGrid').innerHTML = EVENTS.map(e => `
@@ -1700,9 +1921,39 @@ function submitPost() {
     showToast('Network error — please try again.');
   });
 }
-function submitGroup() {
-  closeModal('groupOverlay');
-  showToast('✓ Chapter request submitted! We\'ll be in touch within 48 hours.');
+async function submitGroup() {
+  const city       = document.getElementById('gcity')?.value?.trim()   || document.querySelector('#groupOverlay .mf-input:nth-of-type(1)')?.value?.trim();
+  const chapterName= document.getElementById('gchapterName')?.value?.trim();
+  const yourRole   = document.getElementById('gRole')?.value?.trim();
+  const frequency  = document.getElementById('gFreq')?.value;
+  const vision     = document.getElementById('gVision')?.value?.trim();
+  const name       = document.getElementById('gName')?.value?.trim();
+  const email      = document.getElementById('gEmail')?.value?.trim();
+
+  if (!city || !name || !email) {
+    showToast('Please fill in City, Your Name, and Email.'); return;
+  }
+  const btn = document.getElementById('groupSubmitBtn');
+  if (btn) { btn.disabled = true; btn.textContent = 'Submitting…'; }
+
+  try {
+    const res = await fetch('/api/groups-request', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ city, chapterName, yourRole, frequency, vision, name, email })
+    });
+    const data = await res.json();
+    if (btn) { btn.disabled = false; btn.textContent = 'Launch My Chapter →'; }
+    closeModal('groupOverlay');
+    if (res.ok) {
+      showToast('✓ Request submitted! Steffi will review and be in touch within 48 hours.');
+    } else {
+      showToast(data.error || 'Could not submit. Please try again.');
+    }
+  } catch(e) {
+    if (btn) { btn.disabled = false; btn.textContent = 'Launch My Chapter →'; }
+    showToast('Network error — please try again.');
+  }
 }
 
 // Close on overlay click
@@ -1715,6 +1966,10 @@ function submitGroup() {
 // ═══════════════════════════════════════════════════
 // PARTICLES
 // ═══════════════════════════════════════════════════
+document.getElementById('membersOverlay').addEventListener('click', e => {
+  if (e.target.id === 'membersOverlay') closeMembers();
+});
+
 function createParticles() {
   const container = document.getElementById('particles');
   for (let i = 0; i < 18; i++) {
