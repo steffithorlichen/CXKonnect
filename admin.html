@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CXKonnect — Admin</title>
+  <style>
+    :root {
+      --navy:  #1F3864;
+      --teal:  #1B8C8C;
+      --gold:  #C9A434;
+      --white: #ffffff;
+      --light-teal: #E6F4F4;
+      --light-gold: #FBF5E0;
+      --light-gray: #F5F5F5;
+      --mid-gray:   #595959;
+      --rule:       #DDDDDD;
+      --danger:     #B03030;
+      --danger-bg:  #FDEAEA;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Palatino Linotype', Palatino, Georgia, serif;
+      background: var(--light-gray);
+      color: #1a1a1a;
+      min-height: 100vh;
+    }
+
+    header {
+      background: var(--navy);
+      padding: 0 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      border-bottom: 3px solid var(--gold);
+    }
+    .logo {
+      font-family: Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: bold;
+      color: var(--white);
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+    .logo span { color: var(--gold); }
+    .header-badge {
+      font-size: 0.72rem;
+      background: rgba(201,164,52,0.2);
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      border-radius: 4px;
+      padding: 3px 10px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      font-family: Georgia, serif;
+    }
+
+    /* ── Login screen ── */
+    #loginScreen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - 67px);
+      padding: 2rem;
+    }
+    .login-card {
+      background: var(--white);
+      border-radius: 10px;
+      border: 1px solid var(--rule);
+      padding: 2.5rem 2.5rem 2rem;
+      width: 100%;
+      max-width: 380px;
+      text-align: center;
+      box-shadow: 0 4px 24px rgba(31,56,100,0.08);
+    }
+    .login-card h2 {
+      font-family: Georgia, serif;
+      font-size: 1.2rem;
+      color: var(--navy);
+      margin-bottom: 0.4rem;
+    }
+    .login-card p {
+      font-size: 0.85rem;
+      color: var(--mid-gray);
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+    .lock-icon { color: var(--gold); margin-bottom: 1rem; }
+
+    input[type="password"], input[type="text"] {
+      width: 100%;
+      padding: 0.7rem 1rem;
+      border: 1.5px solid var(--rule);
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      color: var(--navy);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    input:focus { border-color: var(--teal); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.5rem;
+      border-radius: 6px;
+      font-family: Georgia, serif;
+      font-size: 0.9rem;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.15s, background 0.15s;
+    }
+    .btn:disabled { opacity: 0.55; cursor: not-allowed; }
+    .btn-primary  { background: var(--navy); color: var(--white); }
+    .btn-primary:hover:not(:disabled) { background: #162b50; }
+    .btn-teal     { background: var(--teal); color: var(--white); }
+    .btn-teal:hover:not(:disabled)  { background: #15706f; }
+    .btn-danger   { background: var(--danger); color: var(--white); font-size: 0.78rem; padding: 0.4rem 0.9rem; }
+    .btn-danger:hover:not(:disabled) { background: #8e2323; }
+    .btn-full { width: 100%; margin-top: 1rem; }
+
+    .error-msg {
+      background: var(--danger-bg);
+      color: var(--danger);
+      border: 1px solid var(--danger);
+      border-radius: 6px;
+      padding: 0.6rem 1rem;
+      font-size: 0.83rem;
+      margin-top: 0.75rem;
+      display: none;
+    }
+    .error-msg.show { display: block; }
+
+    /* ── Admin dashboard ── */
+    #adminScreen { display: none; }
+    .admin-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+    }
+    .admin-title {
+      font-family: Georgia, serif;
+      font-size: 1.5rem;
+      color: var(--navy);
+      font-weight: bold;
+      margin-bottom: 0.3rem;
+    }
+    .admin-subtitle {
+      color: var(--mid-gray);
+      font-size: 0.88rem;
+      font-style: italic;
+      margin-bottom: 1.75rem;
+    }
+    .gold-rule { height: 3px; background: var(--gold); border: none; border-radius: 2px; width: 60px; margin-bottom: 2rem; }
+
+    /* ── Upload card ── */
+    .card {
+      background: var(--white);
+      border-radius: 8px;
+      border: 1px solid var(--rule);
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+    .card-header {
+      background: var(--navy);
+      padding: 0.85rem 1.5rem;
+      font-family: Georgia, serif;
+      font-size: 0.78rem;
+      font-weight: bold;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .card-body { padding: 1.5rem; }
+
+    /* ── Drop zone ── */
+    .drop-zone {
+      border: 2px dashed var(--rule);
+      border-radius: 8px;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+      background: var(--light-gray);
+    }
+    .drop-zone:hover, .drop-zone.drag-over {
+      border-color: var(--teal);
+      background: var(--light-teal);
+    }
+    .drop-zone svg { color: var(--teal); margin-bottom: 0.75rem; opacity: 0.7; }
+    .drop-zone p { font-size: 0.9rem; color: var(--mid-gray); margin-bottom: 0.35rem; }
+    .drop-zone small { font-size: 0.78rem; color: #aaa; }
+    #fileInput { display: none; }
+
+    .file-preview {
+      display: none;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.85rem 1rem;
+      background: var(--light-teal);
+      border: 1px solid var(--teal);
+      border-radius: 6px;
+      margin-top: 1rem;
+    }
+    .file-preview.show { display: flex; }
+    .file-preview svg { color: var(--teal); flex-shrink: 0; }
+    .file-preview-name { font-size: 0.9rem; color: var(--navy); font-weight: bold; flex: 1; }
+    .file-preview-size { font-size: 0.78rem; color: var(--mid-gray); }
+
+    /* ── Progress ── */
+    .progress-wrap { display: none; margin-top: 1rem; }
+    .progress-wrap.show { display: block; }
+    .progress-bar-bg {
+      background: var(--rule);
+      border-radius: 99px;
+      height: 6px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      background: var(--teal);
+      height: 100%;
+      width: 0%;
+      border-radius: 99px;
+      transition: width 0.2s;
+    }
+    .progress-label { font-size: 0.78rem; color: var(--mid-gray); margin-top: 0.4rem; font-style: italic; }
+
+    .success-msg {
+      background: #EAF7EF;
+      color: #2A6B3F;
+      border: 1px solid #5CB87A;
+      border-radius: 6px;
+      padding: 0.6rem 1rem;
+      font-size: 0.83rem;
+      margin-top: 0.75rem;
+      display: none;
+    }
+    .success-msg.show { display: block; }
+
+    /* ── Document list ── */
+    .doc-table { width: 100%; border-collapse: collapse; }
+    .doc-table th {
+      font-family: Georgia, serif;
+      font-size: 0.75rem;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      text-align: left;
+      padding: 0.6rem 1rem;
+      border-bottom: 2px solid var(--navy);
+      background: var(--navy);
+      color: rgba(255,255,255,0.85);
+    }
+    .doc-table td {
+      padding: 0.75rem 1rem;
+      font-size: 0.88rem;
+      border-bottom: 1px solid var(--rule);
+      vertical-align: middle;
+    }
+    .doc-table tr:last-child td { border-bottom: none; }
+    .doc-table tr:hover td { background: var(--light-gray); }
+    .doc-name { color: var(--navy); font-weight: bold; }
+    .doc-date { color: var(--mid-gray); font-style: italic; font-size: 0.8rem; }
+    .doc-actions { text-align: right; white-space: nowrap; }
+
+    .empty-state {
+      padding: 2rem;
+      text-align: center;
+      color: var(--mid-gray);
+      font-style: italic;
+      font-size: 0.88rem;
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 16px; height: 16px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .loading-row td { text-align: center; padding: 2rem; color: var(--mid-gray); font-style: italic; }
+
+    .logout-link {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .logout-link:hover { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="/">CX<span>Konnect</span></a>
+  <div style="display:flex;align-items:center;gap:1.25rem;">
+    <span class="header-badge">Admin</span>
+    <a class="logout-link" id="logoutBtn">Sign out</a>
+  </div>
+</header>
+
+<!-- ── Login Screen ── -->
+<div id="loginScreen">
+  <div class="login-card">
+    <div class="lock-icon">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+      </svg>
+    </div>
+    <h2>Admin Access</h2>
+    <p>Enter your admin password to continue.</p>
+    <input type="password" id="passwordInput" placeholder="Admin password" autocomplete="current-password" />
+    <div class="error-msg" id="loginError">Incorrect password. Please try again.</div>
+    <button class="btn btn-primary btn-full" id="loginBtn">Sign In</button>
+  </div>
+</div>
+
+<!-- ── Admin Dashboard ── -->
+<div id="adminScreen">
+  <div class="admin-wrap">
+    <h1 class="admin-title">Document Management</h1>
+    <p class="admin-subtitle">Upload and manage PDFs for the CXKonnect documents library.</p>
+    <hr class="gold-rule" />
+
+    <!-- Upload card -->
+    <div class="card">
+      <div class="card-header">Upload New Document</div>
+      <div class="card-body">
+        <div class="drop-zone" id="dropZone">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polyline points="16 16 12 12 8 16"/>
+            <line x1="12" y1="12" x2="12" y2="21"/>
+            <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/>
+          </svg>
+          <p>Drag &amp; drop a PDF here, or <strong>click to browse</strong></p>
+          <small>PDF files only</small>
+          <input type="file" id="fileInput" accept=".pdf,application/pdf" />
+        </div>
+
+        <div class="file-preview" id="filePreview">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+          </svg>
+          <span class="file-preview-name" id="previewName">—</span>
+          <span class="file-preview-size" id="previewSize">—</span>
+        </div>
+
+        <div class="progress-wrap" id="progressWrap">
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progressFill"></div>
+          </div>
+          <div class="progress-label" id="progressLabel">Uploading…</div>
+        </div>
+
+        <div class="success-msg" id="uploadSuccess">Document uploaded successfully.</div>
+        <div class="error-msg" id="uploadError">Upload failed. Please try again.</div>
+
+        <button class="btn btn-teal btn-full" id="uploadBtn" disabled>Upload Document</button>
+      </div>
+    </div>
+
+    <!-- Documents list card -->
+    <div class="card">
+      <div class="card-header">Manage Documents</div>
+      <div class="card-body" style="padding:0;">
+        <table class="doc-table" id="docTable">
+          <thead>
+            <tr>
+              <th>Document Name</th>
+              <th>Uploaded</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="docTableBody">
+            <tr class="loading-row"><td colspan="3"><span class="spinner" style="border-color:rgba(31,56,100,0.2);border-top-color:var(--teal);"></span> Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // ── State ──────────────────────────────────────────────────────────────────
+  let adminToken = sessionStorage.getItem('cxk_admin_token') || null;
+  let selectedFile = null;
+
+  // ── Auth ───────────────────────────────────────────────────────────────────
+  function showAdmin() {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('adminScreen').style.display  = 'block';
+    loadDocuments();
+  }
+
+  if (adminToken) showAdmin();
+
+  document.getElementById('loginBtn').addEventListener('click', login);
+  document.getElementById('passwordInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') login();
+  });
+
+  async function login() {
+    const pw  = document.getElementById('passwordInput').value.trim();
+    const err = document.getElementById('loginError');
+    const btn = document.getElementById('loginBtn');
+    if (!pw) return;
+
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span>';
+    err.classList.remove('show');
+
+    // Verify by hitting the documents endpoint with the token
+    try {
+      const res = await fetch('/api/documents', {
+        headers: { 'x-admin-token': pw }
+      });
+      if (res.ok) {
+        adminToken = pw;
+        sessionStorage.setItem('cxk_admin_token', pw);
+        showAdmin();
+      } else {
+        err.classList.add('show');
+        btn.disabled = false;
+        btn.textContent = 'Sign In';
+      }
+    } catch {
+      err.textContent = 'Connection error. Please try again.';
+      err.classList.add('show');
+      btn.disabled = false;
+      btn.textContent = 'Sign In';
+    }
+  }
+
+  document.getElementById('logoutBtn').addEventListener('click', () => {
+    adminToken = null;
+    sessionStorage.removeItem('cxk_admin_token');
+    location.reload();
+  });
+
+  // ── File selection ─────────────────────────────────────────────────────────
+  const dropZone   = document.getElementById('dropZone');
+  const fileInput  = document.getElementById('fileInput');
+  const uploadBtn  = document.getElementById('uploadBtn');
+  const filePreview = document.getElementById('filePreview');
+
+  dropZone.addEventListener('click', () => fileInput.click());
+  fileInput.addEventListener('change', () => handleFile(fileInput.files[0]));
+
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault();
+    dropZone.classList.remove('drag-over');
+    const f = e.dataTransfer.files[0];
+    if (f && f.type === 'application/pdf') handleFile(f);
+    else showUploadError('Only PDF files are accepted.');
+  });
+
+  function handleFile(file) {
+    if (!file) return;
+    if (file.type !== 'application/pdf') {
+      showUploadError('Only PDF files are accepted.');
+      return;
+    }
+    selectedFile = file;
+    document.getElementById('previewName').textContent = file.name;
+    document.getElementById('previewSize').textContent = formatBytes(file.size);
+    filePreview.classList.add('show');
+    uploadBtn.disabled = false;
+    document.getElementById('uploadSuccess').classList.remove('show');
+    document.getElementById('uploadError').classList.remove('show');
+  }
+
+  function formatBytes(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+  }
+
+  // ── Upload ─────────────────────────────────────────────────────────────────
+  uploadBtn.addEventListener('click', uploadFile);
+
+  async function uploadFile() {
+    if (!selectedFile || !adminToken) return;
+
+    uploadBtn.disabled = true;
+    uploadBtn.innerHTML = '<span class="spinner"></span> Uploading…';
+    document.getElementById('uploadSuccess').classList.remove('show');
+    document.getElementById('uploadError').classList.remove('show');
+
+    const progressWrap = document.getElementById('progressWrap');
+    const progressFill = document.getElementById('progressFill');
+    const progressLabel = document.getElementById('progressLabel');
+    progressWrap.classList.add('show');
+    progressFill.style.width = '0%';
+
+    // Simulate progress while uploading (XHR gives real progress)
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '/api/upload');
+    xhr.setRequestHeader('x-admin-token', adminToken);
+    xhr.setRequestHeader('x-filename', selectedFile.name);
+    xhr.setRequestHeader('content-type', 'application/pdf');
+
+    xhr.upload.addEventListener('progress', e => {
+      if (e.lengthComputable) {
+        const pct = Math.round((e.loaded / e.total) * 100);
+        progressFill.style.width = pct + '%';
+        progressLabel.textContent = `Uploading… ${pct}%`;
+      }
+    });
+
+    xhr.addEventListener('load', () => {
+      progressWrap.classList.remove('show');
+      uploadBtn.disabled = false;
+      uploadBtn.textContent = 'Upload Document';
+
+      if (xhr.status === 200) {
+        document.getElementById('uploadSuccess').classList.add('show');
+        selectedFile = null;
+        filePreview.classList.remove('show');
+        fileInput.value = '';
+        uploadBtn.disabled = true;
+        loadDocuments(); // Refresh the list
+      } else {
+        showUploadError('Upload failed. Please try again.');
+      }
+    });
+
+    xhr.addEventListener('error', () => {
+      progressWrap.classList.remove('show');
+      uploadBtn.disabled = false;
+      uploadBtn.textContent = 'Upload Document';
+      showUploadError('Connection error. Please try again.');
+    });
+
+    xhr.send(selectedFile);
+  }
+
+  function showUploadError(msg) {
+    const el = document.getElementById('uploadError');
+    el.textContent = msg;
+    el.classList.add('show');
+  }
+
+  // ── Document list ──────────────────────────────────────────────────────────
+  async function loadDocuments() {
+    const tbody = document.getElementById('docTableBody');
+    tbody.innerHTML = '<tr class="loading-row"><td colspan="3"><span class="spinner" style="border-color:rgba(31,56,100,0.2);border-top-color:var(--teal);"></span> Loading…</td></tr>';
+
+    try {
+      const res  = await fetch('/api/documents');
+      const data = await res.json();
+
+      if (!data.documents || data.documents.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="3" class="empty-state">No documents uploaded yet.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = '';
+      data.documents.forEach(doc => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>
+            <div class="doc-name">${doc.name}</div>
+            <div style="font-size:0.75rem;color:var(--mid-gray);margin-top:2px;">${doc.filename}</div>
+          </td>
+          <td class="doc-date">${formatDate(doc.uploadedAt)}</td>
+          <td class="doc-actions">
+            <button class="btn btn-danger" data-url="${doc.url}" data-name="${doc.name}">Delete</button>
+          </td>`;
+        tbody.appendChild(tr);
+      });
+
+      // Delete handlers
+      tbody.querySelectorAll('[data-url]').forEach(btn => {
+        btn.addEventListener('click', () => deleteDoc(btn.dataset.url, btn.dataset.name, btn));
+      });
+
+    } catch (err) {
+      tbody.innerHTML = '<tr><td colspan="3" class="empty-state">Error loading documents.</td></tr>';
+      console.error(err);
+    }
+  }
+
+  async function deleteDoc(url, name, btn) {
+    if (!confirm(`Delete "${name}"?\n\nThis cannot be undone.`)) return;
+
+    btn.disabled = true;
+    btn.textContent = '…';
+
+    try {
+      const res = await fetch(`/api/delete?url=${encodeURIComponent(url)}`, {
+        method: 'DELETE',
+        headers: { 'x-admin-token': adminToken },
+      });
+      if (res.ok) {
+        loadDocuments();
+      } else {
+        btn.disabled = false;
+        btn.textContent = 'Delete';
+        alert('Delete failed. Please try again.');
+      }
+    } catch {
+      btn.disabled = false;
+      btn.textContent = 'Delete';
+      alert('Connection error. Please try again.');
+    }
+  }
+
+  function formatDate(dateStr) {
+    if (!dateStr) return '—';
+    return new Date(dateStr).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+  }
+</script>
+</body>
+</html>

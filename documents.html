@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CXKonnect — Documents</title>
+  <style>
+    :root {
+      --navy:  #1F3864;
+      --teal:  #1B8C8C;
+      --gold:  #C9A434;
+      --white: #ffffff;
+      --light-teal: #E6F4F4;
+      --light-gray: #F5F5F5;
+      --mid-gray:   #595959;
+      --rule:       #DDDDDD;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Palatino Linotype', Palatino, Georgia, serif;
+      background: var(--light-gray);
+      color: #1a1a1a;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--navy);
+      padding: 0 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      border-bottom: 3px solid var(--gold);
+    }
+    .logo {
+      font-family: Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: bold;
+      color: var(--white);
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+    .logo span { color: var(--gold); }
+
+    /* ── Page layout ── */
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      background: var(--white);
+      border-radius: 8px;
+      border: 1px solid var(--rule);
+      overflow: hidden;
+      position: sticky;
+      top: 2rem;
+    }
+    .sidebar-header {
+      background: var(--navy);
+      padding: 1rem 1.25rem;
+      font-family: Georgia, serif;
+      font-size: 0.8rem;
+      font-weight: bold;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .doc-list { list-style: none; }
+    .doc-item {
+      border-bottom: 1px solid var(--rule);
+    }
+    .doc-item:last-child { border-bottom: none; }
+    .doc-btn {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      padding: 0.85rem 1.25rem;
+      cursor: pointer;
+      font-family: 'Palatino Linotype', Palatino, Georgia, serif;
+      font-size: 0.88rem;
+      color: var(--navy);
+      line-height: 1.4;
+      transition: background 0.15s;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+    }
+    .doc-btn:hover { background: var(--light-teal); }
+    .doc-btn.active {
+      background: var(--light-teal);
+      border-left: 3px solid var(--teal);
+      color: var(--teal);
+      font-weight: bold;
+    }
+    .doc-icon {
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: var(--gold);
+    }
+    .doc-date {
+      display: block;
+      font-size: 0.72rem;
+      color: var(--mid-gray);
+      margin-top: 2px;
+      font-style: italic;
+    }
+
+    .sidebar-empty {
+      padding: 1.5rem 1.25rem;
+      font-size: 0.85rem;
+      color: var(--mid-gray);
+      font-style: italic;
+    }
+
+    /* ── Viewer ── */
+    .viewer-panel {
+      background: var(--white);
+      border-radius: 8px;
+      border: 1px solid var(--rule);
+      overflow: hidden;
+      min-height: 600px;
+      display: flex;
+      flex-direction: column;
+    }
+    .viewer-titlebar {
+      background: var(--navy);
+      padding: 0.9rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      border-bottom: 2px solid var(--teal);
+    }
+    .viewer-title {
+      font-family: Georgia, serif;
+      font-size: 0.95rem;
+      color: var(--white);
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .viewer-meta {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.6);
+      white-space: nowrap;
+    }
+    .viewer-body {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 560px;
+    }
+    .viewer-placeholder {
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+    .viewer-placeholder svg {
+      opacity: 0.15;
+      margin-bottom: 1rem;
+    }
+    .viewer-placeholder p {
+      color: var(--mid-gray);
+      font-size: 0.95rem;
+      font-style: italic;
+    }
+    iframe.pdf-embed {
+      width: 100%;
+      height: 820px;
+      border: none;
+      display: block;
+    }
+
+    /* ── Loading state ── */
+    .loading {
+      text-align: center;
+      padding: 2rem;
+      color: var(--mid-gray);
+      font-style: italic;
+      font-size: 0.9rem;
+    }
+    .spinner {
+      display: inline-block;
+      width: 18px; height: 18px;
+      border: 2px solid var(--rule);
+      border-top-color: var(--teal);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      vertical-align: middle;
+      margin-right: 0.5rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Page title ── */
+    .page-title {
+      grid-column: 1 / -1;
+      margin-bottom: 0.5rem;
+    }
+    .page-title h1 {
+      font-family: Georgia, serif;
+      font-size: 1.7rem;
+      color: var(--navy);
+      font-weight: bold;
+    }
+    .page-title p {
+      color: var(--mid-gray);
+      font-size: 0.9rem;
+      margin-top: 0.35rem;
+      font-style: italic;
+    }
+    .gold-rule {
+      height: 3px;
+      background: var(--gold);
+      border: none;
+      border-radius: 2px;
+      margin: 0.75rem 0 0;
+      width: 60px;
+    }
+
+    @media (max-width: 768px) {
+      .page { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+      iframe.pdf-embed { height: 500px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="/">CX<span>Konnect</span></a>
+</header>
+
+<div class="page">
+  <div class="page-title">
+    <h1>Documents &amp; Resources</h1>
+    <p>Select a document from the list to read it here.</p>
+    <hr class="gold-rule" />
+  </div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">Available Documents</div>
+    <ul class="doc-list" id="docList">
+      <li class="loading"><span class="spinner"></span>Loading…</li>
+    </ul>
+  </aside>
+
+  <!-- Viewer -->
+  <div class="viewer-panel" id="viewerPanel">
+    <div class="viewer-titlebar">
+      <span class="viewer-title" id="viewerTitle">No document selected</span>
+      <span class="viewer-meta" id="viewerMeta"></span>
+    </div>
+    <div class="viewer-body" id="viewerBody">
+      <div class="viewer-placeholder">
+        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#1F3864" stroke-width="1.5">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10 9 9 9 8 9"/>
+        </svg>
+        <p>Select a document on the left to begin reading.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const docList   = document.getElementById('docList');
+  const viewerTitle = document.getElementById('viewerTitle');
+  const viewerMeta  = document.getElementById('viewerMeta');
+  const viewerBody  = document.getElementById('viewerBody');
+
+  let activeBtn = null;
+
+  function formatDate(dateStr) {
+    if (!dateStr) return '';
+    return new Date(dateStr).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+  }
+
+  function openDoc(doc, btn) {
+    // Update active state in sidebar
+    if (activeBtn) activeBtn.classList.remove('active');
+    btn.classList.add('active');
+    activeBtn = btn;
+
+    // Update titlebar
+    viewerTitle.textContent = doc.name;
+    viewerMeta.textContent  = doc.uploadedAt ? `Added ${formatDate(doc.uploadedAt)}` : '';
+
+    // Render PDF in iframe
+    viewerBody.innerHTML = `<iframe class="pdf-embed" src="${doc.url}" title="${doc.name}"></iframe>`;
+  }
+
+  async function loadDocuments() {
+    try {
+      const res  = await fetch('/api/documents');
+      const data = await res.json();
+
+      if (!data.documents || data.documents.length === 0) {
+        docList.innerHTML = '<li class="sidebar-empty">No documents available yet.</li>';
+        return;
+      }
+
+      docList.innerHTML = '';
+      data.documents.forEach(doc => {
+        const li  = document.createElement('li');
+        li.className = 'doc-item';
+
+        const btn = document.createElement('button');
+        btn.className = 'doc-btn';
+        btn.innerHTML = `
+          <svg class="doc-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+          </svg>
+          <span>
+            ${doc.name}
+            <span class="doc-date">${formatDate(doc.uploadedAt)}</span>
+          </span>`;
+
+        btn.addEventListener('click', () => openDoc(doc, btn));
+        li.appendChild(btn);
+        docList.appendChild(li);
+      });
+    } catch (err) {
+      docList.innerHTML = '<li class="sidebar-empty">Error loading documents.</li>';
+      console.error(err);
+    }
+  }
+
+  loadDocuments();
+</script>
+</body>
+</html>
