@@ -475,7 +475,7 @@ nav { display: flex; align-items: center; gap: 4px; }
 
 /* ── FORUM ── */
 .forum-section { background: var(--white); }
-.forum-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 32px; }
+.forum-grid { display: grid; grid-template-columns: 1fr; }
 .forum-posts { display: flex; flex-direction: column; gap: 12px; }
 .forum-post {
   padding: 18px 20px;
@@ -526,84 +526,6 @@ nav { display: flex; align-items: center; gap: 4px; }
 .trending-n { font-family: 'Fraunces', serif; font-size: 1rem; color: var(--seafoam); font-weight: 700; min-width: 24px; }
 .trending-t { font-size: .82rem; color: var(--ink); font-weight: 500; }
 
-/* ── LOCAL GROUPS / MAP ── */
-.groups-section { background: linear-gradient(180deg, var(--shell) 0%, #EAF6F8 100%); }
-.groups-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
-.map-placeholder {
-  background: linear-gradient(135deg, var(--deep), var(--ocean));
-  border-radius: 20px; overflow: hidden;
-  height: 420px; position: relative;
-  display: flex; align-items: center; justify-content: center;
-}
-.map-grid {
-  position: absolute; inset: 0;
-  background-image:
-    linear-gradient(rgba(5,191,219,.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(5,191,219,.05) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-.map-dots { position: absolute; inset: 0; }
-.map-dot {
-  position: absolute;
-  width: 12px; height: 12px; border-radius: 50%;
-  background: var(--seafoam);
-  box-shadow: 0 0 0 4px rgba(5,191,219,.2);
-  cursor: pointer;
-  transition: transform .2s;
-}
-.map-dot::after {
-  content: attr(data-city);
-  position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
-  background: rgba(6,45,63,.9); color: var(--seafoam);
-  font-size: .65rem; font-weight: 600; white-space: nowrap;
-  padding: 3px 8px; border-radius: 4px;
-  opacity: 0; transition: opacity .2s; pointer-events: none;
-}
-.map-dot:hover { transform: scale(1.5); }
-.map-dot:hover::after { opacity: 1; }
-.map-label {
-  font-family: 'Fraunces', serif; font-size: 1rem; color: rgba(255,255,255,.3);
-  text-align: center; padding: 20px;
-}
-.create-group-overlay {
-  position: absolute; bottom: 20px; left: 20px; right: 20px;
-  background: rgba(6,45,63,.85); backdrop-filter: blur(8px);
-  border: 1px solid rgba(5,191,219,.2);
-  border-radius: 12px; padding: 16px 20px;
-  display: flex; align-items: center; justify-content: space-between; gap: 12px;
-}
-.cgo-text { font-size: .85rem; color: rgba(255,255,255,.8); }
-.cgo-text strong { color: var(--seafoam); display: block; }
-.cgo-btn {
-  padding: 8px 18px; background: var(--seafoam); color: var(--deep);
-  border: none; border-radius: 8px; font-family: 'DM Sans', sans-serif;
-  font-size: .8rem; font-weight: 700; cursor: pointer; white-space: nowrap;
-}
-
-.groups-list { display: flex; flex-direction: column; gap: 14px; }
-.group-card {
-  background: var(--white); border-radius: 14px; padding: 18px 20px;
-  border: 1.5px solid rgba(10,77,104,.08);
-  transition: all .2s; cursor: pointer;
-  display: flex; align-items: center; gap: 16px;
-}
-.group-card:hover { border-color: var(--seafoam); box-shadow: 0 8px 24px rgba(10,77,104,.1); }
-.group-avatar {
-  width: 48px; height: 48px; border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.4rem; flex-shrink: 0;
-}
-.group-name { font-weight: 700; color: var(--ocean); font-size: .92rem; margin-bottom: 3px; }
-.group-meta { font-size: .78rem; color: var(--grey); }
-.group-join {
-  margin-left: auto; padding: 7px 16px;
-  background: var(--foam); color: var(--sea);
-  border: 1.5px solid rgba(5,191,219,.3);
-  border-radius: 8px; font-family: 'DM Sans', sans-serif;
-  font-size: .78rem; font-weight: 600; cursor: pointer;
-  transition: all .2s; white-space: nowrap;
-}
-.group-join:hover { background: var(--seafoam); color: var(--deep); border-color: var(--seafoam); }
 
 /* ── EVENTS ── */
 .events-section { background: var(--ocean); }
@@ -805,67 +727,40 @@ footer {
 .mf-success.show { display: block; }
 
 
-/* ── GROUPS FEATURE ── */
-.group-card-members {
-  font-size: .72rem; color: var(--sea); font-weight: 600;
-  margin-top: 3px; cursor: pointer;
-}
-.group-card-members:hover { text-decoration: underline; }
-
-.members-overlay {
-  position: fixed; inset: 0;
-  background: rgba(6,45,63,.72); backdrop-filter: blur(6px);
-  z-index: 300; display: none; align-items: center; justify-content: center; padding: 20px;
-}
-.members-overlay.open { display: flex; }
-.members-panel {
+/* ── GROUPS INTEREST ── */
+.groups-interest-layout {
+  display: grid; grid-template-columns: 1fr auto 1fr; gap: 0;
   background: var(--white); border-radius: 20px;
-  width: 100%; max-width: 460px;
-  box-shadow: 0 32px 80px rgba(6,45,63,.3);
-  overflow: hidden; animation: modalUp .25s ease;
+  border: 1px solid rgba(10,77,104,.1);
+  box-shadow: 0 8px 32px rgba(10,77,104,.08);
+  overflow: hidden; margin-bottom: 24px;
 }
-.members-head {
+.groups-interest-card { padding: 40px; }
+.groups-interest-divider { width: 1px; background: rgba(10,77,104,.1); margin: 32px 0; }
+.gic-icon { font-size: 2.2rem; margin-bottom: 16px; }
+.gic-title {
+  font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 500;
+  color: var(--ocean); margin-bottom: 12px; line-height: 1.3;
+}
+.gic-desc { font-size: .88rem; color: var(--grey); line-height: 1.7; margin-bottom: 24px; font-weight: 300; }
+.gic-btn {
+  display: inline-flex; align-items: center;
+  padding: 12px 24px;
   background: linear-gradient(135deg, var(--ocean), var(--sea));
-  padding: 20px 24px;
-  display: flex; align-items: center; justify-content: space-between;
+  color: var(--white); border-radius: 10px; text-decoration: none;
+  font-family: 'DM Sans', sans-serif; font-size: .88rem; font-weight: 700;
+  transition: all .25s;
 }
-.members-head h3 { font-family: 'Fraunces', serif; font-size: 1.1rem; color: var(--white); font-weight: 500; }
-.members-head .modal-x { background: rgba(255,255,255,.15); border: none; color: var(--white); width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; }
-.members-list { padding: 16px 24px; max-height: 340px; overflow-y: auto; }
-.member-row {
-  display: flex; align-items: center; gap: 12px;
-  padding: 10px 0; border-bottom: 1px solid rgba(10,77,104,.07);
+.gic-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(10,77,104,.3); }
+.groups-interest-note {
+  display: flex; align-items: center; gap: 10px;
+  font-size: .82rem; color: var(--grey); font-weight: 300; padding: 0 4px;
 }
-.member-row:last-child { border-bottom: none; }
-.member-avatar {
-  width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0;
-  background: linear-gradient(135deg, var(--seafoam), var(--sage));
-  display: flex; align-items: center; justify-content: center;
-  font-size: .78rem; font-weight: 700; color: var(--white);
+.gin-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--seafoam); flex-shrink: 0; animation: pulse 2s infinite;
 }
-.member-name { font-size: .88rem; font-weight: 600; color: var(--ocean); flex: 1; }
-.member-joined { font-size: .72rem; color: var(--grey); }
-.member-you { font-size: .65rem; background: var(--foam); color: var(--sea); padding: 1px 7px; border-radius: 99px; font-weight: 700; }
-.members-empty { padding: 20px 0; text-align: center; color: var(--grey); font-size: .88rem; font-style: italic; }
-.members-join-cta {
-  padding: 16px 24px; border-top: 1px solid var(--dune);
-  background: var(--shell);
-}
-.members-join-btn {
-  width: 100%; padding: 11px;
-  background: linear-gradient(135deg, var(--ocean), var(--sea));
-  color: var(--white); border: none; border-radius: 9px;
-  font-family: 'DM Sans', sans-serif; font-size: .9rem; font-weight: 700;
-  cursor: pointer; transition: all .2s;
-}
-.members-join-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(10,77,104,.25); }
-.members-join-btn:disabled { opacity: .6; cursor: default; transform: none; box-shadow: none; }
 
-.group-lead-badge {
-  font-size: .65rem; background: #FFF7ED; color: #c2600a;
-  padding: 1px 7px; border-radius: 99px; font-weight: 700;
-  border: 1px solid rgba(194,96,10,.2);
-}
 
 @media (max-width: 900px) {
   header { padding: 0 20px; }
@@ -875,7 +770,9 @@ footer {
   .section { padding: 60px 20px; }
   .search-section { padding: 0 20px; }
   .articles-grid, .events-grid { grid-template-columns: 1fr; }
-  .forum-grid, .groups-layout { grid-template-columns: 1fr; }
+  .groups-interest-layout { grid-template-columns: 1fr; }
+  .groups-interest-divider { width: auto; height: 1px; margin: 0 32px; }
+  .groups-interest-card { padding: 28px 24px; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
 }
 </style>
@@ -1018,16 +915,6 @@ footer {
         <button class="new-post-btn" onclick="openNewPost()">+ Start a New Discussion</button>
         <div class="forum-posts" id="forumPosts"></div>
       </div>
-      <div>
-        <div class="forum-sidebar-card">
-          <div class="fsc-title">Browse Topics</div>
-          <div id="topicPills"></div>
-        </div>
-        <div class="forum-sidebar-card">
-          <div class="fsc-title">🔥 Trending This Week</div>
-          <div id="trendingList"></div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -1037,22 +924,27 @@ footer {
   <div class="section-inner">
     <div class="section-header">
       <span class="section-eyebrow">Local Community</span>
-      <h2 class="section-title">Find Your People</h2>
-      <p class="section-sub">CX Konnect chapters meet monthly in cities around the world. Find a group near you or start one.</p>
+      <h2 class="section-title">Bring CX Konnect to Your City</h2>
+      <p class="section-sub">We're building local chapters for CX leaders who want to connect, learn, and lead together in person. If you're interested in joining or starting a group in your city, reach out.</p>
     </div>
-    <div class="groups-layout">
-      <div class="map-placeholder">
-        <div class="map-grid"></div>
-        <div class="map-dots" id="mapDots"></div>
-        <div class="create-group-overlay">
-          <div class="cgo-text">
-            <strong>Don't see your city?</strong>
-            Start a local chapter in 5 minutes.
-          </div>
-          <button class="cgo-btn" onclick="openCreateGroup()">Start a Group</button>
-        </div>
+    <div class="groups-interest-layout">
+      <div class="groups-interest-card">
+        <div class="gic-icon">🌍</div>
+        <h3 class="gic-title">Join a Local Chapter</h3>
+        <p class="gic-desc">Already have a chapter in your city or want to be first on the list when one launches? Let us know where you are and we'll connect you with your local community.</p>
+        <a class="gic-btn" href="mailto:stefanie.cxkonnect@gmail.com?subject=I'd%20like%20to%20join%20a%20local%20CX%20Konnect%20chapter&body=Hi%20Steffi%2C%0A%0AI'm%20interested%20in%20joining%20a%20local%20CX%20Konnect%20chapter.%0A%0AMy%20city%3A%20%0AMy%20role%3A%20%0A%0ALooking%20forward%20to%20connecting!">Express Interest in Joining →</a>
       </div>
-      <div class="groups-list" id="groupsList"></div>
+      <div class="groups-interest-divider"></div>
+      <div class="groups-interest-card">
+        <div class="gic-icon">🚀</div>
+        <h3 class="gic-title">Start a Chapter in Your City</h3>
+        <p class="gic-desc">Are you a CX leader with the energy and network to bring your city's community together? We'll support you with the framework, materials, and introductions to get started.</p>
+        <a class="gic-btn" href="mailto:stefanie.cxkonnect@gmail.com?subject=I'd%20like%20to%20start%20a%20CX%20Konnect%20chapter&body=Hi%20Steffi%2C%0A%0AI'm%20interested%20in%20starting%20a%20local%20CX%20Konnect%20chapter.%0A%0AMy%20city%3A%20%0AMy%20role%20%26%20organization%3A%20%0AMy%20vision%20for%20the%20group%3A%20%0A%0ALooking%20forward%20to%20connecting!">Express Interest in Starting →</a>
+      </div>
+    </div>
+    <div class="groups-interest-note">
+      <span class="gin-dot"></span>
+      Chapters are launching in cities with enough interest. Every email goes directly to Steffi — you'll hear back within 48 hours.
     </div>
   </div>
 </section>
@@ -1303,21 +1195,6 @@ footer {
 </div>
 
 
-<!-- MEMBERS OVERLAY -->
-<div class="members-overlay" id="membersOverlay">
-  <div class="members-panel">
-    <div class="members-head">
-      <h3 id="membersPanelTitle">Group Members</h3>
-      <button class="modal-x" onclick="closeMembers()">×</button>
-    </div>
-    <div class="members-list" id="membersList">
-      <div class="members-empty">Loading members…</div>
-    </div>
-    <div class="members-join-cta" id="membersJoinCta" style="display:none">
-      <button class="members-join-btn" id="membersJoinBtn" onclick="joinGroupFromPanel()">Join This Group →</button>
-    </div>
-  </div>
-</div>
 
 <!-- TOAST -->
 <div class="toast" id="toast"><span class="toast-dot"></span><span id="toastMsg"></span></div>
@@ -1446,14 +1323,7 @@ function forumInit() {
   }
   renderForumAuthBar();
   loadForumPosts();
-  // Static sidebar
-  document.getElementById('topicPills').innerHTML = TOPICS.map(t =>
-    `<span class="topic-pill">${t}</span>`).join('');
-  document.getElementById('trendingList').innerHTML = TRENDING.map(t => `
-    <div class="trending-item">
-      <span class="trending-n">${t.n}</span>
-      <span class="trending-t">${t.t}</span>
-    </div>`).join('');
+
 }
 
 function renderForumAuthBar() {
@@ -1684,154 +1554,8 @@ function renderForum() {
   forumInit();
 }
 
-// ── GROUPS STATE ──────────────────────────────────────────────────────────
-let _groups = [];
-let _currentGroupId = null;
-
-async function renderGroups() {
-  try {
-    const res = await fetch('/api/groups-list');
-    const data = await res.json();
-    _groups = data.groups || [];
-  } catch(e) {
-    _groups = [];
-  }
-
-  // Merge live groups with static MAP_DOTS for map display
-  const dots = document.getElementById('mapDots');
-  dots.innerHTML = MAP_DOTS.map(d => `
-    <div class="map-dot" style="top:${d.top};left:${d.left}" data-city="${d.city}"
-         onclick="showToast('${d.city} chapter')"></div>`).join('');
-
-  const list = document.getElementById('groupsList');
-
-  if (_groups.length === 0) {
-    // Fall back to static display groups
-    list.innerHTML = GROUPS.map(g => `
-      <div class="group-card">
-        <div class="group-avatar" style="background:${g.bg}">${g.emoji}</div>
-        <div>
-          <div class="group-name">CX Konnect ${g.city}</div>
-          <div class="group-meta">${g.members} · Meets ${g.freq}</div>
-        </div>
-        <button class="group-join" onclick="requireLoginToJoin()">Join →</button>
-      </div>`).join('');
-    return;
-  }
-
-  list.innerHTML = _groups.map(g => `
-    <div class="group-card" id="gcard-${g.id}">
-      <div class="group-avatar" style="background:${g.bg}">${g.emoji}</div>
-      <div style="flex:1">
-        <div class="group-name">${escHtml(g.chapterName || 'CX Konnect ' + g.city)}</div>
-        <div class="group-meta">${g.memberCount} member${g.memberCount !== 1 ? 's' : ''} · Meets ${escHtml(g.freq)}</div>
-        <div class="group-card-members" onclick="openMembers('${g.id}', event)">View members →</div>
-      </div>
-      <button class="group-join" onclick="handleJoinGroup('${g.id}', event)">Join →</button>
-    </div>`).join('');
-}
-
-function requireLoginToJoin() {
-  if (!forumUser) { openLogin(); return; }
-}
-
-function handleJoinGroup(groupId, e) {
-  e.stopPropagation();
-  if (!forumUser) { openLogin(); return; }
-  openMembers(groupId, e, true);
-}
-
-async function openMembers(groupId, e, joinIntent = false) {
-  if (e) e.stopPropagation();
-  if (!forumUser) { openLogin(); return; }
-
-  _currentGroupId = groupId;
-  const g = _groups.find(x => x.id === groupId);
-  document.getElementById('membersPanelTitle').textContent = (g?.chapterName || g?.city || 'Group') + ' Members';
-  document.getElementById('membersList').innerHTML = '<div class="members-empty">Loading…</div>';
-  document.getElementById('membersJoinCta').style.display = 'none';
-  document.getElementById('membersOverlay').classList.add('open');
-
-  try {
-    const res = await fetch('/api/groups-members?groupId=' + groupId, {
-      headers: { 'Authorization': 'Bearer ' + forumUser.token }
-    });
-    const data = await res.json();
-
-    if (!res.ok) {
-      document.getElementById('membersList').innerHTML = '<div class="members-empty">' + escHtml(data.error || 'Could not load members.') + '</div>';
-      return;
-    }
-
-    const members = data.members || [];
-    const isAlreadyMember = members.some(m => m.isYou);
-
-    if (members.length === 0) {
-      document.getElementById('membersList').innerHTML = '<div class="members-empty">No members yet — be the first to join!</div>';
-    } else {
-      document.getElementById('membersList').innerHTML = members.map(m => {
-        const ini = m.name.split(' ').map(w => w[0]).join('').substring(0,2).toUpperCase();
-        return `<div class="member-row">
-          <div class="member-avatar">${ini}</div>
-          <div style="flex:1">
-            <div class="member-name">${escHtml(m.name)} ${m.isLead ? '<span class="group-lead-badge">Chapter Lead</span>' : ''} ${m.isYou ? '<span class="member-you">You</span>' : ''}</div>
-            <div class="member-joined">Joined ${relativeTime(m.joinedAt)}</div>
-          </div>
-        </div>`;
-      }).join('');
-    }
-
-    // Show join button if not already a member
-    if (!isAlreadyMember) {
-      const cta = document.getElementById('membersJoinCta');
-      cta.style.display = 'block';
-      const btn = document.getElementById('membersJoinBtn');
-      btn.disabled = false;
-      btn.textContent = 'Join This Group →';
-    }
-
-  } catch(err) {
-    document.getElementById('membersList').innerHTML = '<div class="members-empty">Failed to load members.</div>';
-  }
-}
-
-async function joinGroupFromPanel() {
-  if (!forumUser || !_currentGroupId) return;
-  const btn = document.getElementById('membersJoinBtn');
-  btn.disabled = true; btn.textContent = 'Joining…';
-
-  try {
-    const res = await fetch('/api/groups-join', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + forumUser.token },
-      body: JSON.stringify({ groupId: _currentGroupId })
-    });
-    const data = await res.json();
-    if (res.ok) {
-      showToast('✓ You joined the group!');
-      // Refresh member count in group card
-      const g = _groups.find(x => x.id === _currentGroupId);
-      if (g) g.memberCount = data.memberCount;
-      const card = document.getElementById('gcard-' + _currentGroupId);
-      if (card) {
-        card.querySelector('.group-meta').textContent = data.memberCount + ' member' + (data.memberCount !== 1 ? 's' : '') + ' · Meets ' + (g?.freq || '');
-      }
-      // Refresh member panel
-      openMembers(_currentGroupId, null, false);
-    } else {
-      btn.disabled = false; btn.textContent = 'Join This Group →';
-      showToast(data.error || 'Could not join group.');
-    }
-  } catch(e) {
-    btn.disabled = false; btn.textContent = 'Join This Group →';
-    showToast('Network error — please try again.');
-  }
-}
-
-function closeMembers() {
-  document.getElementById('membersOverlay').classList.remove('open');
-  _currentGroupId = null;
-}
+// ── GROUPS ──────────────────────────────────────────────────────────────────
+function renderGroups() {}
 
 
 function renderEvents() {
@@ -1921,39 +1645,7 @@ function submitPost() {
     showToast('Network error — please try again.');
   });
 }
-async function submitGroup() {
-  const city       = document.getElementById('gcity')?.value?.trim()   || document.querySelector('#groupOverlay .mf-input:nth-of-type(1)')?.value?.trim();
-  const chapterName= document.getElementById('gchapterName')?.value?.trim();
-  const yourRole   = document.getElementById('gRole')?.value?.trim();
-  const frequency  = document.getElementById('gFreq')?.value;
-  const vision     = document.getElementById('gVision')?.value?.trim();
-  const name       = document.getElementById('gName')?.value?.trim();
-  const email      = document.getElementById('gEmail')?.value?.trim();
-
-  if (!city || !name || !email) {
-    showToast('Please fill in City, Your Name, and Email.'); return;
-  }
-  const btn = document.getElementById('groupSubmitBtn');
-  if (btn) { btn.disabled = true; btn.textContent = 'Submitting…'; }
-
-  try {
-    const res = await fetch('/api/groups-request', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ city, chapterName, yourRole, frequency, vision, name, email })
-    });
-    const data = await res.json();
-    if (btn) { btn.disabled = false; btn.textContent = 'Launch My Chapter →'; }
-    closeModal('groupOverlay');
-    if (res.ok) {
-      showToast('✓ Request submitted! Steffi will review and be in touch within 48 hours.');
-    } else {
-      showToast(data.error || 'Could not submit. Please try again.');
-    }
-  } catch(e) {
-    if (btn) { btn.disabled = false; btn.textContent = 'Launch My Chapter →'; }
-    showToast('Network error — please try again.');
-  }
+function submitGroup() { closeModal('groupOverlay'); }
 }
 
 // Close on overlay click
