@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Outcome Handoff Matrix — CXKonnect Workshop Activity</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:      #1F3864;
+      --navy-deep: #0f1f3a;
+      --teal:      #1B8C8C;
+      --teal-lt:   #E6F4F4;
+      --gold:      #C9A434;
+      --gold-lt:   #FBF5E0;
+      --white:     #ffffff;
+      --off:       #F7F6F3;
+      --mid:       #6B6B6B;
+      --dark:      #1a1a1a;
+      --rule:      #E0DDD8;
+
+      --match:     #2A7A4A; --match-lt: #EDF7F1;
+      --near:      #C97A20; --near-lt:  #FEF6EC;
+      --gap:       #C84040; --gap-lt:   #FEF0F0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--off); color: var(--dark);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(15,31,58,0.97); backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--gold);
+      height: 56px; padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-family: 'Lora', serif; font-weight: 700; font-size: 1.15rem; color: var(--white); text-decoration: none; letter-spacing: 0.02em; }
+    .nav-logo span { color: var(--gold); }
+    .nav-pill { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,164,52,0.4); background: rgba(201,164,52,0.1); padding: 4px 12px; border-radius: 99px; }
+
+    /* ── HERO — warm amber-gold handshake feel ── */
+    .hero {
+      background: linear-gradient(148deg, #1a2840 0%, #1a4860 45%, #1a6a58 100%);
+      padding: 3.5rem 2rem 3rem; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 55% 50% at 78% 18%, rgba(201,164,52,0.14) 0%, transparent 55%),
+        radial-gradient(ellipse 45% 55% at 12% 82%, rgba(42,122,74,0.12) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: ''; position: absolute; inset: 0;
+      background-image: repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,0.015) 60px, rgba(255,255,255,0.015) 61px);
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 1; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(201,164,52,0.15); border: 1px solid rgba(201,164,52,0.45); color: var(--gold); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 14px; border-radius: 99px; margin-bottom: 1.25rem; }
+    .hero-title { font-family: 'Lora', serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; color: var(--white); line-height: 1.15; margin-bottom: 0.9rem; letter-spacing: -0.01em; }
+    .hero-sub { font-size: 1rem; color: rgba(255,255,255,0.72); max-width: 510px; margin: 0 auto 2rem; line-height: 1.65; font-family: 'Lora', serif; font-style: italic; }
+    .meta-chips { display: flex; align-items: center; justify-content: center; gap: 0.75rem; flex-wrap: wrap; }
+    .meta-chip { display: flex; align-items: center; gap: 0.4rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); color: rgba(255,255,255,0.85); font-size: 0.78rem; font-weight: 600; padding: 5px 14px; border-radius: 99px; }
+
+    .page { max-width: 1020px; margin: 0 auto; padding: 3rem 1.5rem 5rem; }
+
+    .section-label { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; }
+    .section-label-num { width: 32px; height: 32px; border-radius: 50%; background: var(--navy); color: var(--white); font-family: 'DM Mono', monospace; font-size: 0.75rem; font-weight: 500; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .section-label-text { font-family: 'Lora', serif; font-size: 1.35rem; font-weight: 700; color: var(--navy); }
+    .section-label-tag { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--teal); background: var(--teal-lt); border: 1px solid rgba(27,140,140,0.2); padding: 2px 9px; border-radius: 99px; }
+    .section-block { margin-bottom: 3.5rem; }
+
+    .overview-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-bottom: 1.5rem; }
+    .overview-card { background: var(--white); border: 1px solid var(--rule); border-radius: 10px; padding: 1.25rem 1.35rem; box-shadow: 0 2px 8px rgba(31,56,100,0.05); }
+    .ov-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .ov-label { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--teal); margin-bottom: 0.2rem; }
+    .ov-value { font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: 0.3rem; }
+    .ov-desc { font-size: 0.78rem; color: var(--mid); line-height: 1.45; }
+
+    .objective-box { background: var(--navy); border-radius: 10px; padding: 1.5rem 1.75rem; display: flex; gap: 1.25rem; align-items: flex-start; }
+    .objective-icon { font-size: 1.75rem; flex-shrink: 0; margin-top: 2px; }
+    .objective-text h3 { font-family: 'DM Sans', sans-serif; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 0.4rem; }
+    .objective-text p { font-family: 'Lora', serif; font-size: 0.97rem; line-height: 1.65; color: rgba(255,255,255,0.85); }
+
+    /* ── PHASES ── */
+    .phases { display: flex; flex-direction: column; }
+    .phase { display: grid; grid-template-columns: 72px 1fr; position: relative; }
+    .phase:not(:last-child)::after { content: ''; position: absolute; left: 35px; top: 52px; bottom: -1px; width: 2px; background: linear-gradient(to bottom, var(--rule), transparent); }
+    .phase-time { padding-top: 1.5rem; display: flex; flex-direction: column; align-items: center; gap: 6px; position: relative; z-index: 1; }
+    .phase-dot { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-family: 'DM Mono', monospace; font-size: 0.68rem; font-weight: 500; color: var(--white); border: 3px solid var(--off); }
+    .phase-mins { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--mid); text-align: center; line-height: 1.3; }
+    .phase-card { margin: 1rem 0 2rem 1.25rem; background: var(--white); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; box-shadow: 0 2px 10px rgba(31,56,100,0.05); transition: box-shadow 0.2s; }
+    .phase-card:hover { box-shadow: 0 5px 20px rgba(31,56,100,0.09); }
+    .phase-card-head { padding: 0.95rem 1.4rem; border-bottom: 1px solid var(--rule); display: flex; align-items: center; gap: 1rem; }
+    .phase-card-title { font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 700; color: var(--white); flex: 1; }
+    .phase-card-role { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 3px 9px; border-radius: 99px; background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.75); white-space: nowrap; }
+    .phase-card-body { padding: 1.25rem 1.4rem; }
+    .phase-card-body > p { font-family: 'Lora', serif; font-size: 0.93rem; line-height: 1.72; color: #2a2a2a; margin-bottom: 0.85rem; }
+    .phase-steps { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.75rem; }
+    .phase-step { display: flex; gap: 0.65rem; align-items: flex-start; font-family: 'DM Sans', sans-serif; font-size: 0.83rem; line-height: 1.5; color: #2a2a2a; }
+    .phase-step-bullet { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; margin-top: 7px; }
+    .facilitator-tip { margin-top: 1rem; padding: 0.85rem 1rem; background: var(--gold-lt); border: 1px solid rgba(201,164,52,0.25); border-left: 3px solid var(--gold); border-radius: 0 6px 6px 0; }
+    .facilitator-tip-label { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #9e7d1a; margin-bottom: 3px; }
+    .facilitator-tip p { font-family: 'DM Sans', sans-serif; font-size: 0.8rem !important; line-height: 1.55 !important; color: #3a2a00 !important; margin: 0 !important; font-style: italic; }
+
+    .phase-1 .phase-dot { background: #1a3060; }
+    .phase-1 .phase-card-head { background: linear-gradient(90deg, #1a3060, #254880); }
+    .phase-1 .phase-step-bullet { background: #254880; }
+    .phase-2 .phase-dot { background: #1a5060; }
+    .phase-2 .phase-card-head { background: linear-gradient(90deg, #1a5268, #1f6880); }
+    .phase-2 .phase-step-bullet { background: #1f6880; }
+    .phase-3 .phase-dot { background: var(--teal); }
+    .phase-3 .phase-card-head { background: linear-gradient(90deg, var(--teal), #22aaaa); }
+    .phase-3 .phase-step-bullet { background: var(--teal); }
+    .phase-4 .phase-dot { background: #2A7A4A; }
+    .phase-4 .phase-card-head { background: linear-gradient(90deg, #2A7A4A, #338855); }
+    .phase-4 .phase-step-bullet { background: #338855; }
+    .phase-5 .phase-dot { background: #7a5010; }
+    .phase-5 .phase-card-head { background: linear-gradient(90deg, #7a5010, var(--gold)); }
+    .phase-5 .phase-step-bullet { background: var(--gold); }
+
+    /* ── FUNCTION CARDS ── */
+    .fn-intro { font-family: 'Lora', serif; font-size: 0.97rem; line-height: 1.7; color: #2a2a2a; margin-bottom: 1.5rem; }
+
+    .fn-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.1rem; margin-bottom: 1.5rem; }
+    .fn-card { background: var(--white); border: 1px solid var(--rule); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(31,56,100,0.05); transition: box-shadow 0.2s; }
+    .fn-card:hover { box-shadow: 0 4px 16px rgba(31,56,100,0.09); }
+    .fn-card-head { display: flex; align-items: center; gap: 0; }
+    .fn-accent { width: 5px; align-self: stretch; flex-shrink: 0; }
+    .fn-head-inner { flex: 1; padding: 0.8rem 1.1rem; display: flex; align-items: center; gap: 0.75rem; }
+    .fn-pill { font-family: 'DM Sans', sans-serif; font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; padding: 3px 10px; border-radius: 99px; white-space: nowrap; }
+    .fn-lead-input { flex: 1; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; color: var(--navy); border: none; background: none; outline: none; border-bottom: 1.5px dashed var(--rule); padding-bottom: 2px; }
+    .fn-lead-input::placeholder { color: #ccc; font-weight: 400; }
+    .fn-lead-input:focus { border-bottom-color: var(--teal); }
+    .fn-body { padding: 0.9rem 1.1rem; display: flex; flex-direction: column; gap: 0.65rem; }
+    .fn-field-label { font-family: 'DM Sans', sans-serif; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; color: var(--teal); margin-bottom: 3px; }
+    .fn-textarea { width: 100%; min-height: 64px; resize: vertical; font-family: 'Lora', serif; font-size: 0.85rem; line-height: 1.6; color: var(--dark); border: 1.5px dashed var(--rule); border-radius: 6px; padding: 0.55rem 0.75rem; background: #fafaf8; outline: none; transition: border-color 0.15s; }
+    .fn-textarea:focus { border-color: var(--teal); border-style: solid; background: var(--teal-lt); }
+    .fn-textarea::placeholder { color: #ccc; font-style: italic; }
+
+    /* ── MATRIX ── */
+    .matrix-intro { font-family: 'Lora', serif; font-size: 0.97rem; line-height: 1.7; color: #2a2a2a; margin-bottom: 1.25rem; }
+
+    .matrix-wrap { background: var(--white); border: 1px solid var(--rule); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(31,56,100,0.08); }
+    .matrix-head { background: var(--navy); padding: 0.9rem 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; }
+    .matrix-head-title { font-family: 'DM Sans', sans-serif; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); }
+    .matrix-legend { display: flex; gap: 1.1rem; flex-wrap: wrap; }
+    .ml-item { display: flex; align-items: center; gap: 0.4rem; font-family: 'DM Sans', sans-serif; font-size: 0.68rem; color: rgba(255,255,255,0.6); }
+    .ml-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+
+    .matrix-body { padding: 1.25rem; overflow-x: auto; }
+
+    /* The handoff grid */
+    .hgrid {
+      display: grid;
+      gap: 3px;
+      min-width: 740px;
+    }
+
+    .hg-corner {}
+    .hg-col-head { padding: 0.4rem 0.25rem; text-align: center; font-family: 'DM Sans', sans-serif; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--navy); line-height: 1.3; }
+    .hg-row-head { padding: 0.4rem 0.5rem 0.4rem 0; display: flex; align-items: center; font-family: 'DM Sans', sans-serif; font-size: 0.62rem; font-weight: 600; color: var(--navy); line-height: 1.3; }
+    .hg-self { background: #f0f2f8; border: 1.5px solid var(--rule); border-radius: 5px; min-height: 50px; display: flex; align-items: center; justify-content: center; }
+    .hg-self-txt { font-family: 'DM Sans', sans-serif; font-size: 0.55rem; color: var(--mid); }
+
+    .hg-cell {
+      border-radius: 6px; min-height: 50px;
+      display: flex; flex-direction: column; align-items: stretch; justify-content: stretch;
+      overflow: hidden; cursor: pointer;
+      transition: transform 0.12s, box-shadow 0.12s;
+      border: 1.5px solid var(--rule);
+      background: #fafaf8; position: relative;
+    }
+    .hg-cell:hover:not(.hg-na) { transform: scale(1.06); z-index: 10; box-shadow: 0 5px 16px rgba(0,0,0,0.15); }
+    .hg-na { background: #f5f5f3; border: 1.5px dashed var(--rule); opacity: 0.45; cursor: default; }
+    .hg-match   { background: var(--match-lt); border-color: rgba(42,122,74,0.3); }
+    .hg-near    { background: var(--near-lt);  border-color: rgba(201,122,32,0.3); }
+    .hg-gap     { background: var(--gap-lt);   border-color: rgba(200,64,64,0.3); }
+
+    .hg-cell-body { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 0.4rem; }
+    .hg-sym { font-size: 0.88rem; line-height: 1; }
+    .hg-txt { font-family: 'DM Sans', sans-serif; font-size: 0.52rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; text-align: center; }
+    .hg-match .hg-txt { color: var(--match); }
+    .hg-near  .hg-txt { color: var(--near); }
+    .hg-gap   .hg-txt { color: var(--gap); }
+    .hg-na    .hg-txt { color: #ccc; }
+    .hg-empty .hg-txt { color: #bbb; }
+
+    /* Cell detail on hover — tooltip */
+    .hg-cell .hg-tooltip {
+      display: none; position: absolute; bottom: calc(100% + 6px); left: 50%;
+      transform: translateX(-50%);
+      background: var(--navy); color: var(--white);
+      font-family: 'DM Sans', sans-serif; font-size: 0.7rem; line-height: 1.45;
+      padding: 0.5rem 0.7rem; border-radius: 6px;
+      white-space: nowrap; z-index: 100;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+      pointer-events: none;
+    }
+    .hg-cell:hover .hg-tooltip { display: block; }
+
+    .matrix-footer { display: flex; gap: 1.25rem; flex-wrap: wrap; padding: 0.9rem 1.25rem; border-top: 1px solid var(--rule); background: #fafaf8; }
+    .mf-item { display: flex; align-items: center; gap: 0.4rem; font-family: 'DM Sans', sans-serif; font-size: 0.72rem; color: var(--mid); }
+    .mf-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+
+    /* Summary row */
+    .matrix-summary { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin-top: 1rem; }
+    .ms-card { border-radius: 8px; padding: 0.9rem 1.1rem; text-align: center; border: 1px solid; }
+    .ms-card.match { background: var(--match-lt); border-color: rgba(42,122,74,0.2); }
+    .ms-card.near  { background: var(--near-lt);  border-color: rgba(201,122,32,0.2); }
+    .ms-card.gap   { background: var(--gap-lt);   border-color: rgba(200,64,64,0.2); }
+    .ms-card.open  { background: #f5f5f3; border-color: var(--rule); }
+    .ms-val { font-family: 'Lora', serif; font-size: 1.6rem; font-weight: 700; line-height: 1; margin-bottom: 4px; }
+    .ms-card.match .ms-val { color: var(--match); }
+    .ms-card.near  .ms-val { color: var(--near); }
+    .ms-card.gap   .ms-val { color: var(--gap); }
+    .ms-card.open  .ms-val { color: var(--navy); }
+    .ms-lbl { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--mid); }
+
+    /* ── MISMATCH PANEL ── */
+    .mismatch-panel { background: var(--white); border: 1px solid var(--rule); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 10px rgba(31,56,100,0.06); }
+    .mismatch-head { background: var(--navy); padding: 0.85rem 1.25rem; display: flex; align-items: center; justify-content: space-between; }
+    .mismatch-head-title { font-family: 'DM Sans', sans-serif; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); }
+    .mismatch-head-sub { font-family: 'DM Sans', sans-serif; font-size: 0.68rem; color: rgba(255,255,255,0.45); font-style: italic; }
+    .mismatch-body { padding: 0; }
+    .mismatch-row { display: grid; grid-template-columns: 160px 1fr 1fr 100px; gap: 0; border-bottom: 1px solid var(--rule); }
+    .mismatch-row:last-child { border-bottom: none; }
+    .mismatch-row.header-row { background: #f0f2f8; }
+    .mismatch-row.header-row .mc { font-family: 'DM Sans', sans-serif; font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--navy); }
+    .mc { padding: 0.8rem 1rem; font-family: 'Lora', serif; font-size: 0.85rem; line-height: 1.55; color: #2a2a2a; border-right: 1px solid var(--rule); }
+    .mc:last-child { border-right: none; }
+    .mc-handoff { font-weight: 700; color: var(--navy); }
+    .mc-badge { display: inline-block; font-family: 'DM Sans', sans-serif; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; padding: 2px 8px; border-radius: 99px; }
+    .badge-gap   { background: var(--gap-lt);   color: var(--gap);   border: 1px solid rgba(200,64,64,0.2); }
+    .badge-near  { background: var(--near-lt);  color: var(--near);  border: 1px solid rgba(201,122,32,0.2); }
+    .badge-match { background: var(--match-lt); color: var(--match); border: 1px solid rgba(42,122,74,0.2); }
+    .mismatch-add-row { padding: 0.85rem 1rem; background: #fafaf8; display: flex; align-items: center; gap: 0.75rem; }
+    .mismatch-add-btn { font-family: 'DM Sans', sans-serif; font-size: 0.75rem; font-weight: 600; color: var(--teal); background: var(--teal-lt); border: 1.5px dashed rgba(27,140,140,0.3); border-radius: 99px; padding: 4px 14px; cursor: pointer; transition: all 0.15s; }
+    .mismatch-add-btn:hover { background: var(--teal); color: var(--white); border-style: solid; }
+
+    /* ── PROMPTS ── */
+    .prompts-list { display: flex; flex-direction: column; gap: 0.85rem; }
+    .prompt-card { background: var(--white); border: 1px solid var(--rule); border-radius: 8px; padding: 1rem 1.25rem; display: flex; gap: 1rem; align-items: flex-start; transition: box-shadow 0.15s; }
+    .prompt-card:hover { box-shadow: 0 3px 12px rgba(31,56,100,0.07); }
+    .prompt-q { width: 28px; height: 28px; border-radius: 50%; background: var(--teal); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .prompt-text { font-family: 'Lora', serif; font-size: 0.95rem; line-height: 1.6; color: #2a2a2a; }
+    .prompt-context { display: block; font-family: 'DM Sans', sans-serif; font-size: 0.75rem; color: var(--mid); font-style: normal; margin-top: 0.3rem; }
+
+    /* ── DEBRIEF ── */
+    .debrief-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .debrief-card { border-radius: 10px; padding: 1.25rem 1.35rem; border: 1px solid; }
+    .debrief-card.what { background: #f0f3fa; border-color: #c0ccdf; }
+    .debrief-card.next { background: var(--teal-lt); border-color: rgba(27,140,140,0.25); }
+    .debrief-card-label { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.6rem; }
+    .debrief-card.what .debrief-card-label { color: var(--navy); }
+    .debrief-card.next .debrief-card-label { color: var(--teal); }
+    .debrief-card-title { font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: 0.55rem; }
+    .debrief-list { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+    .debrief-list li { display: flex; gap: 0.55rem; align-items: flex-start; font-family: 'DM Sans', sans-serif; font-size: 0.82rem; color: #2a2a2a; line-height: 1.5; }
+    .debrief-list li::before { content: '→'; color: var(--teal); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+    .divider { height: 1px; background: var(--rule); margin: 2.5rem 0; }
+
+    footer { background: var(--navy); border-top: 3px solid var(--gold); padding: 2.5rem 2rem; text-align: center; }
+    .footer-logo { font-family: 'Lora', serif; font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 0.35rem; }
+    .footer-logo span { color: var(--gold); }
+    footer p { font-family: 'Lora', serif; color: rgba(255,255,255,0.55); font-size: 0.82rem; font-style: italic; }
+
+    .fade-in { opacity: 0; transform: translateY(16px); animation: fadeUp 0.45s ease forwards; }
+    @keyframes fadeUp { to { opacity: 1; transform: none; } }
+
+    @media (max-width: 680px) {
+      .overview-grid { grid-template-columns: 1fr; }
+      .fn-grid { grid-template-columns: 1fr; }
+      .matrix-summary { grid-template-columns: 1fr 1fr; }
+      .debrief-grid { grid-template-columns: 1fr; }
+      .mismatch-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">CX<span>Konnect</span></a>
+  <div class="nav-pill">Workshop Activity</div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      Cross-Functional Exercise
+    </div>
+    <h1 class="hero-title">The Outcome Handoff Matrix</h1>
+    <p class="hero-sub">Each function lead writes what the customer should experience after their work is done. Mismatches reveal where standards need alignment.</p>
+    <div class="meta-chips">
+      <div class="meta-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>60 min</div>
+      <div class="meta-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Cross-functional</div>
+      <div class="meta-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>All functions</div>
+      <div class="meta-chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>In-person or remote</div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- OVERVIEW -->
+  <div class="section-block fade-in" style="animation-delay:0.05s">
+    <div class="section-label"><div class="section-label-text">Activity Overview</div></div>
+    <div class="overview-grid">
+      <div class="overview-card">
+        <div class="ov-icon">🤝</div>
+        <div class="ov-label">Purpose</div>
+        <div class="ov-value">Align Handoff Standards</div>
+        <div class="ov-desc">Expose the gap between what each function believes it is delivering at handoff and what the next function — and more critically, the customer — is actually experiencing.</div>
+      </div>
+      <div class="overview-card">
+        <div class="ov-icon">👥</div>
+        <div class="ov-label">Who Should Attend</div>
+        <div class="ov-value">All CX Function Leads</div>
+        <div class="ov-desc">Every function that touches the customer in your organization — CS, PS, Support, Education, Consulting, Managed Services, Field Support, Partner Mgmt. No delegates.</div>
+      </div>
+      <div class="overview-card">
+        <div class="ov-icon">📤</div>
+        <div class="ov-label">Output</div>
+        <div class="ov-value">Shared Handoff Standards</div>
+        <div class="ov-desc">A set of agreed-upon customer experience statements at every function handoff point, with mismatches named, owned, and assigned a resolution path.</div>
+      </div>
+    </div>
+    <div class="objective-box">
+      <div class="objective-icon">🔗</div>
+      <div class="objective-text">
+        <h3>Core Objective</h3>
+        <p>Every function in your CX organization has an implicit standard for what "done" looks like — and those standards almost never align across the handoff point. A PS team that considers go-live complete when the system is technically live, and a CS team that considers handoff complete when the customer's champion is ready to own adoption, are working to different definitions of the same moment. This exercise makes those implicit standards explicit — and forces the group to agree on a shared one.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASES -->
+  <div class="section-block fade-in" style="animation-delay:0.08s">
+    <div class="section-label">
+      <div class="section-label-num">1</div>
+      <div class="section-label-text">Facilitation Guide</div>
+      <div class="section-label-tag">60 min total</div>
+    </div>
+    <div class="phases">
+
+      <div class="phase phase-1">
+        <div class="phase-time"><div class="phase-dot">P1</div><div class="phase-mins">5<br>min</div></div>
+        <div class="phase-card">
+          <div class="phase-card-head"><div class="phase-card-title">Set the Frame — The Customer at the Handoff</div><div class="phase-card-role">Facilitator-led</div></div>
+          <div class="phase-card-body">
+            <p>Open with the central question: when your function's work is complete and the customer transitions to the next function — what should the customer be experiencing at that exact moment? Not what you have delivered. Not what the next function should now do. What the customer's actual experience should be.</p>
+            <ul class="phase-steps">
+              <li class="phase-step"><div class="phase-step-bullet"></div>Distinguish between output ("we completed the implementation") and outcome experience ("the customer's team is confident, their primary workflow is running, and they have a named contact for the first 30 days"). The exercise asks only for outcome experience statements.</li>
+              <li class="phase-step"><div class="phase-step-bullet"></div>Clarify the writing format: each function lead writes one statement per handoff they own. The statement describes the customer's experience in first-person-customer language — what the customer would say if asked "how do you feel about where you are right now?"</li>
+              <li class="phase-step"><div class="phase-step-bullet"></div>Emphasize that mismatches are the goal, not a failure. Finding where two functions have different standards for the same handoff is precisely the value this exercise creates.</li>
+            </ul>
+            <div class="facilitator-tip">
+              <div class="facilitator-tip-label">Facilitator Note</div>
+              <p>"What should the customer experience" is a different question than "what should the customer have received." Deliverables are outputs. Experiences are outcomes. If a function lead writes "the customer should have received a go-live checklist," redirect: "What should the customer feel and be able to do because of that checklist?"</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase phase-2">
+        <div class="phase-time"><div class="phase-dot">P2</div><div class="phase-mins">15<br>min</div></div>
+        <div class="phase-card">
+          <div class="phase-card-head"><div class="phase-card-title">Independent Writing — Outcome Experience Statements</div><div class="phase-card-role">Silent, individual</div></div>
+          <div class="phase-card-body">
+            <p>Each function lead writes their outcome experience statements independently and silently — one statement per handoff they are involved in, from both the sending and receiving perspective. The silence is essential. Cross-contamination before writing produces socially acceptable statements, not honest ones.</p>
+            <ul class="phase-steps">
+              <li class="phase-step"><div class="phase-step-bullet"></div>For each handoff: write what the customer should be experiencing immediately after your function's work ends. Use the customer's perspective — "The customer should feel / know / be able to…"</li>
+              <li class="phase-step"><div class="phase-step-bullet"></div>Also write what you currently observe customers experiencing at that handoff — the gap between these two statements is the starting point for the discussion.</li>
+              <li class="phase-step"><div class="phase-step-bullet"></div>If you are unsure what the customer experiences at a handoff you own, name that uncertainty. It is a finding, not an excuse.</li>
+            </ul>
+            <div class="facilitator-tip">
+              <div class="facilitator-tip-label">Facilitator Note</div>
+              <p>Walk the room quietly. If someone finishes early and looks disengaged, ask them: "What about the handoff that comes before yours? What does the customer experience when they arrive at your function — and does that match what the sending function intends?" This seeds the next phase.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase phase-3">
+        <div class="phase-time"><div class="phase-dot">P3</div><div class="phase-mins">20<br>min</div></div>
+        <div class="phase-card">
+          <div class="phase-card-head"><div class="phase-card-title">Read, Compare &amp; Map Mismatches</div><div class="phase-card-role">Group activity</div></div>
+          <div class="phase-card-body">
+            <p>Each function lead reads their outcome experience statements aloud for every handoff they own. The facilitator plots the alignment in real time on the shared matrix — Match (both functions describe the same customer experience), Near (similar but meaningfully different in emphasis or timing), or Gap (the sending function's success state is the receiving function's problem state).</p>
+            <ul class="phase-steps">
+              <li class="phase-step"><div class="phase-step-bullet"></div>The most revealing moment is the Gap cell: when the function that sends a customer away considers the handoff successful at the exact moment the receiving function considers it a problem. This is not a miscommunication. It is a missing shared standard.</li>
+              <li class="phase-step"><div class="phase-step-bullet"></div>Pay close attention to timing mismatches — two functions with the same outcome standard but different assumptions about when it should be achieved are in a Near cell, not a Match. Timing is part of the standard.</li>
+              <li class="phase-step"><div class="phase-step-bullet"></div>Record every Gap and Near in the Mismatch Log as it is identified. Do not rely on memory — the specifics of each mismatch are the raw material for the fix.</li>
+            </ul>
+            <div class="facilitator-tip">
+              <div class="facilitator-tip-label">Facilitator Note</div>
+              <p>When a Gap appears, pause before moving on. Ask both functions: "What is the customer experiencing in the space between your 'done' and your 'ready'?" That space — the gap between one function's completion and the next function's readiness — is where customers live. Making it visible is the most important thing this exercise does.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase phase-4">
+        <div class="phase-time"><div class="phase-dot">P4</div><div class="phase-mins">15<br>min</div></div>
+        <div class="phase-card">
+          <div class="phase-card-head"><div class="phase-card-title">Draft Shared Outcome Standards</div><div class="phase-card-role">Collaborative writing</div></div>
+          <div class="phase-card-body">
+            <p>For each Gap and Near cell identified, the two involved functions draft a shared outcome experience standard — a single agreed statement of what the customer should be experiencing at that handoff point, that both the sending and receiving function can hold themselves accountable to.</p>
+            <ul class="phase-steps">
+              <li class="phase-step"><div class="phase-step-bullet"></div>The shared standard must pass the "Day 1 test": could a new employee joining either function use this statement to understand what a successful handoff looks like, before any training? If not, it is still too abstract.</li>
+              <li class="phase-step"><div class="phase-step-bullet"></div>The standard must specify timing: "immediately after go-live" vs. "within 30 days of go-live" are not the same standard, even if the outcome language is identical.</li>
+              <li class="phase-step"><div class="phase-step-bullet"></div>Each shared standard needs a verification question — a single question you could ask the customer to confirm the standard was met. "On a scale of 1–10, how confident are you in your ability to operate the system independently?" is a verification question. "Are you happy?" is not.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase phase-5">
+        <div class="phase-time"><div class="phase-dot">P5</div><div class="phase-mins">5<br>min</div></div>
+        <div class="phase-card">
+          <div class="phase-card-head"><div class="phase-card-title">Assign Ownership &amp; Close</div><div class="phase-card-role">Accountability close</div></div>
+          <div class="phase-card-body">
+            <p>Every Gap cell in the matrix must leave the room with a named owner — the person responsible for translating the shared outcome standard into an operational change in their function's process or playbook within 30 days.</p>
+            <ul class="phase-steps">
+              <li class="phase-step"><div class="phase-step-bullet"></div>The owner is typically the sending function's lead — they are the one who needs to change what "done" means before the handoff occurs.</li>
+              <li class="phase-step"><div class="phase-step-bullet"></div>Close by reading every shared outcome standard aloud — all of them, in sequence — as a single continuous description of what the customer should experience as they move through your organization. The full reading makes the collective standard vivid in a way that individual cells do not.</li>
+              <li class="phase-step"><div class="phase-step-bullet"></div>Schedule the 30-day check-in before leaving the room. The matrix is not a document — it is an accountability tool. Without a check-in, it becomes a record of a conversation.</li>
+            </ul>
+            <div class="facilitator-tip">
+              <div class="facilitator-tip-label">Facilitator Note</div>
+              <p>The full sequential reading at the close is the most powerful moment in the exercise. When the group hears what the customer's complete journey should sound like — and compares it mentally to what it currently sounds like — the case for the work ahead becomes self-evident.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FUNCTION OUTCOME CARDS -->
+  <div class="section-block fade-in" style="animation-delay:0.12s">
+    <div class="section-label">
+      <div class="section-label-num">2</div>
+      <div class="section-label-text">Function Outcome Cards</div>
+      <div class="section-label-tag">Complete silently — one per function lead</div>
+    </div>
+    <p class="fn-intro">Each function lead completes their card independently before the group share. For each major handoff your function owns — as the sender or receiver — describe what the customer should be experiencing the moment that handoff is complete. Then describe what they are actually experiencing today.</p>
+    <div class="fn-grid" id="fnGrid">
+      <!-- Built by JS -->
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- THE MATRIX -->
+  <div class="section-block fade-in" style="animation-delay:0.16s">
+    <div class="section-label">
+      <div class="section-label-num">3</div>
+      <div class="section-label-text">Handoff Matrix</div>
+      <div class="section-label-tag">Live facilitation tool</div>
+    </div>
+    <p class="matrix-intro">After each function lead reads their statements, plot alignment in this matrix. Click any cell to cycle through Match, Near, and Gap. Read each cell as: "Do the sending function (row) and receiving function (column) describe the same customer experience at this handoff?" The summary updates in real time.</p>
+
+    <div class="matrix-wrap">
+      <div class="matrix-head">
+        <div class="matrix-head-title">Outcome Handoff Alignment Matrix — Click any cell to score</div>
+        <div class="matrix-legend">
+          <div class="ml-item"><div class="ml-dot" style="background:var(--match)"></div>Match</div>
+          <div class="ml-item"><div class="ml-dot" style="background:var(--near)"></div>Near</div>
+          <div class="ml-item"><div class="ml-dot" style="background:var(--gap)"></div>Gap</div>
+        </div>
+      </div>
+      <div class="matrix-body">
+        <div class="hgrid" id="handoffGrid"></div>
+      </div>
+      <div class="matrix-footer">
+        <div class="mf-item"><div class="mf-dot" style="background:var(--match)"></div>Match — both functions describe the same customer experience at handoff</div>
+        <div class="mf-item"><div class="mf-dot" style="background:var(--near)"></div>Near — similar but different in timing, emphasis, or specificity</div>
+        <div class="mf-item"><div class="mf-dot" style="background:var(--gap)"></div>Gap — one function's "done" is the other function's problem</div>
+      </div>
+    </div>
+
+    <div class="matrix-summary">
+      <div class="ms-card match"><div class="ms-val" id="cntMatch">0</div><div class="ms-lbl">Matches</div></div>
+      <div class="ms-card near"> <div class="ms-val" id="cntNear">0</div> <div class="ms-lbl">Near</div></div>
+      <div class="ms-card gap">  <div class="ms-val" id="cntGap">0</div>  <div class="ms-lbl">Gaps — priority fixes</div></div>
+      <div class="ms-card open"> <div class="ms-val" id="cntOpen">—</div> <div class="ms-lbl">Unscored</div></div>
+    </div>
+  </div>
+
+  <!-- MISMATCH LOG -->
+  <div class="section-block fade-in" style="animation-delay:0.2s">
+    <div class="section-label">
+      <div class="section-label-num">4</div>
+      <div class="section-label-text">Mismatch Log &amp; Shared Standards</div>
+      <div class="section-label-tag">Draft during session</div>
+    </div>
+
+    <div class="mismatch-panel">
+      <div class="mismatch-head">
+        <div class="mismatch-head-title">Gaps &amp; Shared Outcome Standards</div>
+        <div class="mismatch-head-sub">For every Gap or Near cell — what the shared standard should be, and who owns making it real</div>
+      </div>
+      <div class="mismatch-body">
+        <div class="mismatch-row header-row">
+          <div class="mc">Handoff Pair</div>
+          <div class="mc">Mismatch — What Each Side Wrote</div>
+          <div class="mc">Shared Standard — Agreed Customer Experience</div>
+          <div class="mc">Owner &amp; Deadline</div>
+        </div>
+        <div id="mismatchRows">
+          <!-- Built by JS -->
+        </div>
+      </div>
+      <div class="mismatch-add-row">
+        <button class="mismatch-add-btn" onclick="addMismatchRow()">+ Add mismatch</button>
+        <span style="font-family:'DM Sans',sans-serif;font-size:0.72rem;color:var(--mid);font-style:italic;">Add a row for each Gap or Near cell identified in the matrix</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROMPTS -->
+  <div class="section-block fade-in" style="animation-delay:0.22s">
+    <div class="section-label">
+      <div class="section-label-num">5</div>
+      <div class="section-label-text">Discussion Prompts</div>
+      <div class="section-label-tag">During share-out</div>
+    </div>
+    <div class="prompts-list">
+      <div class="prompt-card">
+        <div class="prompt-q">Q</div>
+        <div class="prompt-text">
+          For every Gap cell — what is the customer doing, feeling, or asking in the space between the sender's "done" and the receiver's "ready"?
+          <span class="prompt-context">Makes the cost of the gap concrete and human. Replaces abstract standards language with a real customer moment.</span>
+        </div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-q">Q</div>
+        <div class="prompt-text">
+          When did we last ask a customer directly what they experienced at this handoff — and would their answer match either of the standards we just wrote?
+          <span class="prompt-context">Introduces the customer's voice as the arbiter. Both function standards may be wrong — the customer's experience is the only ground truth.</span>
+        </div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-q">Q</div>
+        <div class="prompt-text">
+          For each shared standard we just drafted — what specifically does the sending function need to do differently for the customer to arrive at the receiving function in that state?
+          <span class="prompt-context">Translates the standard into operational change. Standards without behavioral specifics remain aspirational.</span>
+        </div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-q">Q</div>
+        <div class="prompt-text">
+          Which Gap in this matrix, if closed in the next 30 days, would most directly improve the customer's experience of moving through our organization?
+          <span class="prompt-context">Forces prioritization when the matrix reveals multiple gaps simultaneously. Not all gaps have equal customer impact.</span>
+        </div>
+      </div>
+      <div class="prompt-card">
+        <div class="prompt-q">Q</div>
+        <div class="prompt-text">
+          What would it mean for our performance metrics — by function — if we held each other accountable to these shared standards? What would each function have to stop counting as a success?
+          <span class="prompt-context">The most challenging closing question. Shared handoff standards often require each function to retire metrics that reward individual completion at the expense of collective outcome.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEBRIEF -->
+  <div class="section-block fade-in" style="animation-delay:0.26s">
+    <div class="section-label">
+      <div class="section-label-num">6</div>
+      <div class="section-label-text">Debrief &amp; Next Steps</div>
+      <div class="section-label-tag">Close-out</div>
+    </div>
+    <div class="debrief-grid">
+      <div class="debrief-card what">
+        <div class="debrief-card-label">Before leaving the room</div>
+        <div class="debrief-card-title">What to capture</div>
+        <ul class="debrief-list">
+          <li>The completed Handoff Matrix — photographed or exported</li>
+          <li>Every shared outcome standard drafted in the session — verbatim</li>
+          <li>Every Gap cell with a named owner and a 30-day implementation deadline</li>
+          <li>The verification question for each shared standard — how will we confirm the customer is experiencing it?</li>
+          <li>The date of the 30-day check-in, confirmed and calendared</li>
+        </ul>
+      </div>
+      <div class="debrief-card next">
+        <div class="debrief-card-label">After the session</div>
+        <div class="debrief-card-title">What happens next</div>
+        <ul class="debrief-list">
+          <li>Distribute the full matrix and shared standards to all function leads within 24 hours</li>
+          <li>Each Gap owner translates the shared standard into a specific process or playbook change within their function — not a communication plan, an operational change</li>
+          <li>At the 30-day check-in: each owner presents the change they made and how they verified it with a customer</li>
+          <li>Re-run the Matrix exercise every 6 months — handoff standards degrade as teams grow and change leadership</li>
+          <li>Use the shared standards as onboarding material for new function leads: this is how we define "done" at every handoff in this organization</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top:1.25rem; padding: 1.25rem 1.5rem; background: var(--navy); border-radius: 10px;">
+      <div style="font-family:'DM Sans',sans-serif; font-size:0.65rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--gold); margin-bottom:0.5rem;">CXKonnect Principle</div>
+      <p style="font-family:'Lora',serif; font-size:0.96rem; line-height:1.7; color:rgba(255,255,255,0.85);">The customer does not experience your functions. They experience the handoffs between them. Every function in a CX organization can be performing to its own standard of excellence while the customer travels through a series of disconnected experiences that add up to something far less than excellent. The Outcome Handoff Matrix exists to close that gap — by replacing implicit, misaligned, individual standards with explicit, agreed, shared ones. One handoff at a time.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">CX<span>Konnect</span></div>
+  <p>A framework for the full CX organization — from first signature to lasting advocacy.</p>
+</footer>
+
+<script>
+  // ── FUNCTIONS ────────────────────────────────────────────────────────────────
+  const FUNCTIONS = [
+    { name: "Customer Success",  short: "CS",  color: "#1F3864", bg: "#EBF0F8" },
+    { name: "Technical Support", short: "Sup", color: "#1B5A6A", bg: "#E6F2F6" },
+    { name: "Consulting",        short: "Con", color: "#1B8C8C", bg: "#E6F4F4" },
+    { name: "Prof. Services",    short: "PS",  color: "#1a6a4a", bg: "#EDF7F1" },
+    { name: "Education",         short: "Edu", color: "#7a5010", bg: "#FBF5E0" },
+    { name: "Managed Services",  short: "MS",  color: "#4a3080", bg: "#F2EEF8" },
+    { name: "Field Support",     short: "Fld", color: "#5a3a20", bg: "#F7F1EB" },
+    { name: "Partner Mgmt",      short: "PM",  color: "#1a4a6a", bg: "#E8F0F8" },
+  ];
+  const N = FUNCTIONS.length;
+
+  // Pairs with no meaningful handoff
+  const NA_PAIRS = new Set([
+    '2-4','4-2','2-5','5-2','2-6','6-2','2-7','7-2',
+    '3-5','5-3','3-6','6-3','3-7','7-3',
+    '4-5','5-4','4-6','6-4','4-7','7-4',
+    '5-6','6-5','5-7','7-5',
+    '6-7','7-6',
+  ]);
+
+  // ── FUNCTION CARDS ───────────────────────────────────────────────────────────
+  function buildFnCards() {
+    const grid = document.getElementById('fnGrid');
+    FUNCTIONS.forEach((fn, i) => {
+      const card = document.createElement('div');
+      card.className = 'fn-card';
+      card.innerHTML = `
+        <div class="fn-card-head">
+          <div class="fn-accent" style="background:${fn.color}"></div>
+          <div class="fn-head-inner">
+            <span class="fn-pill" style="background:${fn.bg};color:${fn.color};border:1px solid ${fn.color}30">${fn.name}</span>
+            <input class="fn-lead-input" placeholder="Function lead name…" />
+          </div>
+        </div>
+        <div class="fn-body">
+          <div>
+            <div class="fn-field-label">What should the customer experience when your function's work is complete?</div>
+            <textarea class="fn-textarea" placeholder="The customer should feel / know / be able to… (write in first-person-customer language)"></textarea>
+          </div>
+          <div>
+            <div class="fn-field-label">What do customers actually experience at this handoff today — honestly?</div>
+            <textarea class="fn-textarea" rows="2" placeholder="The gap between this answer and the one above is where the work is…"></textarea>
+          </div>
+          <div>
+            <div class="fn-field-label">Verification question — how would you confirm the customer experienced it?</div>
+            <textarea class="fn-textarea" rows="2" placeholder="A single observable question you could ask the customer at the handoff point…"></textarea>
+          </div>
+        </div>`;
+      grid.appendChild(card);
+    });
+  }
+  buildFnCards();
+
+  // ── HANDOFF MATRIX ────────────────────────────────────────────────────────────
+  const matrixState = {};
+  const CYCLE = ['match', 'near', 'gap', null];
+  const CFG = {
+    match: { cls: 'hg-match', sym: '✓', txt: 'Match' },
+    near:  { cls: 'hg-near',  sym: '≈', txt: 'Near' },
+    gap:   { cls: 'hg-gap',   sym: '✕', txt: 'Gap' },
+    null:  { cls: 'hg-empty', sym: '+', txt: 'Score' },
+  };
+
+  function cellKey(r, c) { return `${r}-${c}`; }
+
+  function buildMatrix() {
+    const grid = document.getElementById('handoffGrid');
+    grid.style.gridTemplateColumns = `90px repeat(${N}, 1fr)`;
+    grid.innerHTML = '';
+
+    // Corner
+    grid.appendChild(document.createElement('div'));
+
+    // Col headers
+    FUNCTIONS.forEach(fn => {
+      const h = document.createElement('div');
+      h.className = 'hg-col-head';
+      h.textContent = fn.name;
+      grid.appendChild(h);
+    });
+
+    // Rows
+    FUNCTIONS.forEach((rowFn, r) => {
+      const rh = document.createElement('div');
+      rh.className = 'hg-row-head';
+      rh.textContent = rowFn.name;
+      grid.appendChild(rh);
+
+      FUNCTIONS.forEach((colFn, c) => {
+        const cell = document.createElement('div');
+        if (r === c) {
+          cell.className = 'hg-cell hg-self';
+          cell.innerHTML = `<div class="hg-cell-body"><div class="hg-self-txt">—</div></div>`;
+        } else if (NA_PAIRS.has(cellKey(r, c))) {
+          cell.className = 'hg-cell hg-na';
+          cell.innerHTML = `<div class="hg-cell-body"><div class="hg-txt">N/A</div></div>`;
+        } else {
+          renderCell(cell, null);
+          cell.addEventListener('click', () => cycleCell(cellKey(r, c), cell, rowFn, colFn));
+        }
+        grid.appendChild(cell);
+      });
+    });
+    updateSummary();
+  }
+
+  function renderCell(el, val) {
+    const cfg = CFG[val] || CFG[null];
+    el.className = `hg-cell ${cfg.cls}`;
+    el.innerHTML = `<div class="hg-cell-body"><div class="hg-sym">${cfg.sym}</div><div class="hg-txt">${cfg.txt}</div></div>`;
+  }
+
+  function cycleCell(key, el, rowFn, colFn) {
+    const cur = matrixState[key] || null;
+    const idx = CYCLE.indexOf(cur);
+    const next = CYCLE[(idx + 1) % CYCLE.length];
+    if (next === null) delete matrixState[key]; else matrixState[key] = next;
+    renderCell(el, matrixState[key] || null);
+    updateSummary();
+  }
+
+  function updateSummary() {
+    let match = 0, near = 0, gap = 0, open = 0;
+    for (let r = 0; r < N; r++) {
+      for (let c = 0; c < N; c++) {
+        if (r === c) continue;
+        const key = cellKey(r, c);
+        if (NA_PAIRS.has(key)) continue;
+        const v = matrixState[key];
+        if (v === 'match') match++;
+        else if (v === 'near') near++;
+        else if (v === 'gap') gap++;
+        else open++;
+      }
+    }
+    document.getElementById('cntMatch').textContent = match;
+    document.getElementById('cntNear').textContent  = near;
+    document.getElementById('cntGap').textContent   = gap;
+    document.getElementById('cntOpen').textContent  = open > 0 ? open : '✓';
+  }
+
+  buildMatrix();
+
+  // ── MISMATCH LOG ──────────────────────────────────────────────────────────────
+  let mismatchCount = 0;
+
+  const SEED_MISMATCHES = [
+    { pair: 'PS → CS', badge: 'gap',   mismatch: 'PS: "Go-live is complete when the system is technically live and acceptance is signed."\nCS: "Handoff is ready when the customer\'s champion can demonstrate the primary workflow independently."', standard: '', owner: '' },
+    { pair: 'Education → CS', badge: 'gap', mismatch: 'Education: "Our part is done when training completion rates hit benchmark."\nCS: "Adoption begins when training translates into product usage — completion rate tells us nothing about that."', standard: '', owner: '' },
+    { pair: 'Support → CS', badge: 'near', mismatch: 'Support: "We escalate when the case volume or severity crosses threshold."\nCS: "We need to know about cases that indicate systemic adoption issues, not just high-severity technical failures."', standard: '', owner: '' },
+  ];
+
+  function addMismatchRow(prefill = null) {
+    mismatchCount++;
+    const p = prefill || { pair: '', badge: 'gap', mismatch: '', standard: '', owner: '' };
+    const row = document.createElement('div');
+    row.className = 'mismatch-row';
+    row.innerHTML = `
+      <div class="mc">
+        <input style="width:100%;font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:700;color:var(--navy);border:none;border-bottom:1.5px dashed var(--rule);background:none;outline:none;padding-bottom:2px;margin-bottom:6px;" value="${p.pair}" placeholder="Function A → Function B" />
+        <select style="font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:600;border:1px solid var(--rule);border-radius:99px;padding:2px 8px;background:#f5f5f3;outline:none;cursor:pointer;">
+          <option value="gap"  ${p.badge==='gap'  ?'selected':''}>Gap</option>
+          <option value="near" ${p.badge==='near' ?'selected':''}>Near</option>
+          <option value="match" ${p.badge==='match'?'selected':''}>Match</option>
+        </select>
+      </div>
+      <div class="mc"><textarea style="width:100%;min-height:80px;resize:vertical;font-family:'Lora',serif;font-size:0.83rem;line-height:1.6;color:var(--dark);border:1.5px dashed var(--rule);border-radius:6px;padding:0.45rem 0.65rem;background:#fafaf8;outline:none;" placeholder="What each function wrote — verbatim…">${p.mismatch}</textarea></div>
+      <div class="mc"><textarea style="width:100%;min-height:80px;resize:vertical;font-family:'Lora',serif;font-size:0.83rem;line-height:1.6;color:var(--dark);border:1.5px dashed var(--rule);border-radius:6px;padding:0.45rem 0.65rem;background:#fafaf8;outline:none;" placeholder="The customer experience both functions agree to target, with timing and verification question…">${p.standard}</textarea></div>
+      <div class="mc" style="display:flex;flex-direction:column;gap:6px;">
+        <input style="width:100%;font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:600;color:var(--navy);border:none;border-bottom:1.5px dashed var(--rule);background:none;outline:none;padding-bottom:2px;" value="${p.owner}" placeholder="Owner name…" />
+        <input type="date" style="width:100%;font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--navy);border:none;border-bottom:1.5px dashed var(--rule);background:none;outline:none;padding-bottom:2px;" />
+      </div>`;
+    document.getElementById('mismatchRows').appendChild(row);
+  }
+
+  SEED_MISMATCHES.forEach(m => addMismatchRow(m));
+</script>
+</body>
+</html>
