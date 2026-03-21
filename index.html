@@ -223,8 +223,8 @@ nav { display: flex; align-items: center; gap: 4px; }
 }
 .btn-ghost:hover { background: var(--glass2); border-color: rgba(5,191,219,.4); }
 
-/* Steffi card */
-.steffi-card {
+/* Stefanie card */
+.stefanie-card {
   background: rgba(255,255,255,.07);
   border: 1px solid rgba(255,255,255,.12);
   border-radius: 20px;
@@ -232,14 +232,14 @@ nav { display: flex; align-items: center; gap: 4px; }
   backdrop-filter: blur(10px);
   position: relative; overflow: hidden;
 }
-.steffi-card::before {
+.stefanie-card::before {
   content: '';
   position: absolute; top: -50px; right: -50px;
   width: 200px; height: 200px;
   background: radial-gradient(circle, rgba(5,191,219,.15), transparent 70%);
   border-radius: 50%;
 }
-.steffi-avatar {
+.stefanie-avatar {
   width: 72px; height: 72px; border-radius: 50%;
   background: linear-gradient(135deg, var(--seafoam), var(--sage));
   display: flex; align-items: center; justify-content: center;
@@ -249,17 +249,17 @@ nav { display: flex; align-items: center; gap: 4px; }
   margin-bottom: 16px;
   border: 3px solid rgba(5,191,219,.3);
 }
-.steffi-quote {
+.stefanie-quote {
   font-family: 'Fraunces', serif;
   font-size: 1.1rem; font-style: italic;
   color: rgba(255,255,255,.9);
   line-height: 1.55;
   margin-bottom: 16px;
 }
-.steffi-sig {
+.stefanie-sig {
   font-size: .8rem; color: rgba(255,255,255,.5);
 }
-.steffi-sig strong { color: var(--seafoam); display: block; font-size: .88rem; font-weight: 600; }
+.stefanie-sig strong { color: var(--seafoam); display: block; font-size: .88rem; font-weight: 600; }
 
 /* Hero stats */
 .hero-stats {
@@ -408,6 +408,7 @@ nav { display: flex; align-items: center; gap: 4px; }
   transition: all .25s;
   display: flex; flex-direction: column;
   cursor: pointer;
+  text-decoration: none; color: inherit;
 }
 .article-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(10,77,104,.14); }
 .article-card-img {
@@ -446,6 +447,7 @@ nav { display: flex; align-items: center; gap: 4px; }
   border: 1px solid rgba(10,77,104,.08);
   transition: all .25s; cursor: pointer;
   position: relative; overflow: hidden;
+  text-decoration: none; color: inherit; display: block;
 }
 .activity-card::before {
   content: '';
@@ -763,17 +765,17 @@ footer {
         <a class="btn-ghost" onclick="scrollTo('groups')">Find a Local Group</a>
       </div>
       <div class="hero-stats">
-        <div class="hs"><span class="n">xxx</span><span class="l">CX Leaders</span></div>
-        <div class="hs"><span class="n">yyy</span><span class="l">Local Groups</span></div>
-        <div class="hs"><span class="n">zzz</span><span class="l">Resources</span></div>
+        <div class="hs"><span class="n">2,400+</span><span class="l">CX Leaders</span></div>
+        <div class="hs"><span class="n">48</span><span class="l">Local Groups</span></div>
+        <div class="hs"><span class="n">120+</span><span class="l">Resources</span></div>
       </div>
     </div>
 
-    <div class="steffi-card">
-      <div class="steffi-avatar">ST</div>
-      <p class="steffi-quote">"The most powerful thing a leader can do is refuse to wait for permission to make things better. This community is for the ones who are already doing the work — and want to do it together."</p>
-      <div class="steffi-sig">
-        <strong>Steffi Thorlichen</strong>
+    <div class="stefanie-card">
+      <div class="stefanie-avatar">ST</div>
+      <p class="stefanie-quote">"The most powerful thing a leader can do is refuse to wait for permission to make things better. This community is for the ones who are already doing the work — and want to do it together."</p>
+      <div class="stefanie-sig">
+        <strong>Stefanie Thorlichen</strong>
         Chief Customer Experience Officer · Author, CX Konnect
       </div>
     </div>
@@ -941,7 +943,7 @@ footer {
       </div>
       <div class="footer-col">
         <h4>About</h4>
-        <a class="footer-link">About Steffi</a>
+        <a class="footer-link">About Stefanie</a>
         <a class="footer-link">CX Konnect Framework</a>
         <a class="footer-link">Contact</a>
         <a class="footer-link">Privacy Policy</a>
@@ -1079,23 +1081,23 @@ footer {
 // DATA
 // ═══════════════════════════════════════════════════
 const ARTICLES = [
-  { id:1, cat:'framework', emoji:'🗺️', bg:'linear-gradient(135deg,#0A4D68,#088395)', title:'The Five Outcome Stages of CX Konnect', excerpt:'A journey defined by activity tells you what happened. One defined by outcomes tells you whether it mattered. Here\'s how to build the latter.', author:'Steffi Thorlichen', date:'Feb 28, 2026', read:'8 min', tag:'Framework' },
-  { id:2, cat:'metrics', emoji:'📊', bg:'linear-gradient(135deg,#2D6A4F,#4A9B8E)', title:'The 8 Metrics That Actually Matter in CX', excerpt:'Most CX dashboards measure the wrong things. Here are the eight outcome-oriented metrics that reveal whether your customers are truly succeeding.', author:'Steffi Thorlichen', date:'Feb 14, 2026', read:'6 min', tag:'Metrics' },
-  { id:3, cat:'culture', emoji:'🌊', bg:'linear-gradient(135deg,#1a3a5c,#0A4D68)', title:'Culture Is Not the Soft Side of CX Strategy — It\'s the Deciding Factor', excerpt:'Tools create conditions. People create outcomes. Why the most advanced CX system will underperform a mediocre one run by a team that owns the outcome.', author:'Steffi Thorlichen', date:'Jan 30, 2026', read:'10 min', tag:'Culture' },
-  { id:4, cat:'ai', emoji:'🤖', bg:'linear-gradient(135deg,#05BFDB,#088395)', title:'AI-Tooled vs AI-Intelligent: The Architectural Difference That Changes Everything', excerpt:'Most CX organizations are AI-tooled. The organizations that separate from the field will build something architecturally different: an AI intelligence layer.', author:'Steffi Thorlichen', date:'Jan 12, 2026', read:'7 min', tag:'AI & Tech' },
-  { id:5, cat:'leadership', emoji:'🧭', bg:'linear-gradient(135deg,#062D3F,#0A4D68)', title:'From Reaction to Connection: A Leader\'s Transition Guide', excerpt:'Your teams are not underperforming — they are unconnected. How to move your organization from reactive chaos to proactive clarity in 90 days.', author:'Steffi Thorlichen', date:'Dec 18, 2025', read:'9 min', tag:'Leadership' },
-  { id:6, cat:'framework', emoji:'⚙️', bg:'linear-gradient(135deg,#4A9B8E,#05BFDB)', title:'Breaking Silos: The Gap Map Exercise', excerpt:'The most costly CX failures don\'t happen inside departments — they happen between them. A practical approach to mapping and fixing your invisible gaps.', author:'Steffi Thorlichen', date:'Dec 5, 2025', read:'5 min', tag:'Framework' },
+  { id:1, cat:'framework', emoji:'🗺️', bg:'linear-gradient(135deg,#0A4D68,#088395)', title:'The Five Outcome Stages of CX Konnect', excerpt:'A journey defined by activity tells you what happened. One defined by outcomes tells you whether it mattered. Here\'s how to build the latter.', author:'Stefanie Thorlichen', date:'Feb 28, 2026', read:'8 min', tag:'Framework', url:'/articles/five-outcome-stages.html' },
+  { id:2, cat:'metrics', emoji:'📊', bg:'linear-gradient(135deg,#2D6A4F,#4A9B8E)', title:'The 8 Metrics That Actually Matter in CX', excerpt:'Most CX dashboards measure the wrong things. Here are the eight outcome-oriented metrics that reveal whether your customers are truly succeeding.', author:'James Park, Atrium Health', date:'Feb 14, 2026', read:'6 min', tag:'Metrics', url:'/articles/8-metrics-that-matter.html' },
+  { id:3, cat:'culture', emoji:'🌊', bg:'linear-gradient(135deg,#1a3a5c,#0A4D68)', title:'Culture Is Not the Soft Side of CX Strategy — It\'s the Deciding Factor', excerpt:'Tools create conditions. People create outcomes. Why the most advanced CX system will underperform a mediocre one run by a team that owns the outcome.', author:'Stefanie Thorlichen', date:'Jan 30, 2026', read:'10 min', tag:'Culture', url:'/articles/culture-deciding-factor.html' },
+  { id:4, cat:'ai', emoji:'🤖', bg:'linear-gradient(135deg,#05BFDB,#088395)', title:'AI-Tooled vs AI-Intelligent: The Architectural Difference That Changes Everything', excerpt:'Most CX organizations are AI-tooled. The organizations that separate from the field will build something architecturally different: an AI intelligence layer.', author:'Nadia Chen, Mount Sinai', date:'Jan 12, 2026', read:'7 min', tag:'AI & Tech', url:'/articles/ai-tooled-vs-ai-intelligent.html' },
+  { id:5, cat:'leadership', emoji:'🧭', bg:'linear-gradient(135deg,#062D3F,#0A4D68)', title:'From Reaction to Connection: A Leader\'s Transition Guide', excerpt:'Your teams are not underperforming — they are unconnected. How to move your organization from reactive chaos to proactive clarity in 90 days.', author:'Stefanie Thorlichen', date:'Dec 18, 2025', read:'9 min', tag:'Leadership', url:'/articles/reaction-to-connection.html' },
+  { id:6, cat:'framework', emoji:'⚙️', bg:'linear-gradient(135deg,#4A9B8E,#05BFDB)', title:'Breaking Silos: The Gap Map Exercise', excerpt:'The most costly CX failures don\'t happen inside departments — they happen between them. A practical approach to mapping and fixing your invisible gaps.', author:'Ravi Kapoor, Kaiser Permanente', date:'Dec 5, 2025', read:'5 min', tag:'Framework', url:'/articles/breaking-silos-gap-map.html' },
 ];
 
 const ACTIVITIES = [
-  { emoji:'🗺️', title:'The Gap Map', desc:'Teams map every customer handoff point and identify where context is lost between functions. Surfaces invisible cross-functional gaps.', tags:['60 min','Cross-functional','6–10 people'], cat:'collaboration' },
-  { emoji:'🔍', title:'The Outcome Audit', desc:'Each leader articulates what outcome their two most important customers are hired to achieve — then compares across the team.', tags:['45 min','Leadership team','4–8 people'], cat:'reflection' },
-  { emoji:'🪤', title:'The Blame-Free Post-Mortem', desc:'A structured backward-trace of one churn event or near-miss to find the structural cause — not the people cause.', tags:['45 min','Cross-functional','5–8 people'], cat:'analysis' },
-  { emoji:'📋', title:'The Culture Contract', desc:'Each person commits to one behavior that makes the org function as one team. Group finds themes and writes shared commitments.', tags:['60 min','Any team','8–15 people'], cat:'culture' },
-  { emoji:'🚀', title:'The 90-Day Transformation Sprint', desc:'Leadership team defines a CX Konnect pilot: one journey, one segment, one success metric. Assigns ownership and milestones.', tags:['90 min','Leadership','4–8 people'], cat:'planning' },
-  { emoji:'🤝', title:'The Outcome Handoff Matrix', desc:'Each function lead writes what the customer should experience after their work is done. Mismatches reveal where standards need alignment.', tags:['60 min','Cross-functional','All functions'], cat:'collaboration' },
-  { emoji:'📏', title:'Stage Health Audit', desc:'Rate each of the five CX Konnect stages Red/Yellow/Green as a team. Identify root causes for every non-green stage.', tags:['60 min','Leadership team','4–8 people'], cat:'analysis' },
-  { emoji:'🧩', title:'Fix the Gap Sprint', desc:'Cross-functional pairs map one transition in the customer journey and design a minimum viable handoff protocol together.', tags:['90 min','Cross-functional','6–12 people'], cat:'collaboration' },
+  { emoji:'🗺️', title:'The Gap Map', desc:'Teams map every customer handoff point and identify where context is lost between functions. Surfaces invisible cross-functional gaps.', tags:['60 min','Cross-functional','6–10 people'], cat:'collaboration', url:'/workshops/gap-map.html' },
+  { emoji:'🔍', title:'The Outcome Audit', desc:'Each leader articulates what outcome their two most important customers are hired to achieve — then compares across the team.', tags:['45 min','Leadership team','4–8 people'], cat:'reflection', url:'/workshops/outcome-audit.html' },
+  { emoji:'🪤', title:'The Blame-Free Post-Mortem', desc:'A structured backward-trace of one churn event or near-miss to find the structural cause — not the people cause.', tags:['45 min','Cross-functional','5–8 people'], cat:'analysis', url:'/workshops/blame-free-post-mortem.html' },
+  { emoji:'📋', title:'The Culture Contract', desc:'Each person commits to one behavior that makes the org function as one team. Group finds themes and writes shared commitments.', tags:['60 min','Any team','8–15 people'], cat:'culture', url:'/workshops/culture-contract.html' },
+  { emoji:'🚀', title:'The 90-Day Transformation Sprint', desc:'Leadership team defines a CX Konnect pilot: one journey, one segment, one success metric. Assigns ownership and milestones.', tags:['90 min','Leadership','4–8 people'], cat:'planning', url:'/workshops/90-day-transformation-sprint.html' },
+  { emoji:'🤝', title:'The Outcome Handoff Matrix', desc:'Each function lead writes what the customer should experience after their work is done. Mismatches reveal where standards need alignment.', tags:['60 min','Cross-functional','All functions'], cat:'collaboration', url:'/workshops/outcome-handoff-matrix.html' },
+  { emoji:'📏', title:'Stage Health Audit', desc:'Rate each of the five CX Konnect stages Red/Yellow/Green as a team. Identify root causes for every non-green stage.', tags:['60 min','Leadership team','4–8 people'], cat:'analysis', url:'/workshops/stage-health-audit.html' },
+  { emoji:'🧩', title:'Fix the Gap Sprint', desc:'Cross-functional pairs map one transition in the customer journey and design a minimum viable handoff protocol together.', tags:['90 min','Cross-functional','6–12 people'], cat:'collaboration', url:'/workshops/fix-the-gap-sprint.html' },
 ];
 
 const FORUM_POSTS = [
@@ -1155,7 +1157,7 @@ let articleFilter = 'all';
 function renderArticles(filter = 'all') {
   const list = filter === 'all' ? ARTICLES : ARTICLES.filter(a => a.cat === filter);
   document.getElementById('articlesGrid').innerHTML = list.map(a => `
-    <div class="article-card" onclick="showToast('Opening: ${a.title.substring(0,40)}...')">
+    <a class="article-card" href="${a.url}">
       <div class="article-card-img">
         <div class="article-card-img-bg" style="background:${a.bg}">${a.emoji}</div>
         <span class="article-tag">${a.tag}</span>
@@ -1168,7 +1170,7 @@ function renderArticles(filter = 'all') {
           <span class="article-read">${a.read} read →</span>
         </div>
       </div>
-    </div>`).join('');
+    </a>`).join('');
 }
 
 function filterArticles(cat, el) {
@@ -1180,12 +1182,12 @@ function filterArticles(cat, el) {
 
 function renderActivities() {
   document.getElementById('activitiesGrid').innerHTML = ACTIVITIES.map(a => `
-    <div class="activity-card" onclick="showToast('Activity downloaded: ${a.title}')">
+    <a class="activity-card" href="${a.url}">
       <div class="activity-icon">${a.emoji}</div>
       <div class="activity-title">${a.title}</div>
       <div class="activity-desc">${a.desc}</div>
       <div class="activity-tags">${a.tags.map(t => `<span class="activity-tag">${t}</span>`).join('')}</div>
-    </div>`).join('');
+    </a>`).join('');
 }
 
 function renderForum() {
