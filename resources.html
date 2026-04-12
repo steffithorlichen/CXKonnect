@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articles & Resources | CX Konnect</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@6..72,400;6..72,600;6..72,700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ocean: #0A4D68;
+            --deep: #062D3F;
+            --sea: #088395;
+            --seafoam: #05BFDB;
+            --mist: #00FFCA;
+            --sand: #F5ECD7;
+            --dune: #E8D5B0;
+            --shell: #FDF8F0;
+            --sage: #4A9B8E;
+            --foam: #E0F7FA;
+            --glass: rgba(255,255,255,0.07);
+            --glass2: rgba(255,255,255,0.12);
+            --white: #FFFFFF;
+            --ink: #0D1F2D;
+            --grey: #5C7A8A;
+            --light: #EEF6F8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--ink);
+            line-height: 1.6;
+            background: var(--shell);
+        }
+
+        /* HEADER */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 68px;
+            background: rgba(6, 45, 63, 0.92);
+            backdrop-filter: blur(16px);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            border-bottom: 1px solid var(--glass);
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-family: 'Fraunces', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .header-logo span:first-child {
+            color: var(--white);
+        }
+
+        .header-logo span:last-child {
+            color: var(--seafoam);
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .header-nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .header-nav a:hover {
+            color: var(--seafoam);
+        }
+
+        .header-cta {
+            background: linear-gradient(135deg, var(--seafoam), var(--mist));
+            color: var(--deep);
+            padding: 10px 24px;
+            border-radius: 24px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .header-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(5, 191, 219, 0.3);
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, var(--deep), var(--ocean));
+            padding: 140px 40px 60px;
+            margin-top: 68px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: var(--shell);
+            clip-path: polygon(0 50%, 100% 0, 100% 100%, 0 100%);
+        }
+
+        .hero-eyebrow {
+            color: var(--seafoam);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .hero h1 {
+            font-family: 'Fraunces', serif;
+            font-size: 3.5rem;
+            color: var(--white);
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* AI SEARCH SECTION */
+        .ai-search-wrapper {
+            background: var(--shell);
+            padding: 0 40px 80px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .ai-search-card {
+            background: var(--white);
+            max-width: 900px;
+            margin: -36px auto 0;
+            border-radius: 18px;
+            padding: 28px 32px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .ai-search-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .ai-search-title {
+            font-family: 'Fraunces', serif;
+            font-size: 1.25rem;
+            color: var(--ocean);
+            font-weight: 600;
+        }
+
+        .ai-badge {
+            background: linear-gradient(135deg, var(--seafoam), var(--mist));
+            color: var(--deep);
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .ai-search-input-wrapper {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .ai-search-input-wrapper input {
+            flex: 1;
+            padding: 14px 18px;
+            border: 1px solid #E0E0E0;
+            border-radius: 12px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .ai-search-input-wrapper input:focus {
+            outline: none;
+            border-color: var(--seafoam);
+            box-shadow: 0 0 0 3px rgba(5, 191, 219, 0.1);
+        }
+
+        .ai-search-btn {
+            background: linear-gradient(135deg, var(--ocean), var(--sea));
+            color: var(--white);
+            border: none;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            white-space: nowrap;
+        }
+
+        .ai-search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(10, 77, 104, 0.3);
+        }
+
+        .ai-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .ai-chip {
+            background: var(--foam);
+            color: var(--ocean);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            border: 1px solid rgba(8, 131, 149, 0.2);
+        }
+
+        .ai-chip:hover {
+            background: rgba(5, 191, 219, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .ai-response {
+            display: none;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid #E0E0E0;
+        }
+
+        .ai-response.active {
+            display: block;
+        }
+
+        .ai-loading {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--seafoam);
+            animation: dot-bounce 1.4s infinite;
+        }
+
+        .dot:nth-child(2) { animation-delay: 0.2s; }
+        .dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes dot-bounce {
+            0%, 80%, 100% { transform: scale(1); opacity: 0.5; }
+            40% { transform: scale(1.2); opacity: 1; }
+        }
+
+        .ai-response-text {
+            color: var(--ink);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* ARTICLES SECTION */
+        .articles-section {
+            background: var(--shell);
+            padding: 80px 40px;
+        }
+
+        .section-eyebrow {
+            color: var(--seafoam);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            font-family: 'Fraunces', serif;
+            font-size: 2.5rem;
+            color: var(--ocean);
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+
+        .filter-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: rgba(10, 77, 104, 0.08);
+            color: var(--ocean);
+            border: 1px solid rgba(10, 77, 104, 0.2);
+            padding: 10px 20px;
+            border-radius: 24px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--ocean);
+            color: var(--white);
+            border-color: var(--ocean);
+        }
+
+        .upload-btn {
+            background: linear-gradient(135deg, var(--seafoam), var(--mist));
+            color: var(--deep);
+            border: none;
+            padding: 10px 24px;
+            border-radius: 24px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .upload-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(5, 191, 219, 0.3);
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-bottom: 40px;
+        }
+
+        .article-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--article-accent, linear-gradient(90deg, var(--seafoam), var(--mist)));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s;
+        }
+
+        .article-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
+        }
+
+        .article-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .article-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+
+        .article-tag {
+            display: inline-block;
+            background: var(--foam);
+            color: var(--sea);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            align-self: flex-start;
+        }
+
+        .article-title {
+            font-family: 'Fraunces', serif;
+            font-size: 1rem;
+            color: var(--ocean);
+            font-weight: 600;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .article-excerpt {
+            font-size: 0.82rem;
+            color: var(--grey);
+            line-height: 1.6;
+            margin-bottom: 16px;
+            flex: 1;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: var(--grey);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            padding-top: 12px;
+        }
+
+        .article-author-date {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .article-read {
+            color: var(--ocean);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .article-read:hover {
+            color: var(--seafoam);
+        }
+
+        /* ACTIVITIES SECTION */
+        .activities-section {
+            background: linear-gradient(180deg, #EAF6F8 0%, var(--shell) 100%);
+            padding: 80px 40px;
+        }
+
+        .activities-subtitle {
+            font-size: 1rem;
+            color: var(--grey);
+            margin-bottom: 40px;
+        }
+
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .activity-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .activity-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--seafoam), var(--mist));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
+        }
+
+        .activity-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .activity-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--foam);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+
+        .activity-title {
+            font-family: 'Fraunces', serif;
+            font-size: 1rem;
+            color: var(--ocean);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .activity-desc {
+            font-size: 0.82rem;
+            color: var(--grey);
+            line-height: 1.6;
+            margin-bottom: 16px;
+            flex: 1;
+        }
+
+        .activity-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .activity-tag {
+            background: var(--foam);
+            color: var(--sea);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* MODAL */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            display: none;
+            z-index: 300;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.open {
+            display: flex;
+        }
+
+        .modal-card {
+            background: var(--white);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 520px;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, var(--ocean), var(--sea));
+            padding: 24px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            font-family: 'Fraunces', serif;
+            color: var(--white);
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
+        }
+
+        .modal-close:hover {
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 32px;
+        }
+
+        .modal-text {
+            font-size: 0.95rem;
+            color: var(--grey);
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .modal-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--ocean);
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 12px 14px;
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--seafoam);
+            box-shadow: 0 0 0 3px rgba(5, 191, 219, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .modal-submit {
+            background: linear-gradient(135deg, var(--ocean), var(--sea));
+            color: var(--white);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-top: 8px;
+        }
+
+        .modal-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(10, 77, 104, 0.3);
+        }
+
+        /* FOOTER */
+        footer {
+            background: linear-gradient(135deg, var(--deep), var(--ocean));
+            color: var(--white);
+            padding: 60px 40px 40px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+        }
+
+        .footer-col a,
+        .footer-col p {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .footer-col a:hover {
+            color: var(--seafoam);
+        }
+
+        .footer-col p {
+            line-height: 1.6;
+        }
+
+        .footer-divider {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 40px 0;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* TOAST */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: var(--ocean);
+            color: var(--white);
+            padding: 16px 24px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            z-index: 200;
+            animation: slide-in 0.3s ease-out;
+        }
+
+        @keyframes slide-in {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .articles-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 0 20px;
+            }
+
+            .header-nav {
+                display: none;
+            }
+
+            .hero {
+                padding: 100px 20px 40px;
+                margin-top: 68px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .ai-search-wrapper {
+                padding: 0 20px 60px;
+            }
+
+            .ai-search-card {
+                padding: 20px 16px;
+            }
+
+            .ai-search-input-wrapper {
+                flex-direction: column;
+            }
+
+            .articles-section {
+                padding: 60px 20px;
+            }
+
+            .activities-section {
+                padding: 60px 20px;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .activities-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-toolbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-buttons {
+                flex-direction: column;
+            }
+
+            .filter-btn,
+            .upload-btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .toast {
+                left: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <a href="index.html" class="header-logo">
+            <span>CX</span><span>Konnect</span>
+        </a>
+        <nav class="header-nav">
+            <a href="index.html">Home</a>
+            <a href="consulting.html">Consulting</a>
+            <a href="framework.html">Framework</a>
+            <a href="community.html">Community</a>
+        </nav>
+        <a href="index.html#contact" class="header-cta">Get in Touch</a>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-eyebrow">Knowledge Hub</div>
+        <h1>Articles & Resources</h1>
+        <p class="hero-subtitle">Frameworks, case studies, leadership insights, and ready-to-run workshop activities — curated for CX leaders building outcome-driven organizations.</p>
+    </section>
+
+    <!-- AI SEARCH -->
+    <section class="ai-search-wrapper">
+        <div class="ai-search-card">
+            <div class="ai-search-header">
+                <div class="ai-search-title">Ask anything about CX Konnect</div>
+                <div class="ai-badge">AI Powered</div>
+            </div>
+            <div class="ai-search-input-wrapper">
+                <input type="text" id="aiSearchInput" placeholder="What would you like to know?" />
+                <button class="ai-search-btn" onclick="runSearch()">Ask AI →</button>
+            </div>
+            <div class="ai-chips">
+                <div class="ai-chip" onclick="prefill('What is CX Konnect?')">What is CX Konnect?</div>
+                <div class="ai-chip" onclick="prefill('Measuring outcomes')">Measuring outcomes</div>
+                <div class="ai-chip" onclick="prefill('Silo-breaking activities')">Silo-breaking activities</div>
+                <div class="ai-chip" onclick="prefill('Customer-first culture')">Customer-first culture</div>
+                <div class="ai-chip" onclick="prefill('AI vs AI tools')">AI vs AI tools</div>
+                <div class="ai-chip" onclick="prefill('Scaling CX')">Scaling CX</div>
+            </div>
+            <div class="ai-response" id="aiResponse">
+                <div class="ai-loading" id="aiLoading" style="display: none;">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+                <div class="ai-response-text" id="aiResponseText"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ARTICLES -->
+    <section class="articles-section">
+        <div class="section-eyebrow">Articles</div>
+        <h2 class="section-title">Articles & Insights</h2>
+        <div class="filter-toolbar">
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterArticles('all')">All</button>
+                <button class="filter-btn" onclick="filterArticles('framework')">Frameworks</button>
+                <button class="filter-btn" onclick="filterArticles('leadership')">Leadership</button>
+                <button class="filter-btn" onclick="filterArticles('ai')">AI & Tech</button>
+                <button class="filter-btn" onclick="filterArticles('culture')">Culture</button>
+                <button class="filter-btn" onclick="filterArticles('metrics')">Metrics</button>
+            </div>
+            <button class="upload-btn" onclick="openUpload()">Upload Article</button>
+        </div>
+        <div class="articles-grid" id="articlesGrid"></div>
+    </section>
+
+    <!-- ACTIVITIES -->
+    <section class="activities-section">
+        <div class="section-eyebrow">Team Toolkit</div>
+        <h2 class="section-title">Workshop Activities</h2>
+        <p class="activities-subtitle">Ready-to-run exercises for CX leaders.</p>
+        <div class="activities-grid" id="activitiesGrid"></div>
+    </section>
+
+    <!-- MODAL -->
+    <div class="modal-overlay" id="uploadModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h2>Share an Article or Resource</h2>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-text">Help grow the CX Konnect knowledge base. Share articles, case studies, and resources that matter to you.</p>
+                <form class="modal-form" onsubmit="submitUpload(event)">
+                    <div class="form-group">
+                        <label>Title *</label>
+                        <input type="text" id="uploadTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Category *</label>
+                        <select id="uploadCategory" required>
+                            <option value="">Select a category</option>
+                            <option value="Framework">Framework</option>
+                            <option value="Leadership">Leadership</option>
+                            <option value="AI & Tech">AI & Tech</option>
+                            <option value="Culture">Culture</option>
+                            <option value="Metrics">Metrics</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Summary *</label>
+                        <textarea id="uploadSummary" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>URL</label>
+                        <input type="url" id="uploadURL">
+                    </div>
+                    <div class="form-group">
+                        <label>Name *</label>
+                        <input type="text" id="uploadName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" id="uploadEmail" required>
+                    </div>
+                    <button type="submit" class="modal-submit">Submit Article</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>CX Konnect</h3>
+                <p>Building the operating system for outcome-driven customer experience leadership.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Resources</h3>
+                <a href="resources.html">Articles & Resources</a><br>
+                <a href="community.html">Community</a><br>
+                <a href="consulting.html">Consulting</a>
+            </div>
+            <div class="footer-col">
+                <h3>Connect</h3>
+                <a href="mailto:stefanie.cxkonnect@gmail.com">Email</a><br>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+        <div class="footer-divider"></div>
+        <div class="footer-bottom">© 2026 CX Konnect. All rights reserved.</div>
+    </footer>
+
+    <script>
+        // ARTICLES DATA
+        const ARTICLES = [
+            { id:1, cat:'framework', emoji:'🗺️', bg:'linear-gradient(135deg,#0A4D68,#088395)', title:'The Five Outcome Stages of CX Konnect', excerpt:'A journey defined by activity tells you what happened. One defined by outcomes tells you whether it mattered.', author:'Steffi Thorlichen', date:'Feb 28, 2026', read:'8 min', tag:'Framework', url:'/articles/five-outcome-stages.html' },
+            { id:2, cat:'metrics', emoji:'📊', bg:'linear-gradient(135deg,#2D6A4F,#4A9B8E)', title:'The 8 Metrics That Actually Matter in CX', excerpt:'Most CX dashboards measure the wrong things. Here are the eight outcome-oriented metrics that reveal whether your customers are truly succeeding.', author:'Steffi Thorlichen', date:'Feb 14, 2026', read:'6 min', tag:'Metrics', url:'/articles/8-metrics-that-matter.html' },
+            { id:3, cat:'culture', emoji:'🌊', bg:'linear-gradient(135deg,#1a3a5c,#0A4D68)', title:"Culture Is Not the Soft Side of CX Strategy — It's the Deciding Factor", excerpt:'Tools create conditions. People create outcomes. Why the most advanced CX system will underperform a mediocre one run by a team that owns the outcome.', author:'Steffi Thorlichen', date:'Jan 30, 2026', read:'10 min', tag:'Culture', url:'/articles/culture-deciding-factor.html' },
+            { id:4, cat:'ai', emoji:'🤖', bg:'linear-gradient(135deg,#05BFDB,#088395)', title:'AI-Tooled vs AI-Intelligent: The Architectural Difference', excerpt:'Most CX organizations are AI-tooled. The organizations that separate from the field will build something architecturally different.', author:'Steffi Thorlichen', date:'Jan 12, 2026', read:'7 min', tag:'AI & Tech', url:'/articles/ai-tooled-vs-ai-intelligent.html' },
+            { id:5, cat:'leadership', emoji:'🧭', bg:'linear-gradient(135deg,#062D3F,#0A4D68)', title:"From Reaction to Connection: A Leader's Transition Guide", excerpt:'Your teams are not underperforming — they are unconnected. How to move from reactive chaos to proactive clarity in 90 days.', author:'Steffi Thorlichen', date:'Dec 18, 2025', read:'9 min', tag:'Leadership', url:'/articles/reaction-to-connection.html' },
+            { id:6, cat:'framework', emoji:'⚙️', bg:'linear-gradient(135deg,#4A9B8E,#05BFDB)', title:'Breaking Silos: The Gap Map Exercise', excerpt:"The most costly CX failures don't happen inside departments — they happen between them. A practical approach to mapping your invisible gaps.", author:'Steffi Thorlichen', date:'Dec 5, 2025', read:'5 min', tag:'Framework', url:'/articles/breaking-silos-gap-map.html' },
+        ];
+
+        // ACTIVITIES DATA
+        const ACTIVITIES = [
+            { emoji:'🗺️', title:'The Gap Map', desc:'Teams map every customer handoff point and identify where context is lost between functions.', tags:['60 min','Cross-functional','6–10 people'], url:'/workshops/gap-map.html' },
+            { emoji:'🔍', title:'The Outcome Audit', desc:'Each leader articulates what outcome their most important customers are hired to achieve.', tags:['45 min','Leadership team','4–8 people'], url:'/workshops/outcome-audit.html' },
+            { emoji:'🪤', title:'The Blame-Free Post-Mortem', desc:'A structured backward-trace of one churn event to find the structural cause — not the people cause.', tags:['45 min','Cross-functional','5–8 people'], url:'/workshops/blame-free-post-mortem.html' },
+            { emoji:'📋', title:'The Culture Contract', desc:'Each person commits to one behavior that makes the org function as one team.', tags:['60 min','Any team','8–15 people'], url:'/workshops/culture-contract.html' },
+            { emoji:'🚀', title:'The 90-Day Transformation Sprint', desc:'Leadership team defines a CX Konnect pilot: one journey, one segment, one success metric.', tags:['90 min','Leadership','4–8 people'], url:'/workshops/90-day-transformation-sprint.html' },
+            { emoji:'🤝', title:'The Outcome Handoff Matrix', desc:'Each function lead writes what the customer should experience after their work is done.', tags:['60 min','Cross-functional','All functions'], url:'/workshops/outcome-handoff-matrix.html' },
+            { emoji:'📏', title:'Stage Health Audit', desc:'Rate each of the five CX Konnect stages Red/Yellow/Green as a team.', tags:['60 min','Leadership team','4–8 people'], url:'/workshops/stage-health-audit.html' },
+            { emoji:'🧩', title:'Fix the Gap Sprint', desc:'Cross-functional pairs map one transition and design a minimum viable handoff protocol.', tags:['90 min','Cross-functional','6–12 people'], url:'/workshops/fix-the-gap-sprint.html' },
+        ];
+
+        // RENDER ARTICLES
+        function renderArticles(filter = 'all') {
+            const grid = document.getElementById('articlesGrid');
+            const filtered = filter === 'all' ? ARTICLES : ARTICLES.filter(a => a.cat === filter);
+
+            grid.innerHTML = filtered.map(article => `
+                <a href="${article.url}" class="article-card" style="--article-accent: ${article.bg}">
+                    <div class="article-icon" style="background: ${article.bg}">${article.emoji}</div>
+                    <span class="article-tag">${article.tag}</span>
+                    <h3 class="article-title">${article.title}</h3>
+                    <p class="article-excerpt">${article.excerpt}</p>
+                    <div class="article-meta">
+                        <div class="article-author-date">
+                            <div><strong>${article.author}</strong></div>
+                            <div>${article.date}</div>
+                        </div>
+                        <span class="article-read">${article.read} →</span>
+                    </div>
+                </a>
+            `).join('');
+        }
+
+        // RENDER ACTIVITIES
+        function renderActivities() {
+            const grid = document.getElementById('activitiesGrid');
+            grid.innerHTML = ACTIVITIES.map(activity => `
+                <a href="${activity.url}" class="activity-card">
+                    <div class="activity-icon">${activity.emoji}</div>
+                    <h3 class="activity-title">${activity.title}</h3>
+                    <p class="activity-desc">${activity.desc}</p>
+                    <div class="activity-tags">
+                        ${activity.tags.map(tag => `<span class="activity-tag">${tag}</span>`).join('')}
+                    </div>
+                </a>
+            `).join('');
+        }
+
+        // FILTER ARTICLES
+        function filterArticles(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderArticles(category);
+        }
+
+        // AI SEARCH
+        function prefill(text) {
+            document.getElementById('aiSearchInput').value = text;
+        }
+
+        function runSearch() {
+            const query = document.getElementById('aiSearchInput').value.trim();
+            if (!query) return;
+
+            const responseDiv = document.getElementById('aiResponse');
+            const loading = document.getElementById('aiLoading');
+            const responseText = document.getElementById('aiResponseText');
+
+            responseDiv.classList.add('active');
+            loading.style.display = 'flex';
+            responseText.textContent = '';
+
+            // Simulate AI response
+            setTimeout(() => {
+                loading.style.display = 'none';
+                responseText.textContent = `Here's what we know about "${query}": CX Konnect is an outcome-driven operating system for customer experience leaders. Our framework focuses on five outcome stages, connecting your entire organization around measurable customer success metrics. Visit our main framework page for detailed implementation guidance.`;
+            }, 1500);
+        }
+
+        // MODAL HANDLERS
+        function openUpload() {
+            document.getElementById('uploadModal').classList.add('open');
+        }
+
+        function closeModal() {
+            document.getElementById('uploadModal').classList.remove('open');
+        }
+
+        function submitUpload(event) {
+            event.preventDefault();
+
+            const title = document.getElementById('uploadTitle').value;
+            const category = document.getElementById('uploadCategory').value;
+            const summary = document.getElementById('uploadSummary').value;
+            const url = document.getElementById('uploadURL').value;
+            const name = document.getElementById('uploadName').value;
+            const email = document.getElementById('uploadEmail').value;
+
+            const mailtoLink = `mailto:stefanie.cxkonnect@gmail.com?subject=New Article Submission: ${encodeURIComponent(title)}&body=Title: ${encodeURIComponent(title)}%0ACategory: ${encodeURIComponent(category)}%0ASummary: ${encodeURIComponent(summary)}%0AURL: ${encodeURIComponent(url)}%0ASubmitted by: ${encodeURIComponent(name)} (${encodeURIComponent(email)})`;
+
+            window.location.href = mailtoLink;
+            closeModal();
+            showToast('Thank you! Your submission has been sent.');
+
+            document.querySelector('.modal-form').reset();
+        }
+
+        // TOAST
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        // INIT
+        renderArticles();
+        renderActivities();
+
+        // Close modal on escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // Close modal on overlay click
+        document.getElementById('uploadModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('uploadModal')) closeModal();
+        });
+    </script>
+</body>
+</html>

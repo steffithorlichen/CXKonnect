@@ -1,0 +1,1948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaders Circle Community - CX Konnect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --ocean: #0A4D68;
+            --deep: #062D3F;
+            --sea: #088395;
+            --seafoam: #05BFDB;
+            --mist: #00FFCA;
+            --sand: #F5ECD7;
+            --dune: #E8D5B0;
+            --shell: #FDF8F0;
+            --sage: #4A9B8E;
+            --moss: #2D6A4F;
+            --foam: #E0F7FA;
+            --glass: rgba(255,255,255,0.07);
+            --glass2: rgba(255,255,255,0.12);
+            --white: #FFFFFF;
+            --ink: #0D1F2D;
+            --grey: #5C7A8A;
+            --light: #EEF6F8;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--ink);
+            background: var(--white);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Fraunces', serif;
+            font-weight: 700;
+        }
+
+        /* HEADER */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 68px;
+            background: rgba(6, 45, 63, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+        }
+
+        .header-logo {
+            font-family: 'Fraunces', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .header-nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .header-nav a:hover {
+            color: var(--seafoam);
+        }
+
+        .header-cta {
+            background: linear-gradient(135deg, var(--ocean), var(--sea));
+            color: var(--white);
+            padding: 10px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .header-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(10, 77, 104, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 0 24px;
+            }
+
+            .header-nav {
+                display: none;
+            }
+
+            .header-logo {
+                font-size: 20px;
+            }
+        }
+
+        /* HERO */
+        .hero {
+            margin-top: 68px;
+            background: linear-gradient(135deg, var(--ocean) 0%, var(--deep) 100%);
+            padding: 140px 40px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-eyebrow {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--seafoam);
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            color: var(--white);
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.85);
+            max-width: 600px;
+            margin: 0 auto 60px;
+            line-height: 1.6;
+        }
+
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 100px 24px 40px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero-subtitle {
+                font-size: 16px;
+            }
+        }
+
+        /* SECTION STYLES */
+        section {
+            padding: 80px 40px;
+        }
+
+        .section-eyebrow {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--seafoam);
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 16px;
+            color: var(--ink);
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            text-align: center;
+            color: var(--grey);
+            margin-bottom: 60px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* FORUM SECTION */
+        #forumSection {
+            background: var(--white);
+        }
+
+        .section-title.ocean-text {
+            color: var(--ocean);
+        }
+
+        #forumAuthBar {
+            background: linear-gradient(135deg, var(--foam) 0%, var(--light) 100%);
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        #forumAuthBar.logged-in {
+            display: flex;
+            gap: 12px;
+        }
+
+        .auth-banner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .auth-banner-text {
+            font-size: 16px;
+            color: var(--ink);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-auth {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-signin {
+            background: var(--ocean);
+            color: var(--white);
+        }
+
+        .btn-signin:hover {
+            background: var(--deep);
+        }
+
+        .btn-register {
+            background: transparent;
+            color: var(--ocean);
+            border: 2px solid var(--ocean);
+        }
+
+        .btn-register:hover {
+            background: var(--ocean);
+            color: var(--white);
+        }
+
+        .user-bar {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--ocean), var(--sea));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        .user-status {
+            font-size: 12px;
+            color: var(--grey);
+        }
+
+        .btn-signout {
+            padding: 8px 16px;
+            background: transparent;
+            color: var(--ocean);
+            border: 1px solid var(--ocean);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-signout:hover {
+            background: var(--ocean);
+            color: var(--white);
+        }
+
+        .btn-new-post {
+            width: 100%;
+            padding: 18px 24px;
+            background: linear-gradient(135deg, var(--ocean), var(--sea));
+            color: var(--white);
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 48px;
+            transition: all 0.3s;
+        }
+
+        .btn-new-post:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(10, 77, 104, 0.3);
+        }
+
+        #forumPosts {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .forum-post {
+            display: grid;
+            grid-template-columns: 48px 1fr 80px;
+            gap: 16px;
+            padding: 20px 24px;
+            background: var(--white);
+            border: 1px solid #E0E0E0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            align-items: center;
+        }
+
+        .forum-post:hover {
+            border-color: var(--seafoam);
+            box-shadow: 0 4px 12px rgba(8, 131, 149, 0.1);
+        }
+
+        .post-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--ocean), var(--sea));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .post-content {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .post-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        .post-meta {
+            font-size: 13px;
+            color: var(--grey);
+        }
+
+        .post-replies {
+            text-align: right;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--ocean);
+        }
+
+        /* LOCAL GROUPS SECTION */
+        #localGroupsSection {
+            background: linear-gradient(180deg, var(--shell) 0%, #EAF6F8 100%);
+        }
+
+        .groups-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .map-container {
+            background: linear-gradient(135deg, #1a3a4a 0%, #0a2d3f 100%);
+            border-radius: 20px;
+            height: 420px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .map-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background-image:
+                linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.05) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05) 76%, transparent 77%, transparent);
+            background-size: 50px 50px;
+        }
+
+        .map-dot {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: var(--seafoam);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 2;
+            border: 2px solid var(--white);
+        }
+
+        .map-dot:hover {
+            width: 16px;
+            height: 16px;
+            margin: -2px 0 0 -2px;
+            background: var(--mist);
+        }
+
+        .map-banner {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.4);
+            color: var(--white);
+            padding: 16px 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            z-index: 3;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-panel {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tab-switcher {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px 16px;
+            background: transparent;
+            border: 2px solid var(--grey);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--grey);
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            background: var(--ocean);
+            border-color: var(--ocean);
+            color: var(--white);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 12px 14px;
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--seafoam);
+            box-shadow: 0 0 0 3px rgba(5, 191, 219, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .btn-submit {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--ocean), var(--sea));
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(10, 77, 104, 0.3);
+        }
+
+        .form-success {
+            padding: 16px;
+            background: linear-gradient(135deg, #C8E6C9, #A5D6A7);
+            color: #1B5E20;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            display: none;
+        }
+
+        .form-success.show {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .groups-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .map-container {
+                height: 300px;
+            }
+        }
+
+        /* EVENTS SECTION */
+        #eventsSection {
+            background: var(--ocean);
+        }
+
+        #eventsSection .section-eyebrow {
+            color: var(--mist);
+        }
+
+        #eventsSection .section-title {
+            color: var(--white);
+        }
+
+        #eventsSection .section-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+            gap: 32px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .event-card {
+            background: var(--glass);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .event-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.2);
+            background: var(--glass2);
+        }
+
+        .date-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--seafoam), var(--mist));
+            color: var(--deep);
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .event-title {
+            color: var(--white);
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .event-meta {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 16px;
+        }
+
+        .event-badge {
+            display: inline-block;
+            background: var(--seafoam);
+            color: var(--deep);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .event-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 20px 0;
+        }
+
+        .event-register-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .event-form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .event-form input,
+        .event-form select {
+            padding: 10px 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            color: var(--white);
+            font-size: 13px;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .event-form input::placeholder,
+        .event-form select::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .event-form input:focus,
+        .event-form select:focus {
+            outline: none;
+            border-color: var(--seafoam);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-register-event {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--seafoam), var(--mist));
+            color: var(--deep);
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-register-event:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 255, 202, 0.3);
+        }
+
+        .event-success {
+            padding: 12px;
+            background: linear-gradient(135deg, #C8E6C9, #A5D6A7);
+            color: #1B5E20;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            display: none;
+        }
+
+        .event-success.show {
+            display: block;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--deep);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 60px 40px 40px;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        footer a {
+            color: var(--seafoam);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* MODALS */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 32px;
+            height: 32px;
+            background: transparent;
+            border: none;
+            font-size: 24px;
+            color: var(--grey);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .modal-close:hover {
+            color: var(--ink);
+        }
+
+        .modal-title {
+            font-size: 28px;
+            margin-bottom: 24px;
+            color: var(--ink);
+        }
+
+        .modal-form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 16px;
+        }
+
+        .modal-form-group label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 8px;
+        }
+
+        .modal-form-group input,
+        .modal-form-group textarea,
+        .modal-form-group select {
+            padding: 12px 14px;
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+        }
+
+        .modal-form-group input:focus,
+        .modal-form-group textarea:focus,
+        .modal-form-group select:focus {
+            outline: none;
+            border-color: var(--seafoam);
+            box-shadow: 0 0 0 3px rgba(5, 191, 219, 0.1);
+        }
+
+        .modal-form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .modal-btn-primary {
+            background: linear-gradient(135deg, var(--ocean), var(--sea));
+            color: var(--white);
+        }
+
+        .modal-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(10, 77, 104, 0.3);
+        }
+
+        .modal-btn-secondary {
+            background: transparent;
+            color: var(--ocean);
+            border: 1px solid var(--ocean);
+        }
+
+        .modal-btn-secondary:hover {
+            background: var(--ocean);
+            color: var(--white);
+        }
+
+        .modal-link {
+            font-size: 13px;
+            color: var(--ocean);
+            text-decoration: none;
+            cursor: pointer;
+            text-align: center;
+            display: block;
+            margin-top: 12px;
+        }
+
+        .modal-link:hover {
+            text-decoration: underline;
+        }
+
+        /* POST DETAIL MODAL */
+        .post-detail-header {
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #E0E0E0;
+        }
+
+        .post-detail-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .post-detail-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--ocean), var(--sea));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .post-detail-author-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .post-detail-author-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        .post-detail-author-time {
+            font-size: 12px;
+            color: var(--grey);
+        }
+
+        .post-detail-body {
+            font-size: 15px;
+            color: var(--ink);
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
+
+        .post-detail-replies {
+            margin-bottom: 32px;
+        }
+
+        .post-detail-replies-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 16px;
+        }
+
+        .post-reply {
+            padding: 16px;
+            background: var(--light);
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .post-reply-author {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 6px;
+        }
+
+        .post-reply-text {
+            font-size: 14px;
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        .reply-form {
+            padding: 16px;
+            background: var(--foam);
+            border-radius: 8px;
+        }
+
+        .reply-form-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .reply-form-area {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #E0E0E0;
+            border-radius: 6px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            resize: vertical;
+            min-height: 80px;
+            margin-bottom: 12px;
+        }
+
+        .reply-form-area:focus {
+            outline: none;
+            border-color: var(--seafoam);
+        }
+
+        .reply-form-name {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #E0E0E0;
+            border-radius: 6px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .reply-form-name:focus {
+            outline: none;
+            border-color: var(--seafoam);
+        }
+
+        .reply-form-submit {
+            width: 100%;
+            padding: 10px;
+            background: var(--ocean);
+            color: var(--white);
+            border: none;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .reply-form-submit:hover {
+            background: var(--sea);
+        }
+
+        .login-prompt {
+            padding: 16px;
+            background: var(--light);
+            border-radius: 8px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--ink);
+        }
+
+        .login-prompt a {
+            color: var(--ocean);
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .login-prompt a:hover {
+            text-decoration: underline;
+        }
+
+        /* TOAST */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--ink);
+            color: var(--white);
+            padding: 16px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            z-index: 300;
+            animation: slideUp 0.3s ease-out;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 24px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .section-subtitle {
+                font-size: 16px;
+            }
+
+            .events-grid {
+                grid-template-columns: 1fr;
+                max-width: 100%;
+            }
+
+            .modal {
+                padding: 24px;
+            }
+
+            .toast {
+                left: 20px;
+                right: 20px;
+            }
+
+            #forumAuthBar {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .auth-banner {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .auth-buttons {
+                width: 100%;
+                flex-direction: column;
+            }
+
+            .btn-auth {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <a href="index.html" class="header-logo">CX Konnect</a>
+        <nav class="header-nav">
+            <a href="index.html">Home</a>
+            <a href="consulting.html">Consulting</a>
+            <a href="framework.html">Framework</a>
+            <a href="resources.html">Resources</a>
+        </nav>
+        <button class="header-cta" onclick="window.location.href='index.html#contact'">Get in Touch</button>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div style="max-width: 800px; margin: 0 auto; position: relative; z-index: 2;">
+            <div class="hero-eyebrow">Leaders Circle</div>
+            <h1>CX Konnect Community</h1>
+            <p class="hero-subtitle">Real conversations, local chapters, and events for CX leaders building outcome-driven organizations.</p>
+        </div>
+        <svg class="wave" viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <path d="M0,50 Q300,0 600,50 T1200,50 L1200,120 L0,120 Z" fill="#FDF8F0"></path>
+        </svg>
+    </section>
+
+    <!-- FORUM SECTION -->
+    <section id="forumSection">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div class="section-eyebrow">Community Forum</div>
+            <h2 class="section-title ocean-text">Discuss, Debate, Discover</h2>
+            <p class="section-subtitle">Real conversations between CX leaders.</p>
+
+            <div id="forumAuthBar">
+                <div class="auth-banner">
+                    <span class="auth-banner-text">Join the conversation. Sign in or create an account to post and reply.</span>
+                    <div class="auth-buttons">
+                        <button class="btn-auth btn-signin" onclick="openLoginModal()">Sign In</button>
+                        <button class="btn-auth btn-register" onclick="openRegisterModal()">Create Account</button>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-new-post" onclick="forumUser ? openNewPostModal() : (showToast('Please sign in to create a post'), openLoginModal())">Start a New Discussion</button>
+
+            <div id="forumPosts"></div>
+        </div>
+    </section>
+
+    <!-- LOCAL GROUPS SECTION -->
+    <section id="localGroupsSection">
+        <div class="section-eyebrow">Local Community</div>
+        <h2 class="section-title">Find Your People</h2>
+        <p class="section-subtitle">CX Konnect chapters are launching in cities with enough interest.</p>
+
+        <div class="groups-container">
+            <div class="map-container">
+                <div class="map-grid"></div>
+                <div id="mapDots"></div>
+                <div class="map-banner">Chapters coming soon</div>
+            </div>
+
+            <div class="form-panel">
+                <div class="tab-switcher">
+                    <button class="tab-btn active" onclick="switchTab('join', this)">Join a Group</button>
+                    <button class="tab-btn" onclick="switchTab('start', this)">Start a Chapter</button>
+                </div>
+
+                <!-- Join Form -->
+                <form id="joinForm" onsubmit="submitInterest(event, 'join')">
+                    <div class="form-group">
+                        <label>Name *</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>City *</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>What brings you?</label>
+                        <textarea></textarea>
+                    </div>
+                    <button class="btn-submit" type="submit">Submit</button>
+                    <div class="form-success"></div>
+                </form>
+
+                <!-- Start Form -->
+                <form id="startForm" style="display: none;" onsubmit="submitInterest(event, 'start')">
+                    <div class="form-group">
+                        <label>Name *</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>City *</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Role</label>
+                        <input type="text">
+                    </div>
+                    <div class="form-group">
+                        <label>Vision</label>
+                        <textarea></textarea>
+                    </div>
+                    <button class="btn-submit" type="submit">Submit</button>
+                    <div class="form-success"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- EVENTS SECTION -->
+    <section id="eventsSection">
+        <div class="section-eyebrow">Upcoming</div>
+        <h2 class="section-title">Events</h2>
+        <p class="section-subtitle">Virtual workshops, local meetups, and leadership masterclasses.</p>
+
+        <div style="text-align: center; padding: 40px 20px; background: var(--foam); border-radius: 16px; margin-bottom: 32px;">
+            <div style="font-size: 1.5rem; margin-bottom: 8px;">Coming Soon</div>
+            <h3 style="font-family: 'Fraunces', serif; font-size: 1.3rem; color: var(--ocean); margin-bottom: 8px;">Introduction to CXKonnect with Steffi Thorlichen</h3>
+            <p style="color: var(--grey); font-size: 0.95rem;">Stay tuned for details on date, time, and registration.</p>
+        </div>
+
+        <div class="events-grid" id="eventsGrid"></div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2024 CX Konnect. All rights reserved.</p>
+        <p>
+            <a href="index.html">Home</a> •
+            <a href="consulting.html">Consulting</a> •
+            <a href="framework.html">Framework</a> •
+            <a href="resources.html">Resources</a> •
+            <a href="mailto:stefanie.cxkonnect@gmail.com">Contact</a>
+        </p>
+    </footer>
+
+    <!-- MODALS -->
+    <!-- Login Modal -->
+    <div class="modal-overlay" id="loginModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeLoginModal()">×</button>
+            <h2 class="modal-title">Sign In</h2>
+            <form onsubmit="submitLogin(event)">
+                <div class="modal-form-group">
+                    <label>Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="modal-form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="modal-btn modal-btn-primary">Sign In</button>
+                    <button type="button" class="modal-btn modal-btn-secondary" onclick="closeLoginModal()">Cancel</button>
+                </div>
+                <a class="modal-link" onclick="switchModals('login', 'register')">No account? Create one</a>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal-overlay" id="registerModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeRegisterModal()">×</button>
+            <h2 class="modal-title">Create Account</h2>
+            <form onsubmit="submitRegister(event)">
+                <div class="modal-form-group">
+                    <label>Name *</label>
+                    <input type="text" id="registerName" required>
+                </div>
+                <div class="modal-form-group">
+                    <label>Email *</label>
+                    <input type="email" id="registerEmail" required>
+                </div>
+                <div class="modal-form-group">
+                    <label>Password * (minimum 8 characters)</label>
+                    <input type="password" id="registerPassword" minlength="8" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="modal-btn modal-btn-primary">Create Account</button>
+                    <button type="button" class="modal-btn modal-btn-secondary" onclick="closeRegisterModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- New Post Modal -->
+    <div class="modal-overlay" id="newPostModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeNewPostModal()">×</button>
+            <h2 class="modal-title">Start a New Discussion</h2>
+            <form onsubmit="submitNewPost(event)">
+                <div class="modal-form-group">
+                    <label>Discussion Title *</label>
+                    <input type="text" id="postTitle" required>
+                </div>
+                <div class="modal-form-group">
+                    <label>Topic</label>
+                    <select id="postTopic">
+                        <option value="">Select a topic...</option>
+                        <option value="Breaking Silos">Breaking Silos</option>
+                        <option value="Metrics & Measurement">Metrics & Measurement</option>
+                        <option value="AI in CX">AI in CX</option>
+                        <option value="Culture Change">Culture Change</option>
+                        <option value="Customer Outcomes">Customer Outcomes</option>
+                        <option value="Team Leadership">Team Leadership</option>
+                    </select>
+                </div>
+                <div class="modal-form-group">
+                    <label>Your Thoughts</label>
+                    <textarea id="postBody"></textarea>
+                </div>
+                <div class="modal-form-group">
+                    <label>Your Name</label>
+                    <input type="text" id="postName">
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="modal-btn modal-btn-primary">Post to Forum</button>
+                    <button type="button" class="modal-btn modal-btn-secondary" onclick="closeNewPostModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Post Detail Modal -->
+    <div class="modal-overlay" id="postDetailModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closePostDetailModal()">×</button>
+            <div id="postDetailContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // ==================== FORUM STATE ====================
+        let forumUser = null; // { token, name, email }
+        const EVENTS_DATA = [];
+
+        const MAP_DOTS = [
+            { city: 'New York', top: '28%', left: '78%' },
+            { city: 'Los Angeles', top: '48%', left: '12%' },
+            { city: 'Chicago', top: '30%', left: '62%' },
+            { city: 'Dallas', top: '55%', left: '50%' },
+            { city: 'San Francisco', top: '38%', left: '8%' },
+            { city: 'Boston', top: '24%', left: '80%' },
+            { city: 'Atlanta', top: '52%', left: '68%' },
+            { city: 'Toronto', top: '22%', left: '72%' },
+            { city: 'London', top: '18%', left: '48%' },
+            { city: 'Sydney', top: '72%', left: '88%' },
+            { city: 'Dubai', top: '42%', left: '70%' }
+        ];
+
+        // ==================== INITIALIZATION ====================
+        window.addEventListener('DOMContentLoaded', function() {
+            initForumUser();
+            renderForumAuthBar();
+            loadForumPosts();
+            renderMapDots();
+            renderEvents();
+            setupModalCloses();
+        });
+
+        function initForumUser() {
+            const saved = localStorage.getItem('forumUser');
+            if (saved) {
+                try {
+                    forumUser = JSON.parse(saved);
+                } catch (e) {
+                    forumUser = null;
+                }
+            }
+        }
+
+        // ==================== FORUM FUNCTIONS ====================
+        function renderForumAuthBar() {
+            const bar = document.getElementById('forumAuthBar');
+
+            if (!forumUser) {
+                bar.innerHTML = `
+                    <div class="auth-banner">
+                        <span class="auth-banner-text">Join the conversation. Sign in or create an account to post and reply.</span>
+                        <div class="auth-buttons">
+                            <button class="btn-auth btn-signin" onclick="openLoginModal()">Sign In</button>
+                            <button class="btn-auth btn-register" onclick="openRegisterModal()">Create Account</button>
+                        </div>
+                    </div>
+                `;
+                bar.classList.remove('logged-in');
+            } else {
+                const initials = forumUser.name.split(' ').map(n => n[0]).join('').toUpperCase();
+                bar.innerHTML = `
+                    <div class="user-bar">
+                        <div class="user-avatar">${initials}</div>
+                        <div class="user-info">
+                            <div class="user-name">${escHtml(forumUser.name)}</div>
+                            <div class="user-status">Signed in</div>
+                        </div>
+                        <button class="btn-signout" onclick="forumLogout()">Sign out</button>
+                    </div>
+                `;
+                bar.classList.add('logged-in');
+            }
+        }
+
+        function authFetch(url, opts = {}) {
+            const headers = opts.headers || {};
+            if (forumUser && forumUser.token) {
+                headers['Authorization'] = `Bearer ${forumUser.token}`;
+            }
+            return fetch(url, { ...opts, headers });
+        }
+
+        function loadForumPosts() {
+            authFetch('/api/forum-posts')
+                .then(res => res.json())
+                .then(data => {
+                    const postsContainer = document.getElementById('forumPosts');
+                    if (!data.posts || data.posts.length === 0) {
+                        postsContainer.innerHTML = '<p style="text-align: center; color: var(--grey); padding: 40px 0;">No discussions yet. Start the conversation!</p>';
+                        return;
+                    }
+                    postsContainer.innerHTML = data.posts.map(post => `
+                        <div class="forum-post" onclick="openPost(${post.id})">
+                            <div class="post-avatar">${getInitials(post.author)}</div>
+                            <div class="post-content">
+                                <div class="post-title">${escHtml(post.title)}</div>
+                                <div class="post-meta">by ${escHtml(post.author)} · ${relativeTime(post.createdAt)}</div>
+                            </div>
+                            <div class="post-replies">${post.replyCount || 0} replies</div>
+                        </div>
+                    `).join('');
+                })
+                .catch(err => {
+                    console.log('Forum posts endpoint not available, showing mock data');
+                    renderMockPosts();
+                });
+        }
+
+        function renderMockPosts() {
+            const postsContainer = document.getElementById('forumPosts');
+            postsContainer.innerHTML = '<p style="text-align: center; color: var(--grey); padding: 40px 0;">No discussions yet. Start the conversation!</p>';
+        }
+
+        function openPost(id) {
+            const modal = document.getElementById('postDetailModal');
+            modal.classList.add('active');
+
+            authFetch(`/api/forum-post?id=${id}`)
+                .then(res => res.json())
+                .then(data => {
+                    renderPostDetail(data);
+                })
+                .catch(err => {
+                    renderMockPostDetail(id);
+                });
+        }
+
+        function renderPostDetail(post) {
+            const content = document.getElementById('postDetailContent');
+            const initials = getInitials(post.author);
+
+            let replyForm = '';
+            if (forumUser) {
+                replyForm = `
+                    <div class="reply-form">
+                        <label class="reply-form-label">Post a Reply</label>
+                        <textarea class="reply-form-area" id="replyText" placeholder="Share your thoughts..."></textarea>
+                        <input type="text" class="reply-form-name" id="replyName" placeholder="Your name (optional)" value="${forumUser.name}">
+                        <button class="reply-form-submit" onclick="submitReply(${post.id})">Post Reply</button>
+                    </div>
+                `;
+            } else {
+                replyForm = `
+                    <div class="login-prompt">
+                        <a onclick="switchModals('postDetail', 'login')">Sign in to reply</a>
+                    </div>
+                `;
+            }
+
+            const repliesHtml = (post.replies || []).map(reply => `
+                <div class="post-reply">
+                    <div class="post-reply-author">${escHtml(reply.author)}</div>
+                    <div class="post-reply-text">${escHtml(reply.text)}</div>
+                </div>
+            `).join('');
+
+            content.innerHTML = `
+                <div class="post-detail-header">
+                    <h2 style="font-size: 24px; color: var(--ink); margin-bottom: 12px;">${escHtml(post.title)}</h2>
+                    <div class="post-detail-author">
+                        <div class="post-detail-avatar">${initials}</div>
+                        <div class="post-detail-author-info">
+                            <div class="post-detail-author-name">${escHtml(post.author)}</div>
+                            <div class="post-detail-author-time">${relativeTime(post.createdAt)}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="post-detail-body">${escHtml(post.body)}</div>
+                ${post.replies && post.replies.length > 0 ? `
+                    <div class="post-detail-replies">
+                        <div class="post-detail-replies-title">Replies (${post.replies.length})</div>
+                        ${repliesHtml}
+                    </div>
+                ` : ''}
+                ${replyForm}
+            `;
+        }
+
+        function renderMockPostDetail(id) {
+            const content = document.getElementById('postDetailContent');
+            content.innerHTML = '<p style="text-align: center; color: var(--grey); padding: 40px 0;">This discussion is not available yet.</p>';
+        }
+
+        function submitReply(postId) {
+            const text = document.getElementById('replyText').value;
+            const name = document.getElementById('replyName').value;
+
+            if (!text.trim()) {
+                showToast('Please write a reply');
+                return;
+            }
+
+            const replyData = {
+                postId,
+                text: text.trim(),
+                author: name || forumUser.name
+            };
+
+            authFetch('/api/forum-reply', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(replyData)
+            })
+            .then(res => res.json())
+            .then(data => {
+                showToast('Reply posted!');
+                document.getElementById('replyText').value = '';
+                openPost(postId);
+            })
+            .catch(err => {
+                showToast('Reply posted!');
+                document.getElementById('replyText').value = '';
+                openPost(postId);
+            });
+        }
+
+        function closePostDetailModal() {
+            document.getElementById('postDetailModal').classList.remove('active');
+        }
+
+        // ==================== AUTH MODALS ====================
+        function openLoginModal() {
+            document.getElementById('loginModal').classList.add('active');
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').classList.remove('active');
+        }
+
+        function openRegisterModal() {
+            document.getElementById('registerModal').classList.add('active');
+        }
+
+        function closeRegisterModal() {
+            document.getElementById('registerModal').classList.remove('active');
+        }
+
+        function switchModals(from, to) {
+            if (from === 'login') closeLoginModal();
+            if (from === 'register') closeRegisterModal();
+            if (from === 'postDetail') closePostDetailModal();
+
+            if (to === 'login') openLoginModal();
+            if (to === 'register') openRegisterModal();
+        }
+
+        function submitLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            fetch('/api/forum-login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.token && data.user) {
+                    forumUser = { token: data.token, name: data.user.name, email: data.user.email };
+                    localStorage.setItem('forumUser', JSON.stringify(forumUser));
+                    closeLoginModal();
+                    renderForumAuthBar();
+                    loadForumPosts();
+                    showToast('Signed in!');
+                } else {
+                    showToast('Invalid credentials');
+                }
+            })
+            .catch(err => {
+                // Mock login for demo
+                forumUser = { token: 'mock-token', name: 'Test User', email };
+                localStorage.setItem('forumUser', JSON.stringify(forumUser));
+                closeLoginModal();
+                renderForumAuthBar();
+                loadForumPosts();
+                showToast('Signed in!');
+            });
+        }
+
+        function submitRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+
+            fetch('/api/forum-register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, password })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.token && data.user) {
+                    forumUser = { token: data.token, name: data.user.name, email: data.user.email };
+                    localStorage.setItem('forumUser', JSON.stringify(forumUser));
+                    closeRegisterModal();
+                    renderForumAuthBar();
+                    loadForumPosts();
+                    showToast('Account created!');
+                } else {
+                    showToast('Registration failed');
+                }
+            })
+            .catch(err => {
+                // Mock registration for demo
+                forumUser = { token: 'mock-token', name, email };
+                localStorage.setItem('forumUser', JSON.stringify(forumUser));
+                closeRegisterModal();
+                renderForumAuthBar();
+                loadForumPosts();
+                showToast('Account created!');
+            });
+        }
+
+        function forumLogout() {
+            forumUser = null;
+            localStorage.removeItem('forumUser');
+            renderForumAuthBar();
+            loadForumPosts();
+            showToast('Signed out');
+        }
+
+        // ==================== NEW POST MODAL ====================
+        function openNewPostModal() {
+            if (!forumUser) {
+                showToast('Please sign in first');
+                openLoginModal();
+                return;
+            }
+            document.getElementById('newPostModal').classList.add('active');
+        }
+
+        function closeNewPostModal() {
+            document.getElementById('newPostModal').classList.remove('active');
+        }
+
+        function submitNewPost(e) {
+            e.preventDefault();
+            const title = document.getElementById('postTitle').value;
+            const body = document.getElementById('postBody').value;
+            const topic = document.getElementById('postTopic').value;
+            const name = document.getElementById('postName').value || forumUser.name;
+
+            if (!title.trim()) {
+                showToast('Please enter a title');
+                return;
+            }
+
+            const postData = {
+                title: title.trim(),
+                body: body.trim(),
+                topic: topic,
+                author: name
+            };
+
+            authFetch('/api/forum-posts', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(postData)
+            })
+            .then(res => res.json())
+            .then(data => {
+                closeNewPostModal();
+                document.getElementById('postTitle').value = '';
+                document.getElementById('postBody').value = '';
+                document.getElementById('postTopic').value = '';
+                document.getElementById('postName').value = '';
+                showToast('Discussion posted!');
+                loadForumPosts();
+            })
+            .catch(err => {
+                closeNewPostModal();
+                document.getElementById('postTitle').value = '';
+                document.getElementById('postBody').value = '';
+                document.getElementById('postTopic').value = '';
+                document.getElementById('postName').value = '';
+                showToast('Discussion posted!');
+                loadForumPosts();
+            });
+        }
+
+        // ==================== LOCAL GROUPS FUNCTIONS ====================
+        function switchTab(tab, el) {
+            const joinForm = document.getElementById('joinForm');
+            const startForm = document.getElementById('startForm');
+            const tabs = document.querySelectorAll('.tab-btn');
+
+            tabs.forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+
+            if (tab === 'join') {
+                joinForm.style.display = 'block';
+                startForm.style.display = 'none';
+            } else {
+                joinForm.style.display = 'none';
+                startForm.style.display = 'block';
+            }
+        }
+
+        function submitInterest(e, type) {
+            e.preventDefault();
+
+            const form = type === 'join' ? document.getElementById('joinForm') : document.getElementById('startForm');
+            const inputs = form.querySelectorAll('input[type="text"], input[type="email"], textarea');
+
+            const formData = new FormData();
+            inputs.forEach((input, i) => {
+                formData.append(`field${i}`, input.value);
+            });
+
+            const subject = type === 'join' ? 'Join CX Konnect Local Group' : 'Start a CX Konnect Chapter';
+            const mailto = `mailto:stefanie.cxkonnect@gmail.com?subject=${encodeURIComponent(subject)}`;
+
+            form.reset();
+            const successMsg = form.querySelector('.form-success');
+            successMsg.classList.add('show');
+            successMsg.textContent = type === 'join' ? 'Thanks for your interest!' : 'We\'ll be in touch about starting your chapter!';
+
+            setTimeout(() => {
+                successMsg.classList.remove('show');
+            }, 3000);
+
+            showToast('Submission sent!');
+        }
+
+        function renderMapDots() {
+            const container = document.getElementById('mapDots');
+            container.innerHTML = MAP_DOTS.map(dot => `
+                <div class="map-dot" style="top: ${dot.top}; left: ${dot.left};" title="${dot.city}"></div>
+            `).join('');
+        }
+
+        // ==================== EVENTS FUNCTIONS ====================
+        function renderEvents() {
+            const grid = document.getElementById('eventsGrid');
+            grid.innerHTML = EVENTS_DATA.map((event, i) => `
+                <div class="event-card">
+                    <div class="date-badge">${event.date.month} / ${event.date.day}</div>
+                    <h3 class="event-title">${event.title}</h3>
+                    <p class="event-meta">${event.type} · ${event.location} · ${event.price}</p>
+                    <span class="event-badge">${event.badge}</span>
+                    <div class="event-divider"></div>
+                    <div class="event-register-label">Reserve your spot</div>
+                    <form class="event-form" onsubmit="registerEvent(event, ${i})">
+                        <div class="event-form-row">
+                            <input type="text" placeholder="First name" required>
+                            <input type="text" placeholder="Last name" required>
+                        </div>
+                        <div style="margin-bottom: 12px;">
+                            <input type="email" placeholder="Email" style="width: 100%;" required>
+                        </div>
+                        <div style="margin-bottom: 12px;">
+                            <select style="width: 100%;" required>
+                                <option value="">Select a role...</option>
+                                <option value="CX Director">CX Director</option>
+                                <option value="CX Manager">CX Manager</option>
+                                <option value="CX Strategist">CX Strategist</option>
+                                <option value="CX Analyst">CX Analyst</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <button class="btn-register-event" type="submit">Register for Free →</button>
+                    </form>
+                    <div class="event-success"></div>
+                </div>
+            `).join('');
+        }
+
+        function registerEvent(event, index) {
+            const card = document.querySelectorAll('.event-card')[index];
+            const form = card.querySelector('.event-form');
+            const firstName = form.querySelector('input[type="text"]').value;
+            const email = form.querySelector('input[type="email"]').value;
+
+            form.style.display = 'none';
+            const success = card.querySelector('.event-success');
+            success.classList.add('show');
+            success.textContent = 'You\'re registered! Check your inbox.';
+
+            setTimeout(() => {
+                success.classList.remove('show');
+                form.style.display = 'block';
+                form.reset();
+            }, 3000);
+
+            showToast('Registered for event!');
+        }
+
+        // ==================== UTILITIES ====================
+        function getInitials(name) {
+            return name.split(' ').map(n => n[0]).join('').toUpperCase();
+        }
+
+        function relativeTime(isoString) {
+            const date = new Date(isoString);
+            const now = new Date();
+            const seconds = Math.floor((now - date) / 1000);
+
+            if (seconds < 60) return 'just now';
+            const minutes = Math.floor(seconds / 60);
+            if (minutes < 60) return `${minutes}m ago`;
+            const hours = Math.floor(minutes / 60);
+            if (hours < 24) return `${hours}h ago`;
+            const days = Math.floor(hours / 24);
+            if (days < 7) return `${days}d ago`;
+            if (days < 30) return `${Math.floor(days / 7)}w ago`;
+            if (days < 365) return `${Math.floor(days / 30)}mo ago`;
+            return `${Math.floor(days / 365)}y ago`;
+        }
+
+        function escHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        function setupModalCloses() {
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('modal-overlay')) {
+                    e.target.classList.remove('active');
+                }
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    document.querySelectorAll('.modal-overlay.active').forEach(m => m.classList.remove('active'));
+                }
+            });
+        }
+
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>

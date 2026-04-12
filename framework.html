@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The CX Konnect Framework - Customer Experience Management System</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz@9..144&family=DM+Sans:wght@400;500;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --ocean: #0A4D68;
+            --deep: #062D3F;
+            --sea: #088395;
+            --seafoam: #05BFDB;
+            --mist: #00FFCA;
+            --shell: #FDF8F0;
+            --foam: #E0F7FA;
+            --ink: #0D1F2D;
+            --grey: #5C7A8A;
+            --glass: rgba(255, 255, 255, 0.07);
+            --glass2: rgba(255, 255, 255, 0.12);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--ink);
+            background-color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 68px;
+            background: rgba(6, 45, 63, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            text-decoration: none;
+            font-family: 'Fraunces', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .logo-cx {
+            color: white;
+        }
+
+        .logo-konnect {
+            color: var(--seafoam);
+        }
+
+        nav {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        nav a {
+            color: rgba(255, 255, 255, 0.75);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--seafoam);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--seafoam), var(--mist));
+            color: var(--deep);
+            padding: 10px 24px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(5, 191, 219, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 0 20px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .cta-button {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* ===== PAGE HERO ===== */
+        .page-hero {
+            background: linear-gradient(135deg, var(--ocean) 0%, var(--sea) 50%, var(--seafoam) 100%);
+            padding: 140px 40px 60px;
+            margin-top: 68px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .page-hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .eyebrow-pill {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: rgba(255, 255, 255, 0.85);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 24px;
+        }
+
+        .page-hero h1 {
+            font-family: 'Fraunces', serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .page-hero .subtitle {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.65);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .wave-svg {
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 80px;
+        }
+
+        @media (max-width: 768px) {
+            .page-hero {
+                padding: 100px 20px 40px;
+            }
+
+            .page-hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .page-hero .subtitle {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* ===== FRAMEWORK QUOTE ===== */
+        .framework-quote {
+            background: var(--shell);
+            padding: 80px 40px;
+            text-align: center;
+        }
+
+        .quote-block {
+            max-width: 700px;
+            margin: 0 auto;
+            border-left: 4px solid var(--seafoam);
+            padding-left: 32px;
+            text-align: left;
+        }
+
+        .quote-block blockquote {
+            font-family: 'Fraunces', serif;
+            font-size: 1.25rem;
+            color: var(--ocean);
+            font-style: italic;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .framework-quote {
+                padding: 60px 20px;
+            }
+
+            .quote-block blockquote {
+                font-size: 1.05rem;
+            }
+        }
+
+        /* ===== PILLARS SECTION ===== */
+        .pillars-section {
+            background: var(--shell);
+            padding: 40px 40px 80px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header .eyebrow-pill {
+            background: var(--foam);
+            border: 1px solid rgba(8, 131, 149, 0.2);
+            color: var(--sea);
+            text-transform: uppercase;
+        }
+
+        .section-header h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 2.2rem;
+            color: var(--ocean);
+            margin-top: 16px;
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .pillar-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(10, 77, 104, 0.08);
+        }
+
+        .pillar-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--seafoam), var(--mist));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 48px rgba(10, 77, 104, 0.12);
+        }
+
+        .pillar-card:hover::before {
+            opacity: 1;
+        }
+
+        .pillar-icon {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .pillar-card h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1rem;
+            color: var(--ocean);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .pillar-card p {
+            font-size: 0.82rem;
+            color: var(--grey);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 1024px) {
+            .pillars-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .pillars-section {
+                padding: 40px 20px 60px;
+            }
+
+            .pillars-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* ===== BOOK SECTION ===== */
+        .book-section {
+            background: var(--ocean);
+            padding: 80px 40px;
+        }
+
+        .book-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .book-eyebrow {
+            color: var(--mist);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .book-section h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 2.2rem;
+            color: white;
+            margin-bottom: 48px;
+        }
+
+        .book-cover-card {
+            background: var(--glass);
+            border: 1px solid var(--glass2);
+            border-radius: 20px;
+            padding: 48px 32px;
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+
+        .book-cover-card .book-title {
+            font-family: 'Fraunces', serif;
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .book-cover-card .book-subtitle {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.55);
+            margin-bottom: 24px;
+        }
+
+        .gradient-divider {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--seafoam), var(--mist));
+            margin: 24px auto;
+        }
+
+        .book-cover-card .book-author {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.75);
+            font-weight: 500;
+        }
+
+        .book-description {
+            color: rgba(255, 255, 255, 0.65);
+        }
+
+        .book-description p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .chapter-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 24px;
+        }
+
+        .chapter-tag {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: rgba(255, 255, 255, 0.65);
+            font-size: 0.72rem;
+            padding: 5px 13px;
+            border-radius: 100px;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 1024px) {
+            .book-content {
+                grid-template-columns: 1fr;
+            }
+
+            .book-cover-card {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .book-section {
+                padding: 60px 20px;
+            }
+
+            .book-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .book-cover-card {
+                padding: 32px 24px;
+            }
+
+            .book-cover-card .book-title {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            background: linear-gradient(180deg, var(--shell) 0%, #EAF6F8 100%);
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.4rem;
+            color: var(--ocean);
+            margin-bottom: 16px;
+        }
+
+        .cta-section p {
+            font-size: 0.9rem;
+            color: var(--grey);
+            margin-bottom: 32px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button-primary {
+            background: linear-gradient(135deg, var(--seafoam), var(--mist));
+            color: var(--deep);
+            padding: 14px 32px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .cta-button-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 32px rgba(5, 191, 219, 0.25);
+        }
+
+        @media (max-width: 768px) {
+            .cta-section {
+                padding: 40px 20px;
+            }
+
+            .cta-section h2 {
+                font-size: 1.2rem;
+            }
+
+            .cta-section p {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--ink);
+            color: rgba(255, 255, 255, 0.65);
+            padding: 60px 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.65);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--seafoam);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+        }
+
+        .footer-logo {
+            font-family: 'Fraunces', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .footer-logo .logo-konnect {
+            color: var(--seafoam);
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            footer {
+                padding: 40px 20px;
+            }
+        }
+
+        /* ===== UTILITY ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <a href="index.html" class="logo">
+            <span class="logo-cx">CX</span>
+            <span class="logo-konnect">Konnect</span>
+        </a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="consulting.html">Consulting</a>
+            <a href="resources.html">Resources</a>
+            <a href="community.html">Community</a>
+        </nav>
+        <a href="index.html#contact" class="cta-button">Get in Touch</a>
+    </header>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <div class="eyebrow-pill">The Methodology</div>
+            <h1>The CX Konnect Framework</h1>
+            <p class="subtitle">A connected system for delivering measurable customer outcomes at scale — where every function, metric, and AI investment works together.</p>
+        </div>
+        <svg class="wave-svg" viewBox="0 0 1200 80" preserveAspectRatio="none">
+            <path d="M0,40 Q300,10 600,40 T1200,40 L1200,80 L0,80 Z" fill="var(--shell)" opacity="0.3"></path>
+            <path d="M0,50 Q300,20 600,50 T1200,50 L1200,80 L0,80 Z" fill="var(--shell)"></path>
+        </svg>
+    </section>
+
+    <!-- FRAMEWORK QUOTE -->
+    <section class="framework-quote">
+        <div class="quote-block">
+            <blockquote>"Customers do not experience your org chart. They experience the gaps in it."</blockquote>
+        </div>
+    </section>
+
+    <!-- PILLARS SECTION -->
+    <section class="pillars-section">
+        <div class="section-header">
+            <div class="eyebrow-pill">Core Principles</div>
+            <h2>The Six Pillars</h2>
+        </div>
+        <div class="pillars-grid">
+            <div class="pillar-card">
+                <span class="pillar-icon">🎯</span>
+                <h3>Outcome-Driven</h3>
+                <p>Shift from measuring activity and sentiment to measuring whether customers achieve the results they signed up for.</p>
+            </div>
+            <div class="pillar-card">
+                <span class="pillar-icon">⚙️</span>
+                <h3>Cross-Functionally Connected</h3>
+                <p>Break the silos between Sales, Support, Success, Product, Education, and Partners. Build shared accountability.</p>
+            </div>
+            <div class="pillar-card">
+                <span class="pillar-icon">🧠</span>
+                <h3>AI-Amplified</h3>
+                <p>Deploy AI as the intelligence layer. Health scoring, predictive signals, automated playbooks working as a connected system.</p>
+            </div>
+            <div class="pillar-card">
+                <span class="pillar-icon">👥</span>
+                <h3>Culture-First Change</h3>
+                <p>Deliberate culture architecture: hiring, rituals, leadership behaviors, and the human engine that makes everything else work.</p>
+            </div>
+            <div class="pillar-card">
+                <span class="pillar-icon">📈</span>
+                <h3>Incrementally Scalable</h3>
+                <p>Start with one journey, one segment. Scale from a contained pilot to full transformation without the risk of doing too much.</p>
+            </div>
+            <div class="pillar-card">
+                <span class="pillar-icon">📊</span>
+                <h3>Metrics That Matter</h3>
+                <p>Replace vanity dashboards with outcome attainment rates, time-to-value, expansion readiness, and AI confidence scores.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOOK SECTION -->
+    <section class="book-section">
+        <div class="book-content">
+            <div class="book-cover-card">
+                <div class="book-eyebrow">The Book</div>
+                <div class="book-title">CX Konnect</div>
+                <div class="book-subtitle">From Silos to Systems, From Feelings to Outcomes</div>
+                <div class="gradient-divider"></div>
+                <div class="book-author">Steffi Thorlichen</div>
+            </div>
+            <div class="book-description">
+                <p>Thirteen chapters covering everything from the customer outcome imperative and cross-functional alignment to AI-enabled org design, culture transformation, and industry-specific applications across healthcare, technology, telecommunications, and financial services.</p>
+                <p>Includes the CX Konnect Leadership Playbook — a modular workbook with self-assessments, team exercises, and action plans for every chapter.</p>
+                <div class="chapter-tags">
+                    <span class="chapter-tag">Customer Outcomes</span>
+                    <span class="chapter-tag">Framework Overview</span>
+                    <span class="chapter-tag">Breaking Silos</span>
+                    <span class="chapter-tag">Journey Stages</span>
+                    <span class="chapter-tag">Function Orchestration</span>
+                    <span class="chapter-tag">Cross-Functional Fixes</span>
+                    <span class="chapter-tag">Metrics That Matter</span>
+                    <span class="chapter-tag">Culture Shift</span>
+                    <span class="chapter-tag">Industry Spotlights</span>
+                    <span class="chapter-tag">Scaling the Model</span>
+                    <span class="chapter-tag">AI Intelligence Layer</span>
+                    <span class="chapter-tag">Leadership Playbook</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="cta-section">
+        <h2>Want to implement this framework?</h2>
+        <p>From maturity assessment to full implementation — let's discuss how CX Konnect can work for your organization.</p>
+        <a href="consulting.html" class="cta-button-primary">Explore Consulting Services →</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="consulting.html">Consulting</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="community.html">Community</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="framework.html">The Framework</a></li>
+                    <li><a href="#">Case Studies</a></li>
+                    <li><a href="#">Guides</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <ul>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Email</a></li>
+                    <li><a href="#">Newsletter</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Accessibility</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-logo">
+                CX <span class="logo-konnect">Konnect</span>
+            </div>
+            <div>&copy; 2026 CX Konnect Consulting. All rights reserved.</div>
+        </div>
+    </footer>
+</body>
+</html>

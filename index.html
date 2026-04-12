@@ -1,2381 +1,1047 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="description" content="CX Konnect — Customer experience strategy and consulting by Stefanie Thorlichen. Outcome-driven CX transformation, AI-enabled org design, and leadership workshops.">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CX Konnect — CX Strategy &amp; Consulting | Stefanie Thorlichen</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,300;1,9..144,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&display=swap" rel="stylesheet">
-<style>
-/* Safe fallbacks if fonts fail to load */
-body { font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
-.logo-name, .hero h1, .section-title, .article-title, .activity-title,
-.fsc-title, .event-title, .stefanie-quote, .modal-head h3,
-.hero-stats .n, .fp-replies .n, .hs .n {
-  font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
-}
-</style>
-<style>
-:root {
-  --ocean:    #0A4D68;
-  --deep:     #062D3F;
-  --sea:      #088395;
-  --seafoam:  #05BFDB;
-  --mist:     #00FFCA;
-  --sand:     #F5ECD7;
-  --dune:     #E8D5B0;
-  --shell:    #FDF8F0;
-  --sage:     #4A9B8E;
-  --moss:     #2D6A4F;
-  --foam:     #E0F7FA;
-  --glass:    rgba(255,255,255,0.07);
-  --glass2:   rgba(255,255,255,0.12);
-  --white:    #FFFFFF;
-  --ink:      #0D1F2D;
-  --grey:     #5C7A8A;
-  --light:    #EEF6F8;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CX Konnect | Customer Experience Strategy & Consulting</title>
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-/* Ensure page renders immediately even if fonts are loading */
-html { -webkit-text-size-adjust: 100%; }
-html { scroll-behavior: smooth; }
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&family=DM+Sans:opsz,wght@9..300,400;9..300,500;9..300,600;9..300,700&display=swap" rel="stylesheet">
 
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--shell);
-  color: var(--ink);
-  overflow-x: hidden;
-}
+    <style>
+        :root {
+            --ocean: #0A4D68;
+            --deep: #062D3F;
+            --sea: #088395;
+            --seafoam: #05BFDB;
+            --mist: #00FFCA;
+            --sand: #F5ECD7;
+            --dune: #E8D5B0;
+            --shell: #FDF8F0;
+            --sage: #4A9B8E;
+            --moss: #2D6A4F;
+            --foam: #E0F7FA;
+            --glass: rgba(255,255,255,0.07);
+            --glass2: rgba(255,255,255,0.12);
+            --white: #FFFFFF;
+            --ink: #0D1F2D;
+            --grey: #5C7A8A;
+            --light: #EEF6F8;
+        }
 
-/* ── ANIMATED WAVE BACKGROUND ── */
-body::before {
-  content: '';
-  position: fixed; top: 0; left: 0; right: 0; height: 100vh;
-  background: linear-gradient(160deg, var(--deep) 0%, var(--ocean) 40%, var(--sea) 75%, #0E9F9F 100%);
-  z-index: -2;
-  opacity: 0;
-  pointer-events: none;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* ── HEADER ── */
-header {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  padding: 0 48px;
-  height: 68px;
-  display: flex; align-items: center; justify-content: space-between;
-  background: rgba(6,45,63,0.92);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(5,191,219,0.15);
-  transition: all .3s;
-}
-.logo {
-  display: flex; align-items: center; gap: 12px;
-  text-decoration: none;
-}
-.logo-mark {
-  width: 36px; height: 36px;
-  background: linear-gradient(135deg, var(--seafoam), var(--mist));
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Fraunces', serif;
-  font-size: 1rem; font-weight: 700;
-  color: var(--deep);
-}
-.logo-name {
-  font-family: 'Fraunces', serif;
-  font-size: 1.1rem; font-weight: 500;
-  color: var(--white);
-  letter-spacing: .02em;
-}
-.logo-name span { color: var(--seafoam); }
-nav { display: flex; align-items: center; gap: 4px; }
-.nav-link {
-  padding: 7px 16px;
-  font-size: .83rem; font-weight: 500;
-  color: rgba(255,255,255,.65);
-  text-decoration: none;
-  border-radius: 8px;
-  transition: all .2s;
-  cursor: pointer; border: none; background: none;
-  font-family: 'DM Sans', sans-serif;
-}
-.nav-link:hover { color: var(--white); background: var(--glass2); }
-.nav-cta {
-  margin-left: 8px;
-  padding: 8px 20px;
-  background: linear-gradient(135deg, var(--seafoam), var(--mist));
-  color: var(--deep); border: none; border-radius: 8px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: .83rem; font-weight: 700;
-  cursor: pointer; transition: all .2s;
-}
-.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(5,191,219,.4); }
+        html {
+            scroll-behavior: smooth;
+        }
 
-/* ── HERO ── */
-.hero {
-  min-height: 100vh;
-  background: linear-gradient(160deg, var(--deep) 0%, var(--ocean) 45%, var(--sea) 80%, #0E9F9F 100%);
-  position: relative; overflow: hidden;
-  display: flex; flex-direction: column; justify-content: center;
-  padding: 120px 48px 80px;
-}
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--ink);
+            background: var(--white);
+            line-height: 1.6;
+        }
 
-/* Animated wave shapes */
-.wave-shape {
-  position: absolute; bottom: -2px; left: 0; right: 0;
-  height: 160px; overflow: hidden;
-}
-.wave-shape svg { width: 100%; height: 100%; }
+        /* ===== COMING SOON BANNER ===== */
+        .coming-soon-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 36px;
+            background: linear-gradient(90deg, var(--sea), var(--seafoam));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            z-index: 200;
+        }
 
-.hero-ripple {
-  position: absolute; border-radius: 50%;
-  border: 1px solid rgba(5,191,219,.15);
-  animation: rippleOut 8s ease-out infinite;
-  pointer-events: none;
-}
-.hero-ripple:nth-child(1) { width: 400px; height: 400px; top: 10%; right: 5%; animation-delay: 0s; }
-.hero-ripple:nth-child(2) { width: 600px; height: 600px; top: 5%; right: 0%; animation-delay: 2s; }
-.hero-ripple:nth-child(3) { width: 800px; height: 800px; top: 0%; right: -5%; animation-delay: 4s; }
-@keyframes rippleOut {
-  0%   { opacity: .6; transform: scale(.95); }
-  50%  { opacity: .2; }
-  100% { opacity: .6; transform: scale(1.05); }
-}
+        /* ===== HEADER ===== */
+        header {
+            position: fixed;
+            top: 36px;
+            left: 0;
+            right: 0;
+            height: 68px;
+            background: rgba(6, 45, 63, 0.92);
+            backdrop-filter: blur(16px);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
 
-/* Floating particles */
-.particles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
-.particle {
-  position: absolute; border-radius: 50%;
-  background: rgba(0,255,202,.12);
-  animation: float linear infinite;
-}
-@keyframes float {
-  0%   { transform: translateY(100vh) scale(0); opacity: 0; }
-  10%  { opacity: 1; }
-  90%  { opacity: .5; }
-  100% { transform: translateY(-20px) scale(1); opacity: 0; }
-}
+        .logo {
+            font-family: 'Fraunces', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            text-decoration: none;
+            display: flex;
+            gap: 4px;
+        }
 
-.hero-inner {
-  max-width: 1200px; margin: 0 auto; width: 100%;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
-  position: relative; z-index: 1;
-}
+        .logo-cx {
+            color: var(--white);
+        }
 
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(5,191,219,.12);
-  border: 1px solid rgba(5,191,219,.25);
-  color: var(--seafoam);
-  font-size: .73rem; font-weight: 600;
-  letter-spacing: .1em; text-transform: uppercase;
-  padding: 6px 14px; border-radius: 100px;
-  margin-bottom: 20px;
-}
-.hero-eyebrow::before {
-  content: '';
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--mist);
-  animation: pulse 2s infinite;
-}
-@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+        .logo-konnect {
+            color: var(--seafoam);
+        }
 
-.hero h1 {
-  font-family: 'Fraunces', serif;
-  font-size: clamp(2.4rem, 4vw, 3.6rem);
-  color: var(--white);
-  line-height: 1.12;
-  font-weight: 500;
-  margin-bottom: 20px;
-}
-.hero h1 em { font-style: italic; color: var(--seafoam); }
-.hero-desc {
-  font-size: 1.05rem; color: rgba(255,255,255,.65);
-  line-height: 1.7; font-weight: 300;
-  margin-bottom: 36px; max-width: 480px;
-}
-.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
-.btn-primary {
-  padding: 13px 28px;
-  background: linear-gradient(135deg, var(--seafoam), var(--mist));
-  color: var(--deep);
-  border: none; border-radius: 10px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: .95rem; font-weight: 700;
-  cursor: pointer; transition: all .25s;
-  text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
-}
-.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(5,191,219,.45); }
-.btn-ghost {
-  padding: 13px 28px;
-  background: var(--glass);
-  color: var(--white);
-  border: 1px solid rgba(255,255,255,.2);
-  border-radius: 10px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: .95rem; font-weight: 500;
-  cursor: pointer; transition: all .25s;
-  text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
-}
-.btn-ghost:hover { background: var(--glass2); border-color: rgba(5,191,219,.4); }
+        nav {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
 
-/* Steffi card */
-.stefanie-card {
-  background: rgba(255,255,255,.07);
-  border: 1px solid rgba(255,255,255,.12);
-  border-radius: 20px;
-  padding: 32px;
-  backdrop-filter: blur(10px);
-  position: relative; overflow: hidden;
-}
-.stefanie-card::before {
-  content: '';
-  position: absolute; top: -50px; right: -50px;
-  width: 200px; height: 200px;
-  background: radial-gradient(circle, rgba(5,191,219,.15), transparent 70%);
-  border-radius: 50%;
-}
-.stefanie-avatar {
-  width: 72px; height: 72px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--seafoam), var(--sage));
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Fraunces', serif;
-  font-size: 1.6rem; font-weight: 700;
-  color: var(--white);
-  margin-bottom: 16px;
-  border: 3px solid rgba(5,191,219,.3);
-}
-.stefanie-quote {
-  font-family: 'Fraunces', serif;
-  font-size: 1.1rem; font-style: italic;
-  color: rgba(255,255,255,.9);
-  line-height: 1.55;
-  margin-bottom: 16px;
-}
-.stefanie-sig {
-  font-size: .8rem; color: rgba(255,255,255,.5);
-}
-.stefanie-sig strong { color: var(--seafoam); display: block; font-size: .88rem; font-weight: 600; }
+        nav a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
 
-/* Hero stats */
-.hero-stats {
-  display: flex; gap: 24px; margin-top: 40px; padding-top: 32px;
-  border-top: 1px solid rgba(255,255,255,.1);
-}
-.hs { text-align: left; }
-.hs .n { font-family: 'Fraunces', serif; font-size: 1.8rem; font-weight: 500; color: var(--seafoam); display: block; }
-.hs .l { font-size: .72rem; color: rgba(255,255,255,.4); text-transform: uppercase; letter-spacing: .1em; }
+        nav a:hover {
+            color: var(--seafoam);
+        }
 
-/* ── AI SEARCH BAR ── */
-.search-section {
-  background: var(--shell);
-  padding: 0 48px;
-  position: relative; z-index: 10;
-}
-.search-card {
-  max-width: 900px; margin: -36px auto 0;
-  background: var(--white);
-  border-radius: 18px;
-  box-shadow: 0 20px 60px rgba(10,77,104,.18);
-  padding: 28px 32px;
-  position: relative; z-index: 10;
-}
-.search-card-title {
-  font-family: 'Fraunces', serif;
-  font-size: 1rem; font-weight: 500;
-  color: var(--ocean);
-  margin-bottom: 14px;
-  display: flex; align-items: center; gap: 8px;
-}
-.ai-badge {
-  background: linear-gradient(135deg, var(--seafoam), var(--mist));
-  color: var(--deep);
-  font-size: .65rem; font-weight: 800;
-  letter-spacing: .1em; text-transform: uppercase;
-  padding: 2px 8px; border-radius: 100px;
-}
-.search-input-wrap {
-  display: flex; gap: 10px; align-items: stretch;
-}
-.search-input {
-  flex: 1; padding: 13px 18px;
-  border: 2px solid var(--foam);
-  border-radius: 10px; outline: none;
-  font-family: 'DM Sans', sans-serif;
-  font-size: .92rem; color: var(--ink);
-  transition: border-color .2s;
-  background: var(--light);
-}
-.search-input:focus { border-color: var(--seafoam); background: var(--white); }
-.search-input::placeholder { color: #9BB8C4; }
-.search-go {
-  padding: 0 24px;
-  background: linear-gradient(135deg, var(--ocean), var(--sea));
-  color: var(--white); border: none; border-radius: 10px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: .88rem; font-weight: 600;
-  cursor: pointer; transition: all .2s; white-space: nowrap;
-}
-.search-go:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(10,77,104,.3); }
-.search-suggestions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
-.sugg-chip {
-  padding: 5px 13px;
-  background: var(--foam);
-  color: var(--sea);
-  font-size: .78rem; font-weight: 500;
-  border-radius: 100px; cursor: pointer;
-  border: 1px solid rgba(5,191,219,.2);
-  transition: all .2s;
-}
-.sugg-chip:hover { background: var(--seafoam); color: var(--deep); }
+        .cta-header {
+            background: linear-gradient(135deg, var(--seafoam), var(--mist));
+            color: var(--ink);
+            padding: 8px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-/* AI Response */
-.ai-response {
-  margin-top: 16px; padding: 20px;
-  background: linear-gradient(135deg, rgba(10,77,104,.04), rgba(5,191,219,.06));
-  border: 1px solid rgba(5,191,219,.2);
-  border-radius: 12px;
-  display: none;
-}
-.ai-response.show { display: block; animation: fadeIn .3s ease; }
-@keyframes fadeIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
-.ai-response-header { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
-.ai-dot { width: 8px; height: 8px; background: var(--seafoam); border-radius: 50%; animation: pulse 1.5s infinite; }
-.ai-label { font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--sea); }
-.ai-text { font-size: .9rem; color: var(--ink); line-height: 1.65; }
-.ai-loading { display: flex; gap: 5px; align-items: center; }
-.ai-loading span { width: 7px; height: 7px; background: var(--seafoam); border-radius: 50%; animation: bounce .8s infinite; }
-.ai-loading span:nth-child(2) { animation-delay: .15s; }
-.ai-loading span:nth-child(3) { animation-delay: .3s; }
-@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+        .cta-header:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(5, 191, 219, 0.3);
+        }
 
-/* ── SECTION WRAPPER ── */
-.section { padding: 80px 48px; }
-.section-inner { max-width: 1200px; margin: 0 auto; }
-.section-header { margin-bottom: 48px; }
-.section-eyebrow {
-  font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
-  color: var(--seafoam); margin-bottom: 10px; display: block;
-}
-.section-title {
-  font-family: 'Fraunces', serif;
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
-  color: var(--ocean); font-weight: 500; line-height: 1.2;
-  margin-bottom: 10px;
-}
-.section-sub { font-size: .95rem; color: var(--grey); font-weight: 300; line-height: 1.6; max-width: 520px; }
+        /* ===== HERO SECTION ===== */
+        .hero {
+            background: linear-gradient(160deg, var(--deep) 0%, var(--ocean) 45%, var(--sea) 80%, #0E9F9F 100%);
+            padding: 160px 40px 80px;
+            position: relative;
+            overflow: hidden;
+        }
 
-/* ── ARTICLES ── */
-.articles-section { background: var(--shell); }
-.articles-toolbar {
-  display: flex; align-items: center; gap: 12px;
-  flex-wrap: wrap; margin-bottom: 32px;
-}
-.filter-pill {
-  padding: 7px 16px;
-  border-radius: 100px;
-  border: 1.5px solid var(--dune);
-  background: transparent;
-  font-family: 'DM Sans', sans-serif;
-  font-size: .8rem; font-weight: 500;
-  color: var(--grey);
-  cursor: pointer; transition: all .2s;
-}
-.filter-pill.active, .filter-pill:hover {
-  background: var(--ocean); border-color: var(--ocean); color: var(--white);
-}
-.upload-btn {
-  margin-left: auto;
-  padding: 9px 20px;
-  background: var(--ocean);
-  color: var(--white); border: none; border-radius: 8px;
-  font-family: 'DM Sans', sans-serif; font-size: .83rem; font-weight: 600;
-  cursor: pointer; transition: all .2s;
-  display: flex; align-items: center; gap: 7px;
-}
-.upload-btn:hover { background: var(--sea); transform: translateY(-1px); }
+        .hero-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 60px;
+            align-items: center;
+            z-index: 10;
+            position: relative;
+        }
 
-.articles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.article-card {
-  background: var(--white);
-  border-radius: 16px;
-  overflow: hidden;
-  border: 1px solid rgba(10,77,104,.08);
-  transition: all .25s;
-  display: flex; flex-direction: column;
-  cursor: pointer;
-  text-decoration: none; color: inherit;
-}
-.article-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(10,77,104,.14); }
-.article-card-img {
-  height: 160px;
-  position: relative; overflow: hidden;
-}
-.article-card-img-bg {
-  width: 100%; height: 100%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 3rem;
-}
-.article-tag {
-  position: absolute; top: 12px; left: 12px;
-  background: rgba(10,77,104,.85);
-  color: var(--seafoam);
-  font-size: .65rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
-  padding: 4px 10px; border-radius: 100px;
-}
-.article-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
-.article-title {
-  font-family: 'Fraunces', serif;
-  font-size: 1rem; font-weight: 500;
-  color: var(--ocean); line-height: 1.35;
-  margin-bottom: 8px;
-}
-.article-excerpt { font-size: .82rem; color: var(--grey); line-height: 1.6; flex: 1; margin-bottom: 14px; }
-.article-meta { display: flex; align-items: center; justify-content: space-between; font-size: .73rem; color: #9BB8C4; }
-.article-read { color: var(--sea); font-weight: 600; font-size: .78rem; }
+        .hero-text {
+            animation: fadeInUp 0.8s ease-out;
+        }
 
-/* ── ACTIVITIES ── */
-.activities-section { background: linear-gradient(180deg, #EAF6F8 0%, var(--shell) 100%); }
-.activities-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
-.activity-card {
-  background: var(--white);
-  border-radius: 16px; padding: 24px;
-  border: 1px solid rgba(10,77,104,.08);
-  transition: all .25s; cursor: pointer;
-  position: relative; overflow: hidden;
-  text-decoration: none; color: inherit; display: block;
-}
-.activity-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 4px;
-  background: linear-gradient(90deg, var(--seafoam), var(--mist));
-  transform: scaleX(0); transform-origin: left;
-  transition: transform .3s;
-}
-.activity-card:hover::before { transform: scaleX(1); }
-.activity-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(10,77,104,.12); }
-.activity-icon {
-  width: 48px; height: 48px; border-radius: 12px;
-  background: linear-gradient(135deg, var(--foam), #B3EAF5);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.5rem; margin-bottom: 14px;
-}
-.activity-title { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 500; color: var(--ocean); margin-bottom: 6px; }
-.activity-desc { font-size: .82rem; color: var(--grey); line-height: 1.55; margin-bottom: 14px; }
-.activity-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-.activity-tag {
-  padding: 3px 10px; border-radius: 100px;
-  background: var(--foam); color: var(--sea);
-  font-size: .7rem; font-weight: 600;
-}
+        .hero-eyebrow {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--seafoam);
+            margin-bottom: 16px;
+        }
 
-/* ── FORUM ── */
-.forum-section { background: var(--white); }
-.forum-grid { display: grid; grid-template-columns: 1fr; }
-.forum-posts { display: flex; flex-direction: column; gap: 12px; }
-.forum-post {
-  padding: 18px 20px;
-  border: 1.5px solid rgba(10,77,104,.08);
-  border-radius: 12px;
-  cursor: pointer; transition: all .2s;
-  display: grid; grid-template-columns: auto 1fr auto;
-  gap: 14px; align-items: center;
-}
-.forum-post:hover { border-color: var(--seafoam); background: var(--foam); }
-.fp-avatar {
-  width: 40px; height: 40px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: .85rem; font-weight: 700; color: var(--white);
-  flex-shrink: 0;
-}
-.fp-title { font-size: .9rem; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
-.fp-meta { font-size: .75rem; color: var(--grey); }
-.fp-meta span { color: var(--sea); font-weight: 500; }
-.fp-replies { text-align: center; }
-.fp-replies .n { font-family: 'Fraunces', serif; font-size: 1.2rem; font-weight: 500; color: var(--ocean); display: block; }
-.fp-replies .l { font-size: .68rem; color: var(--grey); text-transform: uppercase; letter-spacing: .08em; }
+        .hero h1 {
+            font-family: 'Fraunces', serif;
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
 
-.new-post-btn {
-  width: 100%;
-  padding: 13px;
-  background: linear-gradient(135deg, var(--ocean), var(--sea));
-  color: var(--white); border: none; border-radius: 10px;
-  font-family: 'DM Sans', sans-serif; font-size: .9rem; font-weight: 600;
-  cursor: pointer; transition: all .2s; margin-bottom: 20px;
-}
-.new-post-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(10,77,104,.25); }
+        .hero-subtitle {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
 
-.forum-sidebar-card {
-  background: var(--light);
-  border-radius: 14px; padding: 20px; margin-bottom: 16px;
-}
-.fsc-title { font-family: 'Fraunces', serif; font-size: .95rem; font-weight: 500; color: var(--ocean); margin-bottom: 14px; }
-.topic-pill {
-  display: inline-block; padding: 5px 13px;
-  background: var(--white); border: 1px solid rgba(10,77,104,.1);
-  border-radius: 100px; font-size: .78rem; color: var(--grey);
-  margin: 4px; cursor: pointer; transition: all .2s;
-}
-.topic-pill:hover { background: var(--seafoam); color: var(--deep); border-color: var(--seafoam); }
-.trending-item { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(10,77,104,.08); }
-.trending-item:last-child { border-bottom: none; }
-.trending-n { font-family: 'Fraunces', serif; font-size: 1rem; color: var(--seafoam); font-weight: 700; min-width: 24px; }
-.trending-t { font-size: .82rem; color: var(--ink); font-weight: 500; }
+        .hero-links {
+            display: flex;
+            gap: 32px;
+            animation: fadeInUp 0.8s ease-out 0.15s both;
+        }
 
-/* ── LOCAL GROUPS / MAP ── */
-.groups-section { background: linear-gradient(180deg, var(--shell) 0%, #EAF6F8 100%); }
-.groups-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
-.map-placeholder {
-  background: linear-gradient(135deg, var(--deep), var(--ocean));
-  border-radius: 20px; overflow: hidden;
-  height: 420px; position: relative;
-  display: flex; align-items: center; justify-content: center;
-}
-.map-grid {
-  position: absolute; inset: 0;
-  background-image:
-    linear-gradient(rgba(5,191,219,.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(5,191,219,.05) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-.map-dots { position: absolute; inset: 0; }
-.map-dot {
-  position: absolute;
-  width: 12px; height: 12px; border-radius: 50%;
-  background: var(--seafoam);
-  box-shadow: 0 0 0 4px rgba(5,191,219,.2);
-  cursor: pointer; transition: transform .2s;
-}
-.map-dot::after {
-  content: attr(data-city);
-  position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
-  background: rgba(6,45,63,.9); color: var(--seafoam);
-  font-size: .65rem; font-weight: 600; white-space: nowrap;
-  padding: 3px 8px; border-radius: 4px;
-  opacity: 0; transition: opacity .2s; pointer-events: none;
-}
-.map-dot:hover { transform: scale(1.5); }
-.map-dot:hover::after { opacity: 1; }
-.map-coming-soon {
-  position: absolute; bottom: 20px; left: 20px; right: 20px;
-  background: rgba(6,45,63,.82); backdrop-filter: blur(8px);
-  border: 1px solid rgba(5,191,219,.2); border-radius: 12px;
-  padding: 13px 18px;
-  display: flex; align-items: center; gap: 10px;
-}
-.map-coming-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--seafoam); animation: pulse 2s infinite; flex-shrink: 0; }
-.map-coming-text { font-size: .78rem; color: rgba(255,255,255,.7); }
-.map-coming-text strong { color: var(--seafoam); }
+        .hero-link {
+            color: var(--seafoam);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            letter-spacing: 0.2px;
+        }
 
-/* Interest form panel */
-.interest-panel { display: flex; flex-direction: column; gap: 16px; }
-.interest-tabs {
-  display: flex; gap: 0;
-  background: var(--foam); border-radius: 10px; padding: 4px;
-}
-.interest-tab {
-  flex: 1; padding: 9px 16px; border: none; border-radius: 8px;
-  font-family: 'DM Sans', sans-serif; font-size: .83rem; font-weight: 600;
-  cursor: pointer; transition: all .2s; background: transparent; color: var(--grey);
-}
-.interest-tab.active { background: var(--white); color: var(--ocean); box-shadow: 0 2px 8px rgba(10,77,104,.12); }
-.interest-form-card {
-  background: var(--white); border-radius: 16px; padding: 28px;
-  border: 1px solid rgba(10,77,104,.08);
-  box-shadow: 0 4px 20px rgba(10,77,104,.07);
-}
-.interest-form-title {
-  font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 500;
-  color: var(--ocean); margin-bottom: 6px;
-}
-.interest-form-desc { font-size: .83rem; color: var(--grey); line-height: 1.6; margin-bottom: 20px; font-weight: 300; }
-.interest-success {
-  display: none; text-align: center; padding: 20px 0;
-}
-.interest-success-icon { font-size: 2.5rem; margin-bottom: 10px; }
-.interest-success-msg { font-family: 'Fraunces', serif; font-size: 1rem; color: var(--ocean); font-weight: 500; }
-.interest-success-sub { font-size: .82rem; color: var(--grey); margin-top: 5px; }
+        .hero-link:hover {
+            color: var(--mist);
+        }
 
-/* ── EVENTS ── */
-.events-section { background: var(--ocean); }
-.events-section .section-eyebrow { color: var(--mist); }
-.events-section .section-title { color: var(--white); }
-.events-section .section-sub { color: rgba(255,255,255,.55); }
-.events-grid { display: grid; grid-template-columns: minmax(280px, 480px); gap: 20px; justify-content: center; }
-.event-card {
-  background: var(--glass);
-  border: 1px solid rgba(255,255,255,.1);
-  border-radius: 16px; padding: 24px;
-  transition: all .25s; cursor: pointer;
-  backdrop-filter: blur(8px);
-}
-.event-card:hover { background: var(--glass2); transform: translateY(-3px); }
-.event-date {
-  display: inline-flex; flex-direction: column; align-items: center;
-  background: linear-gradient(135deg, var(--seafoam), var(--mist));
-  color: var(--deep);
-  border-radius: 10px; padding: 8px 16px;
-  font-family: 'Fraunces', serif;
-  margin-bottom: 16px;
-}
-.event-date .month { font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
-.event-date .day { font-size: 1.6rem; font-weight: 700; line-height: 1; }
-.event-title { font-family: 'Fraunces', serif; font-size: 1rem; color: var(--white); margin-bottom: 8px; font-weight: 500; }
-.event-meta { font-size: .78rem; color: rgba(255,255,255,.5); line-height: 1.6; }
-.event-type {
-  display: inline-block; margin-top: 12px;
-  font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
-  padding: 3px 10px; border-radius: 100px;
-}
-.type-virtual { background: rgba(5,191,219,.15); color: var(--seafoam); }
-.type-inperson { background: rgba(0,255,202,.12); color: var(--mist); }
+        .hero-link span {
+            margin-left: 6px;
+            transition: margin-left 0.3s;
+        }
 
+        .hero-link:hover span {
+            margin-left: 10px;
+        }
 
-/* ── EVENT REGISTRATION ── */
-.event-reg-divider { height: 1px; background: rgba(255,255,255,.12); margin: 18px 0; }
-.event-reg-label {
-  font-size: .68rem; font-weight: 700; text-transform: uppercase;
-  letter-spacing: .1em; color: var(--mist); margin-bottom: 12px;
-  display: flex; align-items: center; gap: 8px;
-}
-.event-reg-label::before {
-  content: ''; width: 6px; height: 6px; border-radius: 50%;
-  background: var(--mist); animation: pulse 2s infinite;
-}
-.event-reg-fields { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
-.event-reg-input {
-  width: 100%; padding: 10px 14px;
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.2); border-radius: 10px;
-  color: var(--white); font-family: 'DM Sans', sans-serif; font-size: .88rem;
-  outline: none; transition: border-color .2s;
-}
-.event-reg-input::placeholder { color: rgba(255,255,255,.35); }
-.event-reg-input:focus { border-color: var(--seafoam); background: rgba(255,255,255,.13); }
-.event-reg-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.event-reg-btn {
-  width: 100%; padding: 11px;
-  background: linear-gradient(135deg, var(--seafoam), var(--mist));
-  color: var(--deep); border: none; border-radius: 10px;
-  font-family: 'DM Sans', sans-serif; font-size: .9rem; font-weight: 700;
-  cursor: pointer; transition: all .25s;
-}
-.event-reg-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(5,191,219,.5); }
-.event-reg-btn:disabled { opacity: .6; transform: none; cursor: default; }
-.event-reg-success {
-  display: none; text-align: center; padding: 12px 0 4px;
-}
-.event-reg-success-icon { font-size: 2rem; margin-bottom: 8px; }
-.event-reg-success-msg { color: var(--mist); font-weight: 700; font-size: .92rem; margin-bottom: 4px; }
-.event-reg-success-sub { color: rgba(255,255,255,.5); font-size: .78rem; line-height: 1.5; }
+        .profile-card {
+            background: var(--glass2);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 32px 28px;
+            color: var(--white);
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
 
-/* ── UPLOAD MODAL ── */
-.overlay {
-  display: none; position: fixed; inset: 0;
-  background: rgba(6,45,63,.75); backdrop-filter: blur(6px);
-  z-index: 300; align-items: center; justify-content: center; padding: 20px;
-}
-.overlay.open { display: flex; }
-.modal {
-  background: var(--white); border-radius: 20px;
-  width: 100%; max-width: 520px;
-  box-shadow: 0 32px 80px rgba(6,45,63,.35);
-  overflow: hidden;
-  animation: modalUp .25s ease;
-}
-@keyframes modalUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
-.modal-head {
-  background: linear-gradient(135deg, var(--ocean), var(--sea));
-  padding: 24px 28px;
-  display: flex; align-items: center; justify-content: space-between;
-}
-.modal-head h3 { font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--white); font-weight: 500; }
-.modal-x { background: rgba(255,255,255,.15); border: none; color: var(--white); width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; }
-.modal-x:hover { background: rgba(255,255,255,.25); }
-.modal-body { padding: 28px; }
-.mf-group { margin-bottom: 18px; }
-.mf-label { font-size: .78rem; font-weight: 600; color: var(--grey); margin-bottom: 6px; display: block; }
-.mf-input, .mf-select, .mf-textarea {
-  width: 100%; border: 2px solid var(--dune);
-  border-radius: 8px; padding: 10px 14px;
-  font-family: 'DM Sans', sans-serif; font-size: .88rem;
-  color: var(--ink); outline: none; transition: border-color .2s;
-  background: var(--shell);
-}
-.mf-input:focus, .mf-select:focus, .mf-textarea:focus { border-color: var(--seafoam); background: var(--white); }
-.mf-textarea { resize: vertical; min-height: 80px; }
-.drop-zone {
-  border: 2px dashed var(--dune); border-radius: 10px;
-  padding: 32px; text-align: center;
-  cursor: pointer; transition: all .2s;
-  background: var(--shell);
-}
-.drop-zone:hover { border-color: var(--seafoam); background: var(--foam); }
-.drop-zone .drop-icon { font-size: 2rem; margin-bottom: 8px; }
-.drop-zone p { font-size: .85rem; color: var(--grey); }
-.drop-zone small { font-size: .73rem; color: #9BB8C4; }
-.modal-submit {
-  width: 100%; padding: 13px;
-  background: linear-gradient(135deg, var(--ocean), var(--sea));
-  color: var(--white); border: none; border-radius: 10px;
-  font-family: 'DM Sans', sans-serif; font-size: .95rem; font-weight: 700;
-  cursor: pointer; transition: all .2s; margin-top: 8px;
-}
-.modal-submit:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(10,77,104,.3); }
+        .profile-headshot {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center top;
+            margin: 0 auto 20px;
+            display: block;
+            border: 3px solid rgba(5, 191, 219, 0.35);
+        }
 
-/* ── FORUM NEW POST MODAL ── */
-.forum-modal { max-width: 600px; }
+        .profile-card h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
 
-/* ── FOOTER ── */
-footer {
-  background: var(--deep);
-  padding: 56px 48px 32px;
-}
-.footer-inner { max-width: 1200px; margin: 0 auto; }
-.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
-.footer-brand .logo-name { font-size: 1.2rem; }
-.footer-desc { font-size: .83rem; color: rgba(255,255,255,.4); line-height: 1.65; margin-top: 14px; max-width: 280px; }
-.footer-col h4 { font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--seafoam); margin-bottom: 16px; }
-.footer-link { display: block; font-size: .83rem; color: rgba(255,255,255,.45); text-decoration: none; margin-bottom: 10px; transition: color .2s; cursor: pointer; }
-.footer-link:hover { color: var(--white); }
-.footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.08); font-size: .75rem; color: rgba(255,255,255,.3); }
+        .profile-card .title {
+            font-size: 0.85rem;
+            color: var(--seafoam);
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
 
-/* ── TOAST ── */
-.toast { position: fixed; bottom: 24px; right: 24px; background: var(--ocean); color: var(--white); padding: 12px 20px; border-radius: 10px; font-size: .85rem; font-weight: 500; box-shadow: 0 8px 28px rgba(6,45,63,.35); z-index: 400; transform: translateY(60px); opacity: 0; transition: all .3s; pointer-events: none; display: flex; align-items: center; gap: 8px; }
-.toast.show { transform: translateY(0); opacity: 1; }
-.toast-dot { width: 7px; height: 7px; background: var(--mist); border-radius: 50%; }
+        .profile-card p {
+            font-size: 0.82rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            text-align: left;
+        }
 
+        .floating-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
 
-/* ── FORUM AUTH & MODALS ── */
-.forum-auth-banner {
-  background: linear-gradient(135deg, var(--foam), #d0f0f8);
-  border: 1.5px solid rgba(8,131,149,.2);
-  border-radius: 12px; padding: 18px 22px;
-  display: flex; align-items: center; justify-content: space-between; gap: 16px;
-  margin-bottom: 20px; flex-wrap: wrap;
-}
-.fab-text { font-size: .9rem; color: var(--ocean); font-weight: 500; }
-.fab-text strong { display: block; font-size: .95rem; margin-bottom: 2px; }
-.fab-actions { display: flex; gap: 10px; flex-shrink: 0; }
-.fab-btn-primary {
-  padding: 8px 20px; background: var(--ocean); color: var(--white);
-  border: none; border-radius: 8px; font-family: 'DM Sans', sans-serif;
-  font-size: .82rem; font-weight: 700; cursor: pointer; transition: all .2s;
-}
-.fab-btn-primary:hover { background: var(--sea); }
-.fab-btn-ghost {
-  padding: 8px 16px; background: transparent; color: var(--ocean);
-  border: 1.5px solid rgba(10,77,104,.25); border-radius: 8px;
-  font-family: 'DM Sans', sans-serif; font-size: .82rem; font-weight: 600;
-  cursor: pointer; transition: all .2s;
-}
-.fab-btn-ghost:hover { border-color: var(--ocean); background: var(--foam); }
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: float 20s infinite ease-in-out;
+        }
 
-.forum-user-bar {
-  display: flex; align-items: center; gap: 12px;
-  background: var(--foam); border: 1px solid rgba(8,131,149,.15);
-  border-radius: 10px; padding: 10px 16px; margin-bottom: 16px;
-}
-.forum-avatar {
-  width: 34px; height: 34px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--seafoam), var(--sage));
-  display: flex; align-items: center; justify-content: center;
-  font-size: .85rem; font-weight: 700; color: var(--white); flex-shrink: 0;
-}
-.forum-user-name { font-size: .88rem; font-weight: 600; color: var(--ocean); flex: 1; }
-.forum-logout {
-  font-size: .75rem; color: var(--grey); background: none; border: none;
-  cursor: pointer; text-decoration: underline; padding: 0;
-}
-.forum-logout:hover { color: var(--ocean); }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.3; }
+            50% { transform: translateY(-30px) translateX(20px); opacity: 0.6; }
+        }
 
-/* Post detail modal */
-.post-modal { max-width: 680px; max-height: 90vh; overflow-y: auto; }
-.post-detail-body { font-size: .9rem; color: var(--ink); line-height: 1.7; margin: 16px 0 20px; }
-.post-detail-meta { font-size: .75rem; color: var(--grey); margin-bottom: 20px; }
-.replies-section { border-top: 1.5px solid var(--dune); padding-top: 20px; }
-.replies-title { font-family: 'Fraunces', serif; font-size: 1rem; color: var(--ocean); margin-bottom: 14px; }
-.reply-item {
-  display: flex; gap: 12px; padding: 12px 0;
-  border-bottom: 1px solid rgba(10,77,104,.07);
-}
-.reply-item:last-child { border-bottom: none; }
-.reply-avatar {
-  width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
-  background: linear-gradient(135deg, var(--sea), var(--seafoam));
-  display: flex; align-items: center; justify-content: center;
-  font-size: .75rem; font-weight: 700; color: var(--white);
-}
-.reply-content {}
-.reply-author { font-size: .78rem; font-weight: 700; color: var(--ocean); margin-bottom: 3px; }
-.reply-text { font-size: .85rem; color: var(--ink); line-height: 1.6; }
-.reply-time { font-size: .7rem; color: var(--grey); margin-top: 3px; }
-.reply-form { margin-top: 20px; }
-.reply-form textarea {
-  width: 100%; border: 2px solid var(--dune); border-radius: 8px;
-  padding: 12px 14px; font-family: 'DM Sans', sans-serif;
-  font-size: .88rem; color: var(--ink); resize: vertical; min-height: 80px;
-  outline: none; transition: border-color .2s; background: var(--shell);
-}
-.reply-form textarea:focus { border-color: var(--seafoam); background: var(--white); }
-.reply-submit {
-  margin-top: 10px; padding: 10px 24px;
-  background: linear-gradient(135deg, var(--ocean), var(--sea));
-  color: var(--white); border: none; border-radius: 8px;
-  font-family: 'DM Sans', sans-serif; font-size: .88rem; font-weight: 600;
-  cursor: pointer; transition: all .2s;
-}
-.reply-submit:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(10,77,104,.25); }
-.no-replies { font-size: .85rem; color: var(--grey); font-style: italic; padding: 10px 0; }
+        .wave-divider {
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: auto;
+        }
 
-/* mf-err for inline error messages in modals */
-.mf-err { font-size: .78rem; color: #c0392b; margin-top: 6px; display: none; }
-.mf-err.show { display: block; }
-.mf-success { font-size: .78rem; color: var(--moss); margin-top: 6px; display: none; }
-.mf-success.show { display: block; }
+        /* ===== HUB NAVIGATION SECTION ===== */
+        .hub-section {
+            background: var(--white);
+            padding: 80px 40px;
+        }
 
+        .hub-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-/* ── GROUPS FEATURE ── */
-.group-card-members {
-  font-size: .72rem; color: var(--sea); font-weight: 600;
-  margin-top: 3px; cursor: pointer;
-}
-.group-card-members:hover { text-decoration: underline; }
+        .section-title {
+            font-family: 'Fraunces', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--ink);
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeIn 0.6s ease-out;
+        }
 
-.members-overlay {
-  position: fixed; inset: 0;
-  background: rgba(6,45,63,.72); backdrop-filter: blur(6px);
-  z-index: 300; display: none; align-items: center; justify-content: center; padding: 20px;
-}
-.members-overlay.open { display: flex; }
-.members-panel {
-  background: var(--white); border-radius: 20px;
-  width: 100%; max-width: 460px;
-  box-shadow: 0 32px 80px rgba(6,45,63,.3);
-  overflow: hidden; animation: modalUp .25s ease;
-}
-.members-head {
-  background: linear-gradient(135deg, var(--ocean), var(--sea));
-  padding: 20px 24px;
-  display: flex; align-items: center; justify-content: space-between;
-}
-.members-head h3 { font-family: 'Fraunces', serif; font-size: 1.1rem; color: var(--white); font-weight: 500; }
-.members-head .modal-x { background: rgba(255,255,255,.15); border: none; color: var(--white); width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-size: 1rem; display: flex; align-items: center; justify-content: center; }
-.members-list { padding: 16px 24px; max-height: 340px; overflow-y: auto; }
-.member-row {
-  display: flex; align-items: center; gap: 12px;
-  padding: 10px 0; border-bottom: 1px solid rgba(10,77,104,.07);
-}
-.member-row:last-child { border-bottom: none; }
-.member-avatar {
-  width: 34px; height: 34px; border-radius: 50%; flex-shrink: 0;
-  background: linear-gradient(135deg, var(--seafoam), var(--sage));
-  display: flex; align-items: center; justify-content: center;
-  font-size: .78rem; font-weight: 700; color: var(--white);
-}
-.member-name { font-size: .88rem; font-weight: 600; color: var(--ocean); flex: 1; }
-.member-joined { font-size: .72rem; color: var(--grey); }
-.member-you { font-size: .65rem; background: var(--foam); color: var(--sea); padding: 1px 7px; border-radius: 99px; font-weight: 700; }
-.members-empty { padding: 20px 0; text-align: center; color: var(--grey); font-size: .88rem; font-style: italic; }
-.members-join-cta {
-  padding: 16px 24px; border-top: 1px solid var(--dune);
-  background: var(--shell);
-}
-.members-join-btn {
-  width: 100%; padding: 11px;
-  background: linear-gradient(135deg, var(--ocean), var(--sea));
-  color: var(--white); border: none; border-radius: 9px;
-  font-family: 'DM Sans', sans-serif; font-size: .9rem; font-weight: 700;
-  cursor: pointer; transition: all .2s;
-}
-.members-join-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(10,77,104,.25); }
-.members-join-btn:disabled { opacity: .6; cursor: default; transform: none; box-shadow: none; }
+        .hub-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+        }
 
-.group-lead-badge {
-  font-size: .65rem; background: #FFF7ED; color: #c2600a;
-  padding: 1px 7px; border-radius: 99px; font-weight: 700;
-  border: 1px solid rgba(194,96,10,.2);
-}
+        .hub-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid rgba(10, 77, 104, 0.08);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--ink);
+            display: flex;
+            flex-direction: column;
+            animation: fadeInUp 0.6s ease-out;
+        }
 
-/* ── ABOUT SECTION ── */
-.about-section { background: var(--shell); }
-.about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
-.about-text p { font-size: .95rem; color: var(--grey); line-height: 1.7; margin-bottom: 16px; }
-.about-photo {
-  background: linear-gradient(135deg, var(--deep), var(--ocean));
-  border-radius: 20px; height: 400px;
-  display: flex; align-items: center; justify-content: center;
-  color: rgba(255,255,255,.3); font-size: .85rem;
-  position: relative; overflow: hidden;
-}
-.about-photo::after {
-  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-  height: 4px; background: linear-gradient(90deg, var(--seafoam), var(--mist));
-}
+        .hub-card:nth-child(1) { animation-delay: 0.1s; }
+        .hub-card:nth-child(2) { animation-delay: 0.2s; }
+        .hub-card:nth-child(3) { animation-delay: 0.3s; }
+        .hub-card:nth-child(4) { animation-delay: 0.4s; }
 
-/* ── FRAMEWORK SECTION ── */
-.framework-section { background: linear-gradient(180deg, #EAF6F8 0%, var(--shell) 100%); }
-.framework-quote {
-  font-family: 'Fraunces', serif; font-size: 1.15rem; font-style: italic;
-  color: var(--ocean); line-height: 1.55;
-  border-left: 4px solid var(--seafoam); padding-left: 20px;
-  margin-bottom: 40px; max-width: 600px;
-}
-.pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-.pillar-card {
-  background: var(--white); border-radius: 16px; padding: 24px;
-  border: 1px solid rgba(10,77,104,.08);
-  transition: all .25s; position: relative; overflow: hidden;
-}
-.pillar-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-  background: linear-gradient(90deg, var(--seafoam), var(--mist));
-  transform: scaleX(0); transform-origin: left; transition: transform .3s;
-}
-.pillar-card:hover::before { transform: scaleX(1); }
-.pillar-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(10,77,104,.12); }
-.pillar-icon { font-size: 1.8rem; margin-bottom: 12px; }
-.pillar-title { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 500; color: var(--ocean); margin-bottom: 6px; }
-.pillar-desc { font-size: .82rem; color: var(--grey); line-height: 1.6; }
+        .hub-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
 
-/* ── SERVICES SECTION ── */
-.services-section { background: var(--shell); }
-.services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-.service-card {
-  background: var(--white); border-radius: 16px; padding: 28px;
-  border: 1px solid rgba(10,77,104,.08);
-  transition: all .25s; position: relative; overflow: hidden;
-}
-.service-card::before {
-  content: ''; position: absolute; top: 0; left: 24px; right: 24px; height: 3px;
-  border-radius: 0 0 3px 3px;
-  background: linear-gradient(90deg, var(--seafoam), var(--mist));
-  opacity: 0; transition: opacity .3s;
-}
-.service-card:hover::before { opacity: 1; }
-.service-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(10,77,104,.12); }
-.service-emoji { font-size: 1.8rem; margin-bottom: 12px; }
-.service-title { font-family: 'Fraunces', serif; font-size: 1.05rem; font-weight: 500; color: var(--ocean); margin-bottom: 8px; }
-.service-desc { font-size: .82rem; color: var(--grey); line-height: 1.6; margin-bottom: 14px; }
-.service-tags { display: flex; gap: 6px; flex-wrap: wrap; padding-top: 14px; border-top: 1px solid rgba(10,77,104,.06); }
-.service-tag { padding: 3px 10px; border-radius: 100px; background: var(--foam); color: var(--sea); font-size: .7rem; font-weight: 600; }
+        .hub-card:nth-child(1)::before {
+            background: var(--seafoam);
+        }
 
-/* ── BOOK SECTION ── */
-.book-section { background: var(--ocean); }
-.book-section .section-eyebrow { color: var(--mist); }
-.book-section .section-title { color: var(--white); }
-.book-section .section-sub { color: rgba(255,255,255,.55); }
-.book-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; align-items: center; }
-.book-cover-card {
-  background: var(--glass); border: 1px solid rgba(255,255,255,.12);
-  border-radius: 20px; padding: 48px 32px; text-align: center;
-  backdrop-filter: blur(10px);
-}
-.book-cover-title { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 500; color: var(--white); margin-bottom: 8px; }
-.book-cover-sub { font-size: .85rem; color: rgba(255,255,255,.55); margin-bottom: 20px; }
-.book-cover-divider { width: 60px; height: 3px; margin: 0 auto 20px; background: linear-gradient(90deg, var(--seafoam), var(--mist)); border-radius: 2px; }
-.book-cover-author { font-size: .95rem; color: rgba(255,255,255,.75); font-family: 'Fraunces', serif; }
-.book-desc { font-size: .95rem; color: rgba(255,255,255,.65); line-height: 1.7; margin-bottom: 16px; }
-.book-chapters { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
-.book-chip {
-  display: inline-block; padding: 5px 13px; border-radius: 100px;
-  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12);
-  font-size: .72rem; color: rgba(255,255,255,.65); font-weight: 500;
-}
+        .hub-card:nth-child(2)::before {
+            background: var(--sea);
+        }
 
-/* ── CONTACT SECTION ── */
-.contact-section { background: var(--shell); }
-.contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
-.contact-intro { font-size: .95rem; color: var(--grey); line-height: 1.7; margin-bottom: 28px; }
-.contact-detail {
-  display: flex; align-items: center; gap: 14px;
-  padding: 14px 0; border-bottom: 1px solid rgba(10,77,104,.08);
-  font-size: .88rem; color: var(--ink);
-}
-.contact-detail-icon {
-  width: 42px; height: 42px; border-radius: 12px;
-  background: var(--foam); display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem; flex-shrink: 0;
-}
-.contact-form-card {
-  background: var(--white); border-radius: 16px; padding: 28px;
-  border: 1px solid rgba(10,77,104,.08);
-  box-shadow: 0 4px 20px rgba(10,77,104,.07);
-}
-.contact-form-title { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 500; color: var(--ocean); margin-bottom: 20px; }
+        .hub-card:nth-child(3)::before {
+            background: var(--sage);
+        }
 
-/* ── COMMUNITY DIVIDER ── */
-.community-divider {
-  background: linear-gradient(180deg, var(--shell) 0%, #EAF6F8 100%);
-  padding: 60px 48px; text-align: center;
-}
-.community-divider .section-eyebrow { display: block; text-align: center; }
-.community-divider .section-title { text-align: center; }
-.community-divider .section-sub { text-align: center; max-width: 600px; margin: 0 auto; }
+        .hub-card:nth-child(4)::before {
+            background: var(--ocean);
+        }
 
-@media (max-width: 900px) {
-  header { padding: 0 20px; }
-  nav { display: none; }
-  .hero { padding: 100px 20px 60px; }
-  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
-  .section { padding: 60px 20px; }
-  .search-section { padding: 0 20px; }
-  .articles-grid, .events-grid { grid-template-columns: 1fr; }
-  .forum-grid { grid-template-columns: 1fr; }
-  .groups-layout { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr 1fr; }
-  .about-layout, .contact-layout, .book-layout { grid-template-columns: 1fr; }
-  .pillars-grid { grid-template-columns: 1fr 1fr; }
-  .services-grid { grid-template-columns: 1fr; }
-  .community-divider { padding: 40px 20px; }
-}
-</style>
+        .hub-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 48px rgba(10, 77, 104, 0.15);
+        }
+
+        .hub-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .hub-icon {
+            font-size: 2.4rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .hub-card h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--ocean);
+            margin-bottom: 12px;
+        }
+
+        .hub-card p {
+            font-size: 0.9rem;
+            color: var(--grey);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .card-arrow {
+            font-size: 1.2rem;
+            color: var(--seafoam);
+            transition: transform 0.3s ease;
+            align-self: flex-start;
+        }
+
+        .hub-card:hover .card-arrow {
+            transform: translateX(4px);
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about-section {
+            background: var(--shell);
+            padding: 80px 40px;
+        }
+
+        .about-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .about-section h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 32px;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .about-section p {
+            font-size: 1rem;
+            color: var(--grey);
+            line-height: 1.8;
+            margin-bottom: 24px;
+            animation: fadeInUp 0.6s ease-out 0.1s both;
+        }
+
+        .about-link {
+            display: inline-block;
+            color: var(--seafoam);
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 16px;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease-out 0.2s both;
+        }
+
+        .about-link:hover {
+            color: var(--sea);
+            transform: translateX(4px);
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        #contact {
+            background: var(--deep);
+            padding: 80px 40px;
+        }
+
+        .contact-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-container h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--white);
+            text-align: center;
+            margin-bottom: 48px;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            animation: fadeInUp 0.6s ease-out 0.1s both;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-family: 'DM Sans', sans-serif;
+            color: var(--white);
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--seafoam);
+            box-shadow: 0 0 0 3px rgba(5, 191, 219, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, var(--seafoam), var(--mist));
+            color: var(--ink);
+            padding: 14px 32px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(5, 191, 219, 0.3);
+        }
+
+        .contact-note {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+            margin-top: 28px;
+            animation: fadeInUp 0.6s ease-out 0.2s both;
+        }
+
+        .contact-note a {
+            color: var(--seafoam);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .contact-note a:hover {
+            color: var(--mist);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--deep);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 60px 40px 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1.5fr 1.5fr 1.5fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto 40px;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.1rem;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .footer-brand p {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-column h4 {
+            font-family: 'Fraunces', serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 16px;
+        }
+
+        .footer-column a {
+            display: block;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--seafoam);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            color: var(--seafoam);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--seafoam);
+            color: var(--deep);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .coming-soon-banner {
+                height: 32px;
+                font-size: 0.75rem;
+            }
+
+            header {
+                top: 32px;
+                padding: 0 24px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .hero {
+                padding: 120px 24px 60px;
+            }
+
+            .hero-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.95rem;
+            }
+
+            .hero-links {
+                justify-content: center;
+            }
+
+            .profile-card {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .hub-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hub-section, .about-section, #contact {
+                padding: 60px 24px;
+            }
+
+            .who-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+                margin-bottom: 40px;
+            }
+
+            .about-section h2 {
+                font-size: 1.6rem;
+            }
+
+            .contact-container h2 {
+                font-size: 1.6rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .hub-card {
+                padding: 24px;
+            }
+
+            .particle {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .coming-soon-banner {
+                height: 28px;
+                font-size: 0.7rem;
+            }
+
+            header {
+                top: 28px;
+                height: 60px;
+                padding: 0 16px;
+            }
+
+            .logo {
+                font-size: 0.95rem;
+            }
+
+            .hero {
+                padding: 100px 16px 40px;
+            }
+
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.85rem;
+            }
+
+            .hero-links {
+                flex-direction: column;
+                gap: 16px;
+                align-items: center;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+                margin-bottom: 32px;
+            }
+
+            .hub-card {
+                padding: 20px;
+            }
+
+            .hub-icon {
+                font-size: 2rem;
+            }
+
+            .hub-card h3 {
+                font-size: 1.1rem;
+            }
+
+            .hub-card p {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
 </head>
 <body>
-
-<!-- PARTICLES -->
-<div class="particles" id="particles"></div>
-
-<!-- HEADER -->
-<header>
-  <a class="logo" href="#">
-    <div class="logo-mark">K</div>
-    <span class="logo-name">CX <span>Konnect</span></span>
-  </a>
-  <nav>
-    <button class="nav-link" onclick="scrollToSection('about')">About</button>
-    <button class="nav-link" onclick="scrollToSection('framework')">Framework</button>
-    <button class="nav-link" onclick="scrollToSection('services')">Services</button>
-    <button class="nav-link" onclick="scrollToSection('book')">Book</button>
-    <button class="nav-link" onclick="scrollToSection('community-start')">Community</button>
-    <button class="nav-cta" onclick="scrollToSection('contact')">Start a Conversation</button>
-  </nav>
-</header>
-
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-ripple"></div>
-  <div class="hero-ripple"></div>
-  <div class="hero-ripple"></div>
-
-  <div class="hero-inner">
-    <div>
-      <div class="hero-eyebrow">CX Strategy &amp; Consulting</div>
-      <h1>Turn Customer Experience<br>Into <em>Customer Outcomes</em></h1>
-      <p class="hero-desc">CX Konnect helps organizations move from reactive, siloed customer management to a connected, outcome-driven system where every function, metric, and AI investment delivers measurable results.</p>
-      <div class="hero-actions">
-        <a class="btn-primary" onclick="scrollToSection('contact')">Start a Conversation →</a>
-        <a class="btn-ghost" onclick="scrollToSection('services')">Explore Services</a>
-      </div>
-
+    <!-- COMING SOON BANNER -->
+    <div class="coming-soon-banner">
+        Coming Soon — New consulting services launching soon
     </div>
 
-    <div class="stefanie-card">
-      <div class="stefanie-avatar">ST</div>
-      <p class="stefanie-quote">"The most important thing you can do for another person is make them feel genuinely seen. I've spent 30 years building the systems that make that possible at scale."</p>
-      <div class="stefanie-sig">
-        <strong>Stefanie Thorlichen</strong>
-        Founder, CX Konnect · Author · 30 Years in CX Leadership
-      </div>
-    </div>
-  </div>
+    <!-- HEADER -->
+    <header>
+        <a href="index.html" class="logo">
+            <span class="logo-cx">CX</span>
+            <span class="logo-konnect">Konnect</span>
+        </a>
+        <nav>
+            <a href="consulting.html">Consulting</a>
+            <a href="framework.html">Framework</a>
+            <a href="resources.html">Resources</a>
+            <a href="community.html">Community</a>
+            <a href="#contact" class="cta-header">Get in Touch</a>
+        </nav>
+    </header>
 
-  <div class="wave-shape">
-    <svg viewBox="0 0 1440 160" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,80 C240,140 480,20 720,80 C960,140 1200,20 1440,80 L1440,160 L0,160 Z" fill="#F5ECD7"/>
-    </svg>
-  </div>
-</section>
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="floating-particles" id="particles"></div>
 
-<!-- AI SEARCH -->
-<div class="search-section" id="search">
-  <div class="search-card">
-    <div class="search-card-title">
-      Ask anything about CX Konnect <span class="ai-badge">AI Powered</span>
-    </div>
-    <div class="search-input-wrap">
-      <input class="search-input" id="searchInput" placeholder="e.g. How do I reduce silo thinking between my Support and Success teams?" onkeydown="if(event.key==='Enter') runSearch()">
-      <button class="search-go" onclick="runSearch()">Ask AI →</button>
-    </div>
-    <div class="search-suggestions">
-      <span class="sugg-chip" onclick="prefill('What is the CX Konnect Framework?')">What is CX Konnect?</span>
-      <span class="sugg-chip" onclick="prefill('How do I measure customer outcomes?')">Measuring outcomes</span>
-      <span class="sugg-chip" onclick="prefill('Team activities for breaking down silos')">Silo-breaking activities</span>
-      <span class="sugg-chip" onclick="prefill('How to build a customer-first culture?')">Customer-first culture</span>
-      <span class="sugg-chip" onclick="prefill('AI intelligence layer vs AI tools')">AI vs AI tools</span>
-      <span class="sugg-chip" onclick="prefill('How to scale CX transformation incrementally?')">Scaling CX</span>
-    </div>
-    <div class="ai-response" id="aiResponse">
-      <div class="ai-response-header">
-        <div class="ai-dot"></div>
-        <span class="ai-label">CX Konnect AI Assistant</span>
-      </div>
-      <div class="ai-text" id="aiText"></div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════════════ -->
-<!-- CONSULTING SECTIONS                               -->
-<!-- ═══════════════════════════════════════════════════ -->
-
-<!-- ABOUT -->
-<section class="section about-section" id="about">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-eyebrow">About</span>
-      <h2 class="section-title">Stefanie Thorlichen</h2>
-    </div>
-    <div class="about-layout">
-      <div class="about-text">
-        <p>From pediatric nursing in Germany to leading global CX transformation at scale, I have spent 30 years learning one thing: the most important thing you can do for another person is make them feel genuinely seen.</p>
-        <p>I have built, led, and redesigned customer experience organizations across telecommunications, technology, healthcare, and professional services &mdash; spanning 30 countries, thousands of team members, and millions of customer relationships.</p>
-        <p>CX Konnect is the product of everything I have learned about what actually works: not feelings-first CX, but outcome-driven systems where every team, every metric, and every AI investment is aligned around the customer&rsquo;s success.</p>
-      </div>
-      <div class="about-photo">[ Professional headshot ]</div>
-    </div>
-  </div>
-</section>
-
-<!-- FRAMEWORK -->
-<section class="section framework-section" id="framework">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-eyebrow">The Methodology</span>
-      <h2 class="section-title">The CX Konnect Framework</h2>
-    </div>
-    <div class="framework-quote">Customers do not experience your org chart. They experience the gaps in it.</div>
-    <div class="pillars-grid">
-      <div class="pillar-card">
-        <div class="pillar-icon">🎯</div>
-        <div class="pillar-title">Outcome-Driven</div>
-        <div class="pillar-desc">Shift from measuring activity and sentiment to measuring whether customers achieve the results they signed up for. Every metric, milestone, and handoff is anchored to a tangible customer outcome.</div>
-      </div>
-      <div class="pillar-card">
-        <div class="pillar-icon">⚙️</div>
-        <div class="pillar-title">Cross-Functionally Connected</div>
-        <div class="pillar-desc">Break the silos between Sales, Support, Success, Product, Education, and Partners. Build shared accountability structures where every team understands its role in the customer&rsquo;s journey.</div>
-      </div>
-      <div class="pillar-card">
-        <div class="pillar-icon">🧠</div>
-        <div class="pillar-title">AI-Amplified</div>
-        <div class="pillar-desc">Deploy AI as the intelligence layer, not just a tool. Health scoring, predictive signals, automated playbooks, and conversation intelligence working as a connected system alongside your people.</div>
-      </div>
-      <div class="pillar-card">
-        <div class="pillar-icon">👥</div>
-        <div class="pillar-title">Culture-First Change</div>
-        <div class="pillar-desc">No framework succeeds without the culture to sustain it. Deliberate culture architecture: hiring, rituals, leadership behaviors, and the human engine that makes everything else work.</div>
-      </div>
-      <div class="pillar-card">
-        <div class="pillar-icon">📈</div>
-        <div class="pillar-title">Incrementally Scalable</div>
-        <div class="pillar-desc">Start with one journey, one segment, and one proof point. Scale from a contained pilot to full organizational transformation without the risk of doing too much too soon.</div>
-      </div>
-      <div class="pillar-card">
-        <div class="pillar-icon">📊</div>
-        <div class="pillar-title">Metrics That Matter</div>
-        <div class="pillar-desc">Replace vanity dashboards with metrics that reveal customer progress. Outcome attainment rates, time-to-value, expansion readiness, and AI confidence scores that drive real intervention.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section class="section services-section" id="services">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-eyebrow">Consulting Services</span>
-      <h2 class="section-title">How We Work Together</h2>
-      <p class="section-sub">Every engagement is tailored to your organization&rsquo;s maturity, industry, and goals.</p>
-    </div>
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-emoji">📊</div>
-        <div class="service-title">CX Maturity Assessment</div>
-        <div class="service-desc">A structured diagnostic evaluating your organization across six dimensions: outcome alignment, cross-functional connectivity, metric quality, AI readiness, culture health, and scaling capability. You receive a detailed scorecard with prioritized recommendations.</div>
-        <div class="service-tags">
-          <span class="service-tag">2&ndash;4 weeks</span>
-          <span class="service-tag">Executive readout</span>
-          <span class="service-tag">Prioritized roadmap</span>
-        </div>
-      </div>
-      <div class="service-card">
-        <div class="service-emoji">⚙️</div>
-        <div class="service-title">CX Konnect Implementation</div>
-        <div class="service-desc">Hands-on consulting to redesign your customer journey around outcomes, rebuild cross-functional handoffs, align your metrics, and create the operating model that makes it sustainable. From pilot to scale.</div>
-        <div class="service-tags">
-          <span class="service-tag">3&ndash;6 months</span>
-          <span class="service-tag">Pilot-to-scale</span>
-          <span class="service-tag">Full framework</span>
-        </div>
-      </div>
-      <div class="service-card">
-        <div class="service-emoji">🤖</div>
-        <div class="service-title">AI-Enabled CX Org Design</div>
-        <div class="service-desc">Restructure your CX organization for the AI era. Define the three-layer architecture, create new roles like CX Intelligence Analyst and Digital Success Manager, redesign span of control, and build your AI adoption roadmap.</div>
-        <div class="service-tags">
-          <span class="service-tag">Custom scope</span>
-          <span class="service-tag">Org blueprint</span>
-          <span class="service-tag">Change plan</span>
-        </div>
-      </div>
-      <div class="service-card">
-        <div class="service-emoji">🎓</div>
-        <div class="service-title">Leadership Workshops</div>
-        <div class="service-desc">Modular, facilitated workshops built from the CX Konnect Leadership Playbook. Self-assessments, team exercises, and action plans designed for CX leaders and their teams. Available as half-day, full-day, or multi-session programs.</div>
-        <div class="service-tags">
-          <span class="service-tag">Half-day to multi-day</span>
-          <span class="service-tag">In-person or virtual</span>
-          <span class="service-tag">Custom modules</span>
-        </div>
-      </div>
-      <div class="service-card">
-        <div class="service-emoji">🎤</div>
-        <div class="service-title">Keynote Speaking</div>
-        <div class="service-desc">Story-driven keynotes on the future of customer experience, the shift from feelings to outcomes, AI in CX, and building the culture that makes transformation stick. Available for conferences, executive offsites, and corporate events.</div>
-        <div class="service-tags">
-          <span class="service-tag">30&ndash;60 minutes</span>
-          <span class="service-tag">Conferences &amp; events</span>
-          <span class="service-tag">Custom topics</span>
-        </div>
-      </div>
-      <div class="service-card">
-        <div class="service-emoji">🧭</div>
-        <div class="service-title">Executive Advisory</div>
-        <div class="service-desc">Ongoing strategic counsel for CX leaders navigating organizational change, AI integration, board-level reporting, and the daily realities of building an outcome-driven CX function. A trusted thinking partner, not just an advisor.</div>
-        <div class="service-tags">
-          <span class="service-tag">Monthly retainer</span>
-          <span class="service-tag">On-demand access</span>
-          <span class="service-tag">Strategic counsel</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- BOOK -->
-<section class="section book-section" id="book">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-eyebrow">The Book</span>
-      <h2 class="section-title">The Complete CX Konnect Framework</h2>
-    </div>
-    <div class="book-layout">
-      <div class="book-cover-card">
-        <div class="book-cover-title">CX Konnect</div>
-        <div class="book-cover-sub">From Silos to Systems, From Feelings to Outcomes</div>
-        <div class="book-cover-divider"></div>
-        <div class="book-cover-author">Stefanie Thorlichen</div>
-      </div>
-      <div>
-        <p class="book-desc">Thirteen chapters covering everything from the customer outcome imperative and cross-functional alignment to AI-enabled org design, culture transformation, and industry-specific applications across healthcare, technology, telecommunications, and financial services.</p>
-        <p class="book-desc">Includes the CX Konnect Leadership Playbook &mdash; a modular workbook with self-assessments, team exercises, and action plans for every chapter.</p>
-        <div class="book-chapters">
-          <span class="book-chip">Customer Outcomes</span>
-          <span class="book-chip">Framework Overview</span>
-          <span class="book-chip">Breaking Silos</span>
-          <span class="book-chip">Journey Stages</span>
-          <span class="book-chip">Function Orchestration</span>
-          <span class="book-chip">Cross-Functional Fixes</span>
-          <span class="book-chip">Metrics That Matter</span>
-          <span class="book-chip">Culture Shift</span>
-          <span class="book-chip">Industry Spotlights</span>
-          <span class="book-chip">Scaling the Model</span>
-          <span class="book-chip">AI Intelligence Layer</span>
-          <span class="book-chip">Leadership Playbook</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section class="section contact-section" id="contact">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-eyebrow">Get in Touch</span>
-      <h2 class="section-title">Let&rsquo;s Talk About Your CX Transformation</h2>
-    </div>
-    <div class="contact-layout">
-      <div>
-        <p class="contact-intro">Whether you are a CX leader looking to redesign your organization for the AI era, a CEO who wants customer experience to drive measurable business outcomes, or a conference organizer seeking a speaker who has lived this work for three decades &mdash; I would love to hear from you.</p>
-        <div class="contact-detail">
-          <div class="contact-detail-icon">🌍</div>
-          <div>Based in the United States &middot; Serving clients globally</div>
-        </div>
-        <div class="contact-detail">
-          <div class="contact-detail-icon">💬</div>
-          <div>Typically responds within 1&ndash;2 business days</div>
-        </div>
-        <div class="contact-detail">
-          <div class="contact-detail-icon">🎓</div>
-          <div>Workshops available in-person and virtually</div>
-        </div>
-      </div>
-      <div class="contact-form-card">
-        <div class="contact-form-title">Send a Message</div>
-        <div id="contactSuccess" class="interest-success">
-          <div class="interest-success-icon">✅</div>
-          <div class="interest-success-msg">Message sent!</div>
-          <div class="interest-success-sub">Stefanie will be in touch within 1&ndash;2 business days.</div>
-        </div>
-        <div id="contactFields">
-          <div class="mf-group">
-            <label class="mf-label">Name *</label>
-            <input class="mf-input" id="contactName" placeholder="Your full name">
-          </div>
-          <div class="mf-group">
-            <label class="mf-label">Email *</label>
-            <input class="mf-input" id="contactEmail" type="email" placeholder="your@email.com">
-          </div>
-          <div class="mf-group">
-            <label class="mf-label">Company</label>
-            <input class="mf-input" id="contactCompany" placeholder="Your organization">
-          </div>
-          <div class="mf-group">
-            <label class="mf-label">I&rsquo;m interested in&hellip;</label>
-            <select class="mf-select" id="contactService">
-              <option value="">Select a service</option>
-              <option>CX Maturity Assessment</option>
-              <option>CX Konnect Implementation</option>
-              <option>AI-Enabled CX Org Design</option>
-              <option>Leadership Workshops</option>
-              <option>Keynote Speaking</option>
-              <option>Executive Advisory</option>
-              <option>Something else</option>
-            </select>
-          </div>
-          <div class="mf-group">
-            <label class="mf-label">Message</label>
-            <textarea class="mf-textarea" id="contactMessage" placeholder="Tell me about your CX challenges and goals..."></textarea>
-          </div>
-          <button class="modal-submit" onclick="submitContact()">Send Message →</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- COMMUNITY DIVIDER -->
-<div class="community-divider" id="community-start">
-  <span class="section-eyebrow">Community</span>
-  <h2 class="section-title">CX Konnect Leaders Circle</h2>
-  <p class="section-sub">Connect with CX practitioners, share frameworks, and lead together. The community that powers the movement.</p>
-</div>
-
-<!-- ARTICLES -->
-<section class="section articles-section" id="articles">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-eyebrow">Knowledge Hub</span>
-      <h2 class="section-title">Articles & Resources</h2>
-      <p class="section-sub">Frameworks, case studies, and leadership insights — curated for CX leaders building outcome-driven organizations.</p>
-    </div>
-    <div class="articles-toolbar">
-      <button class="filter-pill active" onclick="filterArticles('all',this)">All</button>
-      <button class="filter-pill" onclick="filterArticles('framework',this)">Frameworks</button>
-      <button class="filter-pill" onclick="filterArticles('leadership',this)">Leadership</button>
-      <button class="filter-pill" onclick="filterArticles('ai',this)">AI & Tech</button>
-      <button class="filter-pill" onclick="filterArticles('culture',this)">Culture</button>
-      <button class="filter-pill" onclick="filterArticles('metrics',this)">Metrics</button>
-      <button class="upload-btn" onclick="openUpload()">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        Upload Article
-      </button>
-    </div>
-    <div class="articles-grid" id="articlesGrid"></div>
-  </div>
-</section>
-
-<!-- ACTIVITIES -->
-<section class="section activities-section" id="activities">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-eyebrow">Team Toolkit</span>
-      <h2 class="section-title">Workshop Activities</h2>
-      <p class="section-sub">Ready-to-run exercises for CX leaders. Drop one into your next team session, QBR, or offsite.</p>
-    </div>
-    <div class="activities-grid" id="activitiesGrid"></div>
-  </div>
-</section>
-
-<!-- FORUM -->
-<section class="section forum-section" id="forum">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-eyebrow">Community Forum</span>
-      <h2 class="section-title">Discuss, Debate, Discover</h2>
-      <p class="section-sub">Real conversations between CX leaders. Ask questions, share wins, work through challenges together.</p>
-    </div>
-    <div class="forum-grid">
-      <div>
-        <div id="forumAuthBar"></div>
-        <button class="new-post-btn" onclick="openNewPost()">+ Start a New Discussion</button>
-        <div class="forum-posts" id="forumPosts"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- LOCAL GROUPS -->
-<section class="section groups-section" id="groups">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-eyebrow">Local Community</span>
-      <h2 class="section-title">Find Your People</h2>
-      <p class="section-sub">CX Konnect chapters are launching in cities with enough interest. Express yours — and we'll connect you with leaders in your city.</p>
-    </div>
-    <div class="groups-layout">
-
-      <!-- MAP — stays for future group markers -->
-      <div class="map-placeholder">
-        <div class="map-grid"></div>
-        <div class="map-dots" id="mapDots"></div>
-        <div class="map-coming-soon">
-          <div class="map-coming-dot"></div>
-          <div class="map-coming-text"><strong>Chapters coming soon.</strong> Cities will appear here as groups form.</div>
-        </div>
-      </div>
-
-      <!-- INTEREST FORM -->
-      <div class="interest-panel">
-        <div class="interest-tabs">
-          <button class="interest-tab active" onclick="switchTab('join', this)">Join a Group</button>
-          <button class="interest-tab" onclick="switchTab('start', this)">Start a Chapter</button>
-        </div>
-
-        <!-- JOIN FORM -->
-        <div class="interest-form-card" id="formJoin">
-          <div class="interest-form-title">Join a local chapter</div>
-          <div class="interest-form-desc">Tell us your city and we'll reach out when a chapter forms near you — or connect you with others already interested in your area.</div>
-          <div id="joinSuccess" class="interest-success">
-            <div class="interest-success-icon">✅</div>
-            <div class="interest-success-msg">You're on the list!</div>
-            <div class="interest-success-sub">Steffi will be in touch within 48 hours.</div>
-          </div>
-          <div id="joinFields">
-            <div class="mf-group">
-              <label class="mf-label">Your Name *</label>
-              <input class="mf-input" id="joinName" placeholder="Jane Smith, VP of CX">
+        <div class="hero-inner">
+            <div class="hero-text">
+                <div class="hero-eyebrow">CX Strategy &amp; Consulting</div>
+                <h1>Turn Customer Experience Into a Competitive Advantage</h1>
+                <p class="hero-subtitle">I help companies turn Customer Experience into a true competitive advantage and a revenue generating machine. With over 25 years of global leadership experience, I partner with organizations to transform fragmented operations into high-performing, customer-obsessed ecosystems that drive measurable growth, retention, and efficiency.</p>
+                <p class="hero-subtitle" style="margin-top: 16px;">As the creator of the CXKonnect framework, I bring a modern and proven approach to connecting strategy, operations, and technology across the entire customer lifecycle. My expertise spans all CX functions including Professional Services, Customer Success, Support, and Education, enabling me to design and execute end-to-end CX roadmaps that scale. I also specialize in AI enablement, helping organizations harness data, automation, and predictive insights to shift from reactive support models to proactive and intelligent customer engagement.</p>
+                <p class="hero-subtitle" style="margin-top: 16px; color: rgba(255, 255, 255, 0.9); font-weight: 500;">If you are looking to elevate Customer Experience from a support function to a strategic growth engine, I bring the structure, clarity, and execution to make it happen.</p>
+                <div class="hero-links">
+                    <a href="consulting.html" class="hero-link">Services<span>→</span></a>
+                    <a href="framework.html" class="hero-link">Framework<span>→</span></a>
+                    <a href="#contact" class="hero-link">Contact<span>→</span></a>
+                </div>
             </div>
-            <div class="mf-group">
-              <label class="mf-label">Email *</label>
-              <input class="mf-input" id="joinEmail" type="email" placeholder="jane@organization.com">
+
+            <div class="profile-card">
+                <img src="./profile-pic.jpg" alt="Steffi Thorlichen" class="profile-headshot">
+                <h3>Steffi Thorlichen</h3>
+                <div class="title">CX Strategy Consultant &amp; Author</div>
             </div>
-            <div class="mf-group">
-              <label class="mf-label">City / Region *</label>
-              <input class="mf-input" id="joinCity" placeholder="e.g. Chicago, IL">
-            </div>
-            <div class="mf-group">
-              <label class="mf-label">What brings you to CX Konnect?</label>
-              <textarea class="mf-textarea" id="joinWhy" placeholder="Optional — a line or two about your role and what you're looking for..."></textarea>
-            </div>
-            <button class="modal-submit" onclick="submitInterest('join')">Express Interest in Joining →</button>
-          </div>
         </div>
 
-        <!-- START FORM -->
-        <div class="interest-form-card" id="formStart" style="display:none">
-          <div class="interest-form-title">Start a chapter in your city</div>
-          <div class="interest-form-desc">If you have the network and energy to convene CX leaders in your city, we'll give you the framework, materials, and support to launch.</div>
-          <div id="startSuccess" class="interest-success">
-            <div class="interest-success-icon">🚀</div>
-            <div class="interest-success-msg">Chapter request received!</div>
-            <div class="interest-success-sub">Steffi will review and be in touch within 48 hours.</div>
-          </div>
-          <div id="startFields">
-            <div class="mf-group">
-              <label class="mf-label">Your Name *</label>
-              <input class="mf-input" id="startName" placeholder="Jane Smith, VP of CX">
+        <svg class="wave-divider" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,64L60,69.3C120,75,240,85,360,85.3C480,85,600,75,720,74.7C840,75,960,85,1080,85.3C1200,85,1320,75,1380,69.3L1440,64L1440,120L1380,120C1320,120,1200,120,1080,120C960,120,840,120,720,120C600,120,480,120,360,120C240,120,120,120,60,120L0,120Z" fill="#FFFFFF"/>
+        </svg>
+    </section>
+
+    <!-- WHAT I DO SECTION -->
+    <section class="hub-section">
+        <div class="hub-container">
+            <h2 class="section-title">What I Do</h2>
+            <p style="text-align: center; color: var(--grey); max-width: 700px; margin: -40px auto 48px; font-size: 1.05rem; line-height: 1.7;">I work hands-on with leadership teams to diagnose CX gaps, redesign how teams connect around the customer, and build the operating model that makes great experiences repeatable and scalable.</p>
+            <div class="hub-grid">
+                <a href="consulting.html" class="hub-card">
+                    <span class="hub-icon">🔍</span>
+                    <h3>CX Maturity Assessment</h3>
+                    <p>A structured diagnostic of where your organization stands today — across strategy, operations, culture, and technology — with a clear roadmap for what to fix first.</p>
+                    <span class="card-arrow">→</span>
+                </a>
+
+                <a href="consulting.html" class="hub-card">
+                    <span class="hub-icon">⚙️</span>
+                    <h3>CX Konnect Implementation</h3>
+                    <p>Deploy the full CX Konnect framework — outcome-driven journey stages, cross-functional alignment, metrics that matter — tailored to your organization's size and maturity.</p>
+                    <span class="card-arrow">→</span>
+                </a>
+
+                <a href="consulting.html" class="hub-card">
+                    <span class="hub-icon">🧠</span>
+                    <h3>AI-Enabled CX Org Design</h3>
+                    <p>Move from AI-tooled to AI-intelligent. I help you architect an operating model where AI amplifies your team's ability to anticipate and deliver customer outcomes.</p>
+                    <span class="card-arrow">→</span>
+                </a>
+
+                <a href="consulting.html" class="hub-card">
+                    <span class="hub-icon">🎯</span>
+                    <h3>Executive Advisory &amp; Workshops</h3>
+                    <p>Keynotes, leadership workshops, and ongoing advisory for CX leaders who need a strategic partner — not just a vendor. Built from the CX Konnect Leadership Playbook.</p>
+                    <span class="card-arrow">→</span>
+                </a>
             </div>
-            <div class="mf-group">
-              <label class="mf-label">Email *</label>
-              <input class="mf-input" id="startEmail" type="email" placeholder="jane@organization.com">
+        </div>
+    </section>
+
+    <!-- THE FRAMEWORK SECTION -->
+    <section class="about-section">
+        <div class="about-container">
+            <h2>The CX Konnect Framework</h2>
+            <p>Most CX programs fail because they treat customer experience as a department — not an operating model. The CX Konnect framework changes that. Built on six foundational pillars — outcome-driven design, cross-functional connection, AI amplification, culture-first change, incremental scalability, and metrics that matter — it gives organizations a complete system for turning CX strategy into business results.</p>
+            <p>Whether you're a 50-person company building your first CX function or a global enterprise breaking down silos across dozens of teams, the framework scales to meet you where you are. It's the methodology behind every consulting engagement I deliver — and the subject of my book, <em>CX Konnect: From Silos to Systems, From Feelings to Outcomes</em>.</p>
+            <a href="framework.html" class="about-link">Explore the Framework →</a>
+        </div>
+    </section>
+
+    <!-- WHO I WORK WITH SECTION -->
+    <section class="hub-section" style="background: var(--white); padding-top: 60px; padding-bottom: 60px;">
+        <div class="hub-container">
+            <h2 class="section-title">Who I Work With</h2>
+            <div class="who-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; max-width: 1000px; margin: 0 auto;">
+                <div style="text-align: center; padding: 32px 24px; border: 1px solid rgba(10,77,104,0.08); border-radius: 16px;">
+                    <div style="font-size: 2.4rem; margin-bottom: 12px;">🚀</div>
+                    <h3 style="font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ocean); margin-bottom: 8px;">Startups &amp; Small Business</h3>
+                    <p style="font-size: 0.88rem; color: var(--grey); line-height: 1.6;">Build CX right from the start. Get the foundation, the metrics, and the team alignment before bad habits set in.</p>
+                </div>
+                <div style="text-align: center; padding: 32px 24px; border: 1px solid rgba(10,77,104,0.08); border-radius: 16px;">
+                    <div style="font-size: 2.4rem; margin-bottom: 12px;">📈</div>
+                    <h3 style="font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ocean); margin-bottom: 8px;">Midsize Companies</h3>
+                    <p style="font-size: 0.88rem; color: var(--grey); line-height: 1.6;">You've outgrown ad-hoc CX. I help you move from reactive to connected — with a scalable operating model and clear ownership.</p>
+                </div>
+                <div style="text-align: center; padding: 32px 24px; border: 1px solid rgba(10,77,104,0.08); border-radius: 16px;">
+                    <div style="font-size: 2.4rem; margin-bottom: 12px;">🏢</div>
+                    <h3 style="font-family: 'Fraunces', serif; font-size: 1.15rem; color: var(--ocean); margin-bottom: 8px;">Enterprise</h3>
+                    <p style="font-size: 0.88rem; color: var(--grey); line-height: 1.6;">Break the silos. I help large organizations align cross-functional teams around customer outcomes — not internal politics.</p>
+                </div>
             </div>
-            <div class="mf-group">
-              <label class="mf-label">City / Region *</label>
-              <input class="mf-input" id="startCity" placeholder="e.g. Chicago, IL">
+        </div>
+    </section>
+
+    <!-- COMMUNITY CALLOUT -->
+    <section style="background: var(--foam); padding: 48px 40px; text-align: center;">
+        <div style="max-width: 700px; margin: 0 auto;">
+            <h2 style="font-family: 'Fraunces', serif; font-size: 1.5rem; color: var(--ocean); margin-bottom: 12px;">Join the CX Konnect Community</h2>
+            <p style="color: var(--grey); font-size: 0.95rem; line-height: 1.7; margin-bottom: 20px;">Connect with CX professionals, share ideas in the forums, join local groups, and attend events. The community is where practitioners come together to learn and grow.</p>
+            <a href="community.html" style="display: inline-block; padding: 12px 28px; background: var(--ocean); color: var(--white); border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease;">Explore the Community →</a>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+        <div class="contact-container">
+            <h2>Get in Touch</h2>
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="company">Company</label>
+                    <input type="text" id="company" name="company" placeholder="Your company name">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Tell us about your project..." required></textarea>
+                </div>
+
+                <button type="submit" class="submit-button">Send Message</button>
+            </form>
+
+            <div class="contact-note">
+                Or email directly at <a href="mailto:stefanie.cxkonnect@gmail.com">stefanie.cxkonnect@gmail.com</a>
             </div>
-            <div class="mf-group">
-              <label class="mf-label">Your Role & Organization</label>
-              <input class="mf-input" id="startRole" placeholder="e.g. Head of CS, Acme Health">
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <!-- Brand -->
+            <div class="footer-brand">
+                <h3>CX Konnect</h3>
+                <p>CX strategy consulting by Steffi Thorlichen. I help companies of every size transform their customer experience into measurable business results using the CX Konnect framework.</p>
             </div>
-            <div class="mf-group">
-              <label class="mf-label">Vision for the group</label>
-              <textarea class="mf-textarea" id="startVision" placeholder="What kind of conversations do you want to host?"></textarea>
+
+            <!-- Explore -->
+            <div class="footer-column">
+                <h4>Explore</h4>
+                <a href="index.html">Home</a>
+                <a href="consulting.html">Consulting</a>
+                <a href="framework.html">Framework</a>
+                <a href="resources.html">Resources</a>
+                <a href="community.html">Community</a>
             </div>
-            <button class="modal-submit" onclick="submitInterest('start')">Submit Chapter Request →</button>
-          </div>
-        </div>
-      </div>
 
-    </div>
-  </div>
-</section>
-
-<!-- EVENTS -->
-<section class="section events-section" id="events">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="section-eyebrow">Upcoming</span>
-      <h2 class="section-title">Events</h2>
-      <p class="section-sub">Virtual workshops, local meetups, and leadership masterclasses — all in one place.</p>
-    </div>
-    <div class="events-grid" id="eventsGrid"></div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="logo">
-          <div class="logo-mark">K</div>
-          <span class="logo-name">CX <span>Konnect</span></span>
-        </div>
-        <p class="footer-desc">CX strategy and consulting for organizations ready to move from reaction to connection. Founded by Stefanie Thorlichen.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Consulting</h4>
-        <a class="footer-link" onclick="scrollToSection('about')">About</a>
-        <a class="footer-link" onclick="scrollToSection('framework')">Framework</a>
-        <a class="footer-link" onclick="scrollToSection('services')">Services</a>
-        <a class="footer-link" onclick="scrollToSection('book')">The Book</a>
-        <a class="footer-link" onclick="scrollToSection('contact')">Contact</a>
-      </div>
-      <div class="footer-col">
-        <h4>Community</h4>
-        <a class="footer-link" onclick="scrollToSection('articles')">Articles</a>
-        <a class="footer-link" onclick="scrollToSection('activities')">Workshop Activities</a>
-        <a class="footer-link" onclick="scrollToSection('forum')">Forum</a>
-        <a class="footer-link" onclick="scrollToSection('groups')">Local Groups</a>
-        <a class="footer-link" onclick="scrollToSection('events')">Events</a>
-      </div>
-      <div class="footer-col">
-        <h4>Connect</h4>
-        <a class="footer-link" href="https://www.linkedin.com/in/steffithorlichen/" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="footer-link" onclick="scrollToSection('contact')">Contact</a>
-        <a class="footer-link">Privacy Policy</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>&copy; 2026 CX Konnect &middot; All rights reserved</span>
-      <span>Built with purpose, not just pixels.</span>
-    </div>
-  </div>
-</footer>
-
-<!-- UPLOAD MODAL -->
-<div class="overlay" id="uploadOverlay">
-  <div class="modal">
-    <div class="modal-head">
-      <h3>Share an Article or Resource</h3>
-      <button class="modal-x" onclick="closeModal('uploadOverlay')">×</button>
-    </div>
-    <div class="modal-body">
-      <p style="font-size:.85rem;color:var(--grey);line-height:1.6;margin-bottom:20px;">Fill in the details below and click submit — your email client will open with everything pre-filled and addressed to Steffi for review. She'll be in touch within 48 hours.</p>
-      <div class="mf-group">
-        <label class="mf-label">Article Title *</label>
-        <input class="mf-input" id="artTitle" placeholder="e.g. How We Reduced Churn by 40% with Outcome Metrics">
-      </div>
-      <div class="mf-group">
-        <label class="mf-label">Category</label>
-        <select class="mf-select" id="artCategory">
-          <option>Framework</option>
-          <option>Leadership</option>
-          <option>AI &amp; Technology</option>
-          <option>Culture</option>
-          <option>Metrics</option>
-          <option>Case Study</option>
-        </select>
-      </div>
-      <div class="mf-group">
-        <label class="mf-label">Brief Summary *</label>
-        <textarea class="mf-textarea" id="artSummary" placeholder="A few sentences describing what your article covers and who it's written for..."></textarea>
-      </div>
-      <div class="mf-group">
-        <label class="mf-label">Article URL or file location</label>
-        <input class="mf-input" id="artUrl" placeholder="https://... or 'I'll attach the file to the email'">
-      </div>
-      <div class="mf-group">
-        <label class="mf-label">Your Name &amp; Title *</label>
-        <input class="mf-input" id="artName" placeholder="Jane Smith, Chief Experience Officer">
-      </div>
-      <div class="mf-group">
-        <label class="mf-label">Your Email *</label>
-        <input class="mf-input" id="artEmail" type="email" placeholder="jane@organization.com">
-      </div>
-      <div id="artSuccess" style="display:none;text-align:center;padding:16px 0 8px;">
-        <div style="font-size:2rem;margin-bottom:8px;">📬</div>
-        <div style="font-family:'Fraunces',serif;font-size:1rem;color:var(--ocean);font-weight:500;margin-bottom:4px;">Submission sent!</div>
-        <div style="font-size:.82rem;color:var(--grey);">Steffi will review your article and reply within 48 hours.</div>
-      </div>
-      <button class="modal-submit" id="artSubmitBtn" onclick="submitUpload()">Submit for Review →</button>
-    </div>
-  </div>
-</div>
-
-<!-- NEW POST MODAL -->
-<div class="overlay" id="postOverlay">
-  <div class="modal forum-modal">
-    <div class="modal-head">
-      <h3>Start a Discussion</h3>
-      <button class="modal-x" onclick="closeModal('postOverlay')">×</button>
-    </div>
-    <div class="modal-body">
-      <div class="mf-group">
-        <label class="mf-label">Discussion Title *</label>
-        <input class="mf-input" id="postTitle" placeholder="e.g. How do you handle cross-functional resistance to CX change?">
-      </div>
-      <div class="mf-group">
-        <label class="mf-label">Topic</label>
-        <select class="mf-select" id="postTopic">
-          <option>Breaking Silos</option><option>Metrics & Measurement</option>
-          <option>AI in CX</option><option>Culture Change</option>
-          <option>Customer Outcomes</option><option>Team Leadership</option>
-        </select>
-      </div>
-      <div class="mf-group">
-        <label class="mf-label">Your Thoughts</label>
-        <textarea class="mf-textarea" id="postBody" style="min-height:120px" placeholder="Share context, ask your question, or describe your challenge..."></textarea>
-      </div>
-      <div class="mf-group">
-        <label class="mf-label">Your Name</label>
-        <input class="mf-input" placeholder="Jane Smith, Acme Health Systems">
-      </div>
-      <button class="modal-submit" id="newPostSubmitBtn" onclick="submitPost()">Post to Forum →</button>
-    </div>
-  </div>
-</div>
-
-
-<!-- LOGIN MODAL -->
-<div class="overlay" id="loginOverlay">
-  <div class="modal">
-    <div class="modal-head">
-      <h3>Sign In to the Forum</h3>
-      <button class="modal-x" onclick="closeModal('loginOverlay')">×</button>
-    </div>
-    <div class="modal-body">
-      <div class="mf-group">
-        <label class="mf-label">Email</label>
-        <input class="mf-input" id="loginEmail" type="email" placeholder="you@example.com">
-      </div>
-      <div class="mf-group">
-        <label class="mf-label">Password</label>
-        <input class="mf-input" id="loginPassword" type="password" placeholder="Your password">
-      </div>
-      <div class="mf-err" id="loginErr"></div>
-      <button class="modal-submit" id="loginSubmitBtn" onclick="submitLogin()">Sign In →</button>
-      <p style="text-align:center;margin-top:14px;font-size:.82rem;color:var(--grey)">
-        No account? <button onclick="closeModal('loginOverlay');openRegister()" style="background:none;border:none;color:var(--sea);font-weight:600;cursor:pointer;font-size:.82rem">Create one →</button>
-      </p>
-    </div>
-  </div>
-</div>
-
-<!-- REGISTER MODAL -->
-<div class="overlay" id="registerOverlay">
-  <div class="modal">
-    <div class="modal-head">
-      <h3>Join the Leaders Circle</h3>
-      <button class="modal-x" onclick="closeModal('registerOverlay')">×</button>
-    </div>
-    <div class="modal-body">
-      <div class="mf-group">
-        <label class="mf-label">Full Name &amp; Title *</label>
-        <input class="mf-input" id="regName" placeholder="e.g. Jane Smith, VP of CX">
-      </div>
-      <div class="mf-group">
-        <label class="mf-label">Email *</label>
-        <input class="mf-input" id="regEmail" type="email" placeholder="you@organization.com">
-      </div>
-      <div class="mf-group">
-        <label class="mf-label">Password * <span style="font-weight:400;color:var(--grey)">(min 8 characters)</span></label>
-        <input class="mf-input" id="regPassword" type="password" placeholder="Create a password">
-      </div>
-      <div class="mf-err" id="registerErr"></div>
-      <button class="modal-submit" id="registerSubmitBtn" onclick="submitRegister()">Create Account →</button>
-      <p style="text-align:center;margin-top:14px;font-size:.82rem;color:var(--grey)">
-        Already have an account? <button onclick="closeModal('registerOverlay');openLogin()" style="background:none;border:none;color:var(--sea);font-weight:600;cursor:pointer;font-size:.82rem">Sign in →</button>
-      </p>
-    </div>
-  </div>
-</div>
-
-<!-- POST DETAIL MODAL -->
-<div class="overlay" id="postOverlayDetail">
-  <div class="modal post-modal">
-    <div class="modal-head">
-      <h3 id="postDetailTitle">Discussion</h3>
-      <button class="modal-x" onclick="closeModal('postOverlayDetail')">×</button>
-    </div>
-    <div class="modal-body" id="postDetailBody">
-      <!-- filled dynamically -->
-    </div>
-  </div>
-</div>
-
-
-
-<!-- TOAST -->
-<div class="toast" id="toast"><span class="toast-dot"></span><span id="toastMsg"></span></div>
-
-<script>
-// ═══════════════════════════════════════════════════
-// DATA
-// ═══════════════════════════════════════════════════
-const ARTICLES = [
-  { id:1, cat:'framework', emoji:'🗺️', bg:'linear-gradient(135deg,#0A4D68,#088395)', title:'The Five Outcome Stages of CX Konnect', excerpt:'A journey defined by activity tells you what happened. One defined by outcomes tells you whether it mattered. Here\'s how to build the latter.', author:'Steffi Thorlichen', date:'Feb 28, 2026', read:'8 min', tag:'Framework', url:'/articles/five-outcome-stages.html' },
-  { id:2, cat:'metrics', emoji:'📊', bg:'linear-gradient(135deg,#2D6A4F,#4A9B8E)', title:'The 8 Metrics That Actually Matter in CX', excerpt:'Most CX dashboards measure the wrong things. Here are the eight outcome-oriented metrics that reveal whether your customers are truly succeeding.', author:'Steffi Thorlichen', date:'Feb 14, 2026', read:'6 min', tag:'Metrics', url:'/articles/8-metrics-that-matter.html' },
-  { id:3, cat:'culture', emoji:'🌊', bg:'linear-gradient(135deg,#1a3a5c,#0A4D68)', title:'Culture Is Not the Soft Side of CX Strategy — It\'s the Deciding Factor', excerpt:'Tools create conditions. People create outcomes. Why the most advanced CX system will underperform a mediocre one run by a team that owns the outcome.', author:'Steffi Thorlichen', date:'Jan 30, 2026', read:'10 min', tag:'Culture', url:'/articles/culture-deciding-factor.html' },
-  { id:4, cat:'ai', emoji:'🤖', bg:'linear-gradient(135deg,#05BFDB,#088395)', title:'AI-Tooled vs AI-Intelligent: The Architectural Difference That Changes Everything', excerpt:'Most CX organizations are AI-tooled. The organizations that separate from the field will build something architecturally different: an AI intelligence layer.', author:'Steffi Thorlichen', date:'Jan 12, 2026', read:'7 min', tag:'AI & Tech', url:'/articles/ai-tooled-vs-ai-intelligent.html' },
-  { id:5, cat:'leadership', emoji:'🧭', bg:'linear-gradient(135deg,#062D3F,#0A4D68)', title:'From Reaction to Connection: A Leader\'s Transition Guide', excerpt:'Your teams are not underperforming — they are unconnected. How to move your organization from reactive chaos to proactive clarity in 90 days.', author:'Steffi Thorlichen', date:'Dec 18, 2025', read:'9 min', tag:'Leadership', url:'/articles/reaction-to-connection.html' },
-  { id:6, cat:'framework', emoji:'⚙️', bg:'linear-gradient(135deg,#4A9B8E,#05BFDB)', title:'Breaking Silos: The Gap Map Exercise', excerpt:'The most costly CX failures don\'t happen inside departments — they happen between them. A practical approach to mapping and fixing your invisible gaps.', author:'Steffi Thorlichen', date:'Dec 5, 2025', read:'5 min', tag:'Framework', url:'/articles/breaking-silos-gap-map.html' },
-];
-
-const ACTIVITIES = [
-  { emoji:'🗺️', title:'The Gap Map', desc:'Teams map every customer handoff point and identify where context is lost between functions. Surfaces invisible cross-functional gaps.', tags:['60 min','Cross-functional','6–10 people'], cat:'collaboration', url:'/workshops/gap-map.html' },
-  { emoji:'🔍', title:'The Outcome Audit', desc:'Each leader articulates what outcome their two most important customers are hired to achieve — then compares across the team.', tags:['45 min','Leadership team','4–8 people'], cat:'reflection', url:'/workshops/outcome-audit.html' },
-  { emoji:'🪤', title:'The Blame-Free Post-Mortem', desc:'A structured backward-trace of one churn event or near-miss to find the structural cause — not the people cause.', tags:['45 min','Cross-functional','5–8 people'], cat:'analysis', url:'/workshops/blame-free-post-mortem.html' },
-  { emoji:'📋', title:'The Culture Contract', desc:'Each person commits to one behavior that makes the org function as one team. Group finds themes and writes shared commitments.', tags:['60 min','Any team','8–15 people'], cat:'culture', url:'/workshops/culture-contract.html' },
-  { emoji:'🚀', title:'The 90-Day Transformation Sprint', desc:'Leadership team defines a CX Konnect pilot: one journey, one segment, one success metric. Assigns ownership and milestones.', tags:['90 min','Leadership','4–8 people'], cat:'planning', url:'/workshops/90-day-transformation-sprint.html' },
-  { emoji:'🤝', title:'The Outcome Handoff Matrix', desc:'Each function lead writes what the customer should experience after their work is done. Mismatches reveal where standards need alignment.', tags:['60 min','Cross-functional','All functions'], cat:'collaboration', url:'/workshops/outcome-handoff-matrix.html' },
-  { emoji:'📏', title:'Stage Health Audit', desc:'Rate each of the five CX Konnect stages Red/Yellow/Green as a team. Identify root causes for every non-green stage.', tags:['60 min','Leadership team','4–8 people'], cat:'analysis', url:'/workshops/stage-health-audit.html' },
-  { emoji:'🧩', title:'Fix the Gap Sprint', desc:'Cross-functional pairs map one transition in the customer journey and design a minimum viable handoff protocol together.', tags:['90 min','Cross-functional','6–12 people'], cat:'collaboration', url:'/workshops/fix-the-gap-sprint.html' },
-];
-
-const FORUM_POSTS = [
-  { initials:'MR', color:'#0A4D68', title:'How do you get Sales to stop overpromising before handoff?', meta:'Mia Rodriguez · SVP CX, Mercy Health', topic:'Breaking Silos', replies:24, time:'2h ago' },
-  { initials:'JK', color:'#4A9B8E', title:'We have great metrics but still losing renewals — anyone else?', meta:'James Kim · Director CS, Optum', topic:'Metrics', replies:18, time:'5h ago' },
-  { initials:'AP', color:'#2D6A4F', title:'Sharing our 6-month outcome-driven transformation story', meta:'Anika Patel · CCO, Regional Health System', topic:'Culture Change', replies:41, time:'Yesterday' },
-  { initials:'TD', color:'#088395', title:'Has anyone built an actual AI intelligence layer? Looking for real examples', meta:'Tom Daly · CX Innovation Lead, Ascension', topic:'AI in CX', replies:29, time:'2 days ago' },
-  { initials:'SC', color:'#062D3F', title:'The 90-day sprint activity changed our entire planning process', meta:'Sarah Chen · VP CX, Boston Medical', topic:'Team Leadership', replies:15, time:'3 days ago' },
-];
-
-const TOPICS = ['Breaking Silos','Customer Outcomes','AI in CX','Culture Change','Metrics & Measurement','Team Leadership','Partner Management','Scaling CX','Healthcare CX','Healthcare IT'];
-
-const TRENDING = [
-  { n:1, t:'How to build an AI intelligence layer' },
-  { n:2, t:'Proving ROI of CX transformation' },
-  { n:3, t:'Managing cross-functional resistance' },
-  { n:4, t:'Time to First Value benchmarks' },
-  { n:5, t:'Remote-first CX team culture' },
-];
-
-const GROUPS = [
-  { emoji:'🏙️', city:'New York, NY', members:'142 members', freq:'Monthly', bg:'#EAF6F8' },
-  { emoji:'🌴', city:'Los Angeles, CA', members:'98 members', freq:'Monthly', bg:'#F0FDF4' },
-  { emoji:'🏥', city:'Chicago, IL', members:'87 members', freq:'Bi-monthly', bg:'#FFF7ED' },
-  { emoji:'🌆', city:'Dallas, TX', members:'64 members', freq:'Monthly', bg:'#EAF6F8' },
-  { emoji:'🌉', city:'San Francisco, CA', members:'112 members', freq:'Monthly', bg:'#F0FDF4' },
-];
-
-const MAP_DOTS = [
-  { city:'New York',      top:'28%', left:'78%' },
-  { city:'Los Angeles',   top:'48%', left:'12%' },
-  { city:'Chicago',       top:'30%', left:'62%' },
-  { city:'Dallas',        top:'55%', left:'50%' },
-  { city:'San Francisco', top:'38%', left:'8%' },
-  { city:'Boston',        top:'24%', left:'80%' },
-  { city:'Atlanta',       top:'52%', left:'68%' },
-  { city:'Toronto',       top:'22%', left:'72%' },
-  { city:'London',        top:'18%', left:'48%' },
-  { city:'Sydney',        top:'72%', left:'88%' },
-  { city:'Dubai',         top:'42%', left:'70%' },
-];
-
-const EVENTS = [
-  { month:'MAY', day:'1', title:'Welcome to CXKonnect with Steffi Thorlichen', meta:'Virtual · Zoom · Free to attend', type:'virtual', register: true },
-];
-
-// ═══════════════════════════════════════════════════
-// RENDER
-// ═══════════════════════════════════════════════════
-let articleFilter = 'all';
-
-function renderArticles(filter = 'all') {
-  const list = filter === 'all' ? ARTICLES : ARTICLES.filter(a => a.cat === filter);
-  document.getElementById('articlesGrid').innerHTML = list.map(a => `
-    <a class="article-card" href="${a.url}">
-      <div class="article-card-img">
-        <div class="article-card-img-bg" style="background:${a.bg}">${a.emoji}</div>
-        <span class="article-tag">${a.tag}</span>
-      </div>
-      <div class="article-body">
-        <div class="article-title">${a.title}</div>
-        <div class="article-excerpt">${a.excerpt}</div>
-        <div class="article-meta">
-          <span>${a.author} · ${a.date}</span>
-          <span class="article-read">${a.read} read →</span>
-        </div>
-      </div>
-    </a>`).join('');
-}
-
-function filterArticles(cat, el) {
-  articleFilter = cat;
-  document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
-  el.classList.add('active');
-  renderArticles(cat);
-}
-
-function renderActivities() {
-  document.getElementById('activitiesGrid').innerHTML = ACTIVITIES.map(a => `
-    <a class="activity-card" href="${a.url}">
-      <div class="activity-icon">${a.emoji}</div>
-      <div class="activity-title">${a.title}</div>
-      <div class="activity-desc">${a.desc}</div>
-      <div class="activity-tags">${a.tags.map(t => `<span class="activity-tag">${t}</span>`).join('')}</div>
-    </a>`).join('');
-}
-
-// ── FORUM AUTH STATE ────────────────────────────────────────────────────────
-let forumUser = null; // { token, name, email }
-
-function forumInit() {
-  const saved = localStorage.getItem('cxk_forum_user');
-  if (saved) {
-    try { forumUser = JSON.parse(saved); } catch(e) {}
-  }
-  renderForumAuthBar();
-  loadForumPosts();
-
-}
-
-function renderForumAuthBar() {
-  const container = document.getElementById('forumAuthBar');
-  if (!container) return;
-  if (forumUser) {
-    const initials = forumUser.name.split(' ').map(w => w[0]).join('').substring(0,2).toUpperCase();
-    container.innerHTML = `
-      <div class="forum-user-bar">
-        <div class="forum-avatar">${initials}</div>
-        <span class="forum-user-name">Signed in as <strong>${forumUser.name}</strong></span>
-        <button class="forum-logout" onclick="forumLogout()">Sign out</button>
-      </div>`;
-  } else {
-    container.innerHTML = `
-      <div class="forum-auth-banner">
-        <div class="fab-text">
-          <strong>Join the conversation</strong>
-          Sign in or create an account to post and reply.
-        </div>
-        <div class="fab-actions">
-          <button class="fab-btn-ghost" onclick="openLogin()">Sign In</button>
-          <button class="fab-btn-primary" onclick="openRegister()">Create Account</button>
-        </div>
-      </div>`;
-  }
-}
-
-function authFetch(url, opts = {}) {
-  const headers = { 'Content-Type': 'application/json', ...(opts.headers || {}) };
-  if (forumUser) headers['Authorization'] = 'Bearer ' + forumUser.token;
-  return fetch(url, { ...opts, headers });
-}
-
-async function loadForumPosts() {
-  const grid = document.getElementById('forumPosts');
-  grid.innerHTML = '<div style="padding:20px;text-align:center;color:var(--grey);font-size:.85rem">Loading discussions…</div>';
-  try {
-    const res = await fetch('/api/forum-posts');
-    const data = await res.json();
-    const posts = data.posts || [];
-    if (posts.length === 0) {
-      grid.innerHTML = '<div style="padding:24px;text-align:center;color:var(--grey);font-size:.9rem;font-style:italic">No discussions yet — start the first one!</div>';
-      return;
-    }
-    grid.innerHTML = posts.map(p => {
-      const initials = p.author.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase();
-      const timeAgo = relativeTime(p.createdAt);
-      const colors = ['#0A4D68','#4A9B8E','#2D6A4F','#088395','#062D3F'];
-      const color = colors[Math.abs(p.id.charCodeAt(0) - 48) % colors.length];
-      return `
-        <div class="forum-post" onclick="openPost('${p.id}')">
-          <div class="fp-avatar" style="background:${color}">${initials}</div>
-          <div>
-            <div class="fp-title">${escHtml(p.title)}</div>
-            <div class="fp-meta">${escHtml(p.author)} · <span>${escHtml(p.topic)}</span> · ${timeAgo}</div>
-          </div>
-          <div class="fp-replies">
-            <span class="n">${p.replyCount || 0}</span>
-            <span class="l">Replies</span>
-          </div>
-        </div>`;
-    }).join('');
-  } catch(e) {
-    grid.innerHTML = '<div style="padding:20px;text-align:center;color:var(--grey);font-size:.85rem">Could not load discussions.</div>';
-  }
-}
-
-async function openPost(id) {
-  document.getElementById('postDetailTitle').textContent = 'Loading…';
-  document.getElementById('postDetailBody').innerHTML = '<div style="padding:20px;text-align:center;color:var(--grey)">Loading…</div>';
-  document.getElementById('postOverlayDetail').classList.add('open');
-
-  try {
-    const res = await fetch('/api/forum-post?id=' + id);
-    const data = await res.json();
-    const p = data.post;
-    if (!p) { document.getElementById('postDetailBody').innerHTML = '<p>Post not found.</p>'; return; }
-    document.getElementById('postDetailTitle').textContent = p.title;
-
-    const repliesHtml = (p.replies || []).length === 0
-      ? '<div class="no-replies">No replies yet — be the first to respond.</div>'
-      : (p.replies || []).map(r => {
-          const ini = r.author.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase();
-          return `<div class="reply-item">
-            <div class="reply-avatar">${ini}</div>
-            <div class="reply-content">
-              <div class="reply-author">${escHtml(r.author)}</div>
-              <div class="reply-text">${escHtml(r.body).replace(/\n/g,'<br>')}</div>
-              <div class="reply-time">${relativeTime(r.createdAt)}</div>
+            <!-- Connect -->
+            <div class="footer-column">
+                <h4>Connect</h4>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="#contact">Contact</a>
+                <a href="#contact">Get in Touch</a>
             </div>
-          </div>`;
-        }).join('');
 
-    const replyFormHtml = forumUser
-      ? `<div class="reply-form">
-          <textarea id="replyBody" placeholder="Write a reply…"></textarea>
-          <button class="reply-submit" onclick="submitReply('${id}')">Post Reply →</button>
-         </div>`
-      : `<div style="margin-top:16px;padding:14px;background:var(--foam);border-radius:8px;font-size:.85rem;color:var(--grey)">
-          <a onclick="closeModal('postOverlayDetail');openLogin()" style="color:var(--sea);cursor:pointer;font-weight:600">Sign in</a> to reply to this discussion.
-         </div>`;
-
-    document.getElementById('postDetailBody').innerHTML = `
-      <div class="post-detail-meta">${escHtml(p.author)} · ${escHtml(p.topic)} · ${relativeTime(p.createdAt)}</div>
-      <div class="post-detail-body">${escHtml(p.body).replace(/\n/g,'<br>')}</div>
-      <div class="replies-section">
-        <div class="replies-title">${(p.replies||[]).length} Repl${(p.replies||[]).length===1?'y':'ies'}</div>
-        ${repliesHtml}
-        ${replyFormHtml}
-      </div>`;
-  } catch(e) {
-    document.getElementById('postDetailBody').innerHTML = '<p style="color:var(--grey)">Failed to load post.</p>';
-  }
-}
-
-async function submitReply(postId) {
-  const body = (document.getElementById('replyBody')?.value || '').trim();
-  if (!body) return;
-  const btn = document.querySelector('.reply-submit');
-  if (btn) { btn.disabled = true; btn.textContent = 'Posting…'; }
-
-  try {
-    const res = await authFetch('/api/forum-reply', {
-      method: 'POST',
-      body: JSON.stringify({ postId, body }),
-    });
-    const data = await res.json();
-    if (data.reply) {
-      // Refresh post view
-      openPost(postId);
-      showToast('✓ Reply posted!');
-    } else {
-      showToast(data.error || 'Could not post reply.');
-      if (btn) { btn.disabled = false; btn.textContent = 'Post Reply →'; }
-    }
-  } catch(e) {
-    if (btn) { btn.disabled = false; btn.textContent = 'Post Reply →'; }
-    showToast('Network error — please try again.');
-  }
-}
-
-function forumLogout() {
-  forumUser = null;
-  localStorage.removeItem('cxk_forum_user');
-  renderForumAuthBar();
-  showToast('Signed out.');
-}
-
-function openLogin()    { document.getElementById('loginOverlay').classList.add('open'); }
-function openRegister() { document.getElementById('registerOverlay').classList.add('open'); }
-
-async function submitLogin() {
-  const email    = document.getElementById('loginEmail').value.trim();
-  const password = document.getElementById('loginPassword').value;
-  const errEl    = document.getElementById('loginErr');
-  const btn      = document.getElementById('loginSubmitBtn');
-  errEl.classList.remove('show');
-  if (!email || !password) { errEl.textContent = 'Please fill in all fields.'; errEl.classList.add('show'); return; }
-
-  btn.disabled = true; btn.textContent = 'Signing in…';
-  try {
-    const res  = await fetch('/api/forum-login', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ email, password }) });
-    const data = await res.json();
-    if (!res.ok) { errEl.textContent = data.error || 'Login failed.'; errEl.classList.add('show'); btn.disabled=false; btn.textContent='Sign In →'; return; }
-    forumUser = { token: data.token, name: data.name, email: data.email };
-    localStorage.setItem('cxk_forum_user', JSON.stringify(forumUser));
-    closeModal('loginOverlay');
-    document.getElementById('loginPassword').value = '';
-    btn.disabled=false; btn.textContent='Sign In →';
-    renderForumAuthBar();
-    showToast('Welcome back, ' + data.name.split(' ')[0] + '!');
-  } catch(e) {
-    errEl.textContent = 'Network error — please try again.';
-    errEl.classList.add('show');
-    btn.disabled=false; btn.textContent='Sign In →';
-  }
-}
-
-async function submitRegister() {
-  const name     = document.getElementById('regName').value.trim();
-  const email    = document.getElementById('regEmail').value.trim();
-  const password = document.getElementById('regPassword').value;
-  const errEl    = document.getElementById('registerErr');
-  const btn      = document.getElementById('registerSubmitBtn');
-  errEl.classList.remove('show');
-  if (!name || !email || !password) { errEl.textContent = 'Please fill in all fields.'; errEl.classList.add('show'); return; }
-  if (password.length < 8) { errEl.textContent = 'Password must be at least 8 characters.'; errEl.classList.add('show'); return; }
-
-  btn.disabled = true; btn.textContent = 'Creating account…';
-  try {
-    const res  = await fetch('/api/forum-register', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ name, email, password }) });
-    const data = await res.json();
-    if (!res.ok) { errEl.textContent = data.error || 'Registration failed.'; errEl.classList.add('show'); btn.disabled=false; btn.textContent='Create Account →'; return; }
-    forumUser = { token: data.token, name: data.name, email: data.email };
-    localStorage.setItem('cxk_forum_user', JSON.stringify(forumUser));
-    closeModal('registerOverlay');
-    btn.disabled=false; btn.textContent='Create Account →';
-    renderForumAuthBar();
-    showToast('Welcome to the Leaders Circle, ' + data.name.split(' ')[0] + '!');
-  } catch(e) {
-    errEl.textContent = 'Network error — please try again.';
-    errEl.classList.add('show');
-    btn.disabled=false; btn.textContent='Create Account →';
-  }
-}
-
-// Utility: relative time
-function relativeTime(iso) {
-  const diff = Date.now() - new Date(iso).getTime();
-  const m = Math.floor(diff / 60000);
-  if (m < 1)  return 'Just now';
-  if (m < 60) return m + 'm ago';
-  const h = Math.floor(m / 60);
-  if (h < 24) return h + 'h ago';
-  const d = Math.floor(h / 24);
-  if (d < 7)  return d + 'd ago';
-  return new Date(iso).toLocaleDateString('en-US', { month:'short', day:'numeric' });
-}
-
-// Utility: escape HTML
-function escHtml(str) {
-  return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-
-function renderForum() {
-  // Called during init — now replaced by forumInit()
-  forumInit();
-}
-
-// ── GROUPS ─────────────────────────────────────────────────────────────────
-function renderGroups() {
-  // Map dots placeholder — ready for future live chapter markers
-  const dots = document.getElementById('mapDots');
-  if (dots) dots.innerHTML = '';
-}
-
-function switchTab(tab, el) {
-  document.querySelectorAll('.interest-tab').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById('formJoin').style.display  = tab === 'join'  ? 'block' : 'none';
-  document.getElementById('formStart').style.display = tab === 'start' ? 'block' : 'none';
-}
-
-function submitInterest(type) {
-  const isJoin = type === 'join';
-  const name   = document.getElementById(isJoin ? 'joinName'  : 'startName').value.trim();
-  const email  = document.getElementById(isJoin ? 'joinEmail' : 'startEmail').value.trim();
-  const city   = document.getElementById(isJoin ? 'joinCity'  : 'startCity').value.trim();
-
-  if (!name || !email || !city) {
-    showToast('Please fill in your name, email, and city.');
-    return;
-  }
-
-  if (isJoin) {
-    const why  = document.getElementById('joinWhy').value.trim();
-    const subj = encodeURIComponent('CX Konnect — Interest in Joining a Local Group');
-    const body = encodeURIComponent(
-      'Hi Steffi,\n\nI\'d love to join a local CX Konnect chapter.\n\n' +
-      'Name: ' + name + '\nEmail: ' + email + '\nCity: ' + city +
-      (why ? '\n\nAbout me: ' + why : '') + '\n\nLooking forward to connecting!'
-    );
-    window.location.href = 'mailto:stefanie.cxkonnect@gmail.com?subject=' + subj + '&body=' + body;
-    document.getElementById('joinFields').style.display   = 'none';
-    document.getElementById('joinSuccess').style.display  = 'block';
-  } else {
-    const role   = document.getElementById('startRole').value.trim();
-    const vision = document.getElementById('startVision').value.trim();
-    const subj   = encodeURIComponent('CX Konnect — Interest in Starting a Local Chapter');
-    const body   = encodeURIComponent(
-      'Hi Steffi,\n\nI\'d like to start a CX Konnect chapter in my city.\n\n' +
-      'Name: ' + name + '\nEmail: ' + email + '\nCity: ' + city +
-      (role   ? '\nRole: '   + role   : '') +
-      (vision ? '\nVision: ' + vision : '') + '\n\nLooking forward to connecting!'
-    );
-    window.location.href = 'mailto:stefanie.cxkonnect@gmail.com?subject=' + subj + '&body=' + body;
-    document.getElementById('startFields').style.display  = 'none';
-    document.getElementById('startSuccess').style.display = 'block';
-  }
-}
-
-
-function renderEvents() {
-  document.getElementById('eventsGrid').innerHTML = EVENTS.map((e, i) => `
-    <div class="event-card">
-      <div class="event-date"><span class="month">${e.month}</span><span class="day">${e.day}</span></div>
-      <div class="event-title">${e.title}</div>
-      <div class="event-meta">${e.meta}</div>
-      <span class="event-type ${e.type === 'virtual' ? 'type-virtual' : 'type-inperson'}">
-        ${e.type === 'virtual' ? '💻 Virtual' : '📍 In Person'}
-      </span>
-      ${e.register ? `
-      <div class="event-reg-divider"></div>
-      <div class="event-reg-label">Reserve your spot</div>
-      <div id="regSuccess${i}" class="event-reg-success">
-        <div class="event-reg-success-icon">✅</div>
-        <div class="event-reg-success-msg">You're registered!</div>
-        <div class="event-reg-success-sub">Check your inbox — the Zoom link will be sent to you before May 1.</div>
-      </div>
-      <div id="regForm${i}">
-        <div class="event-reg-fields">
-          <div class="event-reg-row">
-            <input class="event-reg-input" id="regFirst${i}" placeholder="First name">
-            <input class="event-reg-input" id="regLast${i}" placeholder="Last name">
-          </div>
-          <input class="event-reg-input" id="regEmail${i}" type="email" placeholder="Email address">
-          <input class="event-reg-input" id="regRole${i}" placeholder="Your role & organization">
+            <!-- Follow -->
+            <div class="footer-column">
+                <h4>Follow</h4>
+                <div class="social-links">
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" title="LinkedIn">in</a>
+                    <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" title="Twitter">𝕏</a>
+                </div>
+            </div>
         </div>
-        <button class="event-reg-btn" id="regBtn${i}" onclick="registerEvent(${i})">Register for Free →</button>
-      </div>` : ''}
-    </div>`).join('');
-}
 
-function registerEvent(i) {
-  const first = document.getElementById('regFirst' + i)?.value.trim();
-  const last  = document.getElementById('regLast'  + i)?.value.trim();
-  const email = document.getElementById('regEmail' + i)?.value.trim();
-  const role  = document.getElementById('regRole'  + i)?.value.trim();
+        <div class="footer-bottom">
+            <p>&copy; 2026 CX Konnect. All rights reserved.</p>
+        </div>
+    </footer>
 
-  if (!first || !email) { showToast('Please enter at least your first name and email.'); return; }
+    <script>
+        // Generate floating particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            if (!container) return;
 
-  const btn = document.getElementById('regBtn' + i);
-  btn.disabled = true; btn.textContent = 'Registering…';
+            const particleCount = 15;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                container.appendChild(particle);
+            }
+        }
 
-  const subj = encodeURIComponent('Event Registration: Welcome to CXKonnect — May 1, 2026');
-  const body = encodeURIComponent(
-    'Hi Steffi,\n\nI\'d like to register for the Welcome to CXKonnect event on May 1, 2026.\n\n' +
-    'Name: ' + first + ' ' + last + '\n' +
-    'Email: ' + email +
-    (role ? '\nRole: ' + role : '') +
-    '\n\nPlease send me the Zoom link. Looking forward to it!'
-  );
-  window.location.href = 'mailto:stefanie.cxkonnect@gmail.com?subject=' + subj + '&body=' + body;
+        // Handle contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
 
-  setTimeout(() => {
-    document.getElementById('regForm'    + i).style.display = 'none';
-    document.getElementById('regSuccess' + i).style.display = 'block';
-  }, 600);
-}
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const company = document.getElementById('company').value;
+            const message = document.getElementById('message').value;
 
-// ═══════════════════════════════════════════════════
-// AI SEARCH
-// ═══════════════════════════════════════════════════
-async function runSearch() {
-  const q = document.getElementById('searchInput').value.trim();
-  if (!q) return;
-  const resp = document.getElementById('aiResponse');
-  const text = document.getElementById('aiText');
-  resp.classList.add('show');
-  text.innerHTML = '<div class="ai-loading"><span></span><span></span><span></span></div>';
+            const subject = 'CX Konnect Contact Form Submission from ' + name;
+            const body = `Name: ${name}\nEmail: ${email}\nCompany: ${company}\n\nMessage:\n${message}`;
 
-  try {
-    const res = await fetch('/api/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ question: q })
-    });
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.error || 'Request failed');
-    const answer = data.answer || 'I couldn\'t generate a response. Please try again.';
-    text.innerHTML = answer.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>');
-  } catch (e) {
-    text.innerHTML = 'Something went wrong — please try again in a moment.';
-  }
-}
+            const mailtoLink = `mailto:stefanie.cxkonnect@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = mailtoLink;
 
-function prefill(q) {
-  document.getElementById('searchInput').value = q;
-  runSearch();
-}
+            // Reset form
+            setTimeout(() => {
+                this.reset();
+            }, 100);
+        });
 
-// ═══════════════════════════════════════════════════
-// MODALS
-// ═══════════════════════════════════════════════════
-function openUpload() { document.getElementById('uploadOverlay').classList.add('open'); }
-function openNewPost() {
-  if (!forumUser) { openLogin(); return; }
-  document.getElementById('postOverlay').classList.add('open');
-}
-function closeModal(id) { document.getElementById(id).classList.remove('open'); }
-
-function submitUpload() {
-  const title    = document.getElementById('artTitle')?.value.trim();
-  const category = document.getElementById('artCategory')?.value;
-  const summary  = document.getElementById('artSummary')?.value.trim();
-  const url      = document.getElementById('artUrl')?.value.trim();
-  const name     = document.getElementById('artName')?.value.trim();
-  const email    = document.getElementById('artEmail')?.value.trim();
-
-  if (!title || !summary || !name || !email) {
-    showToast('Please fill in title, summary, your name, and email.');
-    return;
-  }
-
-  const btn = document.getElementById('artSubmitBtn');
-  btn.disabled = true; btn.textContent = 'Opening email…';
-
-  const subj = encodeURIComponent('Article Submission: ' + title);
-  const body = encodeURIComponent(
-    'Hi Steffi,\n\nI\'d like to submit an article for review on CXKonnect.\n\n' +
-    'Title: '    + title    + '\n' +
-    'Category: ' + category + '\n' +
-    'Summary: '  + summary  + '\n' +
-    (url   ? 'Link / file: ' + url + '\n' : '') +
-    '\nAbout me:\n' +
-    'Name: '  + name  + '\n' +
-    'Email: ' + email + '\n\n' +
-    'Looking forward to your feedback!'
-  );
-
-  window.location.href = 'mailto:stefanie.cxkonnect@gmail.com?subject=' + subj + '&body=' + body;
-
-  setTimeout(() => {
-    btn.style.display = 'none';
-    document.getElementById('artSuccess').style.display = 'block';
-  }, 700);
-}
-function submitPost() {
-  const title = document.getElementById('postTitle').value.trim();
-  const body  = document.getElementById('postBody') ? document.getElementById('postBody').value.trim() : title;
-  const topic = document.getElementById('postTopic') ? document.getElementById('postTopic').value : 'General';
-  if (!title) return;
-
-  const btn = document.getElementById('newPostSubmitBtn');
-  if (btn) { btn.disabled = true; btn.textContent = 'Posting…'; }
-
-  authFetch('/api/forum-posts', {
-    method: 'POST',
-    body: JSON.stringify({ title, body: body || title, topic }),
-  })
-  .then(r => r.json())
-  .then(data => {
-    closeModal('postOverlay');
-    if (btn) { btn.disabled = false; btn.textContent = 'Post to Forum →'; }
-    if (data.post) {
-      showToast('✓ Discussion posted!');
-      loadForumPosts();
-    } else {
-      showToast(data.error || 'Could not post. Please try again.');
-    }
-  })
-  .catch(() => {
-    if (btn) { btn.disabled = false; btn.textContent = 'Post to Forum →'; }
-    showToast('Network error — please try again.');
-  });
-}
-
-// ── CONTACT FORM ──────────────────────────────────────────────────────────
-function submitContact() {
-  const name    = document.getElementById('contactName').value.trim();
-  const email   = document.getElementById('contactEmail').value.trim();
-  const company = document.getElementById('contactCompany').value.trim();
-  const service = document.getElementById('contactService').value;
-  const message = document.getElementById('contactMessage').value.trim();
-
-  if (!name || !email) {
-    showToast('Please fill in your name and email.');
-    return;
-  }
-
-  const subj = encodeURIComponent('CX Konnect Inquiry' + (service ? ': ' + service : ''));
-  const body = encodeURIComponent(
-    'Hi Stefanie,\n\n' +
-    (message ? message + '\n\n' : 'I\'d like to learn more about your consulting services.\n\n') +
-    '---\n' +
-    'Name: ' + name + '\n' +
-    'Email: ' + email + '\n' +
-    (company ? 'Company: ' + company + '\n' : '') +
-    (service ? 'Interested in: ' + service + '\n' : '') +
-    '\nLooking forward to connecting!'
-  );
-
-  window.location.href = 'mailto:stefanie.cxkonnect@gmail.com?subject=' + subj + '&body=' + body;
-
-  document.getElementById('contactFields').style.display  = 'none';
-  document.getElementById('contactSuccess').style.display = 'block';
-}
-
-// Close on overlay click
-['uploadOverlay','postOverlay','loginOverlay','registerOverlay','postOverlayDetail'].forEach(id => {
-  document.getElementById(id).addEventListener('click', e => {
-    if (e.target.id === id) closeModal(id);
-  });
-});
-
-// ═══════════════════════════════════════════════════
-// PARTICLES
-// ═══════════════════════════════════════════════════
-function createParticles() {
-  const container = document.getElementById('particles');
-  for (let i = 0; i < 18; i++) {
-    const p = document.createElement('div');
-    p.className = 'particle';
-    const size = Math.random() * 6 + 3;
-    p.style.cssText = `
-      width:${size}px;height:${size}px;
-      left:${Math.random()*100}%;
-      animation-duration:${Math.random()*12+8}s;
-      animation-delay:-${Math.random()*20}s;
-    `;
-    container.appendChild(p);
-  }
-}
-
-// ═══════════════════════════════════════════════════
-// UTILS
-// ═══════════════════════════════════════════════════
-function scrollToSection(id) {
-  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-let toastTimer;
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  document.getElementById('toastMsg').textContent = msg;
-  t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove('show'), 3200);
-}
-
-// ═══════════════════════════════════════════════════
-// INIT
-// ═══════════════════════════════════════════════════
-renderArticles();
-renderActivities();
-renderForum();
-renderGroups();
-renderEvents();
-createParticles();
-</script>
+        // Initialize particles on page load
+        document.addEventListener('DOMContentLoaded', createParticles);
+    </script>
 </body>
 </html>
