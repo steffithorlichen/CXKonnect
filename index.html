@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="description" content="CX Konnect Leaders Circle — Community hub for CX leaders">
+<meta name="description" content="CX Konnect — Customer experience strategy and consulting by Stefanie Thorlichen. Outcome-driven CX transformation, AI-enabled org design, and leadership workshops.">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CX Konnect — Leaders Circle</title>
+<title>CX Konnect — CX Strategy &amp; Consulting | Stefanie Thorlichen</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,300;1,9..144,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&display=swap" rel="stylesheet">
@@ -901,6 +901,122 @@ footer {
   border: 1px solid rgba(194,96,10,.2);
 }
 
+/* ── ABOUT SECTION ── */
+.about-section { background: var(--shell); }
+.about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.about-text p { font-size: .95rem; color: var(--grey); line-height: 1.7; margin-bottom: 16px; }
+.about-photo {
+  background: linear-gradient(135deg, var(--deep), var(--ocean));
+  border-radius: 20px; height: 400px;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,.3); font-size: .85rem;
+  position: relative; overflow: hidden;
+}
+.about-photo::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 4px; background: linear-gradient(90deg, var(--seafoam), var(--mist));
+}
+
+/* ── FRAMEWORK SECTION ── */
+.framework-section { background: linear-gradient(180deg, #EAF6F8 0%, var(--shell) 100%); }
+.framework-quote {
+  font-family: 'Fraunces', serif; font-size: 1.15rem; font-style: italic;
+  color: var(--ocean); line-height: 1.55;
+  border-left: 4px solid var(--seafoam); padding-left: 20px;
+  margin-bottom: 40px; max-width: 600px;
+}
+.pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.pillar-card {
+  background: var(--white); border-radius: 16px; padding: 24px;
+  border: 1px solid rgba(10,77,104,.08);
+  transition: all .25s; position: relative; overflow: hidden;
+}
+.pillar-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--seafoam), var(--mist));
+  transform: scaleX(0); transform-origin: left; transition: transform .3s;
+}
+.pillar-card:hover::before { transform: scaleX(1); }
+.pillar-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(10,77,104,.12); }
+.pillar-icon { font-size: 1.8rem; margin-bottom: 12px; }
+.pillar-title { font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 500; color: var(--ocean); margin-bottom: 6px; }
+.pillar-desc { font-size: .82rem; color: var(--grey); line-height: 1.6; }
+
+/* ── SERVICES SECTION ── */
+.services-section { background: var(--shell); }
+.services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.service-card {
+  background: var(--white); border-radius: 16px; padding: 28px;
+  border: 1px solid rgba(10,77,104,.08);
+  transition: all .25s; position: relative; overflow: hidden;
+}
+.service-card::before {
+  content: ''; position: absolute; top: 0; left: 24px; right: 24px; height: 3px;
+  border-radius: 0 0 3px 3px;
+  background: linear-gradient(90deg, var(--seafoam), var(--mist));
+  opacity: 0; transition: opacity .3s;
+}
+.service-card:hover::before { opacity: 1; }
+.service-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(10,77,104,.12); }
+.service-emoji { font-size: 1.8rem; margin-bottom: 12px; }
+.service-title { font-family: 'Fraunces', serif; font-size: 1.05rem; font-weight: 500; color: var(--ocean); margin-bottom: 8px; }
+.service-desc { font-size: .82rem; color: var(--grey); line-height: 1.6; margin-bottom: 14px; }
+.service-tags { display: flex; gap: 6px; flex-wrap: wrap; padding-top: 14px; border-top: 1px solid rgba(10,77,104,.06); }
+.service-tag { padding: 3px 10px; border-radius: 100px; background: var(--foam); color: var(--sea); font-size: .7rem; font-weight: 600; }
+
+/* ── BOOK SECTION ── */
+.book-section { background: var(--ocean); }
+.book-section .section-eyebrow { color: var(--mist); }
+.book-section .section-title { color: var(--white); }
+.book-section .section-sub { color: rgba(255,255,255,.55); }
+.book-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; align-items: center; }
+.book-cover-card {
+  background: var(--glass); border: 1px solid rgba(255,255,255,.12);
+  border-radius: 20px; padding: 48px 32px; text-align: center;
+  backdrop-filter: blur(10px);
+}
+.book-cover-title { font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 500; color: var(--white); margin-bottom: 8px; }
+.book-cover-sub { font-size: .85rem; color: rgba(255,255,255,.55); margin-bottom: 20px; }
+.book-cover-divider { width: 60px; height: 3px; margin: 0 auto 20px; background: linear-gradient(90deg, var(--seafoam), var(--mist)); border-radius: 2px; }
+.book-cover-author { font-size: .95rem; color: rgba(255,255,255,.75); font-family: 'Fraunces', serif; }
+.book-desc { font-size: .95rem; color: rgba(255,255,255,.65); line-height: 1.7; margin-bottom: 16px; }
+.book-chapters { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.book-chip {
+  display: inline-block; padding: 5px 13px; border-radius: 100px;
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12);
+  font-size: .72rem; color: rgba(255,255,255,.65); font-weight: 500;
+}
+
+/* ── CONTACT SECTION ── */
+.contact-section { background: var(--shell); }
+.contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+.contact-intro { font-size: .95rem; color: var(--grey); line-height: 1.7; margin-bottom: 28px; }
+.contact-detail {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 0; border-bottom: 1px solid rgba(10,77,104,.08);
+  font-size: .88rem; color: var(--ink);
+}
+.contact-detail-icon {
+  width: 42px; height: 42px; border-radius: 12px;
+  background: var(--foam); display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; flex-shrink: 0;
+}
+.contact-form-card {
+  background: var(--white); border-radius: 16px; padding: 28px;
+  border: 1px solid rgba(10,77,104,.08);
+  box-shadow: 0 4px 20px rgba(10,77,104,.07);
+}
+.contact-form-title { font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 500; color: var(--ocean); margin-bottom: 20px; }
+
+/* ── COMMUNITY DIVIDER ── */
+.community-divider {
+  background: linear-gradient(180deg, var(--shell) 0%, #EAF6F8 100%);
+  padding: 60px 48px; text-align: center;
+}
+.community-divider .section-eyebrow { display: block; text-align: center; }
+.community-divider .section-title { text-align: center; }
+.community-divider .section-sub { text-align: center; max-width: 600px; margin: 0 auto; }
+
 @media (max-width: 900px) {
   header { padding: 0 20px; }
   nav { display: none; }
@@ -912,6 +1028,10 @@ footer {
   .forum-grid { grid-template-columns: 1fr; }
   .groups-layout { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
+  .about-layout, .contact-layout, .book-layout { grid-template-columns: 1fr; }
+  .pillars-grid { grid-template-columns: 1fr 1fr; }
+  .services-grid { grid-template-columns: 1fr; }
+  .community-divider { padding: 40px 20px; }
 }
 </style>
 </head>
@@ -924,15 +1044,15 @@ footer {
 <header>
   <a class="logo" href="#">
     <div class="logo-mark">K</div>
-    <span class="logo-name">CX Konnect <span>Leaders Circle</span></span>
+    <span class="logo-name">CX <span>Konnect</span></span>
   </a>
   <nav>
-    <button class="nav-link" onclick="scrollToSection('articles')">Articles</button>
-    <button class="nav-link" onclick="scrollToSection('activities')">Activities</button>
-    <button class="nav-link" onclick="scrollToSection('forum')">Forum</button>
-    <button class="nav-link" onclick="scrollToSection('groups')">Local Groups</button>
-    <button class="nav-link" onclick="scrollToSection('events')">Events</button>
-    <button class="nav-cta" onclick="openUpload()">+ Share Article</button>
+    <button class="nav-link" onclick="scrollToSection('about')">About</button>
+    <button class="nav-link" onclick="scrollToSection('framework')">Framework</button>
+    <button class="nav-link" onclick="scrollToSection('services')">Services</button>
+    <button class="nav-link" onclick="scrollToSection('book')">Book</button>
+    <button class="nav-link" onclick="scrollToSection('community-start')">Community</button>
+    <button class="nav-cta" onclick="scrollToSection('contact')">Start a Conversation</button>
   </nav>
 </header>
 
@@ -944,22 +1064,22 @@ footer {
 
   <div class="hero-inner">
     <div>
-      <div class="hero-eyebrow">CX Konnect — Leaders Circle</div>
-      <h1>Where CX Leaders<br><em>Connect, Learn,</em><br>and Lead Together</h1>
-      <p class="hero-desc">A community built for the people transforming customer experience. Explore frameworks, share ideas, find your people, and lead with purpose.</p>
+      <div class="hero-eyebrow">CX Strategy &amp; Consulting</div>
+      <h1>Turn Customer Experience<br>Into <em>Customer Outcomes</em></h1>
+      <p class="hero-desc">CX Konnect helps organizations move from reactive, siloed customer management to a connected, outcome-driven system where every function, metric, and AI investment delivers measurable results.</p>
       <div class="hero-actions">
-        <a class="btn-primary" onclick="scrollToSection('articles')">Explore Resources →</a>
-        <a class="btn-ghost" onclick="scrollToSection('groups')">Find a Local Group</a>
+        <a class="btn-primary" onclick="scrollToSection('contact')">Start a Conversation →</a>
+        <a class="btn-ghost" onclick="scrollToSection('services')">Explore Services</a>
       </div>
 
     </div>
 
     <div class="stefanie-card">
       <div class="stefanie-avatar">ST</div>
-      <p class="stefanie-quote">"The most powerful thing a leader can do is refuse to wait for permission to make things better. This community is for the ones who are already doing the work — and want to do it together."</p>
+      <p class="stefanie-quote">"The most important thing you can do for another person is make them feel genuinely seen. I've spent 30 years building the systems that make that possible at scale."</p>
       <div class="stefanie-sig">
-        <strong>Steffi Thorlichen</strong>
-        Chief Customer Experience Officer · Author, CX Konnect
+        <strong>Stefanie Thorlichen</strong>
+        Founder, CX Konnect · Author · 30 Years in CX Leadership
       </div>
     </div>
   </div>
@@ -997,6 +1117,254 @@ footer {
       <div class="ai-text" id="aiText"></div>
     </div>
   </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- CONSULTING SECTIONS                               -->
+<!-- ═══════════════════════════════════════════════════ -->
+
+<!-- ABOUT -->
+<section class="section about-section" id="about">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-eyebrow">About</span>
+      <h2 class="section-title">Stefanie Thorlichen</h2>
+    </div>
+    <div class="about-layout">
+      <div class="about-text">
+        <p>From pediatric nursing in Germany to leading global CX transformation at scale, I have spent 30 years learning one thing: the most important thing you can do for another person is make them feel genuinely seen.</p>
+        <p>I have built, led, and redesigned customer experience organizations across telecommunications, technology, healthcare, and professional services &mdash; spanning 30 countries, thousands of team members, and millions of customer relationships.</p>
+        <p>CX Konnect is the product of everything I have learned about what actually works: not feelings-first CX, but outcome-driven systems where every team, every metric, and every AI investment is aligned around the customer&rsquo;s success.</p>
+      </div>
+      <div class="about-photo">[ Professional headshot ]</div>
+    </div>
+  </div>
+</section>
+
+<!-- FRAMEWORK -->
+<section class="section framework-section" id="framework">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-eyebrow">The Methodology</span>
+      <h2 class="section-title">The CX Konnect Framework</h2>
+    </div>
+    <div class="framework-quote">Customers do not experience your org chart. They experience the gaps in it.</div>
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <div class="pillar-icon">🎯</div>
+        <div class="pillar-title">Outcome-Driven</div>
+        <div class="pillar-desc">Shift from measuring activity and sentiment to measuring whether customers achieve the results they signed up for. Every metric, milestone, and handoff is anchored to a tangible customer outcome.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">⚙️</div>
+        <div class="pillar-title">Cross-Functionally Connected</div>
+        <div class="pillar-desc">Break the silos between Sales, Support, Success, Product, Education, and Partners. Build shared accountability structures where every team understands its role in the customer&rsquo;s journey.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">🧠</div>
+        <div class="pillar-title">AI-Amplified</div>
+        <div class="pillar-desc">Deploy AI as the intelligence layer, not just a tool. Health scoring, predictive signals, automated playbooks, and conversation intelligence working as a connected system alongside your people.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">👥</div>
+        <div class="pillar-title">Culture-First Change</div>
+        <div class="pillar-desc">No framework succeeds without the culture to sustain it. Deliberate culture architecture: hiring, rituals, leadership behaviors, and the human engine that makes everything else work.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">📈</div>
+        <div class="pillar-title">Incrementally Scalable</div>
+        <div class="pillar-desc">Start with one journey, one segment, and one proof point. Scale from a contained pilot to full organizational transformation without the risk of doing too much too soon.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-icon">📊</div>
+        <div class="pillar-title">Metrics That Matter</div>
+        <div class="pillar-desc">Replace vanity dashboards with metrics that reveal customer progress. Outcome attainment rates, time-to-value, expansion readiness, and AI confidence scores that drive real intervention.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section services-section" id="services">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-eyebrow">Consulting Services</span>
+      <h2 class="section-title">How We Work Together</h2>
+      <p class="section-sub">Every engagement is tailored to your organization&rsquo;s maturity, industry, and goals.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-emoji">📊</div>
+        <div class="service-title">CX Maturity Assessment</div>
+        <div class="service-desc">A structured diagnostic evaluating your organization across six dimensions: outcome alignment, cross-functional connectivity, metric quality, AI readiness, culture health, and scaling capability. You receive a detailed scorecard with prioritized recommendations.</div>
+        <div class="service-tags">
+          <span class="service-tag">2&ndash;4 weeks</span>
+          <span class="service-tag">Executive readout</span>
+          <span class="service-tag">Prioritized roadmap</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-emoji">⚙️</div>
+        <div class="service-title">CX Konnect Implementation</div>
+        <div class="service-desc">Hands-on consulting to redesign your customer journey around outcomes, rebuild cross-functional handoffs, align your metrics, and create the operating model that makes it sustainable. From pilot to scale.</div>
+        <div class="service-tags">
+          <span class="service-tag">3&ndash;6 months</span>
+          <span class="service-tag">Pilot-to-scale</span>
+          <span class="service-tag">Full framework</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-emoji">🤖</div>
+        <div class="service-title">AI-Enabled CX Org Design</div>
+        <div class="service-desc">Restructure your CX organization for the AI era. Define the three-layer architecture, create new roles like CX Intelligence Analyst and Digital Success Manager, redesign span of control, and build your AI adoption roadmap.</div>
+        <div class="service-tags">
+          <span class="service-tag">Custom scope</span>
+          <span class="service-tag">Org blueprint</span>
+          <span class="service-tag">Change plan</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-emoji">🎓</div>
+        <div class="service-title">Leadership Workshops</div>
+        <div class="service-desc">Modular, facilitated workshops built from the CX Konnect Leadership Playbook. Self-assessments, team exercises, and action plans designed for CX leaders and their teams. Available as half-day, full-day, or multi-session programs.</div>
+        <div class="service-tags">
+          <span class="service-tag">Half-day to multi-day</span>
+          <span class="service-tag">In-person or virtual</span>
+          <span class="service-tag">Custom modules</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-emoji">🎤</div>
+        <div class="service-title">Keynote Speaking</div>
+        <div class="service-desc">Story-driven keynotes on the future of customer experience, the shift from feelings to outcomes, AI in CX, and building the culture that makes transformation stick. Available for conferences, executive offsites, and corporate events.</div>
+        <div class="service-tags">
+          <span class="service-tag">30&ndash;60 minutes</span>
+          <span class="service-tag">Conferences &amp; events</span>
+          <span class="service-tag">Custom topics</span>
+        </div>
+      </div>
+      <div class="service-card">
+        <div class="service-emoji">🧭</div>
+        <div class="service-title">Executive Advisory</div>
+        <div class="service-desc">Ongoing strategic counsel for CX leaders navigating organizational change, AI integration, board-level reporting, and the daily realities of building an outcome-driven CX function. A trusted thinking partner, not just an advisor.</div>
+        <div class="service-tags">
+          <span class="service-tag">Monthly retainer</span>
+          <span class="service-tag">On-demand access</span>
+          <span class="service-tag">Strategic counsel</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK -->
+<section class="section book-section" id="book">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-eyebrow">The Book</span>
+      <h2 class="section-title">The Complete CX Konnect Framework</h2>
+    </div>
+    <div class="book-layout">
+      <div class="book-cover-card">
+        <div class="book-cover-title">CX Konnect</div>
+        <div class="book-cover-sub">From Silos to Systems, From Feelings to Outcomes</div>
+        <div class="book-cover-divider"></div>
+        <div class="book-cover-author">Stefanie Thorlichen</div>
+      </div>
+      <div>
+        <p class="book-desc">Thirteen chapters covering everything from the customer outcome imperative and cross-functional alignment to AI-enabled org design, culture transformation, and industry-specific applications across healthcare, technology, telecommunications, and financial services.</p>
+        <p class="book-desc">Includes the CX Konnect Leadership Playbook &mdash; a modular workbook with self-assessments, team exercises, and action plans for every chapter.</p>
+        <div class="book-chapters">
+          <span class="book-chip">Customer Outcomes</span>
+          <span class="book-chip">Framework Overview</span>
+          <span class="book-chip">Breaking Silos</span>
+          <span class="book-chip">Journey Stages</span>
+          <span class="book-chip">Function Orchestration</span>
+          <span class="book-chip">Cross-Functional Fixes</span>
+          <span class="book-chip">Metrics That Matter</span>
+          <span class="book-chip">Culture Shift</span>
+          <span class="book-chip">Industry Spotlights</span>
+          <span class="book-chip">Scaling the Model</span>
+          <span class="book-chip">AI Intelligence Layer</span>
+          <span class="book-chip">Leadership Playbook</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact-section" id="contact">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-eyebrow">Get in Touch</span>
+      <h2 class="section-title">Let&rsquo;s Talk About Your CX Transformation</h2>
+    </div>
+    <div class="contact-layout">
+      <div>
+        <p class="contact-intro">Whether you are a CX leader looking to redesign your organization for the AI era, a CEO who wants customer experience to drive measurable business outcomes, or a conference organizer seeking a speaker who has lived this work for three decades &mdash; I would love to hear from you.</p>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">🌍</div>
+          <div>Based in the United States &middot; Serving clients globally</div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">💬</div>
+          <div>Typically responds within 1&ndash;2 business days</div>
+        </div>
+        <div class="contact-detail">
+          <div class="contact-detail-icon">🎓</div>
+          <div>Workshops available in-person and virtually</div>
+        </div>
+      </div>
+      <div class="contact-form-card">
+        <div class="contact-form-title">Send a Message</div>
+        <div id="contactSuccess" class="interest-success">
+          <div class="interest-success-icon">✅</div>
+          <div class="interest-success-msg">Message sent!</div>
+          <div class="interest-success-sub">Stefanie will be in touch within 1&ndash;2 business days.</div>
+        </div>
+        <div id="contactFields">
+          <div class="mf-group">
+            <label class="mf-label">Name *</label>
+            <input class="mf-input" id="contactName" placeholder="Your full name">
+          </div>
+          <div class="mf-group">
+            <label class="mf-label">Email *</label>
+            <input class="mf-input" id="contactEmail" type="email" placeholder="your@email.com">
+          </div>
+          <div class="mf-group">
+            <label class="mf-label">Company</label>
+            <input class="mf-input" id="contactCompany" placeholder="Your organization">
+          </div>
+          <div class="mf-group">
+            <label class="mf-label">I&rsquo;m interested in&hellip;</label>
+            <select class="mf-select" id="contactService">
+              <option value="">Select a service</option>
+              <option>CX Maturity Assessment</option>
+              <option>CX Konnect Implementation</option>
+              <option>AI-Enabled CX Org Design</option>
+              <option>Leadership Workshops</option>
+              <option>Keynote Speaking</option>
+              <option>Executive Advisory</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div class="mf-group">
+            <label class="mf-label">Message</label>
+            <textarea class="mf-textarea" id="contactMessage" placeholder="Tell me about your CX challenges and goals..."></textarea>
+          </div>
+          <button class="modal-submit" onclick="submitContact()">Send Message →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY DIVIDER -->
+<div class="community-divider" id="community-start">
+  <span class="section-eyebrow">Community</span>
+  <h2 class="section-title">CX Konnect Leaders Circle</h2>
+  <p class="section-sub">Connect with CX practitioners, share frameworks, and lead together. The community that powers the movement.</p>
 </div>
 
 <!-- ARTICLES -->
@@ -1168,34 +1536,35 @@ footer {
       <div class="footer-brand">
         <div class="logo">
           <div class="logo-mark">K</div>
-          <span class="logo-name">CX Konnect <span>Leaders Circle</span></span>
+          <span class="logo-name">CX <span>Konnect</span></span>
         </div>
-        <p class="footer-desc">A community built for CX leaders who believe that connected operations, outcome-driven cultures, and genuine human connection are the future of customer experience.</p>
+        <p class="footer-desc">CX strategy and consulting for organizations ready to move from reaction to connection. Founded by Stefanie Thorlichen.</p>
       </div>
       <div class="footer-col">
-        <h4>Resources</h4>
-        <a class="footer-link">Articles</a>
-        <a class="footer-link">Workshop Activities</a>
-        <a class="footer-link">The CX Konnect Book</a>
-        <a class="footer-link">Frameworks</a>
+        <h4>Consulting</h4>
+        <a class="footer-link" onclick="scrollToSection('about')">About</a>
+        <a class="footer-link" onclick="scrollToSection('framework')">Framework</a>
+        <a class="footer-link" onclick="scrollToSection('services')">Services</a>
+        <a class="footer-link" onclick="scrollToSection('book')">The Book</a>
+        <a class="footer-link" onclick="scrollToSection('contact')">Contact</a>
       </div>
       <div class="footer-col">
         <h4>Community</h4>
-        <a class="footer-link">Forum</a>
-        <a class="footer-link">Local Groups</a>
-        <a class="footer-link">Events</a>
-        <a class="footer-link">Leaders Directory</a>
+        <a class="footer-link" onclick="scrollToSection('articles')">Articles</a>
+        <a class="footer-link" onclick="scrollToSection('activities')">Workshop Activities</a>
+        <a class="footer-link" onclick="scrollToSection('forum')">Forum</a>
+        <a class="footer-link" onclick="scrollToSection('groups')">Local Groups</a>
+        <a class="footer-link" onclick="scrollToSection('events')">Events</a>
       </div>
       <div class="footer-col">
-        <h4>About</h4>
-        <a class="footer-link" href="https://www.linkedin.com/in/steffithorlichen/" target="_blank" rel="noopener">About Steffi</a>
-        <a class="footer-link">CX Konnect Framework</a>
-        <a class="footer-link">Contact</a>
+        <h4>Connect</h4>
+        <a class="footer-link" href="https://www.linkedin.com/in/steffithorlichen/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="footer-link" onclick="scrollToSection('contact')">Contact</a>
         <a class="footer-link">Privacy Policy</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© 2026 CX Konnect — Leaders Circle · All rights reserved</span>
+      <span>&copy; 2026 CX Konnect &middot; All rights reserved</span>
       <span>Built with purpose, not just pixels.</span>
     </div>
   </div>
@@ -1923,6 +2292,37 @@ function submitPost() {
     if (btn) { btn.disabled = false; btn.textContent = 'Post to Forum →'; }
     showToast('Network error — please try again.');
   });
+}
+
+// ── CONTACT FORM ──────────────────────────────────────────────────────────
+function submitContact() {
+  const name    = document.getElementById('contactName').value.trim();
+  const email   = document.getElementById('contactEmail').value.trim();
+  const company = document.getElementById('contactCompany').value.trim();
+  const service = document.getElementById('contactService').value;
+  const message = document.getElementById('contactMessage').value.trim();
+
+  if (!name || !email) {
+    showToast('Please fill in your name and email.');
+    return;
+  }
+
+  const subj = encodeURIComponent('CX Konnect Inquiry' + (service ? ': ' + service : ''));
+  const body = encodeURIComponent(
+    'Hi Stefanie,\n\n' +
+    (message ? message + '\n\n' : 'I\'d like to learn more about your consulting services.\n\n') +
+    '---\n' +
+    'Name: ' + name + '\n' +
+    'Email: ' + email + '\n' +
+    (company ? 'Company: ' + company + '\n' : '') +
+    (service ? 'Interested in: ' + service + '\n' : '') +
+    '\nLooking forward to connecting!'
+  );
+
+  window.location.href = 'mailto:stefanie.cxkonnect@gmail.com?subject=' + subj + '&body=' + body;
+
+  document.getElementById('contactFields').style.display  = 'none';
+  document.getElementById('contactSuccess').style.display = 'block';
 }
 
 // Close on overlay click
