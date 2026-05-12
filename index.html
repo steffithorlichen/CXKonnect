@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Six Cities</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: linear-gradient(180deg, #0f0e17 0%, #1a1825 100%);
+    color: #f5f3ee;
+    min-height: 100vh;
+    padding: 4rem 2rem;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  header {
+    max-width: 1200px;
+    margin: 0 auto 4rem;
+    text-align: center;
+  }
+
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.4em;
+    font-size: 0.75rem;
+    color: #c8a97e;
+    margin-bottom: 1.25rem;
+    font-weight: 500;
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin-bottom: 1rem;
+  }
+
+  .subtitle {
+    font-size: 1.05rem;
+    color: #a8a4b8;
+    font-weight: 300;
+    max-width: 540px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .card {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    background: #2a2638;
+  }
+
+  .card:hover {
+    transform: translateY(-6px);
+  }
+
+  .card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.6s ease;
+    filter: brightness(0.78) saturate(1.05);
+  }
+
+  .card:hover img {
+    transform: scale(1.06);
+    filter: brightness(0.92) saturate(1.15);
+  }
+
+  .card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(15, 14, 23, 0.85) 100%);
+    pointer-events: none;
+  }
+
+  .caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.75rem;
+    z-index: 2;
+  }
+
+  .country {
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    font-size: 0.7rem;
+    color: #c8a97e;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .city {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+
+  .blurb {
+    font-size: 0.85rem;
+    color: #d4d1dc;
+    margin-top: 0.5rem;
+    font-weight: 300;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .card:hover .blurb {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  footer {
+    max-width: 1200px;
+    margin: 4rem auto 0;
+    text-align: center;
+    color: #6b6679;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+  }
+
+  @media (max-width: 600px) {
+    body { padding: 2rem 1rem; }
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">A Visual Atlas</div>
+  <h1>Six Cities</h1>
+  <p class="subtitle">A small collection of places — old harbors, café streets, river towns, and tropical capitals.</p>
+</header>
+
+<main class="grid">
+
+  <article class="card">
+    <img src="images/lisbon.jpg" alt="Lisbon" />
+    <div class="caption">
+      <div class="country">Portugal</div>
+      <div class="city">Lisbon</div>
+      <div class="blurb">Tile facades, yellow trams, fado at dusk.</div>
+    </div>
+  </article>
+
+  <article class="card">
+    <img src="images/buenos-aires.jpg" alt="Buenos Aires" />
+    <div class="caption">
+      <div class="country">Argentina</div>
+      <div class="city">Buenos Aires</div>
+      <div class="blurb">Tango, steak, and grand European bones.</div>
+    </div>
+  </article>
+
+  <article class="card">
+    <img src="images/vienna.jpg" alt="Vienna" />
+    <div class="caption">
+      <div class="country">Austria</div>
+      <div class="city">Vienna</div>
+      <div class="blurb">Imperial squares and coffee-house philosophy.</div>
+    </div>
+  </article>
+
+  <article class="card">
+    <img src="images/dusseldorf.jpg" alt="Düsseldorf" />
+    <div class="caption">
+      <div class="country">Germany</div>
+      <div class="city">Düsseldorf</div>
+      <div class="blurb">Rhine views, Altbier, and a long bar.</div>
+    </div>
+  </article>
+
+  <article class="card">
+    <img src="images/malaga.jpg" alt="Málaga" />
+    <div class="caption">
+      <div class="country">Spain</div>
+      <div class="city">Málaga</div>
+      <div class="blurb">Andalusian sun, Picasso, and the Costa del Sol.</div>
+    </div>
+  </article>
+
+  <article class="card">
+    <img src="images/manila.jpg" alt="Manila" />
+    <div class="caption">
+      <div class="country">Philippines</div>
+      <div class="city">Manila</div>
+      <div class="blurb">Spanish stone, jeepneys, and bay sunsets.</div>
+    </div>
+  </article>
+
+</main>
+
+<footer>
+  Images via Wikimedia Commons
+</footer>
+
+</body>
+</html>
